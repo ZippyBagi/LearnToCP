@@ -1,5 +1,5 @@
-import SignInButton from "@/app/ui/signInButton"
-import LanguageSelector from "@/app/ui/languageSelect"
+import SignInButton from "@/app/ui/utils/signInButton"
+import LanguageSelector from "@/app/ui/utils/languageSelect"
 
 export default function Navbar(){
     return <nav className="flex items-center w-full bg-black/50 justify-between border-b-4 border-blue-500/50">
@@ -14,9 +14,5 @@ export default function Navbar(){
             <SignInButton></SignInButton>
         </div>
         
-        
-
-        
-
     </nav>
 }
