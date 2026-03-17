@@ -15,15 +15,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`antialiased`}
-      >
-        <Navbar></Navbar>
-        <SideBar></SideBar>
-        {children}
+      <body className={`antialiased`}>
+        <div className="flex flex-col h-screen w-screen">
+          <Navbar></Navbar>
+          <div className="flex w-full h-full">
+            <SideBar></SideBar>
+            <div className="p-3">{children}</div>
+          </div>
+        </div>
       </body>
-      
-
 
     </html>
   );
