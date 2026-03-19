@@ -1,6 +1,5 @@
 import SideBar from "@/app/ui/sidebar";
 
-
 type SideBarToggleInput = {
     
 };
