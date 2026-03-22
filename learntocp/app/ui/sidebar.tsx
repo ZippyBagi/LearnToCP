@@ -10,7 +10,7 @@ export default function SideBar({toggled} : SideBarInput){
         return <div></div>
     }
 
-    return <nav className="flex flex-col align-center items-center w-3xs bg-black/50 border-r-4 border-b-4 border-blue-500/50 h-full px-3 py-4 md:px-2">
+    return <nav className="flex flex-col align-center items-center w-3xs bg-black/50 border-r-4 border-blue-500/50 h-full px-3 py-4 md:px-2">
         
         <div className="border-1 border-dashed border-blue-500/50 rounded-lg w-9/10 h-auto overflow-hidden">
             <SideBarButton name="Home" href="/"></SideBarButton>
@@ -19,7 +19,7 @@ export default function SideBar({toggled} : SideBarInput){
         </div>
 
         <div className="border-1 border-dashed border-blue-500/50 rounded-lg w-9/10 h-auto mt-5 overflow-hidden">
-            <SideBarButton name="Theory" href=""></SideBarButton>
+            <SideBarButton name="Theory" href="/Theory/Theory1"></SideBarButton>
             <SideBarButton name="Theory2" href=""></SideBarButton>
             <SideBarButton name="Theory3" href=""></SideBarButton>
             <SideBarButton name="Theory4" href=""></SideBarButton>

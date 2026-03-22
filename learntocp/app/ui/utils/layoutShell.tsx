@@ -14,9 +14,9 @@ export default function LayoutShell({ children }: { children: React.ReactNode })
     return (
         <div className="flex flex-col h-screen w-screen">
           <Navbar setSideBarActiveFunction={setSideBarActiveFunction}></Navbar>
-          <div className="flex w-full h-full">
+          <div className="flex flex-1 min-h-0">
             <SideBar toggled={sideBarActive}></SideBar>
-            <div className="p-3">{children}</div>
+            <div className="p-3 flex-1 overflow-auto">{children}</div>
           </div>
         </div>);
 
