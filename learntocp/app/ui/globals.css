@@ -82,7 +82,6 @@ body {
 }
 
 /* ─── Code block wrapper ─────────────────────────────────────────────────── */
-/* .not-prose is applied in the HTML so Tailwind Typography stops here.       */
 .code-block-wrapper {
   border-radius: 8px;
   overflow: hidden;
@@ -128,7 +127,7 @@ body {
 /* Override Shiki's inline background-color to match the site palette.        */
 /* !important is required here only because Shiki injects it as inline style. */
 .shiki-block {
-  background-color: #001e2b !important;
+  background-color: #081A22 !important;
   margin: 0;
   border-radius: 0;
   padding: 1rem 1.5rem 1rem 0;
@@ -144,19 +143,14 @@ body {
   font-size: 1em;
 }
 
-/* ─── Individual lines ───────────────────────────────────────────────────── */
-/* Every line — including blank ones — gets the same fixed height.            */
-/* This is what keeps line numbers evenly spaced: no line is taller or        */
-/* shorter than any other regardless of content.                              */
 .shiki-block .line {
   display: block;
   position: relative;
-  height: 0.5em;           /* fixed height, not line-height, so blank lines   */
-  line-height: 1.6em;      /* match code lines exactly                        */
+  height: 0.5em;
+  line-height: 1.6em;     
   padding-left: 3.5rem;
 }
 
-/* ─── Line numbers via CSS counter ──────────────────────────────────────── */
 .shiki-block .line::before {
   counter-increment: line;
   content: counter(line);
@@ -164,10 +158,10 @@ body {
   left: 0;
   width: 2.75rem;
   height: 1.6em;
-  line-height: 1.6em;      /* matches .line height — number always centred    */
+  line-height: 1.6em;      
   text-align: right;
   padding-right: 0.75rem;
-  color: rgba(124, 158, 248, 0.25);  /* tinted to match site accent           */
+  color: rgba(124, 158, 248, 0.25); 
   font-size: 0.8em;
   user-select: none;
   pointer-events: none;

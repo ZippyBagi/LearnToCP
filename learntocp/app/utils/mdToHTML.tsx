@@ -5,24 +5,7 @@ import remarkBreaks from "remark-breaks";
 import { visit } from "unist-util-visit";
 import { createHighlighter } from "shiki";
 
-const highlighterPromise = createHighlighter({
-  themes: ["one-dark-pro"],
-  langs: ["cpp", "c", "javascript", "typescript", "python", "bash", "json", "css", "html", "sql"],
-});
-
-// FIX #1: remark plugin that strips remarkBreaks from code blocks.
-// remarkBreaks converts every newline to <br> — including inside fenced code,
-// which corrupts Shiki input. This plugin removes those <br> nodes that
-// remark-breaks inserts inside code/inlineCode nodes.
-function remarkBreaksProtectCode() {
-  return (tree: any) => {
-    visit(tree, "code", (node) => {
-      // Ensure raw value is preserved; remark-breaks doesn't touch `code`
-      // nodes directly, but this guard ensures no downstream mutation.
-      node.value = node.value;
-    });
-  };
-}
+const codeHighliteTheme = "github-dark";
 
 export default async function markdownToHtml(markdown: string) {
   const highlighter = await highlighterPromise;
@@ -31,17 +14,29 @@ export default async function markdownToHtml(markdown: string) {
   const result = await remark()
     .use(remarkGfm)
     .use(remarkBreaks)
-    .use(remarkBreaksProtectCode) // FIX #1: runs after remarkBreaks, restores code nodes
+    .use(remarkBreaksProtectCode) 
     .use(html, { sanitize: false })
     .process(content);
 
   content = result.toString();
-  // FIX #1: strip <br> tags inside <pre> blocks BEFORE passing to Shiki
   content = stripBreaksInCodeBlocks(content);
   content = await highlightCodeBlocks(content, highlighter);
   content = postprocessHtml(content);
 
   return content;
+}
+
+const highlighterPromise = createHighlighter({
+  themes: [codeHighliteTheme],
+  langs: ["cpp", "c", "javascript", "typescript", "python", "bash", "json", "css", "html", "sql"],
+});
+
+function remarkBreaksProtectCode() {
+  return (tree: any) => {
+    visit(tree, "code", (node) => {
+      node.value = node.value;
+    });
+  };
 }
 
 function stripBreaksInCodeBlocks(html: string): string {
@@ -55,15 +50,13 @@ async function highlightCodeBlocks(
   html: string,
   highlighter: Awaited<ReturnType<typeof createHighlighter>>
 ) {
-  // Capture full class value — remark puts the entire info string into the class
-  // e.g. class="language-cpp Pravljenje Sparse Table-a"
-  // Group 1: language slug, Group 2: optional title (rest after the lang), Group 3: code
+
   const regex = /<pre><code class="language-([\w+#-]+)([^"]*)">([\s\S]*?)<\/code><\/pre>/g;
   const matches = [...html.matchAll(regex)];
 
   for (const match of matches) {
     const [fullMatch, lang, titleRaw, code] = match;
-    const title = titleRaw.trim(); // may be empty
+    const title = titleRaw.trim();
 
     const decoded = code
       .replace(/&amp;/g, "&")
@@ -85,7 +78,7 @@ async function highlightCodeBlocks(
     try {
       const highlighted = highlighter.codeToHtml(decoded, {
         lang: normalizedLang,
-        theme: "one-dark-pro",
+        theme: codeHighliteTheme,
         transformers: [
           {
             pre(node) {
@@ -97,8 +90,6 @@ async function highlightCodeBlocks(
         ],
       });
 
-      // not-prose stops Tailwind Typography from applying .prose pre / .prose code
-      // rules inside this wrapper, which were overriding Shiki's inline styles.
       const wrapped = `<div class="code-block-wrapper not-prose">${highlighted}</div>`;
       html = html.replace(fullMatch, wrapped);
     } catch {
