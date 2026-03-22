@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 :root {
   --background: #ffffff;
@@ -23,4 +24,213 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.prose {
+  font-size: 1.125rem;
+  line-height: 1.8;
+}
+
+.prose h1 { font-size: 2.25em;  font-weight: 800; margin-bottom: 0.75em; }
+.prose h2 { font-size: 1.875em; font-weight: 700; margin-bottom: 0.75em; }
+.prose h3 { font-size: 1.5em;   font-weight: 700; margin-bottom: 0.5em; }
+.prose h4 { font-size: 1.25em;  font-weight: 700; margin-bottom: 0.5em; }
+
+.prose p {
+  margin-bottom: 1.25em;
+}
+
+.prose a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.prose blockquote {
+  font-style: normal;
+  quotes: none;
+  border-left: 3px solid #4b5563;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 0.75em 1em;
+  border-radius: 0 6px 6px 0;
+}
+
+.prose blockquote p { margin: 0; }
+
+.prose blockquote p::before,
+.prose blockquote p::after { content: none; }
+
+.prose code {
+  background: rgba(255, 255, 255, 0.08);
+  color: #e2e8f0;
+  padding: 0.2em 0.45em;
+  border-radius: 4px;
+  font-size: 0.875em;
+  font-weight: 500;
+}
+
+.prose code::before,
+.prose code::after { content: none; }
+
+/* ─── Non-Shiki plain pre blocks ─────────────────────────────────────────── */
+.prose pre:not([data-shiki]) {
+  font-size: 0.9em;
+  padding: 1.25em 1.5em;
+  border-radius: 8px;
+  line-height: 1.7;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  overflow-x: auto;
+}
+
+/* ─── Code block wrapper ─────────────────────────────────────────────────── */
+/* .not-prose is applied in the HTML so Tailwind Typography stops here.       */
+.code-block-wrapper {
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 1.5em 0;
+  font-size: 0.9em;
+  border: 1px solid rgba(124, 158, 248, 0.12);
+}
+
+/* ─── Filename / tab header ──────────────────────────────────────────────── */
+.code-block-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.4em 1em;
+  background-color: #021929;
+  border-bottom: 1px solid rgba(124, 158, 248, 0.12);
+  font-family: var(--font-mono, monospace);
+  font-size: 0.8em;
+  user-select: none;
+}
+
+.code-block-title {
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.code-copy-btn {
+  background: none;
+  border: 1px solid rgba(124, 158, 248, 0.2);
+  border-radius: 4px;
+  color: rgba(124, 158, 248, 0.5);
+  font-size: 0.85em;
+  padding: 0.15em 0.6em;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+}
+.code-copy-btn:hover {
+  color: #7c9ef8;
+  border-color: rgba(124, 158, 248, 0.6);
+}
+
+/* ─── Shiki <pre> ────────────────────────────────────────────────────────── */
+/* Override Shiki's inline background-color to match the site palette.        */
+/* !important is required here only because Shiki injects it as inline style. */
+.shiki-block {
+  background-color: #001e2b !important;
+  margin: 0;
+  border-radius: 0;
+  padding: 1rem 1.5rem 1rem 0;
+  font-size: 0.875rem;
+  line-height: 1;
+  overflow-x: auto;
+  counter-reset: line;
+}
+
+.shiki-block code {
+  background: none;
+  padding: 0;
+  font-size: 1em;
+}
+
+/* ─── Individual lines ───────────────────────────────────────────────────── */
+/* Every line — including blank ones — gets the same fixed height.            */
+/* This is what keeps line numbers evenly spaced: no line is taller or        */
+/* shorter than any other regardless of content.                              */
+.shiki-block .line {
+  display: block;
+  position: relative;
+  height: 0.5em;           /* fixed height, not line-height, so blank lines   */
+  line-height: 1.6em;      /* match code lines exactly                        */
+  padding-left: 3.5rem;
+}
+
+/* ─── Line numbers via CSS counter ──────────────────────────────────────── */
+.shiki-block .line::before {
+  counter-increment: line;
+  content: counter(line);
+  position: absolute;
+  left: 0;
+  width: 2.75rem;
+  height: 1.6em;
+  line-height: 1.6em;      /* matches .line height — number always centred    */
+  text-align: right;
+  padding-right: 0.75rem;
+  color: rgba(124, 158, 248, 0.25);  /* tinted to match site accent           */
+  font-size: 0.8em;
+  user-select: none;
+  pointer-events: none;
+}
+
+.wikilink {
+  color: #7c9ef8;
+  text-decoration: none;
+  border-bottom: 1px dashed rgba(124, 158, 248, 0.4);
+}
+
+.wikilink:hover {
+  border-bottom-style: solid;
+}
+
+.tag {
+  display: inline-block;
+  font-size: 0.8em;
+  color: #7c9ef8;
+  text-decoration: none;
+  background: rgba(124, 158, 248, 0.1);
+  padding: 0.1em 0.5em;
+  border-radius: 999px;
+}
+
+.prose mark {
+  background: rgba(255, 214, 0, 0.25);
+  color: inherit;
+  padding: 0.1em 0.2em;
+  border-radius: 3px;
+}
+
+.callout {
+  border-left: 4px solid #7c9ef8;
+  background: rgba(124, 158, 248, 0.07);
+  padding: 0.75em 1em;
+  border-radius: 0 6px 6px 0;
+  margin: 1.5em 0;
+}
+
+.callout-title {
+  font-weight: 700;
+  font-size: 0.95em;
+  margin-bottom: 0.4em;
+  text-transform: capitalize;
+}
+
+.callout-note    { border-color: #7c9ef8; background: rgba(124, 158, 248, 0.07); }
+.callout-warning { border-color: #f59e0b; background: rgba(245, 158,  11, 0.07); }
+.callout-tip     { border-color: #10b981; background: rgba( 16, 185, 129, 0.07); }
+.callout-danger  { border-color: #ef4444; background: rgba(239,  68,  68, 0.07); }
+.callout-info    { border-color: #06b6d4; background: rgba(  6, 182, 212, 0.07); }
+
+.note-embed {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  padding: 0.75em 1em;
+  margin: 1em 0;
+  font-size: 0.95em;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.table-wrapper {
+  overflow-x: auto;
+  margin: 1.5em 0;
 }

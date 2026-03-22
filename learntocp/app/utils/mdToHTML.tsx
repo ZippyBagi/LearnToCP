@@ -1,19 +1,236 @@
 import { remark } from "remark";
 import html from "remark-html";
 import remarkGfm from "remark-gfm";
+import remarkBreaks from "remark-breaks";
+import { visit } from "unist-util-visit";
+import { createHighlighter } from "shiki";
+
+const highlighterPromise = createHighlighter({
+  themes: ["one-dark-pro"],
+  langs: ["cpp", "c", "javascript", "typescript", "python", "bash", "json", "css", "html", "sql"],
+});
+
+// FIX #1: remark plugin that strips remarkBreaks from code blocks.
+// remarkBreaks converts every newline to <br> — including inside fenced code,
+// which corrupts Shiki input. This plugin removes those <br> nodes that
+// remark-breaks inserts inside code/inlineCode nodes.
+function remarkBreaksProtectCode() {
+  return (tree: any) => {
+    visit(tree, "code", (node) => {
+      // Ensure raw value is preserved; remark-breaks doesn't touch `code`
+      // nodes directly, but this guard ensures no downstream mutation.
+      node.value = node.value;
+    });
+  };
+}
 
 export default async function markdownToHtml(markdown: string) {
+  const highlighter = await highlighterPromise;
+  let content = preprocessObsidian(markdown);
+
   const result = await remark()
     .use(remarkGfm)
+    .use(remarkBreaks)
+    .use(remarkBreaksProtectCode) // FIX #1: runs after remarkBreaks, restores code nodes
     .use(html, { sanitize: false })
-    .process(markdown);
-  
-  let content = result.toString();
-  
-  content = content.replace(
-    /<pre><code class=\"language-(\w+)\">/g,
-    '<pre class="language-$1"><code class="language-$1">'
-  );
-  
+    .process(content);
+
+  content = result.toString();
+  // FIX #1: strip <br> tags inside <pre> blocks BEFORE passing to Shiki
+  content = stripBreaksInCodeBlocks(content);
+  content = await highlightCodeBlocks(content, highlighter);
+  content = postprocessHtml(content);
+
   return content;
+}
+
+function stripBreaksInCodeBlocks(html: string): string {
+  return html.replace(
+    /(<pre[^>]*>[\s\S]*?<\/pre>)/g,
+    (block) => block.replace(/<br\s*\/?>/gi, "\n")
+  );
+}
+
+async function highlightCodeBlocks(
+  html: string,
+  highlighter: Awaited<ReturnType<typeof createHighlighter>>
+) {
+  // Capture full class value — remark puts the entire info string into the class
+  // e.g. class="language-cpp Pravljenje Sparse Table-a"
+  // Group 1: language slug, Group 2: optional title (rest after the lang), Group 3: code
+  const regex = /<pre><code class="language-([\w+#-]+)([^"]*)">([\s\S]*?)<\/code><\/pre>/g;
+  const matches = [...html.matchAll(regex)];
+
+  for (const match of matches) {
+    const [fullMatch, lang, titleRaw, code] = match;
+    const title = titleRaw.trim(); // may be empty
+
+    const decoded = code
+      .replace(/&amp;/g, "&")
+      .replace(/&#x26;/g, "&")
+      .replace(/&lt;/g, "<")
+      .replace(/&gt;/g, ">")
+      .replace(/&quot;/g, '"')
+      .replace(/&#x3C;/g, "<")
+      .replace(/&#x3E;/g, ">");
+
+    const langMap: Record<string, string> = {
+      "c++": "cpp",
+      "c#": "csharp",
+      "js": "javascript",
+      "ts": "typescript",
+    };
+    const normalizedLang = langMap[lang.toLowerCase()] ?? lang.toLowerCase();
+
+    try {
+      const highlighted = highlighter.codeToHtml(decoded, {
+        lang: normalizedLang,
+        theme: "one-dark-pro",
+        transformers: [
+          {
+            pre(node) {
+              const existing = (node.properties.class ?? "") as string;
+              node.properties.class = existing + " shiki-block";
+              node.properties["data-shiki"] = "true";
+            },
+          },
+        ],
+      });
+
+      // not-prose stops Tailwind Typography from applying .prose pre / .prose code
+      // rules inside this wrapper, which were overriding Shiki's inline styles.
+      const wrapped = `<div class="code-block-wrapper not-prose">${highlighted}</div>`;
+      html = html.replace(fullMatch, wrapped);
+    } catch {
+      // Unknown language — leave as-is
+    }
+  }
+
+  return html;
+}
+
+function preprocessObsidian(markdown: string): string {
+  // 1. Callouts
+  markdown = markdown.replace(
+    /^> \[!(\w+)\][+-]?\s*(.*?)\n((?:>.*\n?)*)/gm,
+    (_, type, title, body) => {
+      const calloutType = type.toLowerCase();
+      const calloutTitle = title || capitalize(calloutType);
+      const bodyContent = body.replace(/^> ?/gm, "").trim();
+      return `<div class="callout callout-${calloutType}" data-callout="${calloutType}">
+              <div class="callout-title">${calloutTitle}</div>
+              <div class="callout-content">\n\n${bodyContent}\n\n</div></div>\n\n`;
+    }
+  );
+
+  // 2. Wikilinks with alias  [[Page|Alias]]
+  markdown = markdown.replace(
+    /\[\[([^\]|]+)\|([^\]]+)\]\]/g,
+    '<a href="$1" class="wikilink">$2</a>'
+  );
+
+  // 3. Wikilinks without alias  [[Page]]
+  markdown = markdown.replace(
+    /\[\[([^\]]+)\]\]/g,
+    '<a href="$1" class="wikilink">$1</a>'
+  );
+
+  // 4. Image embeds with optional size
+  markdown = markdown.replace(
+    /!\[\[([^\]]+?\.(png|jpg|jpeg|gif|svg|webp))(?:\|(\d+)(?:x(\d+))?)?\]\]/gi,
+    (_, src, _ext, width, height) => {
+      const w = width ? ` width="${width}"` : "";
+      const h = height ? ` height="${height}"` : "";
+      return `<img src="${src}" alt="${src}"${w}${h} class="obsidian-embed">`;
+    }
+  );
+
+  // 5. Note embeds  ![[Note Name]]
+  markdown = markdown.replace(
+    /!\[\[([^\]]+)\]\]/g,
+    `<div class="note-embed" data-note="$1">
+  <span class="note-embed-title">$1</span>
+</div>`
+  );
+
+  // 6. Highlights  ==text==
+  markdown = markdown.replace(/==([^=]+)==/g, "<mark>$1</mark>");
+
+  // 7. Comments  %%...%%
+  markdown = markdown.replace(/%%[\s\S]*?%%/g, "");
+
+  // 8. Tags  #tag
+  markdown = markdown.replace(
+    /(^|\s)#([a-zA-Z][a-zA-Z0-9/_-]*)(?=\s|$)/gm,
+    '$1<a href="/tags/$2" class="tag">#$2</a>'
+  );
+
+  // 9. Block references
+  markdown = markdown.replace(
+    / \^([a-zA-Z0-9-]+)$/gm,
+    ' <span class="block-ref" id="^$1"></span>'
+  );
+
+  // 10. Block reference links
+  markdown = markdown.replace(
+    /\[\[([^\]]+)#\^([a-zA-Z0-9-]+)\]\]/g,
+    '<a href="$1#^$2" class="wikilink block-link">$1 ^$2</a>'
+  );
+
+  // 11. Heading anchors
+  markdown = markdown.replace(
+    /\[\[#([^\]]+)\]\]/g,
+    '<a href="#$1" class="wikilink heading-link">$1</a>'
+  );
+
+  // FIX #5: math blocks — use <pre> wrapper to prevent remark from wrapping
+  // in <p>, avoiding invalid <p><div>...</div></p> nesting.
+  markdown = markdown.replace(
+    /\$\$([\s\S]+?)\$\$/g,
+    '\n\n<div class="math math-block">$$$1$$</div>\n\n'
+  );
+
+  // 13. Inline math
+  markdown = markdown.replace(
+    /\$([^\n$]+?)\$/g,
+    '<span class="math math-inline">$$$1$$</span>'
+  );
+
+  return markdown;
+}
+
+function postprocessHtml(html: string): string {
+  // Promote the <p> immediately before a code-block-wrapper into a header tab.
+  // In the markdown, the title lives as a plain paragraph before the fence:
+  //   Pravljenje Sparse Table-a
+  //   ```cpp
+  //   ...
+  // remark renders this as <p>Pravljenje Sparse Table-a</p>\n<div class="code-block-wrapper">
+  // We pull that text out of the <p> and inject it as the header div.
+  html = html.replace(
+    /<p>([^<]+)<\/p>\n(<div class="code-block-wrapper">)/g,
+    (_, title, wrapperOpen) => {
+      const header = `<div class="code-block-header">`
+        + `<span class="code-block-title">${title.trim()}</span>`
+        + `<button class="code-copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-block-wrapper').querySelector('pre').innerText)">Copy</button>`
+        + `</div>`;
+      return `${wrapperOpen}${header}`;
+    }
+  );
+
+  // Wrap bare <table> for responsive scrolling
+  html = html.replace(/<table>/g, '<div class="table-wrapper"><table>');
+  html = html.replace(/<\/table>/g, "</table></div>");
+
+  // Add target="_blank" to external links only
+  html = html.replace(
+    /<a href="(https?:\/\/[^"]+)"/g,
+    '<a href="$1" target="_blank" rel="noopener noreferrer"'
+  );
+
+  return html;
+}
+
+function capitalize(str: string): string {
+  return str.charAt(0).toUpperCase() + str.slice(1);
 }
