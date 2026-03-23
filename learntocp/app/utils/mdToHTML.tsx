@@ -5,9 +5,9 @@ import remarkBreaks from "remark-breaks";
 import { visit } from "unist-util-visit";
 import { createHighlighter } from "shiki";
 
-const codeHighliteTheme = "github-dark";
+const codeHighliteTheme = "dracula";
 
-export default async function markdownToHtml(markdown: string) {
+export default async function markdownToHtml(markdown: string, fileName : string) {
   const highlighter = await highlighterPromise;
   let content = preprocessObsidian(markdown);
 
@@ -23,6 +23,9 @@ export default async function markdownToHtml(markdown: string) {
   content = await highlightCodeBlocks(content, highlighter);
   content = postprocessHtml(content);
 
+  const title = fileName.replace(/\.md$/i, '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  content = `<h2 class="title">${title}</h2>\n` + content;
+  
   return content;
 }
 
@@ -101,6 +104,7 @@ async function highlightCodeBlocks(
 }
 
 function preprocessObsidian(markdown: string): string {
+
   // 1. Callouts
   markdown = markdown.replace(
     /^> \[!(\w+)\][+-]?\s*(.*?)\n((?:>.*\n?)*)/gm,
@@ -117,13 +121,13 @@ function preprocessObsidian(markdown: string): string {
   // 2. Wikilinks with alias  [[Page|Alias]]
   markdown = markdown.replace(
     /\[\[([^\]|]+)\|([^\]]+)\]\]/g,
-    '<a href="$1" class="wikilink">$2</a>'
+    '<a class="wikilink">$2</a>'
   );
 
   // 3. Wikilinks without alias  [[Page]]
   markdown = markdown.replace(
     /\[\[([^\]]+)\]\]/g,
-    '<a href="$1" class="wikilink">$1</a>'
+    '<a class="wikilink">$1</a>'
   );
 
   // 4. Image embeds with optional size
@@ -153,7 +157,7 @@ function preprocessObsidian(markdown: string): string {
   // 8. Tags  #tag
   markdown = markdown.replace(
     /(^|\s)#([a-zA-Z][a-zA-Z0-9/_-]*)(?=\s|$)/gm,
-    '$1<a href="/tags/$2" class="tag">#$2</a>'
+    '$1<a class="tag">#$2</a>'
   );
 
   // 9. Block references
@@ -165,13 +169,13 @@ function preprocessObsidian(markdown: string): string {
   // 10. Block reference links
   markdown = markdown.replace(
     /\[\[([^\]]+)#\^([a-zA-Z0-9-]+)\]\]/g,
-    '<a href="$1#^$2" class="wikilink block-link">$1 ^$2</a>'
+    '<a class="wikilink block-link">$1 ^$2</a>'
   );
 
   // 11. Heading anchors
   markdown = markdown.replace(
     /\[\[#([^\]]+)\]\]/g,
-    '<a href="#$1" class="wikilink heading-link">$1</a>'
+    '<a class="wikilink heading-link">$1</a>'
   );
 
   // FIX #5: math blocks — use <pre> wrapper to prevent remark from wrapping
@@ -216,7 +220,7 @@ function postprocessHtml(html: string): string {
   // Add target="_blank" to external links only
   html = html.replace(
     /<a href="(https?:\/\/[^"]+)"/g,
-    '<a href="$1" target="_blank" rel="noopener noreferrer"'
+    '<a href="$1" class="external-link" target="_blank" rel="noopener noreferrer"'
   );
 
   return html;

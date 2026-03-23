@@ -1,5 +1,3 @@
-[[Strukture podataka]] #theory
-
 #### Problem:
 
 >You are given an integer array arr of length n and an integer q denoting the number of queries. Each query consists of two indices L and R (0 ≤ L ≤ R < n), and asks for the minimum value in the subarray arr\[L…R].
