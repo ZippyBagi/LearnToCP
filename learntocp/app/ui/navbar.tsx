@@ -3,7 +3,7 @@ import LanguageSelector from "@/app/ui/utils/languageSelect"
 import { FaBars } from "react-icons/fa";
 
 export default function Navbar({ setSideBarActiveFunction }: { setSideBarActiveFunction: () => void }){
-    return <nav className="flex items-center w-full bg-black/50 justify-between border-b-4 border-blue-500/50">
+    return <nav className="flex items-center w-full bg-bg-navbar justify-between border-b-4 border-border-blue">
         
         <div className="flex items-center">
             <button onClick={setSideBarActiveFunction} className="cursor-pointer px-3">

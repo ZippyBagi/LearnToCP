@@ -178,7 +178,6 @@ function preprocessObsidian(markdown: string): string {
     '<a class="wikilink heading-link">$1</a>'
   );
 
-  // FIX #5: math blocks — use <pre> wrapper to prevent remark from wrapping
   // in <p>, avoiding invalid <p><div>...</div></p> nesting.
   markdown = markdown.replace(
     /\$\$([\s\S]+?)\$\$/g,
@@ -195,23 +194,24 @@ function preprocessObsidian(markdown: string): string {
 }
 
 function postprocessHtml(html: string): string {
+
   // Promote the <p> immediately before a code-block-wrapper into a header tab.
-  // In the markdown, the title lives as a plain paragraph before the fence:
-  //   Pravljenje Sparse Table-a
-  //   ```cpp
-  //   ...
-  // remark renders this as <p>Pravljenje Sparse Table-a</p>\n<div class="code-block-wrapper">
-  // We pull that text out of the <p> and inject it as the header div.
   html = html.replace(
-    /<p>([^<]+)<\/p>\n(<div class="code-block-wrapper">)/g,
-    (_, title, wrapperOpen) => {
-      const header = `<div class="code-block-header">`
-        + `<span class="code-block-title">${title.trim()}</span>`
-        + `<button class="code-copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-block-wrapper').querySelector('pre').innerText)">Copy</button>`
-        + `</div>`;
-      return `${wrapperOpen}${header}`;
-    }
-  );
+  /<p>([^<]+)<\/p>\n(<div class="code-block-wrapper[^"]*">)/g,
+  (_, title, wrapperOpen) => {
+    const header = `<div class="code-block-header">`
+      + `<span class="code-block-title">${title.trim()}</span>`
+      + `<button class="code-copy-btn" onclick="
+          navigator.clipboard.writeText(this.closest('.code-block-wrapper').querySelector('pre').innerText);
+          this.textContent = 'Copied!';
+          this.classList.add('copied');
+          setTimeout(() => { this.textContent = 'Copy'; this.classList.remove('copied'); }, 1800);
+        ">Copy</button>`
+      + `</div>`;
+    return `${wrapperOpen}${header}`;
+  }
+);
+
 
   // Wrap bare <table> for responsive scrolling
   html = html.replace(/<table>/g, '<div class="table-wrapper"><table>');

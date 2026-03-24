@@ -20,6 +20,24 @@
   }
 }
 
+@theme {
+  --color-bg-navbar:      rgba(0, 0, 0, 0.50);
+  --color-bg-page:        #00131b;
+  --color-bg-code:        #081a22;
+  --color-bg-code-header: #0a1e2e;
+  --color-bg-surface:     #0d2137;
+  --color-accent:         #7c9ef8;
+  --color-text-primary:   #ededed;
+  --color-text-heading:   #e2eaff;
+  --color-text-accent:    #7c9ef8;
+  --color-success:        #50fa7b;
+  --color-warning:        #f59e0b;
+  --color-danger:         #ef4444;
+  --color-tip:            #10b981;
+  --color-info:           #06b6d4;
+  --color-border-blue:    rgba(59, 130, 246, 0.5);
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
@@ -100,36 +118,64 @@ body {
 }
 
 /* ─── Filename / tab header ──────────────────────────────────────────────── */
-.code-block-header {
+/* ─── Code Block Header ────────────────────────────────────────────────────── */
+.prose .code-block-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.4em 1em;
-  background-color: #021929;
-  border-bottom: 1px solid rgba(124, 158, 248, 0.12);
+  padding: 0.55em 1.1em;
+  background: #0a1e2e;
+  border-bottom: 1px solid rgba(124, 158, 248, 0.22);
+  border-radius: 8px 8px 0 0;
   font-family: var(--font-mono, monospace);
   font-size: 0.8em;
   user-select: none;
 }
 
-.code-block-title {
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.55);
+.prose .code-block-title {
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: 0.03em;
 }
 
-.code-copy-btn {
-  background: none;
-  border: 1px solid rgba(124, 158, 248, 0.2);
-  border-radius: 4px;
-  color: rgba(124, 158, 248, 0.5);
-  font-size: 0.85em;
-  padding: 0.15em 0.6em;
-  cursor: pointer;
-  transition: color 0.15s, border-color 0.15s;
-}
-.code-copy-btn:hover {
+/* ─── Copy Button ───────────────────────────────────────────────────────────── */
+.prose .code-copy-btn {
+  background: rgba(124, 158, 248, 0.1);
+  border: 1px solid rgba(124, 158, 248, 0.4);
+  border-radius: 5px;
   color: #7c9ef8;
-  border-color: rgba(124, 158, 248, 0.6);
+  font-size: 0.82em;
+  font-family: var(--font-mono, monospace);
+  padding: 0.3em 1em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.prose .code-copy-btn:hover {
+  background: rgba(124, 158, 248, 0.18);
+  color: #ffffff;
+  border-color: rgba(124, 158, 248, 0.7);
+  box-shadow: 0 0 10px rgba(124, 158, 248, 0.2);
+}
+
+/* ─── Copied animation ──────────────────────────────────────────────────────── */
+.prose .code-copy-btn.copied {
+  color: #50fa7b;
+  border-color: rgba(80, 250, 123, 0.6);
+  background: rgba(80, 250, 123, 0.1);
+  box-shadow: 0 0 12px rgba(80, 250, 123, 0.2);
+}
+
+@keyframes copyFlash {
+  0%   { opacity: 1; transform: scale(1); }
+  50%  { opacity: 0.8; transform: scale(0.95); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+.prose .code-copy-btn.copied {
+  animation: copyFlash 0.25s ease;
 }
 
 /* ─── Shiki <pre> ────────────────────────────────────────────────────────── */
