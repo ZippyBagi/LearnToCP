@@ -202,11 +202,11 @@ function postprocessHtml(html: string): string {
     const header = `<div class="code-block-header">`
       + `<span class="code-block-title">${title.trim()}</span>`
       + `<button class="code-copy-btn" onclick="
-          navigator.clipboard.writeText(this.closest('.code-block-wrapper').querySelector('pre').innerText);
+          navigator.clipboard.writeText(this.closest('.code-block-wrapper').querySelector('pre code').textContent);
           this.textContent = 'Copied!';
           this.classList.add('copied');
           setTimeout(() => { this.textContent = 'Copy'; this.classList.remove('copied'); }, 1800);
-        ">Copy</button>`
+          ">Copy</button>`
       + `</div>`;
     return `${wrapperOpen}${header}`;
   }

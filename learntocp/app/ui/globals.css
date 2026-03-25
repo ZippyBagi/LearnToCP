@@ -202,7 +202,7 @@ body {
   display: block;
   position: relative;
   height: 0.5em;
-  line-height: 1.6em;     
+  line-height: 0.5em;     
   padding-left: 3.5rem;
 }
 
@@ -212,8 +212,8 @@ body {
   position: absolute;
   left: 0;
   width: 2.75rem;
-  height: 1.6em;
-  line-height: 1.6em;      
+  height: 0.5em;
+  line-height: 0.5em;      
   text-align: right;
   padding-right: 0.75rem;
   color: rgba(124, 158, 248, 0.25); 
