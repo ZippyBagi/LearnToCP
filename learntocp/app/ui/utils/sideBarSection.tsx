@@ -16,7 +16,7 @@ export default function SidebarSection(input: SidebarSectionInput) {
         <div className="border border-dashed border-blue-500/50 rounded-lg w-9/10 overflow-hidden">
             {input.containers.map((container, i) => (
                 <div key={container.name}>
-                    {i > 0 && <div className="border-t border-dashed border-blue-500/30" />}
+                    {i > 0 && <div className="border-t border-blue-500/50" />}
                     <SidebarContainer {...container} standalone={false} />
                 </div>
             ))}
