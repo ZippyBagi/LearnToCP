@@ -42,6 +42,8 @@ export async function generateStaticParams(): Promise<
   return params
 }
 
+export const dynamicParams = false
+
 export async function generateMetadata({ params }: PageProps) {
   const { folder, lesson } = await params
   return {

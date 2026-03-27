@@ -5,7 +5,6 @@
 
 >The idea is to precompute the minimum values for all subarrays whose lengths are **powers of two*** and store them in a table so that any range-minimum query can be answered in constant time. We build a 2D array `lookup` where `lookup[i][j]` holds the minimum of the subarray starting at `i` with length `2^j (`j varies from to Log n where n is the length of the input array). For example `lookup[0][3]` contains minimum of range `[0, 7]` (starting with 0 and of size 23)
 
-![[Pasted image 20260223215427.png]]
 We can ignore the cells with out of bounds intervals
 
 ![[Pasted image 20260223215714.png]]
