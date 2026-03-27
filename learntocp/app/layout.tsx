@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "@/app/ui/globals.css";
 import LayoutShell from "@/app/ui/utils/layoutShell";
+import { generateSidebarContainers } from '@/app/utils/generateSidebarContainers'
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -12,10 +13,12 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+  const containers = generateSidebarContainers()
   return (
     <html lang="en">
       <body className={`antialiased`}>
-        <LayoutShell>{children}</LayoutShell>
+        <LayoutShell containers={containers}>{children}</LayoutShell>
       </body>
 
     </html>

@@ -1,12 +1,12 @@
 import SideBarButton from "@/app/ui/utils/sideBarButton"
 import SidebarSection from "@/app/ui/utils/sideBarSection";
 
-
 type SideBarInput = {
     toggled : boolean;
+    containers : any;
 };
 
-export default function SideBar({toggled} : SideBarInput){
+export default function SideBar({toggled,containers} : SideBarInput){
 
     if(!toggled){
         return <div></div>
@@ -20,10 +20,7 @@ export default function SideBar({toggled} : SideBarInput){
             <SideBarButton name="About us" href="/about-us"></SideBarButton>
         </div>
 
-        <SidebarSection containers={[
-        { name: "Sorting", hrefs: ["/theory/bubble", "/theory/merge"], names: ["Bubble Sort", "Merge Sort"] },
-        { name: "Graphs", hrefs: ["/theory/bfs", "/theory/dfs"], names: ["BFS", "DFS"] },
-        ]} />
+        <SidebarSection containers={containers}/>
         
     </nav>
 }

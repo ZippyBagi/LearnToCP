@@ -30,7 +30,7 @@ export default function SidebarContainer(input: SideBarContainerInput) {
                 />
             </div>
 
-            <div className={`transition-all duration-300 ease-in-out overflow-hidden ${open ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}`}>
+            <div className={`transition-all duration-300 ease-in-out overflow-hidden ${(open && input.hrefs.length > 0) ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}`}>
                 <div className="border-t border-blue-500/50">
                     {input.hrefs.map((href, i) => (
                         <SideBarContainerItem key={href} name={input.names[i]} href={href} />
