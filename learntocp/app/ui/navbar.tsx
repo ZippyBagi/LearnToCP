@@ -16,7 +16,6 @@ export default function Navbar({ setSideBarActiveFunction }: { setSideBarActiveF
 
         </div>
         
-        
         <div className="flex items-center pr-4">
             <LanguageSelector></LanguageSelector>
             <div className="m-4"></div>
