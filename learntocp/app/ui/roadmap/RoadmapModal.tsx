@@ -105,7 +105,7 @@ export function RoadmapModal({
             ref={closeBtnRef}
             onClick={onClose}
             aria-label="Close modal"
-            className="flex h-7 w-7 shrink-0 items-center justify-center rounded
+            className="cursor-pointer flex h-7 w-7 shrink-0 items-center justify-center rounded
                        text-[var(--color-text-muted)] transition-colors
                        hover:bg-[var(--color-accent-tint)] hover:text-[var(--color-text-primary)]
                        focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]"

@@ -13,9 +13,9 @@ export const metadata: Metadata = {
  */
 export default function RoadmapPage() {
   return (
-    <main className="min-h-screen bg-[var(--color-bg-page)] px-6 py-12">
+    <main className="min-h-fill bg-[var(--color-bg-page)] px-6 py-4">
       {/* Page header */}
-      <header className="mx-auto mb-12 max-w-3xl text-center">
+      <header className="mx-auto mb-3 max-w-3xl text-center">
         <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-text-accent)] opacity-70">
           Learning path
         </p>

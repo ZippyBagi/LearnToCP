@@ -57,6 +57,14 @@ export const roadmapMatrix: RoadmapMatrix = [
         { label: "Path aliases (@/)", href: "#" },
       ],
     },
+    {
+      title: "Tooling",
+      items: [
+        { label: "TypeScript configuration", href: "#" },
+        { label: "ESLint & Prettier", href: "#" },
+        { label: "Path aliases (@/)", href: "#" },
+      ],
+    },
   ],
 
   // ── Layer 2 ─────────────────────────────────────────────────────────────
