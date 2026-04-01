@@ -29,8 +29,8 @@ export default function RoadmapPage() {
       </header>
 
       {/* Diagram */}
-      <section aria-label="Roadmap diagram" className="mx-auto max-w-5xl overflow-x-auto">
-        <RoadmapCanvas matrix={roadmapMatrix} />
+      <section aria-label="Roadmap diagram" className="w-full overflow-x-auto">
+        <div className="flex justify-center"><RoadmapCanvas matrix={roadmapMatrix} /></div>
       </section>
     </main>
   );

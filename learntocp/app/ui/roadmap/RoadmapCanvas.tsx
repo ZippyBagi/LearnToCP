@@ -25,13 +25,14 @@ export function RoadmapCanvas({ matrix }: RoadmapCanvasProps) {
     handleToggle,
   } = useRoadmapCanvas(matrix);
 
+  {/*min-w-6xl minimum needed for 4 nodes per row*/}
   return (
-    <div className="relative w-full">
-      <div className="flex flex-col items-center gap-20 py-12 pb-10">
+    <div className="min-w-6xl">
+      <div className="flex flex-col items-center pt-10 gap-25 w-full">
         {matrix.map((layer, li) => (
           <div
             key={li}
-            className="flex flex-row flex-wrap items-stretch justify-center gap-8"
+            className="flex flex-row flex-wrap items-stretch justify-center gap-20 w-full"
           >
             {layer.map((node, ni) => (
               <div
