@@ -13,9 +13,9 @@ export const metadata: Metadata = {
  */
 export default function RoadmapPage() {
   return (
-    <main className="min-h-fill bg-[var(--color-bg-page)] px-6 py-4">
-      {/* Page header */}
-      <header className="mx-auto mb-3 max-w-3xl text-center">
+    <main className="min-h-fill bg-[var(--color-bg-page)] px-4 py-4">
+      
+      {/*<header className="mx-auto mb-3 max-w-3xl text-center">
         <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-text-accent)] opacity-70">
           Learning path
         </p>
@@ -26,11 +26,10 @@ export default function RoadmapPage() {
           Click any node to see its resources and track your progress.
           Completing all items in a node marks it as done.
         </p>
-      </header>
+      </header>*/}
 
-      {/* Diagram */}
-      <section aria-label="Roadmap diagram" className="w-full overflow-x-auto">
-        <div className="flex justify-center"><RoadmapCanvas matrix={roadmapMatrix} /></div>
+      <section aria-label="Roadmap diagram" className="w-full h-[calc(100vh-7rem)]">
+        <RoadmapCanvas matrix={roadmapMatrix} />
       </section>
     </main>
   );

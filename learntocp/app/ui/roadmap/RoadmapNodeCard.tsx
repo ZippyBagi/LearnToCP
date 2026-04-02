@@ -13,7 +13,7 @@ export function RoadmapNodeCard({
   progress,
   isComplete,
   onClick,
-}: RoadmapNodeCardProps) {
+}: RoadmapNodeCardProps, ) {
   return (
     <button
       onClick={onClick}
