@@ -33,6 +33,8 @@ export function useRoadmapNodes(
             progress: getProgress(li, lj),
             isComplete: isComplete(li, lj),
             onClick: () => setModal({ layerIndex: li, nodeIndex: lj }),
+            hideBottomNode: false,
+            hideTopNode : false,
           },
         });
         next_index++;
@@ -45,7 +47,7 @@ export function useRoadmapNodes(
         id: next_index.toString(),
         type: 'custom',
         position: { x: 0, y: cur_y },
-        data: { label: "Question", progress: 0, isComplete: false, onClick: () => {} },
+        data: { label: "Question", progress: 0, isComplete: false, onClick: () => {},hideBottomNode: false,hideTopNode : false},
       });
       next_index++;
       cur_y += gap_y;
@@ -76,6 +78,9 @@ export function useRoadmapNodes(
         target: `${nodeValues.length - matrix[i].length}`,
       });
     }
+    
+    nodeValues[0].data.hideTopNode = true;
+    nodeValues[nodeValues.length-1].data.hideBottomNode = true;
 
     return { nodeValues, edgeValues };
   }, [matrix]);
