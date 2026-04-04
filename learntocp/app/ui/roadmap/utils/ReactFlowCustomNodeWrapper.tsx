@@ -8,7 +8,7 @@ export default function RoadmapCustomNode({ data }: NodeProps) {
       {data.hideTopNode === false? <Handle type="target" position={Position.Top} isConnectable={false}/> : ''}
       <RoadmapNodeCard
         title={data.label as string}
-        progress={data.progress as number ?? 0}
+        progress={data.progress as number ?? 1}
         isComplete={data.isComplete as boolean ?? false}
         onClick={data.onClick as () => void ?? (() => {})}
       />

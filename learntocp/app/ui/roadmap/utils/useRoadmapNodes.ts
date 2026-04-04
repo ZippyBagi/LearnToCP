@@ -57,6 +57,7 @@ export function useRoadmapNodes(
           id: `${nodeValues.length-1 - matrix[i].length + j}-${nodeValues.length - 1}`,
           source: `${nodeValues.length-1 - matrix[i].length + j}`,
           target: `${nodeValues.length - 1}`,
+          selectable: false,
         });
       }
       if (i !== 0) {
@@ -65,6 +66,7 @@ export function useRoadmapNodes(
             id: `${nodeValues.length - matrix[i].length - 2}-${nodeValues.length - 1 - matrix[i].length + j}`,
             source: `${nodeValues.length - matrix[i].length - 2}`,
             target: `${nodeValues.length - 1 - matrix[i].length + j}`,
+            selectable: false,
           });
         }
       }
@@ -76,6 +78,7 @@ export function useRoadmapNodes(
         id: `${nodeValues.length - 1 - matrix[i].length + j}-${nodeValues.length - matrix[i].length}`,
         source: `${nodeValues.length - 1 - matrix[i].length + j}`,
         target: `${nodeValues.length - matrix[i].length}`,
+        selectable: false,
       });
     }
     
@@ -83,5 +86,5 @@ export function useRoadmapNodes(
     nodeValues[nodeValues.length-1].data.hideBottomNode = true;
 
     return { nodeValues, edgeValues };
-  }, [matrix]);
+  }, [matrix, getProgress, isComplete]);
 }

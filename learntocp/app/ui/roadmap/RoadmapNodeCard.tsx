@@ -19,8 +19,7 @@ export function RoadmapNodeCard({
       onClick={onClick}
       aria-label={`Open ${title}`}
       className={[
-        // Layout — wider cards to fill the page properly
-        "cursor-pointer group relative flex min-w-[200px] max-w-[300px] w-full flex-col items-start",
+        "cursor-pointer group relative flex items-center min-w-[200px] max-w-[300px] w-full flex-col ",
         "rounded-md border px-5 py-4 text-left text-base font-medium",
         "transition-all duration-200",
         "focus-visible:outline-none focus-visible:ring-2",
@@ -55,7 +54,7 @@ export function RoadmapNodeCard({
         </span>
       )}
 
-      <span className="leading-snug">{title}</span>
+      <span className="">{title}</span>
 
       {/* Progress bar — only when partially done */}
       {!isComplete && progress > 0 && (

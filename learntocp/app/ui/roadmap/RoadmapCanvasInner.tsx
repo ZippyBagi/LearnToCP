@@ -1,10 +1,10 @@
 "use client";
 
-import { useState, useCallback, useLayoutEffect, useRef } from "react";
+import { useState, useCallback, useLayoutEffect, useRef, useEffect } from "react";
 import type { RoadmapMatrix } from "@/app/utils/roadmap.types";
 import { RoadmapModal } from "./RoadmapModal";
 import { useRoadmapCanvas } from "./utils/useRoadmapCanvas";
-import '@xyflow/react/dist/style.css';
+import "@xyflow/react/dist/style.css";
 import { Node, Edge, NodeChange, ReactFlow, applyNodeChanges, Background, useReactFlow } from '@xyflow/react';
 import RoadmapCustomNode from "./utils/ReactFlowCustomNodeWrapper";
 import { useRoadmapNodes } from "./utils/useRoadmapNodes";
@@ -22,9 +22,13 @@ export function RoadmapCanvasInner({ matrix }: RoadmapCanvasInnerProps) {
   const { nodeValues, edgeValues } = useRoadmapNodes(matrix, getProgress, isComplete, setModal);
   const [nodes, setNodes] = useState<Node[]>(nodeValues);
   const [edges, setEdges] = useState<Edge[]>(edgeValues);
-
+  
   const containerRef = useRef<HTMLDivElement>(null);
   const prevWidthRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    setNodes(nodeValues);
+  }, [nodeValues]);
 
   const { getViewport, setViewport, viewportInitialized } = useReactFlow();
 
