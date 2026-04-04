@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useEffect, useRef } from "react";
+import { useState, useCallback, useLayoutEffect, useRef } from "react";
 import type { RoadmapMatrix } from "@/app/utils/roadmap.types";
 import { RoadmapModal } from "./RoadmapModal";
 import { useRoadmapCanvas } from "./utils/useRoadmapCanvas";
@@ -22,20 +22,33 @@ export function RoadmapCanvasInner({ matrix }: RoadmapCanvasInnerProps) {
   const { nodeValues, edgeValues } = useRoadmapNodes(matrix, getProgress, isComplete, setModal);
   const [nodes, setNodes] = useState<Node[]>(nodeValues);
   const [edges, setEdges] = useState<Edge[]>(edgeValues);
-  const { fitView } = useReactFlow();
 
   const containerRef = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
+  const prevWidthRef = useRef<number | null>(null);
 
-    const observer = new ResizeObserver(() => {
-      fitView({ padding: 0.1, duration: 0 });
+  const { getViewport, setViewport, viewportInitialized } = useReactFlow();
+
+  useLayoutEffect(() => {
+    const el = containerRef.current;
+    if (!el || !viewportInitialized) return;
+
+    prevWidthRef.current = el.getBoundingClientRect().width;
+
+    const ro = new ResizeObserver(([entry]) => {
+      const nextWidth = entry.contentRect.width;
+      const prevWidth = prevWidthRef.current ?? nextWidth;
+      const delta = nextWidth - prevWidth;
+      prevWidthRef.current = nextWidth;
+
+      if (!delta) return;
+
+      const { x, y, zoom } = getViewport();
+      setViewport({ x: x + (delta/2) / zoom, y, zoom }, { duration: 0 });
     });
 
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [fitView]);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, [getViewport, setViewport, viewportInitialized]);
 
   const onNodesChange = useCallback(
     (changes: NodeChange[]) => setNodes((nodesSnapshot: Node[]) => applyNodeChanges(changes, nodesSnapshot)),
