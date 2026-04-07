@@ -1,8 +1,9 @@
 import { NodeProps } from '@xyflow/react';
 import { Handle, Position } from '@xyflow/react';
 import { RoadmapNodeCard } from '../RoadmapNodeCard';
+import { ConnectorNode } from '../RoadmapConncetorNodeCard'
 
-export default function RoadmapCustomNode({ data }: NodeProps) {
+export function RoadmapCustomNode({ data }: NodeProps) {
   return (
     <>
       {data.hideTopNode === false? <Handle type="target" position={Position.Top} isConnectable={false}/> : ''}
@@ -11,6 +12,18 @@ export default function RoadmapCustomNode({ data }: NodeProps) {
         progress={data.progress as number ?? 1}
         isComplete={data.isComplete as boolean ?? false}
         onClick={data.onClick as () => void ?? (() => {})}
+      />
+      {data.hideBottomNode === false? <Handle type="source" position={Position.Bottom} isConnectable={false} /> : ''}
+    </>
+  );
+}
+
+export function RoadmapConnectorNode({data} : NodeProps){
+  return (
+    <>
+      {data.hideTopNode === false? <Handle type="target" position={Position.Top} isConnectable={false}/> : ''}
+      <ConnectorNode
+        
       />
       {data.hideBottomNode === false? <Handle type="source" position={Position.Bottom} isConnectable={false} /> : ''}
     </>

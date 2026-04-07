@@ -13,61 +13,105 @@ export function RoadmapNodeCard({
   progress,
   isComplete,
   onClick,
-}: RoadmapNodeCardProps, ) {
+}: RoadmapNodeCardProps) {
+  const hasProgress = !isComplete && progress > 0;
+  const pct = isComplete ? 100 : Math.round(progress * 100);
+  const showPct = isComplete || hasProgress;
+
   return (
-    <button
-      onClick={onClick}
-      aria-label={`Open ${title}`}
-      className={[
-        "cursor-pointer group relative flex items-center min-w-[200px] max-w-[300px] w-full flex-col ",
-        "rounded-md border px-5 py-4 text-left text-base font-medium",
-        "transition-all duration-200",
-        "focus-visible:outline-none focus-visible:ring-2",
-        "focus-visible:ring-[var(--color-accent)]",
-        "focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-bg-page)]",
-        isComplete
-          ? [
-              "border-[var(--color-success-border)]",
-              "bg-[var(--color-success-tint)]",
-              "text-[var(--color-success)]",
-              "shadow-[0_0_14px_rgba(80,250,123,0.12)]",
-            ].join(" ")
-          : [
-              "border-[var(--color-accent-border)]",
-              "bg-[var(--color-bg-surface)]",
-              "text-[var(--color-text-heading)]",
-              "hover:border-[var(--color-accent-border-hover)]",
-              "hover:bg-[var(--color-accent-tint)]",
-              "hover:shadow-[0_0_18px_rgba(124,158,248,0.14)]",
-            ].join(" "),
-      ].join(" ")}
-    >
-      {/* Completion badge */}
+    <div className="group relative inline-block w-full min-w-[200px] max-w-[300px]">
+      <button
+        onClick={onClick}
+        aria-label={`Open ${title}`}
+        className={[
+          "relative flex w-full cursor-pointer flex-col",
+          "overflow-hidden rounded-lg border text-left",
+          "transition-all duration-200 ease-out",
+          "group-hover:-translate-y-0.5 active:translate-y-0",
+          "focus-visible:outline-none focus-visible:ring-2",
+          "focus-visible:ring-[var(--color-accent)] focus-visible:ring-offset-2",
+          "focus-visible:ring-offset-[var(--color-bg-page)]",
+          isComplete
+            ? [
+                "border-[var(--color-success)]",
+                "bg-[var(--color-success-tint)]",
+                "group-hover:border-[var(--color-success)]",
+              ].join(" ")
+            : hasProgress
+            ? [
+                "border-[var(--color-accent-border-hover)]",
+                "bg-[var(--color-bg-surface)]",
+              ].join(" ")
+            : [
+                "border-[var(--color-accent-border)]",
+                "bg-[var(--color-bg-surface)]",
+                "group-hover:border-[var(--color-accent-border-hover)]",
+              ].join(" "),
+        ].join(" ")}
+      >
+        {/* Top sheen */}
+        <span
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"
+        />
+
+        {/* Main content */}
+        <div className="flex items-center gap-2.5 px-5 pt-4 pb-3">
+          <span
+            className={[
+              "flex-1 text-base font-medium tracking-tight",
+              isComplete
+                ? "text-[var(--color-success)]"
+                : "text-[var(--color-text-heading)]",
+            ].join(" ")}
+          >
+            {title}
+          </span>
+          {showPct && (
+            <span
+              className={[
+                "rounded px-1.5 py-0.5 text-[10px] font-mono font-semibold tabular-nums",
+                isComplete
+                  ? "bg-[color-mix(in_srgb,var(--color-success)_15%,transparent)] text-[var(--color-success)]"
+                  : "bg-[color-mix(in_srgb,var(--color-accent)_15%,transparent)] text-[var(--color-accent)]",
+              ].join(" ")}
+            >
+              {pct}%
+            </span>
+          )}
+        </div>
+
+        {/* Progress bar */}
+        <div className="relative h-[4px] w-full bg-white/[0.06]">
+          {showPct && (
+            <div
+              className="absolute inset-y-0 left-0 transition-all duration-500 ease-out"
+              style={{
+                width: `${pct}%`,
+                backgroundColor: isComplete
+                  ? "var(--color-success)"
+                  : "var(--color-accent)",
+              }}
+            />
+          )}
+        </div>
+      </button>
+
+      {/* Completion badge — moves with the button on hover */}
       {isComplete && (
         <span
           aria-hidden
-          className="absolute -right-1.5 -top-1.5 flex h-4 w-4 items-center justify-center
-                     rounded-full bg-[var(--color-success)] text-[9px] font-bold
-                     text-[var(--color-bg-page)] shadow"
+          className="pointer-events-none absolute -right-2 -top-2 z-10 flex h-5 w-5
+                     items-center justify-center rounded-full
+                     bg-[var(--color-success)] text-[10px] font-bold
+                     text-[var(--color-bg-page)]
+                     ring-[3px] ring-[var(--color-bg-page)]
+                     transition-transform duration-200 ease-out
+                     group-hover:-translate-y-0.5"
         >
           ✓
         </span>
       )}
-
-      <span className="">{title}</span>
-
-      {/* Progress bar — only when partially done */}
-      {!isComplete && progress > 0 && (
-        <div
-          className="absolute bottom-0 left-0 right-0 h-[2px] overflow-hidden
-                     rounded-b-md bg-[var(--color-accent-border-subtle)]"
-        >
-          <div
-            className="h-full rounded-b-md bg-[var(--color-accent)] transition-all duration-500"
-            style={{ width: `${progress * 100}%` }}
-          />
-        </div>
-      )}
-    </button>
+    </div>
   );
 }
