@@ -46,7 +46,7 @@ export function useRoadmapNodes(
       nodeValues.push({
         id: next_index.toString(),
         type: 'connector',
-        position: { x: 90, y: cur_y },
+        position: { x: 90, y: cur_y+20 },
         data: { label: "Question", progress: 0, isComplete: false, onClick: () => {},hideBottomNode: false,hideTopNode : false},
       });
       next_index++;
