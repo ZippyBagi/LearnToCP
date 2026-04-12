@@ -4,7 +4,6 @@ export interface RoadmapItem {
   href: string;
 }
 
-
 export interface RoadmapNode {
   title: string;
   items: RoadmapItem[];
