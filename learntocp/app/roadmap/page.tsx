@@ -12,6 +12,7 @@ export const metadata: Metadata = {
  * Loads the static roadmap data and passes it to the client-side canvas.
  */
 export default function RoadmapPage() {
+  
   return (
     <main className="min-h-fill bg-[var(--color-bg-page)] px-4 py-4">
       

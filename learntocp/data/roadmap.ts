@@ -23,11 +23,9 @@ export const roadmapMatrix: RoadmapMatrix = [
   // ── Layer 0 ─────────────────────────────────────────────────────────────
   [
     {
-      title: "Foundations",
+      title: "Basics",
       items: [
-        { label: "Read the documentation", href: "https://nextjs.org/docs" },
-        { label: "Set up your local environment", href: "#" },
-        { label: "Understand the App Router", href: "#" },
+    
       ],
     },
   ],
@@ -35,34 +33,19 @@ export const roadmapMatrix: RoadmapMatrix = [
   // ── Layer 1 ─────────────────────────────────────────────────────────────
   [
     {
-      title: "Core Concepts",
+      title: "Concepts I",
       items: [
-        { label: "Server vs Client Components", href: "#" },
-        { label: "Data fetching patterns", href: "#" },
-        { label: "Layouts & nested routes", href: "#" },
       ],
     },
     {
-      title: "Styling",
+      title: "Sorting",
       items: [
-        { label: "Tailwind CSS setup", href: "#" },
-        { label: "CSS variables & theming", href: "#" },
       ],
     },
     {
-      title: "Tooling",
+      title: "Binary Numbers I",
       items: [
         { label: "TypeScript configuration", href: "#" },
-        { label: "ESLint & Prettier", href: "#" },
-        { label: "Path aliases (@/)", href: "#" },
-      ],
-    },
-    {
-      title: "Tooling",
-      items: [
-        { label: "TypeScript configuration", href: "#" },
-        { label: "ESLint & Prettier", href: "#" },
-        { label: "Path aliases (@/)", href: "#" },
       ],
     },
   ],
@@ -70,19 +53,18 @@ export const roadmapMatrix: RoadmapMatrix = [
   // ── Layer 2 ─────────────────────────────────────────────────────────────
   [
     {
-      title: "Build Features",
+      title: "Prefix Sum",
       items: [
-        { label: "Authentication flow", href: "#" },
-        { label: "Database integration", href: "#" },
-        { label: "API route handlers", href: "#" },
       ],
     },
     {
-      title: "Performance",
+      title: "Two Pointers",
       items: [
-        { label: "Image optimisation", href: "#" },
-        { label: "Code splitting & lazy loading", href: "#" },
-        { label: "Metadata & SEO", href: "#" },
+      ],
+    },
+    {
+      title: "Binary Search",
+      items: [
       ],
     },
   ],
@@ -90,18 +72,18 @@ export const roadmapMatrix: RoadmapMatrix = [
   // ── Layer 3 ─────────────────────────────────────────────────────────────
   [
     {
-      title: "Testing",
+      title: "Math I",
       items: [
-        { label: "Unit tests with Vitest", href: "#" },
-        { label: "E2E tests with Playwright", href: "#" },
       ],
     },
     {
-      title: "Deployment",
+      title: "Greedy",
       items: [
-        { label: "Vercel project setup", href: "#" },
-        { label: "CI / CD pipeline", href: "#" },
-        { label: "Environment variables", href: "#" },
+      ],
+    },
+    {
+      title: "Data Structures I",
+      items: [
       ],
     },
   ],
