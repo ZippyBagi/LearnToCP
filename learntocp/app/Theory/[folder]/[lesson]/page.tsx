@@ -33,8 +33,8 @@ export async function generateStaticParams(): Promise<
 
     for (const file of files) {
       params.push({
-        folder: encodeURIComponent(folder),
-        lesson: encodeURIComponent(path.basename(file, '.md')),
+        folder,
+        lesson: path.basename(file, '.md'), 
       })
     }
   }
@@ -53,21 +53,28 @@ export async function generateMetadata({ params }: PageProps) {
 
 export default async function LessonPage({ params }: PageProps) {
   const { folder, lesson } = await params
+  console.log('[LessonPage] raw params:', { folder, lesson })
+
+  // Decode defensively — safe whether Next.js gives us encoded or decoded strings
+  const folderDecoded = safeDecode(folder)
+  const lessonDecoded = safeDecode(lesson)
+  console.log('[LessonPage] decoded:', { folderDecoded, lessonDecoded })
 
   const filePath = path.join(
     process.cwd(),
     'content',
     'LessonsMD',
-    decodeURIComponent(folder),
-    `${decodeURIComponent(lesson)}.md`
+    folderDecoded,
+    `${lessonDecoded}.md`
   )
+  console.log('[LessonPage] filePath:', filePath, 'exists:', fs.existsSync(filePath))
 
   if (!fs.existsSync(filePath)) {
     notFound()
   }
 
   const markdown = fs.readFileSync(filePath, 'utf8')
-  const htmlContent = await markdownToHtml(markdown, `${decodeURIComponent(lesson)}.md`)
+  const htmlContent = await markdownToHtml(markdown, `${lessonDecoded}.md`)
 
   return (
     <div
@@ -75,4 +82,12 @@ export default async function LessonPage({ params }: PageProps) {
       dangerouslySetInnerHTML={{ __html: htmlContent }}
     />
   )
+}
+
+function safeDecode(s: string): string {
+  try {
+    return decodeURIComponent(s)
+  } catch {
+    return s
+  }
 }

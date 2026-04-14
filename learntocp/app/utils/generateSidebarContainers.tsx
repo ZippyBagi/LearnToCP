@@ -18,6 +18,7 @@ export function generateSidebarContainers(): SidebarContainer[] {
   const folders = fs
     .readdirSync(lessonsRoot, { withFileTypes: true })
     .filter((entry) => entry.isDirectory())
+    .filter((entry) => !entry.name.startsWith("."))
     .map((entry) => entry.name)
     .sort()
  
