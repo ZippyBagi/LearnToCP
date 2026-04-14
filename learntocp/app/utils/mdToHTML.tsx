@@ -76,10 +76,11 @@ async function highlightCodeBlocks(
       "js": "javascript",
       "ts": "typescript",
     };
+    const trimmed = decoded.replace(/\n$/, "");
     const normalizedLang = langMap[lang.toLowerCase()] ?? lang.toLowerCase();
 
     try {
-      const highlighted = highlighter.codeToHtml(decoded, {
+      const highlighted = highlighter.codeToHtml(trimmed, {
         lang: normalizedLang,
         theme: codeHighliteTheme,
         transformers: [
@@ -104,6 +105,18 @@ async function highlightCodeBlocks(
 }
 
 function preprocessObsidian(markdown: string): string {
+  // Protect code blocks and inline code from all regex replacements below
+  const placeholders: string[] = [];
+  const protect = (match: string) => {
+    const token = `\u0000CODE_PLACEHOLDER_${placeholders.length}\u0000`;
+    placeholders.push(match);
+    return token;
+  };
+
+  // Fenced code blocks (``` or ~~~), then inline `code`
+  markdown = markdown.replace(/```[\s\S]*?```/g, protect);
+  markdown = markdown.replace(/~~~[\s\S]*?~~~/g, protect);
+  markdown = markdown.replace(/`[^`\n]+`/g, protect);
 
   // 1. Callouts
   markdown = markdown.replace(
@@ -188,6 +201,11 @@ function preprocessObsidian(markdown: string): string {
   markdown = markdown.replace(
     /\$([^\n$]+?)\$/g,
     '<span class="math math-inline">$$$1$$</span>'
+  );
+
+  markdown = markdown.replace(
+    /\u0000CODE_PLACEHOLDER_(\d+)\u0000/g,
+    (_, i) => placeholders[Number(i)]
   );
 
   return markdown;
