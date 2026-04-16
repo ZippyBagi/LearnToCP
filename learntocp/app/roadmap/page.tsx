@@ -7,10 +7,6 @@ export const metadata: Metadata = {
   description: "Track your learning path and progress through the roadmap.",
 };
 
-/**
- * /roadmap — server component.
- * Loads the static roadmap data and passes it to the client-side canvas.
- */
 export default function RoadmapPage() {
   const matrix = getRoadmapMatrix();
 
