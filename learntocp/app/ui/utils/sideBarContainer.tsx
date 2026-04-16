@@ -1,42 +1,64 @@
 'use client'
 import SideBarContainerItem from './sideBarContainerItem';
 import { useState } from 'react';
+import { usePathname } from 'next/navigation';
 import { ChevronDown } from "lucide-react";
 
-
 type SideBarContainerInput = {
-    name: string;
-    hrefs: string[];
-    names: string[];
-    standalone?: boolean;
+  name: string;
+  hrefs: string[];
+  names: string[];
+  standalone?: boolean;
 };
 
-export default function SidebarContainer(input: SideBarContainerInput) {
-    const [open, setOpen] = useState(false);
-    const standalone = input.standalone ?? true;
+export default function SidebarContainer({ name, hrefs, names, standalone }: SideBarContainerInput) {
+  const pathname = usePathname();
+  const hasActiveChild = hrefs.some((href) => pathname === href);
 
-    return (
-        <div className={standalone ? "border border-dashed border-blue-500/50 rounded-lg w-9/10 overflow-hidden" : "w-full overflow-hidden"}>
-            <div
-                className="flex items-center justify-between px-4 py-2.5 cursor-pointer select-none transition-colors duration-150 group"
-                onClick={() => setOpen(!open)}
-            >
-                <span className="text-lg font-bold text-white group-hover:text-[var(--color-accent)] transition-colors duration-150">
-                    {input.name}
-                </span>
-                <ChevronDown
-                    size={14}
-                    className={`text-white/40 group-hover:text-[var(--color-accent)] transition-all duration-300 ${open ? "rotate-180" : "rotate-0"}`}
-                />
-            </div>
+  const [open, setOpen] = useState(hasActiveChild);
+  const isStandalone = standalone ?? true;
 
-            <div className={`transition-all duration-300 ease-in-out overflow-hidden ${(open && input.hrefs.length > 0) ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}`}>
-                <div className="border-t border-blue-500/50">
-                    {input.hrefs.map((href, i) => (
-                        <SideBarContainerItem key={href} name={input.names[i]} href={href} />
-                    ))}
-                </div>
-            </div>
+  return (
+    <div
+      className={isStandalone ? "w-full overflow-hidden rounded-xl" : "w-full overflow-hidden"}
+      style={isStandalone ? { border: "1px solid rgba(124,158,248,0.14)", background: "rgba(13,33,55,0.5)" } : {}}
+    >
+      <div
+        className="flex items-center justify-between px-3.5 py-2.5 cursor-pointer select-none transition-all duration-150"
+        onClick={() => setOpen(!open)}
+        onMouseEnter={(e) => {
+          (e.currentTarget as HTMLDivElement).style.background = "rgba(124,158,248,0.07)";
+        }}
+        onMouseLeave={(e) => {
+          (e.currentTarget as HTMLDivElement).style.background = "transparent";
+        }}
+      >
+        <span
+          className="text-sm font-semibold transition-colors duration-150"
+          style={{ color: open || hasActiveChild ? "var(--color-accent)" : "rgba(200,218,240,0.85)" }}
+        >
+          {name}
+        </span>
+        <ChevronDown
+          size={13}
+          className={`transition-transform duration-150 ${open ? "rotate-180" : "rotate-0"}`}
+          style={{ color: open || hasActiveChild ? "var(--color-accent)" : "rgba(124,158,248,0.4)" }}
+        />
+      </div>
+
+      {/* Use max-h-52 (208px) instead of max-h-96 so open and close traverse
+          the same visible distance, making both feel equally fast. */}
+      <div
+        className={`transition-all duration-150 ease-in-out overflow-hidden ${
+          open && hrefs.length > 0 ? "max-h-52 opacity-100" : "max-h-0 opacity-0"
+        }`}
+      >
+        <div style={{ borderTop: "1px solid rgba(124,158,248,0.1)" }}>
+          {hrefs.map((href, i) => (
+            <SideBarContainerItem key={href} name={names[i]} href={href} />
+          ))}
         </div>
-    );
+      </div>
+    </div>
+  );
 }

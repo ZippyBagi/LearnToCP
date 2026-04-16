@@ -15,7 +15,7 @@ type RoadmapCanvasInnerProps = {
 
 const nodeTypes = {
   custom: RoadmapCustomNode,
-  connector : RoadmapConnectorNode,
+  connector: RoadmapConnectorNode,
 };
 
 export function RoadmapCanvasInner({ matrix }: RoadmapCanvasInnerProps) {
@@ -23,7 +23,7 @@ export function RoadmapCanvasInner({ matrix }: RoadmapCanvasInnerProps) {
   const { nodeValues, edgeValues } = useRoadmapNodes(matrix, getProgress, isComplete, setModal);
   const [nodes, setNodes] = useState<Node[]>(nodeValues);
   const [edges, setEdges] = useState<Edge[]>(edgeValues);
-  
+
   const containerRef = useRef<HTMLDivElement>(null);
   const prevWidthRef = useRef<number | null>(null);
 
@@ -48,7 +48,7 @@ export function RoadmapCanvasInner({ matrix }: RoadmapCanvasInnerProps) {
       if (!delta) return;
 
       const { x, y, zoom } = getViewport();
-      setViewport({ x: x + (delta/2) / zoom, y, zoom }, { duration: 0 });
+      setViewport({ x: x + (delta / 2) / zoom, y, zoom }, { duration: 0 });
     });
 
     ro.observe(el);
@@ -62,9 +62,28 @@ export function RoadmapCanvasInner({ matrix }: RoadmapCanvasInnerProps) {
 
   return (
     <div ref={containerRef} className="-m-3 h-[calc(100%+1.5rem)] w-[calc(100%+1.5rem)]">
-      <div className="h-full w-full border-1 rounded-xl p-3 border-white/50">
-        <ReactFlow proOptions={{ hideAttribution: false }} nodeTypes={nodeTypes} fitView nodes={nodes} edges={edges} onNodesChange={onNodesChange}>
-          <Background />
+      <div
+        className="h-full w-full rounded-xl overflow-hidden"
+        style={{
+          border: "1px solid var(--color-accent-border)",
+          background: "var(--color-bg-page)",
+          boxShadow: "inset 0 0 80px rgba(124,158,248,0.03)",
+        }}
+      >
+        <ReactFlow
+          proOptions={{ hideAttribution: false }}
+          nodeTypes={nodeTypes}
+          fitView
+          nodes={nodes}
+          edges={edges}
+          onNodesChange={onNodesChange}
+          style={{ background: "transparent" }}
+        >
+          <Background
+            color="rgba(124,158,248,0.35)"
+            gap={24}
+            size={1.5}
+          />
         </ReactFlow>
       </div>
       {modal !== null && modalNode !== null && (

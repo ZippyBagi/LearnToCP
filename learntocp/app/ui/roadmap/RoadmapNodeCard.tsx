@@ -18,63 +18,96 @@ export function RoadmapNodeCard({
   const pct = isComplete ? 100 : Math.round(progress * 100);
   const showPct = isComplete || hasProgress;
 
+  const borderColor = isComplete
+    ? "rgba(80,250,123,0.45)"
+    : hasProgress
+    ? "rgba(124,158,248,0.5)"
+    : "rgba(124,158,248,0.18)";
+
+  const glowColor = isComplete
+    ? "rgba(80,250,123,0.08)"
+    : hasProgress
+    ? "rgba(124,158,248,0.06)"
+    : "transparent";
+
   return (
-    <div className="group relative inline-block w-full min-w-[200px] max-w-[300px]">
+    <div className="group relative w-full">
       <button
         onClick={onClick}
         aria-label={`Open ${title}`}
         className={[
           "relative flex w-full cursor-pointer flex-col",
-          "overflow-hidden rounded-lg border text-left",
+          "overflow-hidden rounded-xl text-left",
           "transition-all duration-200 ease-out",
-          "group-hover:-translate-y-0.5 active:translate-y-0",
+          "active:brightness-90",
           "focus-visible:outline-none focus-visible:ring-2",
           "focus-visible:ring-[var(--color-accent)] focus-visible:ring-offset-2",
           "focus-visible:ring-offset-[var(--color-bg-page)]",
-          isComplete
-            ? [
-                "border-[var(--color-success)]",
-                "bg-[var(--color-success-tint)]",
-                "group-hover:border-[var(--color-success)]",
-              ].join(" ")
-            : hasProgress
-            ? [
-                "border-[var(--color-accent-border-hover)]",
-                "bg-[var(--color-bg-surface)]",
-              ].join(" ")
-            : [
-                "border-[var(--color-accent-border)]",
-                "bg-[var(--color-bg-surface)]",
-                "group-hover:border-[var(--color-accent-border-hover)]",
-              ].join(" "),
         ].join(" ")}
+        style={{
+          background: isComplete
+            ? "linear-gradient(135deg, #0d2137 0%, #0b2a1a 100%)"
+            : "linear-gradient(135deg, #0d2137 0%, #0a1c2e 100%)",
+          border: `1px solid ${borderColor}`,
+          boxShadow: `0 0 0 1px ${glowColor}, 0 2px 12px rgba(0,0,0,0.4)`,
+          transition: "box-shadow 200ms ease, border-color 200ms ease",
+        }}
+        onMouseEnter={(e) => {
+          const el = e.currentTarget as HTMLButtonElement;
+          el.style.borderColor = isComplete
+            ? "rgba(80,250,123,0.75)"
+            : "rgba(124,158,248,0.65)";
+          el.style.boxShadow = isComplete
+            ? `0 0 0 1px rgba(80,250,123,0.12), 0 0 18px rgba(80,250,123,0.18)`
+            : `0 0 0 1px rgba(124,158,248,0.1), 0 0 18px rgba(124,158,248,0.18)`;
+        }}
+        onMouseLeave={(e) => {
+          const el = e.currentTarget as HTMLButtonElement;
+          el.style.borderColor = borderColor;
+          el.style.boxShadow = `0 0 0 1px ${glowColor}, 0 2px 12px rgba(0,0,0,0.4)`;
+        }}
       >
         {/* Top sheen */}
         <span
           aria-hidden
-          className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"
+          className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"
         />
 
         {/* Main content */}
-        <div className="flex items-center gap-2.5 px-5 pt-4 pb-3">
+        <div className="flex items-center gap-2.5 px-4 pt-5 pb-4">
+          {isComplete && (
+            <span
+              className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full text-[9px] font-bold"
+              style={{
+                background: "rgba(80,250,123,0.15)",
+                color: "var(--color-success)",
+                border: "1px solid rgba(80,250,123,0.3)",
+              }}
+            >
+              ✓
+            </span>
+          )}
           <span
-            className={[
-              "flex-1 text-base font-medium tracking-tight",
-              isComplete
-                ? "text-[var(--color-success)]"
-                : "text-[var(--color-text-heading)]",
-            ].join(" ")}
+            className="flex-1 text-sm font-semibold tracking-tight leading-snug"
+            style={{
+              color: isComplete
+                ? "var(--color-success)"
+                : "var(--color-text-heading)",
+            }}
           >
             {title}
           </span>
           {showPct && (
             <span
-              className={[
-                "rounded px-1.5 py-0.5 text-[10px] font-mono font-semibold tabular-nums",
-                isComplete
-                  ? "bg-[color-mix(in_srgb,var(--color-success)_15%,transparent)] text-[var(--color-success)]"
-                  : "bg-[color-mix(in_srgb,var(--color-accent)_15%,transparent)] text-[var(--color-accent)]",
-              ].join(" ")}
+              className="shrink-0 rounded px-1.5 py-0.5 text-[10px] font-mono font-semibold tabular-nums"
+              style={{
+                background: isComplete
+                  ? "rgba(80,250,123,0.1)"
+                  : "rgba(124,158,248,0.1)",
+                color: isComplete
+                  ? "var(--color-success)"
+                  : "var(--color-accent)",
+              }}
             >
               {pct}%
             </span>
@@ -82,36 +115,20 @@ export function RoadmapNodeCard({
         </div>
 
         {/* Progress bar */}
-        <div className="relative h-[4px] w-full bg-white/[0.06]">
+        <div className="h-[3px] w-full" style={{ background: "rgba(255,255,255,0.05)" }}>
           {showPct && (
             <div
-              className="absolute inset-y-0 left-0 transition-all duration-500 ease-out"
+              className="h-full transition-all duration-500 ease-out"
               style={{
                 width: `${pct}%`,
-                backgroundColor: isComplete
-                  ? "var(--color-success)"
-                  : "var(--color-accent)",
+                background: isComplete
+                  ? "linear-gradient(90deg, #22c55e, #50fa7b)"
+                  : "linear-gradient(90deg, #4a7ff7, #7c9ef8)",
               }}
             />
           )}
         </div>
       </button>
-
-      {/* Completion badge — moves with the button on hover */}
-      {isComplete && (
-        <span
-          aria-hidden
-          className="pointer-events-none absolute -right-2 -top-2 z-10 flex h-5 w-5
-                     items-center justify-center rounded-full
-                     bg-[var(--color-success)] text-[10px] font-bold
-                     text-[var(--color-bg-page)]
-                     ring-[3px] ring-[var(--color-bg-page)]
-                     transition-transform duration-200 ease-out
-                     group-hover:-translate-y-0.5"
-        >
-          ✓
-        </span>
-      )}
     </div>
   );
 }

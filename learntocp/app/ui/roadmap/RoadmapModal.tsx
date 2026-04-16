@@ -6,11 +6,11 @@ import type { RoadmapNode } from "@/app/utils/roadmap.types";
 
 const MODAL_ANIM_CSS = `
 @keyframes roadmap-modal-in {
-  from { opacity: 0; transform: scale(0.97) translateY(8px); }
+  from { opacity: 0; transform: scale(0.96) translateY(10px); }
   to   { opacity: 1; transform: scale(1)    translateY(0);   }
 }
 .roadmap-modal-card {
-  animation: roadmap-modal-in 160ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: roadmap-modal-in 180ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 `;
 
@@ -32,16 +32,16 @@ interface RoadmapModalProps {
 }
 
 function CheckIcon() {
-  return (
-    React.createElement("svg", { width: 9, height: 7, viewBox: "0 0 9 7", fill: "none" },
-      React.createElement("path", {
-        d: "M1 3.5L3.5 6L8 1",
-        stroke: "white",
-        strokeWidth: "1.5",
-        strokeLinecap: "round",
-        strokeLinejoin: "round",
-      })
-    )
+  return React.createElement(
+    "svg",
+    { width: 9, height: 7, viewBox: "0 0 9 7", fill: "none" },
+    React.createElement("path", {
+      d: "M1 3.5L3.5 6L8 1",
+      stroke: "white",
+      strokeWidth: "1.5",
+      strokeLinecap: "round",
+      strokeLinejoin: "round",
+    })
   );
 }
 
@@ -56,12 +56,12 @@ function ModalCheckbox({
 }) {
   const checkedStyle: React.CSSProperties = {
     background: "linear-gradient(135deg, #22c55e, #16a34a)",
-    border: "1px solid #22c55e",
-    boxShadow: "0 0 8px rgba(34,197,94,0.35)",
+    border: "1px solid rgba(80,250,123,0.6)",
+    boxShadow: "0 0 6px rgba(34,197,94,0.3)",
   };
   const uncheckedStyle: React.CSSProperties = {
-    background: "transparent",
-    border: "1px solid #2a5480",
+    background: "rgba(13,33,55,0.8)",
+    border: "1px solid rgba(124,158,248,0.25)",
     boxShadow: "none",
   };
 
@@ -76,7 +76,7 @@ function ModalCheckbox({
       />
       <div
         onClick={onChange}
-        className="h-4 w-4 rounded cursor-pointer flex items-center justify-center transition-all"
+        className="h-4 w-4 rounded-[4px] cursor-pointer flex items-center justify-center transition-all duration-150"
         style={checked ? checkedStyle : uncheckedStyle}
       >
         {checked && <CheckIcon />}
@@ -96,27 +96,20 @@ function ModalItem({
   onToggle: () => void;
   index: number;
 }) {
-  const [hovered, setHovered] = useState(false);
-
-  const linkStyle: React.CSSProperties = checked
-    ? { color: "#3a6080", textDecoration: "line-through" }
-    : { color: "#7eb8f7", textDecoration: "none" };
-
-  const anchorProps = {
-    href: item.href,
-    target: item.href !== "#" ? "_blank" : undefined,
-    rel: "noopener noreferrer",
-    onClick: (e: React.MouseEvent) => e.stopPropagation(),
-    className: "text-sm transition-colors",
-    style: linkStyle,
-  };
-
   return (
     <li
-      className="flex items-center gap-3 rounded px-2 py-2 transition-all"
-      style={{ background: hovered ? "rgba(20,70,130,0.12)" : "transparent" }}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
+      className="flex items-center gap-3 rounded-lg px-3 py-2.5 transition-all duration-150 group/item"
+      style={{
+        background: checked
+          ? "rgba(80,250,123,0.04)"
+          : "transparent",
+      }}
+      onMouseEnter={(e) =>
+        !checked && ((e.currentTarget as HTMLLIElement).style.background = "rgba(124,158,248,0.06)")
+      }
+      onMouseLeave={(e) =>
+        ((e.currentTarget as HTMLLIElement).style.background = checked ? "rgba(80,250,123,0.04)" : "transparent")
+      }
     >
       <ModalCheckbox
         checked={checked}
@@ -127,7 +120,24 @@ function ModalItem({
         htmlFor={`modal-item-${index}`}
         className="flex-1 cursor-pointer min-w-0"
       >
-        {React.createElement("a", anchorProps, item.label)}
+        {React.createElement(
+          "a",
+          {
+            href: item.href,
+            target: item.href !== "#" ? "_blank" : undefined,
+            rel: "noopener noreferrer",
+            onClick: (e: React.MouseEvent) => e.stopPropagation(),
+            className: "text-sm transition-colors duration-150",
+            style: checked
+              ? {
+                  color: "rgba(80,250,123,0.4)",
+                  textDecoration: "line-through",
+                  textDecorationColor: "rgba(80,250,123,0.25)",
+                }
+              : { color: "var(--color-text-heading)" },
+          },
+          item.label
+        )}
       </label>
     </li>
   );
@@ -141,15 +151,17 @@ export function RoadmapModal({
 }: RoadmapModalProps) {
   const overlayRef = useRef<HTMLDivElement>(null);
   const closeBtnRef = useRef<HTMLButtonElement>(null);
-  const [closeBtnHovered, setCloseBtnHovered] = useState(false);
 
   const completedCount = checked.filter(Boolean).length;
   const total = node.items.length;
   const pct = total > 0 ? (completedCount / total) * 100 : 0;
+  const isAllDone = pct === 100;
 
   useInjectStyle("roadmap-modal-style", MODAL_ANIM_CSS);
 
-  useEffect(() => { closeBtnRef.current?.focus(); }, []);
+  useEffect(() => {
+    closeBtnRef.current?.focus();
+  }, []);
 
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
@@ -162,25 +174,10 @@ export function RoadmapModal({
   useEffect(() => {
     const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
-    return () => { document.body.style.overflow = prev; };
+    return () => {
+      document.body.style.overflow = prev;
+    };
   }, []);
-
-  const closeBtnStyle: React.CSSProperties = {
-    color: closeBtnHovered ? "#7eb8f7" : "#4a7aaa",
-    background: closeBtnHovered ? "rgba(30,90,160,0.15)" : "transparent",
-  };
-
-  const progressBarStyle: React.CSSProperties = {
-    width: `${pct}%`,
-    background:
-      pct === 100
-        ? "linear-gradient(90deg, #16a34a, #22c55e)"
-        : "linear-gradient(90deg, #1e5fa0, #4a9eff)",
-    boxShadow:
-      pct === 100
-        ? "0 0 8px rgba(34,197,94,0.5)"
-        : "0 0 8px rgba(74,158,255,0.4)",
-  };
 
   return (
     <div
@@ -193,47 +190,74 @@ export function RoadmapModal({
         if (e.target === overlayRef.current) onClose();
       }}
     >
+      {/* Backdrop */}
       <div
         aria-hidden
-        className="absolute inset-0 backdrop-blur-sm"
-        style={{ backgroundColor: "rgba(4, 14, 28, 0.75)" }}
+        className="absolute inset-0 backdrop-blur-[6px]"
+        style={{ backgroundColor: "rgba(0, 10, 20, 0.80)" }}
       />
 
+      {/* Card */}
       <div
-        className="roadmap-modal-card relative z-10 w-full max-w-md rounded-lg overflow-hidden"
+        className="roadmap-modal-card relative z-10 w-full max-w-md rounded-2xl overflow-hidden flex flex-col"
         style={{
-          background: "linear-gradient(160deg, #152f4e 0%, #0f2239 100%)",
-          backgroundImage:
-            "radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px)",
-          backgroundSize: "20px 20px",
-          border: "1px solid #2e5480",
-          boxShadow: "0 0 0 1px rgba(46,120,200,0.25), 0 8px 48px rgba(0,0,0,0.6), 0 0 60px rgba(20,80,160,0.12)",
+          background: "linear-gradient(160deg, #0d2137 0%, #091826 100%)",
+          border: "1px solid rgba(124,158,248,0.22)",
+          boxShadow:
+            "0 0 0 1px rgba(124,158,248,0.06), 0 24px 60px rgba(0,0,0,0.7), 0 0 80px rgba(50,100,200,0.08)",
+          maxHeight: "85vh",
         }}
       >
+        {/* Header */}
         <div
-          className="flex items-start justify-between gap-4 px-5 py-4"
-          style={{borderBottom: "1px solid #243f60"}}
+          className="flex items-center justify-between gap-4 px-5 py-4 shrink-0"
+          style={{ borderBottom: "1px solid rgba(124,158,248,0.12)" }}
         >
-          <h2
-            className="text-sm font-semibold tracking-widest uppercase"
-            style={{ color: "#c8daf0" }}
-          >
-            {node.title}
-          </h2>
+          <div className="flex items-center gap-2.5 min-w-0">
+            {isAllDone && (
+              <span
+                className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[9px] font-bold"
+                style={{
+                  background: "rgba(80,250,123,0.15)",
+                  color: "var(--color-success)",
+                  border: "1px solid rgba(80,250,123,0.3)",
+                }}
+              >
+                ✓
+              </span>
+            )}
+            <h2
+              className="text-sm font-semibold tracking-wider uppercase truncate"
+              style={{ color: isAllDone ? "var(--color-success)" : "var(--color-text-heading)" }}
+            >
+              {node.title}
+            </h2>
+          </div>
           <button
             ref={closeBtnRef}
             onClick={onClose}
-            onMouseEnter={() => setCloseBtnHovered(true)}
-            onMouseLeave={() => setCloseBtnHovered(false)}
             aria-label="Close modal"
-            className="cursor-pointer flex h-6 w-6 shrink-0 items-center justify-center rounded transition-all text-sm leading-none"
-            style={closeBtnStyle}
+            className="cursor-pointer flex h-7 w-7 shrink-0 items-center justify-center rounded-lg transition-all duration-150 text-sm leading-none"
+            style={{ color: "var(--color-text-muted)" }}
+            onMouseEnter={(e) => {
+              (e.currentTarget as HTMLButtonElement).style.color = "var(--color-text-heading)";
+              (e.currentTarget as HTMLButtonElement).style.background = "rgba(124,158,248,0.1)";
+            }}
+            onMouseLeave={(e) => {
+              (e.currentTarget as HTMLButtonElement).style.color = "var(--color-text-muted)";
+              (e.currentTarget as HTMLButtonElement).style.background = "transparent";
+            }}
           >
             ✕
           </button>
         </div>
 
-        <ul className="space-y-0.5 px-4 py-3" role="list">
+        {/* Items list */}
+        <ul
+          className="space-y-0.5 px-3 py-3 overflow-y-auto flex-1"
+          role="list"
+          style={{ scrollbarWidth: "thin", scrollbarColor: "rgba(124,158,248,0.2) transparent" }}
+        >
           {node.items.map((item, i) => (
             <ModalItem
               key={i}
@@ -245,33 +269,42 @@ export function RoadmapModal({
           ))}
         </ul>
 
+        {/* Footer progress */}
         <div
-          className="px-5 py-4"
-          style={{ borderTop: "1px solid #243f60" }}
+          className="px-5 py-4 shrink-0"
+          style={{ borderTop: "1px solid rgba(124,158,248,0.12)" }}
         >
           <div className="mb-2 flex items-center justify-between">
             <span
-              className="text-xs uppercase tracking-widest"
-              style={{ color: "#2e5a80" }}
+              className="text-xs uppercase tracking-widest font-medium"
+              style={{ color: "var(--color-text-muted)" }}
             >
               Progress
             </span>
             <span
-              className="text-xs font-mono"
-              style={{ color: pct === 100 ? "#22c55e" : "#4a7aaa" }}
+              className="text-xs font-mono font-semibold"
+              style={{ color: isAllDone ? "var(--color-success)" : "var(--color-accent)" }}
             >
               {completedCount} / {total}
-              {pct === 100 && " ✓"}
+              {isAllDone && " ✓"}
             </span>
           </div>
 
           <div
-            className="h-1 w-full overflow-hidden rounded-full"
-            style={{ background: "#142944" }}
+            className="h-1.5 w-full overflow-hidden rounded-full"
+            style={{ background: "rgba(124,158,248,0.08)" }}
           >
             <div
-              className="h-full rounded-full transition-all duration-500"
-              style={progressBarStyle}
+              className="h-full rounded-full transition-all duration-500 ease-out"
+              style={{
+                width: `${pct}%`,
+                background: isAllDone
+                  ? "linear-gradient(90deg, #16a34a, #50fa7b)"
+                  : "linear-gradient(90deg, #4a7ff7, #7c9ef8)",
+                boxShadow: isAllDone
+                  ? "0 0 8px rgba(80,250,123,0.4)"
+                  : "0 0 8px rgba(124,158,248,0.3)",
+              }}
             />
           </div>
         </div>

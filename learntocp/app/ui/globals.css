@@ -21,21 +21,28 @@
 }
 
 @theme {
-  --color-bg-navbar:      rgba(0, 0, 0, 0.50);
-  --color-bg-page:        #00131b;
-  --color-bg-code:        #081a22;
-  --color-bg-code-header: #0a1e2e;
-  --color-bg-surface:     #0d2137;
-  --color-accent:         #7c9ef8;
-  --color-text-primary:   #ededed;
-  --color-text-heading:   #e2eaff;
-  --color-text-accent:    #7c9ef8;
-  --color-success:        #50fa7b;
-  --color-warning:        #f59e0b;
-  --color-danger:         #ef4444;
-  --color-tip:            #10b981;
-  --color-info:           #06b6d4;
-  --color-border-blue:    rgba(59, 130, 246, 0.5);
+  --color-bg-navbar:           rgba(0, 0, 0, 0.60);
+  --color-bg-page:             #00131b;
+  --color-bg-code:             #081a22;
+  --color-bg-code-header:      #0a1e2e;
+  --color-bg-surface:          #0d2137;
+  --color-bg-surface-hover:    #112540;
+  --color-accent:              #7c9ef8;
+  --color-accent-dim:          rgba(124, 158, 248, 0.7);
+  --color-accent-border:       rgba(124, 158, 248, 0.18);
+  --color-accent-border-hover: rgba(124, 158, 248, 0.45);
+  --color-text-primary:        #ededed;
+  --color-text-heading:        #e2eaff;
+  --color-text-muted:          rgba(200, 218, 240, 0.5);
+  --color-text-accent:         #7c9ef8;
+  --color-success:             #50fa7b;
+  --color-success-tint:        rgba(80, 250, 123, 0.07);
+  --color-warning:             #f59e0b;
+  --color-danger:              #ef4444;
+  --color-tip:                 #10b981;
+  --color-info:                #06b6d4;
+  --color-border-blue:         rgba(59, 130, 246, 0.4);
+  --color-border-subtle:       rgba(124, 158, 248, 0.12);
 }
 
 body {
@@ -63,13 +70,13 @@ body {
   text-underline-offset: 3px;
 }
 
-.prose .external-link{
+.prose .external-link {
   text-decoration: underline;
 }
 
-.prose .title{
+.prose .title {
   text-align: center;
-  display: block; /* if it's inline */
+  display: block;
 }
 
 .prose blockquote {
@@ -98,7 +105,7 @@ body {
 .prose code::before,
 .prose code::after { content: none; }
 
-/* ─── Non-Shiki plain pre blocks ─────────────────────────────────────────── */
+/* Non-Shiki plain pre blocks */
 .prose pre:not([data-shiki]) {
   font-size: 0.9em;
   padding: 1.25em 1.5em;
@@ -108,7 +115,7 @@ body {
   overflow-x: auto;
 }
 
-/* ─── Code block wrapper ─────────────────────────────────────────────────── */
+/* Code block wrapper */
 .code-block-wrapper {
   border-radius: 8px;
   overflow: hidden;
@@ -117,8 +124,7 @@ body {
   border: 1px solid rgba(124, 158, 248, 0.12);
 }
 
-/* ─── Filename / tab header ──────────────────────────────────────────────── */
-/* ─── Code Block Header ────────────────────────────────────────────────────── */
+/* Code Block Header */
 .prose .code-block-header {
   display: flex;
   align-items: center;
@@ -138,7 +144,7 @@ body {
   letter-spacing: 0.03em;
 }
 
-/* ─── Copy Button ───────────────────────────────────────────────────────────── */
+/* Copy Button */
 .prose .code-copy-btn {
   background: rgba(124, 158, 248, 0.1);
   border: 1px solid rgba(124, 158, 248, 0.4);
@@ -160,7 +166,7 @@ body {
   box-shadow: 0 0 10px rgba(124, 158, 248, 0.2);
 }
 
-/* ─── Copied animation ──────────────────────────────────────────────────────── */
+/* Copied animation */
 .prose .code-copy-btn.copied {
   color: #50fa7b;
   border-color: rgba(80, 250, 123, 0.6);
@@ -178,9 +184,7 @@ body {
   animation: copyFlash 0.25s ease;
 }
 
-/* ─── Shiki <pre> ────────────────────────────────────────────────────────── */
-/* Override Shiki's inline background-color to match the site palette.        */
-/* !important is required here only because Shiki injects it as inline style. */
+/* Shiki <pre> */
 .shiki-block {
   background-color: #081A22 !important;
   margin: 0;
@@ -202,7 +206,7 @@ body {
   display: block;
   position: relative;
   height: 0.5em;
-  line-height: 0.5em;     
+  line-height: 0.5em;
   padding-left: 3.5rem;
 }
 
@@ -213,10 +217,10 @@ body {
   left: 0;
   width: 2.75rem;
   height: 0.5em;
-  line-height: 0.5em;      
+  line-height: 0.5em;
   text-align: right;
   padding-right: 0.75rem;
-  color: rgba(124, 158, 248, 0.25); 
+  color: rgba(124, 158, 248, 0.25);
   font-size: 0.8em;
   user-select: none;
   pointer-events: none;

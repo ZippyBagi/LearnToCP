@@ -13,10 +13,18 @@ type SidebarSectionInput = {
 
 export default function SidebarSection(input: SidebarSectionInput) {
     return (
-        <div className="border border-dashed border-blue-500/50 rounded-lg w-9/10 overflow-hidden">
+        <div
+            className="w-full rounded-xl overflow-hidden"
+            style={{
+                border: "1px solid rgba(124,158,248,0.14)",
+                background: "rgba(13,33,55,0.5)",
+            }}
+        >
             {input.containers.map((container, i) => (
                 <div key={container.name}>
-                    {i > 0 && <div className="border-t border-blue-500/50" />}
+                    {i > 0 && (
+                        <div style={{ borderTop: "1px solid rgba(124,158,248,0.1)" }} />
+                    )}
                     <SidebarContainer {...container} standalone={false} />
                 </div>
             ))}

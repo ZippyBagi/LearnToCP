@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import type { RoadmapMatrix } from "@/app/utils/roadmap.types";
 import { Node, Edge } from '@xyflow/react';
 import { getElementPositions } from "./roadmap.utils";
+import { NODE_WIDTH, CONNECTOR_X } from "./roadmap.constants";
 
 const gap_y = 100;
 const gap_x = 350;
@@ -28,6 +29,7 @@ export function useRoadmapNodes(
           id: next_index.toString(),
           type: 'custom',
           position: { x: positions[lj], y: cur_y },
+          width: NODE_WIDTH,
           data: {
             label: matrix[li][lj].title,
             progress: getProgress(li, lj),
@@ -46,8 +48,8 @@ export function useRoadmapNodes(
       nodeValues.push({
         id: next_index.toString(),
         type: 'connector',
-        position: { x: 90, y: cur_y+20 },
-        data: { label: "Question", progress: 0, isComplete: false, onClick: () => {},hideBottomNode: false,hideTopNode : false},
+        position: { x: CONNECTOR_X, y: cur_y + 20 },
+        data: { label: "Question", progress: 0, isComplete: false, onClick: () => {}, hideBottomNode: false, hideTopNode: false },
       });
       next_index++;
       cur_y += gap_y;
