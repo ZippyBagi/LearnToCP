@@ -53,12 +53,9 @@ export async function generateMetadata({ params }: PageProps) {
 
 export default async function LessonPage({ params }: PageProps) {
   const { folder, lesson } = await params
-  console.log('[LessonPage] raw params:', { folder, lesson })
-
   // Decode defensively — safe whether Next.js gives us encoded or decoded strings
   const folderDecoded = safeDecode(folder)
   const lessonDecoded = safeDecode(lesson)
-  console.log('[LessonPage] decoded:', { folderDecoded, lessonDecoded })
 
   const filePath = path.join(
     process.cwd(),
@@ -67,8 +64,6 @@ export default async function LessonPage({ params }: PageProps) {
     folderDecoded,
     `${lessonDecoded}.md`
   )
-  console.log('[LessonPage] filePath:', filePath, 'exists:', fs.existsSync(filePath))
-
   if (!fs.existsSync(filePath)) {
     notFound()
   }
