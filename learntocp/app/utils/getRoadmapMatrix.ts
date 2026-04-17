@@ -1,10 +1,18 @@
+import "server-only";
+import { cache } from "react";
 import fs from "fs";
 import path from "path";
 import type { RoadmapMatrix } from "@/app/utils/roadmap.types";
 
 const ROADMAP_DATA_DIR = path.join(process.cwd(), "roadmap_data");
 
-export function getRoadmapMatrix(): RoadmapMatrix {
+/**
+ * Load roadmap_data/L{n}/<Node>/<item>.txt into a RoadmapMatrix.
+ *
+ * `cache()` dedupes calls within a single render pass so the roadmap page and
+ * any future consumer share one set of fs reads.
+ */
+export const getRoadmapMatrix = cache((): RoadmapMatrix => {
   const layerDirs = fs
     .readdirSync(ROADMAP_DATA_DIR, { withFileTypes: true })
     .filter((e) => e.isDirectory() && /^L\d+$/.test(e.name))
@@ -35,4 +43,4 @@ export function getRoadmapMatrix(): RoadmapMatrix {
       return { title: nodeDir.name, items };
     });
   });
-}
+});

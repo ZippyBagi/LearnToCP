@@ -1,4 +1,11 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Home",
+  description:
+    "Master algorithms and data structures with structured lessons and an interactive roadmap.",
+};
 
 export default function App() {
   return (

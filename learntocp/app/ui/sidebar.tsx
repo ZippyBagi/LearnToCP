@@ -1,9 +1,10 @@
 import SideBarButton from "@/app/ui/utils/sideBarButton";
 import SidebarSection from "@/app/ui/utils/sideBarSection";
+import type { SidebarContainer } from "@/app/utils/sidebar.types";
 
 type SideBarInput = {
   toggled: boolean;
-  containers: any;
+  containers: SidebarContainer[];
 };
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
@@ -42,7 +43,6 @@ export default function SideBar({ toggled, containers }: SideBarInput) {
       {/* Scrollable inner wrapper */}
       <div className="overflow-y-auto flex-1 min-h-0 w-full">
         <div className="flex flex-col w-full py-2">
-
           {/* Navigation group */}
           <SectionLabel>Navigation</SectionLabel>
           <SideBarButton name="Home" href="/" />
@@ -54,7 +54,6 @@ export default function SideBar({ toggled, containers }: SideBarInput) {
           {/* Lessons group */}
           <SectionLabel>Theory</SectionLabel>
           <SidebarSection containers={containers} />
-
         </div>
       </div>
     </nav>
