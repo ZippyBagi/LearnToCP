@@ -77,8 +77,8 @@ body {
 .prose .title {
   text-align: center;
   display: block;
-  padding-bottom: 0.75em;
-  margin-bottom: 0.25em;
+  padding-bottom: 0.5em;
+  margin-bottom: 0.5em;
   border-bottom: 1px solid rgba(124, 158, 248, 0.15);
 }
 

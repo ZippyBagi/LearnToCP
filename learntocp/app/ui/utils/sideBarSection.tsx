@@ -13,13 +13,7 @@ type SidebarSectionInput = {
 
 export default function SidebarSection(input: SidebarSectionInput) {
     return (
-        <div
-            className="w-full rounded-xl overflow-hidden"
-            style={{
-                border: "1px solid rgba(124,158,248,0.14)",
-                background: "rgba(13,33,55,0.5)",
-            }}
-        >
+        <div className="w-full">
             {input.containers.map((container, i) => (
                 <div key={container.name}>
                     {i > 0 && (
