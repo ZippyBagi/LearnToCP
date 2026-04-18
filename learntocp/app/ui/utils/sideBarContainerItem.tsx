@@ -1,6 +1,7 @@
 'use client'
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useNavigation } from '@/app/ui/utils/navigationContext';
 
 type SideBarButtonInput = {
   name: string;
@@ -10,10 +11,13 @@ type SideBarButtonInput = {
 export default function SideBarContainerItem({ name, href }: SideBarButtonInput) {
   const pathname = usePathname();
   const isActive = pathname === href;
+  const { startNavigation } = useNavigation();
 
   return (
     <Link
       href={href}
+      prefetch={true}
+      onClick={() => startNavigation(href)}
       className="flex items-center gap-2.5 py-2 text-sm select-none transition-all duration-150"
       style={{
         color: isActive ? "var(--color-accent)" : "rgba(200,218,240,0.6)",

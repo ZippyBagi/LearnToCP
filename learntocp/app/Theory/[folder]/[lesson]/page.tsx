@@ -5,11 +5,9 @@ import { notFound } from "next/navigation";
 import markdownToHtml from "@/app/utils/mdToHTML";
 import LessonSkeleton from "@/app/Theory/_components/LessonSkeleton";
 
+type ParamsPromise = Promise<{ folder: string; lesson: string }>;
 interface PageProps {
-  params: Promise<{
-    folder: string;
-    lesson: string;
-  }>;
+  params: ParamsPromise;
 }
 
 /**
@@ -57,29 +55,31 @@ export async function generateMetadata({ params }: PageProps) {
 }
 
 /**
- * Thin page shell. Wrapping `<LessonContent>` in `<Suspense>` means:
- *  1. The route's static shell streams immediately on navigation.
- *  2. The fallback (same visual as `Theory/loading.tsx`) flashes until the
- *     markdown → HTML pipeline resolves, so the user always sees a skeleton
- *     rather than a blank frame — even in dev, and even for cached pages
- *     whose RSC payload is still in flight.
+ * IMPORTANT: keep this outer component SYNC — do NOT `await params` here.
+ *
+ * React/Next emits the RSC stream in the order the server component tree is
+ * walked. If this function is async and awaits params before returning, the
+ * `<Suspense>` boundary (and its fallback) aren't part of the first RSC chunk;
+ * the client router waits for the first byte before committing the transition,
+ * so the previous page stays on screen for the entire duration of the server's
+ * fs + markdown + Shiki work. That's the "frozen before skeleton" flash the
+ * user sees on a cold first-click-in-session (especially in dev, where the
+ * route is also being compiled for the first time).
+ *
+ * By keeping the outer sync and forwarding the params promise into a child
+ * async component, the Suspense boundary is in the very first chunk — the
+ * client can render the skeleton as soon as it arrives.
  */
-export default async function LessonPage({ params }: PageProps) {
-  const { folder, lesson } = await params;
+export default function LessonPage({ params }: PageProps) {
   return (
     <Suspense fallback={<LessonSkeleton />}>
-      <LessonContent folder={folder} lesson={lesson} />
+      <LessonContent paramsPromise={params} />
     </Suspense>
   );
 }
 
-async function LessonContent({
-  folder,
-  lesson,
-}: {
-  folder: string;
-  lesson: string;
-}) {
+async function LessonContent({ paramsPromise }: { paramsPromise: ParamsPromise }) {
+  const { folder, lesson } = await paramsPromise;
   const folderDecoded = safeDecode(folder);
   const lessonDecoded = safeDecode(lesson);
 
