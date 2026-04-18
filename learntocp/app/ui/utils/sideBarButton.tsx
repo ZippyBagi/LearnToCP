@@ -1,23 +1,23 @@
 'use client'
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useNavigation } from "@/app/ui/utils/navigationContext";
 
 type SideBarButtonInput = {
   name: string;
   href: string;
 };
 
+// Used for top-level nav (Home / Roadmap / About Us). These routes are small
+// and Next.js's own `loading.tsx` already handles them smoothly, so this
+// button intentionally does NOT trigger the lesson-specific pending overlay.
 export default function SideBarButton({ name, href }: SideBarButtonInput) {
   const pathname = usePathname();
   const isActive = pathname === href;
-  const { startNavigation } = useNavigation();
 
   return (
     <Link
       href={href}
       prefetch={true}
-      onClick={() => startNavigation(href)}
       className="flex w-full items-center gap-2.5 py-2.5 pr-3.5 text-sm font-medium select-none transition-all duration-150"
       style={{
         color: isActive ? "var(--color-accent)" : "rgba(200,218,240,0.7)",
