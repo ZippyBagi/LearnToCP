@@ -9,8 +9,10 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Fonts loaded via next/font in app/layout.tsx — these CSS vars are injected
+     on <html>. Fallback stack matches each family's intent. */
+  --font-sans: var(--font-space-grotesk), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -48,7 +50,11 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+}
+
+code, kbd, samp, pre {
+  font-family: var(--font-mono);
 }
 
 .prose {
@@ -103,6 +109,7 @@ body {
   border-radius: 4px;
   font-size: 0.875em;
   font-weight: 500;
+  font-family: var(--font-mono);
 }
 
 .prose code::before,
@@ -110,6 +117,7 @@ body {
 
 /* Non-Shiki plain pre blocks */
 .prose pre:not([data-shiki]) {
+  font-family: var(--font-mono);
   font-size: 0.9em;
   padding: 1.25em 1.5em;
   border-radius: 8px;
@@ -193,10 +201,17 @@ body {
   margin: 0;
   border-radius: 0;
   padding: 1rem 1.5rem 1rem 0;
+  font-family: var(--font-mono) !important;
   font-size: 0.875rem;
   line-height: 1;
   overflow-x: auto;
   counter-reset: line;
+}
+
+.shiki-block code,
+.shiki-block .line,
+.shiki-block .line::before {
+  font-family: var(--font-mono) !important;
 }
 
 .shiki-block code {
