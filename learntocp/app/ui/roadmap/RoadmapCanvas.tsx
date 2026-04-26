@@ -1,7 +1,7 @@
 "use client";
 
 import { ReactFlowProvider } from '@xyflow/react';
-import type { RoadmapMatrix } from "@/app/utils/roadmap.types";
+import type { RoadmapMatrix } from "@/app/roadmap/roadmap.types";
 import { RoadmapCanvasInner } from "./RoadmapCanvasInner";
 
 type RoadmapCanvasProps = {

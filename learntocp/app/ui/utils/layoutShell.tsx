@@ -5,7 +5,7 @@ import LessonSkeleton from "@/app/Theory/_components/LessonSkeleton";
 import { NavigationContext } from "@/app/ui/utils/navigationContext";
 import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import type { SidebarContainer } from "@/app/utils/sidebar.types";
+import type { SidebarContainer } from "@/app/ui/utils/sidebar.types";
 
 type LayoutShellProps = {
   children: React.ReactNode;

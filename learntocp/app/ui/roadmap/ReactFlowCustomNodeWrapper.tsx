@@ -1,7 +1,7 @@
 import { NodeProps } from '@xyflow/react';
 import { Handle, Position } from '@xyflow/react';
-import { RoadmapNodeCard } from '../RoadmapNodeCard';
-import { ConnectorNode } from '../RoadmapConncetorNodeCard'
+import { RoadmapNodeCard } from './customNodes/RoadmapNodeCard';
+import { ConnectorNode } from './customNodes/RoadmapConncetorNodeCard'
 
 export function RoadmapCustomNode({ data }: NodeProps) {
   return (

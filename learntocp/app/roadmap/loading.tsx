@@ -1,7 +1,3 @@
-/**
- * Roadmap route loading state. Mirrors the proportions of `/roadmap` so the
- * layout doesn't shift when the real canvas swaps in.
- */
 export default function Loading() {
   return (
     <main className="min-h-fill px-4 py-4" style={{ background: "var(--color-bg-page)" }}>

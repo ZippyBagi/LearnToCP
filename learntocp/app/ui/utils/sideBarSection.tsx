@@ -1,6 +1,6 @@
 "use client";
 import SidebarContainer from "@/app/ui/utils/sideBarContainer";
-import type { SidebarContainer as SidebarContainerType } from "@/app/utils/sidebar.types";
+import type { SidebarContainer as SidebarContainerType } from "@/app/ui/utils/sidebar.types";
 
 type SidebarSectionInput = {
   containers: SidebarContainerType[];

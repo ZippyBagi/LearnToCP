@@ -2,9 +2,9 @@ import "server-only";
 import { cache } from "react";
 import fs from "fs";
 import path from "path";
-import type { RoadmapMatrix } from "@/app/utils/roadmap.types";
+import type { RoadmapMatrix } from "@/app/roadmap/roadmap.types";
 
-const ROADMAP_DATA_DIR = path.join(process.cwd(), "roadmap_data");
+const ROADMAP_DATA_DIR = path.join(process.cwd(), "content", "roadmap_data");
 
 /**
  * Load roadmap_data/L{n}/<Node>/<item>.txt into a RoadmapMatrix.

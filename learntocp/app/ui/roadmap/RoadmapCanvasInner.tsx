@@ -1,12 +1,12 @@
 "use client";
 
 import { useState, useCallback, useLayoutEffect, useRef, useEffect } from "react";
-import type { RoadmapMatrix } from "@/app/utils/roadmap.types";
+import type { RoadmapMatrix } from "@/app/roadmap/roadmap.types";
 import { RoadmapModal } from "./RoadmapModal";
 import { useRoadmapCanvas } from "./utils/useRoadmapCanvas";
 import "@xyflow/react/dist/style.css";
 import { Node, Edge, NodeChange, ReactFlow, applyNodeChanges, Background, useReactFlow } from '@xyflow/react';
-import { RoadmapCustomNode, RoadmapConnectorNode } from "./utils/ReactFlowCustomNodeWrapper";
+import { RoadmapCustomNode, RoadmapConnectorNode } from "./ReactFlowCustomNodeWrapper";
 import { useRoadmapNodes } from "./utils/useRoadmapNodes";
 
 type RoadmapCanvasInnerProps = {

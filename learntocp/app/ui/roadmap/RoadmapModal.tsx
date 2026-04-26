@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import React from "react";
-import type { RoadmapNode } from "@/app/utils/roadmap.types";
+import type { RoadmapNode } from "@/app/roadmap/roadmap.types";
 
 const MODAL_ANIM_CSS = `
 @keyframes roadmap-modal-in {

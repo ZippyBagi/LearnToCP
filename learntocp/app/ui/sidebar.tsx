@@ -1,6 +1,6 @@
 import SideBarButton from "@/app/ui/utils/sideBarButton";
 import SidebarSection from "@/app/ui/utils/sideBarSection";
-import type { SidebarContainer } from "@/app/utils/sidebar.types";
+import type { SidebarContainer } from "@/app/ui/utils/sidebar.types";
 
 type SideBarInput = {
   toggled: boolean;

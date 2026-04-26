@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import type { RoadmapMatrix } from "@/app/utils/roadmap.types";
+import type { RoadmapMatrix } from "@/app/roadmap/roadmap.types";
 import {
   type CheckedState,
   storageKey,
