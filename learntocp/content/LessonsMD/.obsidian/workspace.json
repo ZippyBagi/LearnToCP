@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Basics/C++ basics.md",
+                "file": "Basics/Time Complexity.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "C++ basics"
+              "title": "Time Complexity"
             }
           }
         ]
@@ -185,8 +185,8 @@
   },
   "active": "e86ad40bbc2e0f80",
   "lastOpenFiles": [
-    "Basics/Time Complexity.md",
     "Basics/C++ basics.md",
+    "Basics/Time Complexity.md",
     "DataStructures/SparseTable.md"
   ]
 }
