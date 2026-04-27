@@ -45,6 +45,7 @@ For the input we use `scanf("%d", &a)`:
 - The `d` in `%d` means we want to input an **integer** (every data type has its own code)
 - Then comes the `&a`, for now you can think of it as we want to put the typed in value **into a**
 Put together it looks like this:
+~!
 ```c++
 int main(){ 
 
@@ -62,6 +63,7 @@ For the output it is very similar `printf("%d", a)`:
 - And `a` is the value we are printing (Note that we are printing **`a`** and **NOT `&a`** )
 
 The nice thing about `printf()` is that we can put text before and after `%d` 
+~!
 ```c++
 int main(){ 
 
@@ -89,6 +91,7 @@ Here are the codes for all the data types:
 For input we use `cin>>a`:
 - The `cin>>` Means we want to input something
 - The `a` means we are putting what we get from the console into `a`
+~!
 ```c++
 int main(){ 
 
@@ -105,6 +108,7 @@ For output we use `cout<<a`:
 - And `a` means the value of a
 
 If we want to print multiple things we write `cout<<a<<b;`
+~!
 ```c++
 int main(){ 
 

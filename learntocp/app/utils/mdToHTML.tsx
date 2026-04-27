@@ -216,20 +216,29 @@ function postprocessHtml(html: string): string {
 
   // Promote the <p> immediately before a code-block-wrapper into a header tab.
   html = html.replace(
-  /<p>([^<]+)<\/p>\n(<div class="code-block-wrapper[^"]*">)/g,
-  (_, title, wrapperOpen) => {
-    const header = `<div class="code-block-header">`
-      + `<span class="code-block-title">${title.trim()}</span>`
-      + `<button class="code-copy-btn" onclick="
-          navigator.clipboard.writeText(this.closest('.code-block-wrapper').querySelector('pre code').textContent);
-          this.textContent = 'Copied!';
-          this.classList.add('copied');
-          setTimeout(() => { this.textContent = 'Copy'; this.classList.remove('copied'); }, 1800);
-          ">Copy</button>`
-      + `</div>`;
-    return `${wrapperOpen}${header}`;
-  }
-);
+    /<p>((?:(?!<\/p>)[\s\S])+?)<\/p>\n(<div class="code-block-wrapper[^"]*">)/g,
+    (_, title, wrapperOpen) => {
+      const trimmed = title.trim();
+
+      // `~!` at the end of the paragraph (or as the whole paragraph) opts out
+      // of title promotion. The marker is stripped; an empty paragraph is dropped.
+      if (/~!\s*$/.test(trimmed)) {
+        const cleaned = trimmed.replace(/\s*~!\s*$/, "").trim();
+        return cleaned ? `<p>${cleaned}</p>\n${wrapperOpen}` : wrapperOpen;
+      }
+
+      const header = `<div class="code-block-header">`
+        + `<span class="code-block-title">${trimmed}</span>`
+        + `<button class="code-copy-btn" onclick="
+            navigator.clipboard.writeText(this.closest('.code-block-wrapper').querySelector('pre code').textContent);
+            this.textContent = 'Copied!';
+            this.classList.add('copied');
+            setTimeout(() => { this.textContent = 'Copy'; this.classList.remove('copied'); }, 1800);
+            ">Copy</button>`
+        + `</div>`;
+      return `${wrapperOpen}${header}`;
+    }
+  );
 
 
   // Wrap bare <table> for responsive scrolling
