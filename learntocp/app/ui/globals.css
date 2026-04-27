@@ -113,6 +113,14 @@ code, kbd, samp, pre {
   font-family: var(--font-mono);
 }
 
+.prose code,
+.shiki-block,
+.shiki-block code,
+.shiki-block .line {
+  font-variant-ligatures: none;
+  font-feature-settings: "liga" 0, "calt" 0;
+}
+
 .prose code::before,
 .prose code::after { content: none; }
 
@@ -301,3 +309,4 @@ code, kbd, samp, pre {
   overflow-x: auto;
   margin: 1.5em 0;
 }
+
