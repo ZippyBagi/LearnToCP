@@ -28,7 +28,7 @@ This block executes if our condition wasn't fulfilled: `if(condition){}else{}`
 		return 0;
 	}
 	```
-1. We can combine them and create else if blocks: `if(condition){} else if(condition2){}
+1. We can combine them and create else if blocks: `if(condition){} else if(condition2){}`
 	```c++
 	int main(){ 
 		int a;
