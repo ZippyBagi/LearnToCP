@@ -3,9 +3,18 @@
 ### Theory
 
 Matrices are 2D arrays, we can think of them as grids, where each field stores a value. 
+
+A matrix is labeled AxB, depending on its size, where A and B are numbers
+
+So a 3x3 matrix would look like: 
+	![[matrix.png]]
+It is comprised of rows and columns.
+
+If we look at the example the rows they are: `[6, 2, 7]`, `[8,1,5]`, `[3, 4, 2]`
+We can also look at the columns and they are: `[6, 8, 3]`, `[2, 1, 4]`, `[7, 5, 2]`
 ### Implementation
 
-A matrix of size n rows and m columns is written like : `vector<vector<data_type>> name_of_the_matrix(n, vector<data_type>(m, default_value));`
+A matrix with **n** rows and **m** columns is written like : `vector<vector<data_type>> name_of_the_matrix(n, vector<data_type>(m, default_value));`
 
 Lets unpack this: 
 - `vector<vector<data_type>>` - is how we declare the matrix

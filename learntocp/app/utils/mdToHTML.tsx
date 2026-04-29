@@ -7,6 +7,23 @@ import { visit } from "unist-util-visit";
 import { createHighlighter } from "shiki";
 
 const codeHighliteTheme = "dracula";
+const IMAGES_URL_PREFIX = "/api/lesson-images";
+
+// Each leading tab before an image embed shifts it horizontally by this much.
+const INDENT_REM_PER_TAB = 2;
+
+function remarkRewriteImageUrls() {
+  return (tree: any) => {
+    visit(tree, "image", (node: any) => {
+      if (!node.url) return;
+      // Leave absolute URLs, data URIs, and already-absolute paths alone
+      if (/^(https?:\/\/|data:|\/)/i.test(node.url)) return;
+      // Tolerate "./foo.png" or ".images/foo.png" — we only want the basename
+      const basename = node.url.replace(/^\.\//, "").split("/").pop()!;
+      node.url = `${IMAGES_URL_PREFIX}/${encodeURIComponent(basename)}`;
+    });
+  };
+}
 
 export default async function markdownToHtml(markdown: string, fileName : string) {
   const highlighter = await highlighterPromise;
@@ -15,6 +32,7 @@ export default async function markdownToHtml(markdown: string, fileName : string
   const result = await remark()
     .use(remarkGfm)
     .use(remarkBreaks)
+    .use(remarkRewriteImageUrls)
     .use(remarkBreaksProtectCode) 
     .use(html, { sanitize: false })
     .process(content);
@@ -132,29 +150,37 @@ function preprocessObsidian(markdown: string): string {
     }
   );
 
-  // 2. Wikilinks with alias  [[Page|Alias]]
+  // 2a. Image embeds with leading tab indentation
+  //     `\t![[file.png]]`  ->  shifted right by INDENT_REM_PER_TAB rem per tab.
+  //     Stripping the tabs here also prevents Markdown from interpreting the
+  //     line as an indented code block. Emitted as a block-level <div> so
+  //     remark doesn't wrap it in <p>.
   markdown = markdown.replace(
-    /\[\[([^\]|]+)\|([^\]]+)\]\]/g,
-    '<a class="wikilink">$2</a>'
+    /^(\t+)!\[\[([^\]]+?\.(png|jpg|jpeg|gif|svg|webp))(?:\|(\d+)(?:x(\d+))?)?\]\]/gim,
+    (_, tabs, src, _ext, width, height) => {
+      const w = width ? ` width="${width}"` : "";
+      const h = height ? ` height="${height}"` : "";
+      const basename = src.split("/").pop() ?? src;
+      const url = `${IMAGES_URL_PREFIX}/${encodeURIComponent(basename)}`;
+      const indent = tabs.length * INDENT_REM_PER_TAB;
+      return `\n\n<div class="obsidian-embed-wrapper" data-indent="${tabs.length}" style="margin-left:${indent}rem"><img src="${url}" alt="${basename}"${w}${h} class="obsidian-embed"></div>\n\n`;
+    }
   );
 
-  // 3. Wikilinks without alias  [[Page]]
-  markdown = markdown.replace(
-    /\[\[([^\]]+)\]\]/g,
-    '<a class="wikilink">$1</a>'
-  );
-
-  // 4. Image embeds with optional size
+  // 2b. Image embeds without leading tabs (inline or plain block use)
   markdown = markdown.replace(
     /!\[\[([^\]]+?\.(png|jpg|jpeg|gif|svg|webp))(?:\|(\d+)(?:x(\d+))?)?\]\]/gi,
     (_, src, _ext, width, height) => {
       const w = width ? ` width="${width}"` : "";
       const h = height ? ` height="${height}"` : "";
-      return `<img src="${src}" alt="${src}"${w}${h} class="obsidian-embed">`;
+      const basename = src.split("/").pop() ?? src;
+      const url = `${IMAGES_URL_PREFIX}/${encodeURIComponent(basename)}`;
+      return `<img src="${url}" alt="${basename}"${w}${h} class="obsidian-embed">`;
     }
   );
 
-  // 5. Note embeds  ![[Note Name]]
+  // 3. Note embeds  ![[Note Name]]
+  //    Must run before wikilinks so ![[...]] isn't eaten by the [[...]] rule.
   markdown = markdown.replace(
     /!\[\[([^\]]+)\]\]/g,
     `<div class="note-embed" data-note="$1">
@@ -162,37 +188,51 @@ function preprocessObsidian(markdown: string): string {
 </div>`
   );
 
-  // 6. Highlights  ==text==
-  markdown = markdown.replace(/==([^=]+)==/g, "<mark>$1</mark>");
-
-  // 7. Comments  %%...%%
-  markdown = markdown.replace(/%%[\s\S]*?%%/g, "");
-
-  // 8. Tags  #tag
-  markdown = markdown.replace(
-    /(^|\s)#([a-zA-Z][a-zA-Z0-9/_-]*)(?=\s|$)/gm,
-    '$1<a class="tag">#$2</a>'
-  );
-
-  // 9. Block references
-  markdown = markdown.replace(
-    / \^([a-zA-Z0-9-]+)$/gm,
-    ' <span class="block-ref" id="^$1"></span>'
-  );
-
-  // 10. Block reference links
+  // 4. Block reference links  [[Page#^id]]
+  //    Specific [[...]] forms must run before the generic wikilink rules.
   markdown = markdown.replace(
     /\[\[([^\]]+)#\^([a-zA-Z0-9-]+)\]\]/g,
     '<a class="wikilink block-link">$1 ^$2</a>'
   );
 
-  // 11. Heading anchors
+  // 5. Heading anchors  [[#Heading]]
   markdown = markdown.replace(
     /\[\[#([^\]]+)\]\]/g,
     '<a class="wikilink heading-link">$1</a>'
   );
 
-  // in <p>, avoiding invalid <p><div>...</div></p> nesting.
+  // 6. Wikilinks with alias  [[Page|Alias]]
+  markdown = markdown.replace(
+    /\[\[([^\]|]+)\|([^\]]+)\]\]/g,
+    '<a class="wikilink">$2</a>'
+  );
+
+  // 7. Wikilinks without alias  [[Page]]
+  markdown = markdown.replace(
+    /\[\[([^\]]+)\]\]/g,
+    '<a class="wikilink">$1</a>'
+  );
+
+  // 8. Highlights  ==text==
+  markdown = markdown.replace(/==([^=]+)==/g, "<mark>$1</mark>");
+
+  // 9. Comments  %%...%%
+  markdown = markdown.replace(/%%[\s\S]*?%%/g, "");
+
+  // 10. Tags  #tag
+  markdown = markdown.replace(
+    /(^|\s)#([a-zA-Z][a-zA-Z0-9/_-]*)(?=\s|$)/gm,
+    '$1<a class="tag">#$2</a>'
+  );
+
+  // 11. Block references
+  markdown = markdown.replace(
+    / \^([a-zA-Z0-9-]+)$/gm,
+    ' <span class="block-ref" id="^$1"></span>'
+  );
+
+  // 12. Block math  $$...$$
+  //     in <p>, avoiding invalid <p><div>...</div></p> nesting.
   markdown = markdown.replace(
     /\$\$([\s\S]+?)\$\$/g,
     '\n\n<div class="math math-block">$$$1$$</div>\n\n'
