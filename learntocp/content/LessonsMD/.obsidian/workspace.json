@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Basics/Matrices.md",
+                "file": "Basics/Sorting.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Matrices"
+              "title": "Sorting"
             }
           }
         ]
@@ -185,8 +185,11 @@
   },
   "active": "e86ad40bbc2e0f80",
   "lastOpenFiles": [
-    "matrix.png",
+    "Elementary Techniques/Two Pointers.md",
+    "Basics/Sorting.md",
     "Basics/Matrices.md",
+    "Elementary Techniques",
+    "matrix.png",
     "Pasted image 20260429193758.png",
     "Pasted image 20260429193830.png",
     "Pasted image 20260429193829.png",
