@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Basics/Sorting.md",
+                "file": "Basics/05 Sorting.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Sorting"
+              "title": "05 Sorting"
             }
           }
         ]
@@ -186,7 +186,14 @@
   "active": "e86ad40bbc2e0f80",
   "lastOpenFiles": [
     "Elementary Techniques/Two Pointers.md",
+    "Basics/04 Time Complexity.md",
+    "Basics/05 Sorting.md",
     "Basics/Sorting.md",
+    "Basics/04 Sorting.md",
+    "Basics/03 Matrices.md",
+    "Basics/02 Vectors.md",
+    "Basics/01 Data types and IO.md",
+    "Basics/00 C++ syntax.md",
     "Basics/Matrices.md",
     "Elementary Techniques",
     "matrix.png",

@@ -2,7 +2,8 @@
 
 Sorting is one of the most basic things we need to do when solving a competitive programming problem. But writing an efficient sorting algorithm is not that easy, that is why we have the **built in functions**
 
-### Calling the function
+Keep in mind that soring takes up **O(n log n)** time
+### Calling the function 
 
 Calling the function is easy, it is written as `sort(array.begin(), array.end(), compare_function)`.
 

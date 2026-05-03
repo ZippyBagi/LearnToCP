@@ -4,6 +4,7 @@ import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import markdownToHtml from "@/app/utils/mdToHTML";
 import LessonSkeleton from "@/app/Theory/_components/LessonSkeleton";
+import { stripOrderPrefix } from "@/app/utils/generateSidebarContainers";
 
 type ParamsPromise = Promise<{ folder: string; lesson: string }>;
 interface PageProps {
@@ -33,8 +34,11 @@ export async function generateStaticParams(): Promise<
       .filter((e) => e.isFile() && e.name.endsWith(".md"))
       .map((e) => e.name);
 
+    // Use stripped names so URL params match what generateSidebarContainers produces.
+    const displayFolder = stripOrderPrefix(folder);
     for (const file of files) {
-      params.push({ folder, lesson: path.basename(file, ".md") });
+      const displayLesson = stripOrderPrefix(path.basename(file, ".md"));
+      params.push({ folder: displayFolder, lesson: displayLesson });
     }
   }
   return params;
@@ -83,17 +87,36 @@ async function LessonContent({ paramsPromise }: { paramsPromise: ParamsPromise }
   const folderDecoded = safeDecode(folder);
   const lessonDecoded = safeDecode(lesson);
 
-  const filePath = path.join(
-    process.cwd(),
-    "content",
-    "LessonsMD",
-    folderDecoded,
-    `${lessonDecoded}.md`
-  );
-  if (!fs.existsSync(filePath)) notFound();
+  const lessonsRoot = path.join(process.cwd(), "content", "LessonsMD");
 
+  // The folder on disk may have a numeric prefix (e.g. "01 Basics"). Find the
+  // actual directory whose stripped name matches the URL segment.
+  const allFolders = fs
+    .readdirSync(lessonsRoot, { withFileTypes: true })
+    .filter((e) => e.isDirectory() && !e.name.startsWith("."))
+    .map((e) => e.name);
+  const actualFolder =
+    allFolders.find((f) => stripOrderPrefix(f) === folderDecoded) ?? folderDecoded;
+
+  const folderPath = path.join(lessonsRoot, actualFolder);
+
+  // The file on disk may also have a numeric prefix (e.g. "3 Vectors.md"). Find
+  // the actual file whose stripped basename matches the URL segment.
+  const allFiles = fs.existsSync(folderPath)
+    ? fs
+        .readdirSync(folderPath, { withFileTypes: true })
+        .filter((e) => e.isFile() && e.name.endsWith(".md"))
+        .map((e) => e.name)
+    : [];
+  const actualFile = allFiles.find(
+    (f) => stripOrderPrefix(path.basename(f, ".md")) === lessonDecoded
+  );
+
+  if (!actualFile) notFound();
+
+  const filePath = path.join(folderPath, actualFile);
   const markdown = fs.readFileSync(filePath, "utf8");
-  const htmlContent = await markdownToHtml(markdown, `${lessonDecoded}.md`);
+  const htmlContent = await markdownToHtml(markdown, actualFile);
 
   return (
     <article
