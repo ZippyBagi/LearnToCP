@@ -46,11 +46,9 @@ export default function SidebarContainer({ name, hrefs, names, standalone }: Sid
         />
       </div>
 
-      {/* Use max-h-52 (208px) instead of max-h-96 so open and close traverse
-          the same visible distance, making both feel equally fast. */}
       <div
         className={`transition-all duration-150 ease-in-out overflow-hidden ${
-          open && hrefs.length > 0 ? "max-h-52 opacity-100" : "max-h-0 opacity-0"
+          open && hrefs.length > 0 ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
         }`}
       >
         <div style={{ borderTop: "1px solid rgba(124,158,248,0.1)" }}>
