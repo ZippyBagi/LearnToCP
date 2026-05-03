@@ -33,7 +33,6 @@ export default async function markdownToHtml(markdown: string, fileName : string
     .use(remarkGfm)
     .use(remarkBreaks)
     .use(remarkRewriteImageUrls)
-    .use(remarkBreaksProtectCode) 
     .use(html, { sanitize: false })
     .process(content);
 
@@ -52,14 +51,6 @@ const highlighterPromise = createHighlighter({
   themes: [codeHighliteTheme],
   langs: ["cpp", "c", "javascript", "typescript", "python", "bash", "json", "css", "html", "sql"],
 });
-
-function remarkBreaksProtectCode() {
-  return (tree: any) => {
-    visit(tree, "code", (node) => {
-      node.value = node.value;
-    });
-  };
-}
 
 function stripBreaksInCodeBlocks(html: string): string {
   return html.replace(
@@ -258,7 +249,9 @@ function postprocessHtml(html: string): string {
   html = html.replace(
     /<p>((?:(?!<\/p>)[\s\S])+?)<\/p>\n(<div class="code-block-wrapper[^"]*">)/g,
     (_, title, wrapperOpen) => {
-      const trimmed = title.trim();
+      // Strip any <br> that remarkBreaks injected into the paragraph — they
+      // would otherwise end up inside the code-block-title span.
+      const trimmed = title.trim().replace(/<br\s*\/?>\n?/gi, " ").replace(/\s{2,}/g, " ").trim();
 
       // `~!` at the end of the paragraph (or as the whole paragraph) opts out
       // of title promotion. The marker is stripped; an empty paragraph is dropped.
@@ -280,6 +273,16 @@ function postprocessHtml(html: string): string {
     }
   );
 
+
+  // Strip <br> elements that remarkBreaks injected into callout body content.
+  // The callout template's blank-line trick causes remark to parse the body as
+  // regular markdown, so every single newline in the body becomes a <br>.
+  // Callout prose should flow naturally without hard line-breaks.
+  html = html.replace(
+    /(<div class="callout-content">)([\s\S]*?)(<\/div><\/div>)/g,
+    (_, open, content, close) =>
+      `${open}${content.replace(/<br\s*\/?>/gi, "")}${close}`
+  );
 
   // Wrap bare <table> for responsive scrolling
   html = html.replace(/<table>/g, '<div class="table-wrapper"><table>');
