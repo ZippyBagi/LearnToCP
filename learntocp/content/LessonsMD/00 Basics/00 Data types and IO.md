@@ -1,4 +1,4 @@
- > This lesson will assume that you **don't have any previous knowledge of c++** . But **do understand basic programming concepts** (such as if statements, for loops, etc...)
+ > This lesson will assume that you **don't have any previous knowledge of c++**
 
 In the context of competitive programming, every program will look something like this: 
 
