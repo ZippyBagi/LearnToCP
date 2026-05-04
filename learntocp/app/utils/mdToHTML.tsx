@@ -41,8 +41,8 @@ export default async function markdownToHtml(markdown: string, fileName : string
   content = await highlightCodeBlocks(content, highlighter);
   content = postprocessHtml(content);
 
-  const title = fileName.replace(/\.md$/i, '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-  content = `<h2 class="title">${title}</h2>\n` + content;
+  const title = fileName.replace(/\.md$/i, '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/^[0-9]+/, '');
+  content = `<h2 class="title">${title.trim()}</h2>\n` + content;
   
   return content;
 }
