@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "01 Elementary Techniques/Math I.md",
+                "file": "01 Elementary Techniques/00 Sorting.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Math I"
+              "title": "00 Sorting"
             }
           }
         ]
@@ -185,8 +185,14 @@
   },
   "active": "e86ad40bbc2e0f80",
   "lastOpenFiles": [
-    "Sum of elements.jpg",
+    "00 Basics/00 Data types and IO.md",
+    "00 Basics/01 C++ syntax.md",
+    "00 Basics/02 Modulo.md",
+    "00 Basics/05 Time Complexity.md",
+    "00 Basics/04 Matrices.md",
+    "00 Basics/03 Vectors.md",
     "01 Elementary Techniques/Math I.md",
+    "Sum of elements.jpg",
     "Illustration sum of elements.jpg",
     "Elementary Techniques/Two Pointers.md",
     "Basics/04 Time Complexity.md",

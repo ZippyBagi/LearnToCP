@@ -28,7 +28,7 @@ If we apply this to all numbers we get the formula:
 
 Since this is a single operation, the time complexity is **O(1)**
 
-### Binary Exponentiation  (Fast Exponentiation )
+### Binary Exponentiation  ( Fast Exponentiation )
 
 We want to compute `a^b` efficiently.
 

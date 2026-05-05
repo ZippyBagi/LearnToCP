@@ -147,3 +147,7 @@ int main(){
 	return 0;
 }
 ```
+
+>Note : these two lines can be confusing and are often unnecessary, but it is good practice to write them in every solution that uses cin and cout, hence why you will see them in most lectures 
+
+Learn more about them here: https://stackoverflow.com/questions/31162367/significance-of-ios-basesync-with-stdiofalse-cin-tienull
