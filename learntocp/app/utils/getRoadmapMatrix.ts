@@ -36,7 +36,7 @@ export const getRoadmapMatrix = cache((): RoadmapMatrix => {
         .filter((e) => e.isFile() && e.name.endsWith(".txt"))
         .sort((a, b) => a.name.localeCompare(b.name))
         .map((file) => ({
-          label: file.name.replace(/\.txt$/, ""),
+          label: file.name.replace(/\.txt$/, "").replace(/^[0-9]+/, ''),
           href: fs.readFileSync(path.join(nodePath, file.name), "utf-8").trim(),
         }));
 
