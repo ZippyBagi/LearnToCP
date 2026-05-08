@@ -2,7 +2,7 @@ import "server-only";
 import { cache } from "react";
 import fs from "fs";
 import path from "path";
-import type { RoadmapMatrix } from "@/app/roadmap/roadmap.types";
+import type { RoadmapMatrix } from "@/app/[locale]/roadmap/roadmap.types";
 
 const ROADMAP_DATA_DIR = path.join(process.cwd(), "content", "roadmap_data");
 

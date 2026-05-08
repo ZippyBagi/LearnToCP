@@ -1,4 +1,4 @@
-import LessonSkeleton from "@/app/Theory/_components/LessonSkeleton";
+import LessonSkeleton from "../../_components/LessonSkeleton";
 
 /**
  * Segment-level fallback for the [lesson] route. Next renders `loading.tsx`

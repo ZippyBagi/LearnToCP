@@ -3,7 +3,7 @@ import path from "path";
 import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import markdownToHtml from "@/app/utils/mdToHTML";
-import LessonSkeleton from "@/app/Theory/_components/LessonSkeleton";
+import LessonSkeleton from "../../_components/LessonSkeleton";
 import { stripOrderPrefix } from "@/app/utils/generateSidebarContainers";
 
 type ParamsPromise = Promise<{ folder: string; lesson: string }>;

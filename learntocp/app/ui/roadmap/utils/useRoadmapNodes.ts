@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import type { RoadmapMatrix } from "@/app/roadmap/roadmap.types";
+import type { RoadmapMatrix } from "@/app/[locale]/roadmap/roadmap.types";
 import { Node, Edge } from '@xyflow/react';
 import { getElementPositions } from "./roadmap.utils";
 import { NODE_WIDTH, CONNECTOR_X } from "./roadmap.constants";
