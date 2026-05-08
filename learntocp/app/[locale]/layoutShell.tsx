@@ -1,7 +1,7 @@
 "use client";
 import Navbar from "@/app/ui/navbar";
 import SideBar from "@/app/ui/sidebar";
-import LessonSkeleton from "../Theory/_components/LessonSkeleton";
+import LessonSkeleton from "./Theory/_components/LessonSkeleton";
 import { NavigationContext } from "@/app/ui/utils/navigationContext";
 import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useMemo, useState } from "react";
@@ -18,7 +18,7 @@ type LayoutShellProps = {
  * deliberately don't swap their content for a skeleton.
  */
 function isLessonHref(href: string): boolean {
-  return href.startsWith("/Theory/");
+  return /^\/[^/]+\/Theory\//.test(href);
 }
 
 export default function LayoutShell({ children, containers }: LayoutShellProps) {

@@ -6,8 +6,8 @@
  * communicated before the content streams in.
  *
  * Used by:
- *   - `app/Theory/loading.tsx` — segment fallback during navigation
- *   - `app/Theory/[folder]/[lesson]/loading.tsx` — finer-grained fallback
+ *   - `app/[locale]/Theory/loading.tsx` — segment fallback for any /Theory/* route
+ *   - `app/[locale]/Theory/[folder]/[lesson]/loading.tsx` — finer-grained fallback
  *   - the inline `<Suspense>` boundary in the lesson page
  *   - the navigation-pending overlay in `LayoutShell` (lesson routes only)
  *

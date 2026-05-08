@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "@/app/ui/globals.css";
-import LayoutShell from "@/app/[locale]/roadmap/layoutShell";
+import LayoutShell from "@/app/[locale]/layoutShell";
 import { generateSidebarContainers } from "@/app/utils/generateSidebarContainers";
 
 // Space Grotesk — all UI text (nav, node labels, headings, body, buttons).
