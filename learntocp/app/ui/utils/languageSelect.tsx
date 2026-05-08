@@ -13,10 +13,26 @@ export default function LanguageSelector() {
 
   function changeLanguage(newLocale: string) {
     document.cookie = `NEXT_LOCALE=${newLocale}; path=/; max-age=31536000; SameSite=Lax`
+    
     const segments = pathname.split('/')
-    segments[1] = newLocale
-    const newPath = segments.join('/')
-    router.replace(newPath)
+    
+    const isTheoryRoute = segments.includes('Theory')
+
+    if (isTheoryRoute) {
+      router.replace(`/${newLocale}/roadmap`)
+    } else {
+      segments[1] = newLocale
+      
+      const newPath = segments
+        .map((segment, index) => {
+          if (index <= 1) return segment;
+          return encodeURIComponent(segment);
+        })
+        .join('/')
+
+      router.replace(newPath)
+    }
+
     router.refresh()
   }
 
