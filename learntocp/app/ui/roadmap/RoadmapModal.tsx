@@ -162,8 +162,8 @@ export function RoadmapModal({
               ? "linear-gradient(160deg, #0d2137 0%, #0b2a1a 100%)"
               : "linear-gradient(160deg, #0d2137 0%, #091826 100%)",
             border: isAllDone
-              ? "1px solid rgba(80,250,123,0.45)"
-              : "1px solid rgba(124,158,248,0.22)",
+              ? "2px solid rgba(80,250,123,0.45)"
+              : "2px solid rgba(124,158,248,0.22)",
             boxShadow: isAllDone
               ? "0 0 0 1px rgba(80,250,123,0.08), 0 24px 60px rgba(0,0,0,0.7), 0 0 80px rgba(80,250,123,0.06)"
               : "0 0 0 1px rgba(124,158,248,0.06), 0 24px 60px rgba(0,0,0,0.7), 0 0 80px rgba(50,100,200,0.08)",
