@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import type { RoadmapNode } from "@/app/utils/roadmap.types";
+import type { RoadmapNode } from "@/app/roadmap/roadmap.types";
 
 const MODAL_STYLES = `
 @keyframes roadmap-modal-in {
