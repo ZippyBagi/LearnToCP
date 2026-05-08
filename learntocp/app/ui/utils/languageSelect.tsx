@@ -12,52 +12,62 @@ export default function LanguageSelector() {
   const currentLocale = pathname.split('/')[1] || 'en'
 
   function changeLanguage(newLocale: string) {
-    // 1. Set a cookie that expires in 1 year, available on all paths
     document.cookie = `NEXT_LOCALE=${newLocale}; path=/; max-age=31536000; SameSite=Lax`
-
-    // 2. Update the URL
     const segments = pathname.split('/')
     segments[1] = newLocale
     const newPath = segments.join('/')
-
-    // 3. Navigate to the new path and refresh to apply changes globally
     router.replace(newPath)
-    router.refresh() 
+    router.refresh()
   }
 
   return (
     <Menu as="div" className="relative inline-block">
-      <MenuButton className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-bg-page px-3 py-2 text-sm font-semibold text-text-primary inset-ring-1 inset-ring-border-blue hover:bg-bg-surface">
+      <MenuButton className="
+        inline-flex w-full items-center justify-center gap-x-1.5
+        rounded-md px-3 py-2 text-sm font-semibold
+        bg-bg-page text-text-primary
+        border border-border-blue
+        transition-colors duration-150
+        hover:bg-bg-surface hover:inset-ring-accent-border-hover
+        focus:outline-none
+      ">
         {languageNames[currentLocale as keyof typeof languageNames]}
-        <ChevronDownIcon
-          aria-hidden="true"
-          className="-mr-1 size-5 text-gray-400"
-        />
+        <ChevronDownIcon aria-hidden="true" className="-mr-1 size-5 text-text-muted" />
       </MenuButton>
 
       <MenuItems
         transition
-        className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-bg-page outline-1 -outline-offset-1 outline-border-blue"
+        className="
+          absolute right-0 z-10 mt-2 w-40 origin-top-right
+          rounded-md bg-bg-page overflow-hidden
+          border border-border-blue
+          shadow-[0_8px_32px_rgba(0,0,0,0.5)]
+          transition duration-100 ease-out
+          data-[closed]:scale-95 data-[closed]:opacity-0
+        "
       >
-        <div className="py-1">
-          <MenuItem>
-            <button
-              onClick={() => changeLanguage('en')}
-              className="block w-full text-left px-4 py-2 text-sm text-text-primary cursor-pointer"
-            >
-              English
-            </button>
+        {Object.entries(languageNames).map(([locale, label]) => (
+          <MenuItem key={locale}>
+            {({ focus }) => (
+              <button
+                onClick={() => changeLanguage(locale)}
+                className={`
+                  relative block w-full text-left px-4 py-2.5 text-sm
+                  text-text-primary bg-bg-page cursor-pointer
+                  transition-colors duration-100
+                  border-l-2
+                  focus:outline-none
+                  ${currentLocale === locale
+                    ? 'border-accent text-text-accent bg-bg-surface'
+                    : 'border-transparent hover:border-accent-border-hover hover:bg-bg-surface-hover hover:text-text-heading'
+                  }
+                `}
+              >
+                {label}
+              </button>
+            )}
           </MenuItem>
-
-          <MenuItem>
-            <button
-              onClick={() => changeLanguage('sr')}
-              className="block w-full text-left px-4 py-2 text-sm text-text-primary cursor-pointer"
-            >
-              Srpski
-            </button>
-          </MenuItem>
-        </div>
+        ))}
       </MenuItems>
     </Menu>
   )

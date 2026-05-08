@@ -11,7 +11,8 @@ type SideBarButtonInput = {
 // and Next.js's own `loading.tsx` already handles them smoothly, so this
 // button intentionally does NOT trigger the lesson-specific pending overlay.
 export default function SideBarButton({ name, href }: SideBarButtonInput) {
-  const pathname = usePathname();
+  const rawPathname = usePathname();
+  const pathname = rawPathname.replace(/^\/[^/]+/, "") || "/";
   const isActive = pathname === href;
 
   return (
