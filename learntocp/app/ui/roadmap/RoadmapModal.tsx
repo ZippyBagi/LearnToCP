@@ -141,7 +141,7 @@ export function RoadmapModal({
       <div
         role="dialog"
         aria-modal="true"
-        aria-label={node.title}
+        aria-label={node.title.replace(/^[0-9]+/, '')}
         className="fixed inset-0 z-50 flex items-center justify-center p-4"
         onClick={(e) => {
           if (e.target === e.currentTarget) onClose();
@@ -193,7 +193,7 @@ export function RoadmapModal({
                 className="text-sm font-semibold tracking-wider uppercase truncate"
                 style={{ color: isAllDone ? "var(--color-success)" : "var(--color-text-heading)" }}
               >
-                {node.title}
+                {node.title.replace(/^[0-9]+/, '')}
               </h2>
             </div>
             <button

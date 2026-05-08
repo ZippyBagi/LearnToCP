@@ -48,7 +48,7 @@ export function RoadmapNodeCard({
           background: isComplete
             ? "linear-gradient(135deg, #0d2137 0%, #0b2a1a 100%)"
             : "linear-gradient(135deg, #0d2137 0%, #0a1c2e 100%)",
-          border: `1px solid ${borderColor}`,
+          border: `2px solid ${borderColor}`,
           boxShadow: `0 0 0 1px ${glowColor}, 0 2px 12px rgba(0,0,0,0.4)`,
           transition: "box-shadow 200ms ease, border-color 200ms ease",
         }}

@@ -1,5 +1,5 @@
 /** Width every custom roadmap node is rendered at (px). */
-export const NODE_WIDTH = 260;
+export const NODE_WIDTH = 280;
 
 /** Side-length of the small connector dot (px) — matches size-3 = 12px. */
 export const CONNECTOR_SIZE = 12;
