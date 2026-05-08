@@ -45,14 +45,26 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
+// 1. Update the type to include the async params
+type LayoutProps = {
   children: React.ReactNode;
-}>) {
-  const containers = generateSidebarContainers();
+  params: Promise<{ locale: string }>;
+};
+
+// 2. Make the component async
+export default async function RootLayout({
+  children,
+  params,
+}: LayoutProps) {
+  // 3. Await the params to safely extract the locale string
+  const { locale } = await params;
+
+  // 4. Pass the locale string into your helper
+  const containers = generateSidebarContainers(locale);
+  
   return (
-    <html lang="en" className={`${spaceGrotesk.variable} ${jetbrainsMono.variable}`}>
+    // 5. Make sure the HTML lang attribute is dynamic so screen readers and SEO tools know the language
+    <html lang={locale} className={`${spaceGrotesk.variable} ${jetbrainsMono.variable}`}>
       <body className="antialiased font-sans">
         <LayoutShell containers={containers}>{children}</LayoutShell>
       </body>

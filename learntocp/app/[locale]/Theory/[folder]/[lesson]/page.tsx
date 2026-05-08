@@ -5,8 +5,10 @@ import { notFound } from "next/navigation";
 import markdownToHtml from "@/app/utils/mdToHTML";
 import LessonSkeleton from "../../_components/LessonSkeleton";
 import { stripOrderPrefix } from "@/app/utils/generateSidebarContainers";
+import { getLessonsRoot } from "@/app/utils/getLessonRoot";
 
-type ParamsPromise = Promise<{ folder: string; lesson: string }>;
+// 1. Added 'locale' to the expected Promise payload
+type ParamsPromise = Promise<{ locale: string; folder: string; lesson: string }>;
 interface PageProps {
   params: ParamsPromise;
 }
@@ -15,33 +17,57 @@ interface PageProps {
  * Enumerate every (folder, lesson) pair at build time so the route is fully
  * prerendered. `dynamicParams = false` rejects any pair not produced here.
  */
-export async function generateStaticParams(): Promise<
-  Array<{ folder: string; lesson: string }>
-> {
-  const lessonsRoot = path.join(process.cwd(), "content", "LessonsMD");
-  if (!fs.existsSync(lessonsRoot)) return [];
+// 2. Destructure 'params' from the arguments to access the parent layout's locale
+// 1. Define the exact type Next.js's validator is demanding
+type StaticParamsProps = {
+  params: { locale: string; folder: string; lesson: string };
+};
 
-  const folders = fs
-    .readdirSync(lessonsRoot, { withFileTypes: true })
-    .filter((e) => e.isDirectory())
-    .map((e) => e.name);
+export async function generateStaticParams({
+  params,
+}: StaticParamsProps): Promise<Array<{ locale: string; folder: string; lesson: string }>> {
+  
+  // 2. Wrap params in Promise.resolve() 
+  // This satisfies TypeScript (which thinks it's a sync object) 
+  // AND Next.js 15 (which passes a Promise at runtime).
+  const resolvedParams = await Promise.resolve(params);
+  const parentLocale = resolvedParams?.locale;
 
-  const params: Array<{ folder: string; lesson: string }> = [];
-  for (const folder of folders) {
-    const folderPath = path.join(lessonsRoot, folder);
-    const files = fs
-      .readdirSync(folderPath, { withFileTypes: true })
-      .filter((e) => e.isFile() && e.name.endsWith(".md"))
+  // 3. Fallback logic remains the same
+  const localesToGenerate = parentLocale ? [parentLocale] : ["en", "sr"];
+  const paths: Array<{ locale: string; folder: string; lesson: string }> = [];
+
+  for (const currentLocale of localesToGenerate) {
+    const lessonsRoot = getLessonsRoot(currentLocale);
+    
+    if (!fs.existsSync(lessonsRoot)) continue;
+
+    const folders = fs
+      .readdirSync(lessonsRoot, { withFileTypes: true })
+      .filter((e) => e.isDirectory())
       .map((e) => e.name);
 
-    // Use stripped names so URL params match what generateSidebarContainers produces.
-    const displayFolder = stripOrderPrefix(folder);
-    for (const file of files) {
-      const displayLesson = stripOrderPrefix(path.basename(file, ".md"));
-      params.push({ folder: displayFolder, lesson: displayLesson });
+    for (const folder of folders) {
+      const folderPath = path.join(lessonsRoot, folder);
+      const files = fs
+        .readdirSync(folderPath, { withFileTypes: true })
+        .filter((e) => e.isFile() && e.name.endsWith(".md"))
+        .map((e) => e.name);
+
+      const displayFolder = stripOrderPrefix(folder);
+      for (const file of files) {
+        const displayLesson = stripOrderPrefix(path.basename(file, ".md"));
+        
+        paths.push({
+          locale: currentLocale, 
+          folder: displayFolder,
+          lesson: displayLesson,
+        });
+      }
     }
   }
-  return params;
+  
+  return paths;
 }
 
 export const dynamicParams = false;
@@ -83,11 +109,13 @@ export default function LessonPage({ params }: PageProps) {
 }
 
 async function LessonContent({ paramsPromise }: { paramsPromise: ParamsPromise }) {
-  const { folder, lesson } = await paramsPromise;
+  // 5. Extract 'locale' from the awaited params here
+  const { locale, folder, lesson } = await paramsPromise;
   const folderDecoded = safeDecode(folder);
   const lessonDecoded = safeDecode(lesson);
 
-  const lessonsRoot = path.join(process.cwd(), "content", "LessonsMD");
+  // 6. Use the localized root path instead of the hardcoded process.cwd() path
+  const lessonsRoot = getLessonsRoot(locale);
 
   // The folder on disk may have a numeric prefix (e.g. "01 Basics"). Find the
   // actual directory whose stripped name matches the URL segment.

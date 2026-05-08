@@ -1,46 +1,62 @@
 'use client'
+
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
-import { useState } from 'react'
-
+import { usePathname, useRouter } from 'next/navigation'
+import { locales, languageNames } from '@/i18n'
 
 export default function LanguageSelector() {
+  const router = useRouter()
+  const pathname = usePathname()
 
-  const [selected, setSelected] = useState("English");
+  const currentLocale = pathname.split('/')[1] || 'en'
 
-  function ChangeLanguage(newLanguage:string){
-    setSelected(newLanguage)
+  function changeLanguage(newLocale: string) {
+    // 1. Set a cookie that expires in 1 year, available on all paths
+    document.cookie = `NEXT_LOCALE=${newLocale}; path=/; max-age=31536000; SameSite=Lax`
+
+    // 2. Update the URL
+    const segments = pathname.split('/')
+    segments[1] = newLocale
+    const newPath = segments.join('/')
+
+    // 3. Navigate to the new path and refresh to apply changes globally
+    router.replace(newPath)
+    router.refresh() 
   }
 
   return (
     <Menu as="div" className="relative inline-block">
       <MenuButton className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-bg-page px-3 py-2 text-sm font-semibold text-text-primary inset-ring-1 inset-ring-border-blue hover:bg-bg-surface">
-        {selected}
-        <ChevronDownIcon aria-hidden="true" className="-mr-1 size-5 text-gray-400" />
+        {languageNames[currentLocale as keyof typeof languageNames]}
+        <ChevronDownIcon
+          aria-hidden="true"
+          className="-mr-1 size-5 text-gray-400"
+        />
       </MenuButton>
 
       <MenuItems
         transition
-        className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-bg-page outline-1 -outline-offset-1 outline-border-blue transition data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in"
+        className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-bg-page outline-1 -outline-offset-1 outline-border-blue"
       >
         <div className="py-1">
           <MenuItem>
-            <a
-              className="block px-4 py-2 text-sm text-text-primary data-focus:bg-bg-code data-focus:text-text-heading data-focus:outline-hidden cursor-pointer"
-              onClick={() => {ChangeLanguage("English")}}
+            <button
+              onClick={() => changeLanguage('en')}
+              className="block w-full text-left px-4 py-2 text-sm text-text-primary cursor-pointer"
             >
               English
-            </a>
+            </button>
           </MenuItem>
+
           <MenuItem>
-            <a
-              className="block px-4 py-2 text-sm text-text-primary data-focus:bg-bg-code data-focus:text-text-heading data-focus:outline-hidden cursor-pointer"
-              onClick={() => {ChangeLanguage("Srpski")}}
+            <button
+              onClick={() => changeLanguage('sr')}
+              className="block w-full text-left px-4 py-2 text-sm text-text-primary cursor-pointer"
             >
               Srpski
-            </a>
+            </button>
           </MenuItem>
-          
         </div>
       </MenuItems>
     </Menu>

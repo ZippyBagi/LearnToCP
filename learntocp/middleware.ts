@@ -1,29 +1,34 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from 'next/server'
+import type { NextRequest } from 'next/server'
 
-const locales = ["en", "sr"];
-const defaultLocale = "en";
+const locales = ['en', 'sr']
+const defaultLocale = 'en'
 
-export function middleware(request: NextRequest) {
-  const { pathname } = request.nextUrl;
-
-  const pathnameHasLocale = locales.some(
-    (locale) =>
-      pathname === `/${locale}` ||
-      pathname.startsWith(`/${locale}/`)
-  );
-
-  if (pathnameHasLocale) {
-    return NextResponse.next();
+function getLocale(request: NextRequest) {
+  const cookieLocale = request.cookies.get('NEXT_LOCALE')?.value
+  if (cookieLocale && locales.includes(cookieLocale)) {
+    return cookieLocale
   }
 
-  const url = request.nextUrl.clone();
-  url.pathname = `/${defaultLocale}${pathname}`;
+  return defaultLocale
+}
 
-  return NextResponse.redirect(url);
+export function middleware(request: NextRequest) {
+  const { pathname } = request.nextUrl
+  const pathnameHasLocale = locales.some(
+    (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
+  )
+
+  if (pathnameHasLocale) return
+
+  const locale = getLocale(request)
+  request.nextUrl.pathname = `/${locale}${pathname}`
+  
+  return NextResponse.redirect(request.nextUrl)
 }
 
 export const config = {
   matcher: [
-    "/((?!api|_next|.*\\..*).*)",
+    '/((?!_next|api|favicon.ico|.*\\..*).*)',
   ],
-};
+}

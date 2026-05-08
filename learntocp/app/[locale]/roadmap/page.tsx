@@ -7,8 +7,14 @@ export const metadata: Metadata = {
   description: "Track your learning path and progress through the roadmap.",
 };
 
-export default function RoadmapPage() {
-  const matrix = getRoadmapMatrix();
+interface RoadmapPageProps {
+  params: Promise<{ locale: string }>;
+}
+
+export default async function RoadmapPage({ params }: RoadmapPageProps) {
+
+  const {locale} = await params
+  const matrix = getRoadmapMatrix(locale);
 
   return (
     <main className="min-h-fill bg-[var(--color-bg-page)] px-4 py-4">

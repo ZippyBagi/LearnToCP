@@ -3,6 +3,7 @@ import { cache } from "react";
 import fs from "fs";
 import path from "path";
 import type { SidebarContainer } from "@/app/ui/utils/sidebar.types";
+import { getLessonsRoot } from "@/app/utils/getLessonRoot"; // <-- Import your helper
 
 export type { SidebarContainer };
 
@@ -25,18 +26,20 @@ function getOrderValue(name: string): number {
 }
 
 /**
- * Walk `content/LessonsMD/` and produce the collapsible sidebar groups.
+ * Walk `content/[locale]/LessonsMD/` and produce the collapsible sidebar groups.
  *
  * Folders and files may carry a leading "N " prefix (e.g. "01 Basics",
  * "3 Vectors.md") to control display order. The prefix is stripped from all
  * display names and URLs — it exists purely as an ordering hint on disk.
  *
  * Wrapped in React `cache()` so if multiple server components call this during
- * one render pass (root layout + any future consumer) we only hit disk once.
- * In a static build this runs at build time; in dev, once per request.
+ * one render pass (root layout + any future consumer) we only hit disk once
+ * PER LOCALE. In a static build this runs at build time; in dev, once per request.
  */
-export const generateSidebarContainers = cache((): SidebarContainer[] => {
-  const lessonsRoot = path.join(process.cwd(), "content", "LessonsMD");
+// 1. Accept 'locale' as an argument
+export const generateSidebarContainers = cache((locale: string): SidebarContainer[] => {
+  // 2. Use the localized root path
+  const lessonsRoot = getLessonsRoot(locale);
 
   if (!fs.existsSync(lessonsRoot)) {
     console.warn(
@@ -66,9 +69,11 @@ export const generateSidebarContainers = cache((): SidebarContainer[] => {
     const names = mdFiles.map((file) =>
       stripOrderPrefix(path.basename(file, ".md"))
     );
+    
+    // 3. Inject the locale into the generated URL paths
     const hrefs = names.map(
       (name) =>
-        `/Theory/${encodeURIComponent(displayFolderName)}/${encodeURIComponent(name)}`
+        `/${locale}/Theory/${encodeURIComponent(displayFolderName)}/${encodeURIComponent(name)}`
     );
 
     return { name: displayFolderName, hrefs, names };
