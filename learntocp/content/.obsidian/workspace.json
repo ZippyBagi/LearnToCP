@@ -13,32 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "en/LessonsMD/00 Basics/00 Data types and IO.md",
+                "file": "en/LessonsMD/02 Sorting/01 Counting sort.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "00 Data types and IO"
-            }
-          }
-        ]
-      },
-      {
-        "id": "1cd4519e45e73cfd",
-        "type": "tabs",
-        "children": [
-          {
-            "id": "a2123a7f473bb801",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "sr/LessonsMD/00 Osnove/00 Tipovi podataka, Unos i Izlaz.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "00 Tipovi podataka, Unos i Izlaz"
+              "title": "01 Counting sort"
             }
           }
         ]
@@ -205,7 +185,15 @@
   },
   "active": "c8e6b2c7ef84d9a5",
   "lastOpenFiles": [
-    "sr/LessonsMD/00 Osnove/00 Tipovi podataka, Unos i Izlaz.md",
-    "en/LessonsMD/00 Basics/00 Data types and IO.md"
+    "images/Couning Sort.jpg",
+    "en/LessonsMD/02 Sorting/01 Counting sort.md",
+    "en/LessonsMD/00 Basics/04 Matrices.md",
+    "images/Sum of elements.jpg",
+    "images/matrix.png",
+    "images",
+    "Couning Sort.jpg",
+    "en/LessonsMD/02 Sorting/00 Sorting.md",
+    "en/LessonsMD/00 Basics/00 Data types and IO.md",
+    "sr/LessonsMD/00 Osnove/00 Tipovi podataka, Unos i Izlaz.md"
   ]
 }
