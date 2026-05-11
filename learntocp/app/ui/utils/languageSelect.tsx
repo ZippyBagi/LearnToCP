@@ -12,6 +12,11 @@ export default function LanguageSelector() {
   const currentLocale = pathname.split('/')[1] || 'en'
 
   function changeLanguage(newLocale: string) {
+    
+    if(currentLocale === newLocale){
+      return;
+    }
+    
     document.cookie = `NEXT_LOCALE=${newLocale}; path=/; max-age=31536000; SameSite=Lax`
     
     const segments = pathname.split('/')
