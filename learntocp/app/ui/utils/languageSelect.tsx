@@ -58,13 +58,16 @@ export default function LanguageSelector() {
 
       <MenuItems
         transition
+        anchor="bottom end" // Fixes transparent in roadmap page
         className="
-          absolute right-0 z-10 mt-2 w-40 origin-top-right
+          w-40
           rounded-md bg-bg-page overflow-hidden
           border border-border-blue
           shadow-[0_8px_32px_rgba(0,0,0,0.5)]
           transition duration-100 ease-out
           data-[closed]:scale-95 data-[closed]:opacity-0
+          focus:outline-none
+          [--anchor-gap:8px]
         "
       >
         {Object.entries(languageNames).map(([locale, label]) => (
