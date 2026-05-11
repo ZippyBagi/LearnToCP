@@ -73,7 +73,18 @@ Solution.cpp
 ```c++
 #include <bits/stdc++.h>
 
-using namespace std;
+using namespace std; 
+
+void print_vector(vector<int> a){ // This is a custom function
+	
+	for(int i=0;i<a.size();i++){ //notice the a.size()
+	
+        cout<<a[i]<<" "; // this prints out the vector
+    
+    }
+    cout<<'\n'; // this is a newline character, like pressing enter on a keyboard
+}
+
 int main(){
 
     int n = 3;
@@ -83,26 +94,17 @@ int main(){
     a[0] = 1;
     a[1] = 2;
     a[2] = 3;
-
-    for(int i=0;i<a.size();i++){ //notice the a.size()
-        cout<<a[i]<<" "; // this prints out the vector
-    }
-    cout<<'\n'; // this is a newline character, like pressing enter on a keyboard
-
+	
+	print_vector(a);// We call our custom function
+	
     a.push_back(4);
     a.push_back(5);
 
-    for(int i=0;i<a.size();i++){
-        cout<<a[i]<<" ";
-    }
-    cout<<'\n';
+    print_vector(a); // We call our custom function
 
     a.pop_back();
 
-    for(int i=0;i<a.size();i++){
-        cout<<a[i]<<" ";
-    }
-    cout<<'\n';
+    print_vector(a); // We call our custom function
 
     return 0;
 }

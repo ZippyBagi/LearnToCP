@@ -52,21 +52,39 @@ int main(){
 
 The time complexity of this solution is **O(n^2)**, but we can do better  
 
-### Two pointers:
+### Two pointers 
 
-Instead of comparing every element with every other element, we can traverse the array in a unique way:
+Instead of comparing every element with every other element, we can traverse the array in a much smarter way.
 
-1. First place a pointer at the beginning of the array, lets call it left : `int left = 0;`
-2. Then place another one at the end of the array, call it right : `int right = n-1;`
-3. Now we can check if `a[left] + a[right] == k`, if that is the case, we found the solution
-4. If that's not the case we check if `a[left] + a[right] > k`. 
-	If it is then there is no need to check anything else with `a[right]`. Since the array is sorted  `a[left]` is the smallest number we are considering, if that is too large, then anything to the right of `left` will also be too large. That is why we can ignore all those comparisons.
-	So we do `right = right - 1;`
-5. Another thing to check is if `a[left] + a[right] < k`.
-	Following the same logic, `a[right]` is the biggest number we are considering, if that's not enough nothing else with `a[left]` will be. So we do `left = left + 1`
-6. We repeat this process until we either **find the solution**, or until **the pointers meet**, so `while(left < right)`.
+1. Place one pointer at the beginning of the array:  `int left = 0;`
+    
+2. Place the second pointer at the end of the array:  `int right = n - 1;`
+    
+3. Then check whether:  `a[left] + a[right] == k`
+    If this condition is true - we found the solution.
+    
+4. If the sum is not equal to `k`, we check whether:  `a[left] + a[right] > k`
+    
+    If this is true, there is no need to continue checking the element `a[right]`.
+    
+    Since the array is sorted, `a[left]` is currently the smallest number we are considering. If even with that smallest number the sum is already too large, then every element to the right of `left` will produce an even larger sum.
+    
+    That is why we can safely move the right pointer to the left:  `right = right - 1;`
+    
+5. The next case is:  `a[left] + a[right] < k`
+    
+    Now the problem is the opposite - the sum is too small.
+    
+    Since `a[right]` is the largest number we are currently using, no other element together with `a[left]` can produce a large enough sum.
+    
+    Therefore, we move the left pointer to the right:  `left = left + 1;`
+    
+6. We repeat this process until:
+    
+    - we find the solution
+    - or the pointers meet:  `while(left < right)`
 
-Putting all this into code we get: 
+When we translate this idea into code, we get:
 
 Solution.cpp
 ```c++

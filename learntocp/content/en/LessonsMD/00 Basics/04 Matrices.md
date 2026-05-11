@@ -10,7 +10,7 @@ So a 3x3 matrix would look like:
 	![[matrix.png]]
 It is comprised of rows and columns.
 
-If we look at the example the rows they are: `[6, 2, 7]`, `[8,1,5]`, `[3, 4, 2]`
+If we look at the example the rows they are: `[6, 2, 7]`, `[8, 1, 5]`, `[3, 4, 2]`
 We can also look at the columns and they are: `[6, 8, 3]`, `[2, 1, 4]`, `[7, 5, 2]`
 ### Implementation
 

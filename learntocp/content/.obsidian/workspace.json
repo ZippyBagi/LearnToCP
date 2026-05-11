@@ -4,6 +4,26 @@
     "type": "split",
     "children": [
       {
+        "id": "4ae2b93f6a59888a",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "aed0321ae9423fb2",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "en/LessonsMD/02 Elementary Techniques/01 Two Pointers.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "01 Two Pointers"
+            }
+          }
+        ]
+      },
+      {
         "id": "a341085d07200de3",
         "type": "tabs",
         "children": [
@@ -13,12 +33,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "en/LessonsMD/02 Sorting/01 Counting sort.md",
+                "file": "sr/LessonsMD/02 Osnovne Tehnike/01 Dva Pokazivača.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "01 Counting sort"
+              "title": "01 Dva Pokazivača"
             }
           }
         ]
@@ -183,17 +203,31 @@
       "bases:Create new base": false
     }
   },
-  "active": "c8e6b2c7ef84d9a5",
+  "active": "aed0321ae9423fb2",
   "lastOpenFiles": [
+    "sr/LessonsMD/02 Osnovne Tehnike/01 Dva Pokazivača.md",
+    "en/LessonsMD/02 Elementary Techniques/01 Two Pointers.md",
+    "sr/LessonsMD/02 Osnovne Tehnike/03 Prefix sum.md",
+    "sr/LessonsMD/00 Osnove/05 Vremenska Složenost Algoritma.md",
+    "en/LessonsMD/00 Basics/05 Time Complexity.md",
+    "images/big-o.jpg",
     "images/Couning Sort.jpg",
-    "en/LessonsMD/02 Sorting/01 Counting sort.md",
+    "images/1_5ZLci3SuR0zM_QlZOADv8Q-1558881035.jpg",
     "en/LessonsMD/00 Basics/04 Matrices.md",
+    "sr/LessonsMD/00 Osnove/04 Matrice.md",
+    "en/LessonsMD/00 Basics/03 Vectors.md",
+    "sr/LessonsMD/00 Osnove/03 Vektori.md",
+    "en/LessonsMD/00 Basics/02 Modulo.md",
+    "sr/LessonsMD/00 Osnove/02 Modulo.md",
+    "en/LessonsMD/00 Basics/01 C++ syntax.md",
+    "sr/LessonsMD/00 Osnove/01 C++ sintaksa.md",
+    "sr/LessonsMD/00 Osnove/00 Tipovi podataka, Unos i Izlaz.md",
+    "en/LessonsMD/00 Basics/00 Data types and IO.md",
+    "en/LessonsMD/01 Sorting/01 Counting sort.md",
     "images/Sum of elements.jpg",
     "images/matrix.png",
     "images",
     "Couning Sort.jpg",
-    "en/LessonsMD/02 Sorting/00 Sorting.md",
-    "en/LessonsMD/00 Basics/00 Data types and IO.md",
-    "sr/LessonsMD/00 Osnove/00 Tipovi podataka, Unos i Izlaz.md"
+    "en/LessonsMD/01 Sorting/00 Sorting.md"
   ]
 }

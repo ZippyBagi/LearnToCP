@@ -14,7 +14,8 @@ Most of the time our code can be classified as:
 - `O(n log n)` -  Linearithmic scaling(n times Logarithmic scaling)
 - `O(n^2)` -  Quadratic scaling, this is reserved for small input sizes or large time constraints.
 - `O(n!), O(n^n), O(2^n)` - These are exponential (or worse) scaling algorithms
-
+![[big-o.jpg]]
+For most problems O(n log n) is the target
 ### Counting operations: 
 
 Roughly treat each basic operation as constant time., this means one line of code, one operation, then look at loops, they multiply every operation in them by how long they run for. Looking at the example it will be more clear:

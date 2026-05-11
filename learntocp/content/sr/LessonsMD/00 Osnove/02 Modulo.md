@@ -1,33 +1,38 @@
->In this lesson we will learn about division, and how to find the remainder after dividing by an integer number.
+> U ovoj lekciji naučićemo kako funkcioniše deljenje, kao i kako da pronađemo ostatak pri deljenju celih brojeva.
 
-When solving problems we often need to check if two numbers are divisible. The simplest way to check is by using **Modulo**
+Prilikom rešavanja zadataka često moramo da proverimo da li je jedan broj deljiv drugim. Najjednostavniji način da to uradimo jeste korišćenjem **modulo** operacije.
 
-### What is modulo? 
+### Šta je modulo?
 
-Modulo is a mathematical operations that tells us the remainder after dividing two whole numbers, in math it is written as `a mod b`, but in c++ we use `a % b`
-Let's look at some examples:
+Modulo je matematička operacija koja nam govori koliki je ostatak nakon deljenja dva cela broja.  
+U matematici se zapisuje kao `a mod b`, dok se u c++-u piše kao `a % b`.
 
-`5 % 2 = 1`
-`100 % 10 = 0`
+Pogledajmo nekoliko primera:
+
+`5 % 2 = 1`  
+`100 % 10 = 0`  
 `9 % 7 = 2`
 
->Two numbers are divisible if their modulo equals 0!
+> Dva broja su deljiva ako je njihov modulo jednak 0!
 
-If we look at multiple sequential numbers we begin to see a pattern:
+Ako pogledamo više uzastopnih brojeva, možemo primetiti sledeće:
 
-`3 % 3 = 0`
-`4 % 3 = 1`
-`6 % 3 = 0`
+`3 % 3 = 0`  
+`4 % 3 = 1`  
+`6 % 3 = 0`  
 `7 % 3 = 1`
 
-As we can see the result repeats, we can also see that when dividing by **n** the remainders are:
+Kao što možemo videti, rezultati počinju da se ponavljaju.  
+Takođe možemo primetiti da su pri deljenju brojem **n** mogući ostaci:
 
 **0, 1, 2, 3, ..., n-2, n-1**
 
-Or in other words: **numbers from 0 to n-1**
-### Implementation
+Drugim rečima: **brojevi od 0 do n-1**
 
-Implementing modulo is really simple, just type `a % b`, and we get the result
+### Implementacija
+
+Korišćenje modulo operacije u c++-u je veoma jednostavno, dovoljno je napisati `a % b` i dobićemo ostatak pri deljenju.
+
 ~!
 ```c++
 int main(){
@@ -40,9 +45,10 @@ int main(){
 	return 0;
 }
 ```
+
 Output: `2`
 
-We can also check if two numbers are divisible by using: `if(a % b == 0)`
+Takođe možemo proveriti da li je jedan broj deljiv drugim pomoću uslova: `if(a % b == 0)`
 
 ~!
 ```c++
@@ -56,16 +62,17 @@ int main(){
 	cin>>a>>b;
 	
 	if(a % b ==0){
-		cout<<"The numbers are divisible";
+		cout<<"Brojevi JESU deljivi";
 	}else{
-		cout<<"The numbers are NOT divisible";
+		cout<<"Brojevi NISU deljivi";
 	}
 	
 	return 0;
 }
 ```
-Input: `100 3`
-Output: `The numbers are NOT divisible`
 
-Input: `100 5`
-Output: `The numbers are divisible`
+Input: `100 3`  
+Output: `Brojevi NISU deljivi`
+
+Input: `100 5`  
+Output: `Brojevi JESU deljivi`
