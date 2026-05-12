@@ -45,8 +45,9 @@ This is pretty simple as well, all we have to do is above `main()`  define a boo
 
 When writing the compare function imagine `a` and `b` are elements next to each other:
 
-Return `true` if `a` is suppose to go to the right of `b`, or `false` if `b` is suppose to go to the right of `a` (the way they currently are). 
-
+The function needs to return:
+- `true` if `a` is suppose to go to the right of `b`,
+- `false` if `b` is suppose to go to the right of `a` (the way they currently are). 
 
 Example, sorting is descending order (biggest to smallest): 
 
