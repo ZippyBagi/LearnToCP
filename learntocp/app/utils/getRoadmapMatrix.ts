@@ -3,6 +3,7 @@ import { cache } from "react";
 import fs from "fs";
 import path from "path";
 import type { RoadmapMatrix } from "@/app/[locale]/roadmap/roadmap.types";
+import { getSmartRedirect } from '@/lib/smartRedirect'
 
 /**
  * Load content/[locale]/roadmap_data/L{n}/<Node>/<item>.txt into a RoadmapMatrix.

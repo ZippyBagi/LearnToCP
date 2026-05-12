@@ -4,6 +4,7 @@ import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import { usePathname, useRouter } from 'next/navigation'
 import { locales, languageNames } from '@/i18n'
+import { getSmartRedirect } from '@/app/utils/smartRedirect'
 
 export default function LanguageSelector() {
   const router = useRouter()
@@ -11,7 +12,7 @@ export default function LanguageSelector() {
 
   const currentLocale = pathname.split('/')[1] || 'en'
 
-  function changeLanguage(newLocale: string) {
+  async function changeLanguage(newLocale: string) {
     
     if(currentLocale === newLocale){
       return;
@@ -23,9 +24,11 @@ export default function LanguageSelector() {
     
     const isTheoryRoute = segments.includes('Theory')
 
-    if (isTheoryRoute) {
-      router.replace(`/${newLocale}/roadmap`)
+    if (isTheoryRoute) {   
+      const redirectPath = await getSmartRedirect(pathname, newLocale)
+      router.replace(redirectPath)
     } else {
+
       segments[1] = newLocale
       
       const newPath = segments
@@ -38,7 +41,6 @@ export default function LanguageSelector() {
       router.replace(newPath)
     }
 
-    router.refresh()
   }
 
   return (
