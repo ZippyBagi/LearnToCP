@@ -1,6 +1,7 @@
 import SideBarButton from "@/app/ui/utils/sideBarButton";
 import SidebarSection from "@/app/ui/utils/sideBarSection";
 import type { SidebarContainer } from "@/app/ui/utils/sidebar.types";
+import getLocale from '@/app/utils/getLocale'
 
 type SideBarInput = {
   toggled: boolean;
@@ -43,16 +44,17 @@ export default function SideBar({ toggled, containers }: SideBarInput) {
       {/* Scrollable inner wrapper */}
       <div className="overflow-y-auto flex-1 min-h-0 w-full">
         <div className="flex flex-col w-full py-2">
+          
           {/* Navigation group */}
-          <SectionLabel>Navigation</SectionLabel>
-          <SideBarButton name="Home" href="/" />
-          <SideBarButton name="Roadmap" href="/roadmap" />
-          <SideBarButton name="About Us" href="/about-us" />
+          <SectionLabel>{getLocale() == "en" ? "Navigation" : "Navigacija"}</SectionLabel>
+          <SideBarButton name={getLocale() == "en" ? "Home" : "Početna"} href="/" />
+          <SideBarButton name={getLocale() == "en" ? "Roadmap" : "Road-mapa"} href="/roadmap" />
+          <SideBarButton name={getLocale() == "en" ? "About Us" : "O Nama"} href="/about-us" />
 
           <Divider />
 
           {/* Lessons group */}
-          <SectionLabel>Theory</SectionLabel>
+          <SectionLabel>{getLocale() == "en" ? "Theory" : "Teorija"}</SectionLabel>
           <SidebarSection containers={containers} />
         </div>
       </div>
