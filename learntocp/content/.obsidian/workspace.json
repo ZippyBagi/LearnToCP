@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "en/LessonsMD/01 Sorting/01 Counting sort.md",
+                "file": "en/LessonsMD/02 Elementary Techniques/04 Binary Search.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "01 Counting sort"
+              "title": "04 Binary Search"
             }
           }
         ]
@@ -33,12 +33,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "sr/LessonsMD/01 Sortiranje/01 Sortiranje Prebrojavanjem.md",
+                "file": "sr/LessonsMD/02 Osnovne Tehnike/04 Binarna Pretraga.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "01 Sortiranje Prebrojavanjem"
+              "title": "04 Binarna Pretraga"
             }
           }
         ]
@@ -205,6 +205,8 @@
   },
   "active": "aed0321ae9423fb2",
   "lastOpenFiles": [
+    "sr/LessonsMD/02 Osnovne Tehnike/04 Binarna Pretraga.md",
+    "en/LessonsMD/02 Elementary Techniques/04 Binary Search.md",
     "sr/LessonsMD/01 Sortiranje/01 Sortiranje Prebrojavanjem.md",
     "en/LessonsMD/01 Sorting/01 Counting sort.md",
     "en/LessonsMD/01 Sorting/00 Sorting.md",
