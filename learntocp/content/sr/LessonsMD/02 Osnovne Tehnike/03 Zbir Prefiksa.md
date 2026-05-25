@@ -44,9 +44,9 @@ Srećom, postoji mnogo bolje rešenje.
 
 Setimo se formule:
 
-`Zbir(od x do n) = Zbir(od 1 do n) - Zbir(od 1 do x-1)`
+`Zbir(od x do n) = Zbir(od 0 do n) - Zbir(od 0 do x-1)`
 
-Sada nam samo treba brz način da pronađemo `Zbir(od 0 do n)`.
+Sada nam samo treba brz način da pronađemo `Zbir(od 0 do x)`.
 
 Stanite na trenutak i pokušajte da smislite kako bismo ovo mogli da uradimo u **O(1)** vremenu.  
 (Hint: pogledajte prethodnu lekciju o zbiru brojeva od 1 do n)

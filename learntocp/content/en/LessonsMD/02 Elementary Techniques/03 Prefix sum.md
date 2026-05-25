@@ -43,7 +43,7 @@ Remember the formula:
 
 `Sum(x to n) = Sum(0 to n) - Sum(0 to x-1)`
 
-All we need now is a good way to get `Sum(0 to n)`. 
+All we need now is a good way to get `Sum(0 to x)`. 
 
 Pause for a second and try to think of a way to do this in **O(1)** 
 (Hint: Look at the Sum of elements from 1 to n)

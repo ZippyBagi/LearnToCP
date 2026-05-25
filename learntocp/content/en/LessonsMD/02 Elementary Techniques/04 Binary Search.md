@@ -67,6 +67,8 @@ It is important to note that we must also include the case when `left == right`.
 
 ### Implementation
 
+**Problem:** We are given an array **a** of **n** elements and are asked **q** questions. For each question, input one element and check if it exists inside of **a**
+
 Solution.cpp
 ```c++
 #include <bits/stdc++.h>

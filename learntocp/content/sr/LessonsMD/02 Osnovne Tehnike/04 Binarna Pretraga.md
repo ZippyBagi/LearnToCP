@@ -1,4 +1,4 @@
-> U ovoj lekciji naučićemo jednu od najbržih tehnika za proveru da li se neki element nalazi u nizu - Binarna Pretraga (en. Binary Search)
+> U ovoj lekciji naučićemo jednu od najbržih tehnika za proveru da li se neki element nalazi u nizu - Binarnu Pretragu (en. Binary Search)
 
 Najlakši način da razumemo ovu tehniku je kroz jednu igru.
 
@@ -66,6 +66,8 @@ Ovaj proces ponavljamo dok:
 
 Važno je primetiti da moramo uključiti i slučaj kada je `left == right`.
 ### Implementacija
+
+**Problem:** Dat je niz **a** od **n** elemenata. Postavlja se **q** pitanja, za svako pitanje unosi se jedan element i treba odgovoriti da li se taj element nalazi u nizu **a**. 
 
 Solution.cpp
 ```c++
