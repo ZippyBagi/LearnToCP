@@ -7,7 +7,28 @@ export const metadata: Metadata = {
     "Master algorithms and data structures with structured lessons and an interactive roadmap.",
 };
 
-export default function App() {
+type PageProps = {
+  params: Promise<{ locale: string }>;
+};
+
+export default async function App({ params }: PageProps) {
+  const { locale } = await params;
+  const isSr = locale === "sr";
+
+  const t = {
+    badge: isSr ? "Takmičarsko Programiranje" : "Competitive Programming",
+    headlineLead: isSr ? "Savladaj" : "Master",
+    headlineAccent: isSr ? "Algoritme" : "Algorithms",
+    headlineTail: isSr ? " i Strukture Podataka" : " & Data Structures",
+    subheadline: isSr
+      ? "Strukturisane lekcije i interaktivna mapa puta koje te vode od osnova do majstorstva u takmičarskom programiranju."
+      : "Structured lessons and an interactive roadmap to guide you from the basics to competitive programming mastery.",
+    cta: isSr ? "Pogledaj Mapu Puta →" : "View Roadmap →",
+    pills: isSr
+      ? ["Strukturisana Predavanja", "Interaktivna Mapa Puta", "Praćenje Napretka", "Primeri Koda"]
+      : ["Structured Lectures", "Interactive Roadmap", "Progress Tracking", "Code Examples"],
+  };
+
   return (
     <main
       className="flex flex-col items-center justify-center min-h-full px-6 py-16 text-center"
@@ -26,7 +47,7 @@ export default function App() {
           className="h-1.5 w-1.5 rounded-full animate-pulse"
           style={{ background: "var(--color-accent)" }}
         />
-        Competitive Programming
+        {t.badge}
       </span>
 
       {/* Headline */}
@@ -34,7 +55,7 @@ export default function App() {
         className="mb-4 text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl"
         style={{ color: "var(--color-text-heading)" }}
       >
-        Master{" "}
+        {t.headlineLead}{" "}
         <span
           style={{
             background: "linear-gradient(90deg, #5a88f5 0%, #7c9ef8 50%, #a5b8fc 100%)",
@@ -43,9 +64,9 @@ export default function App() {
             backgroundClip: "text",
           }}
         >
-          Algorithms
+          {t.headlineAccent}
         </span>
-        {" "}& Data Structures
+        {t.headlineTail}
       </h1>
 
       {/* Subheadline */}
@@ -53,21 +74,20 @@ export default function App() {
         className="mb-10 max-w-lg text-base leading-relaxed sm:text-lg"
         style={{ color: "rgba(200,218,240,0.6)" }}
       >
-        Structured lessons and an interactive roadmap to guide you from the
-        basics to competitive programming mastery.
+        {t.subheadline}
       </p>
 
       {/* CTAs */}
       <div className="flex flex-wrap items-center justify-center gap-3">
         <Link
-          href="/roadmap"
+          href={`/${locale}/roadmap`}
           className="rounded-xl px-6 py-2.5 text-sm font-semibold text-white transition-all duration-150 hover:-translate-y-px hover:brightness-110"
           style={{
             background: "linear-gradient(135deg, #4a7ff7 0%, #7c9ef8 100%)",
             boxShadow: "0 4px 16px rgba(124,158,248,0.25)",
           }}
         >
-          View Roadmap →
+          {t.cta}
         </Link>
       </div>
 
@@ -79,12 +99,7 @@ export default function App() {
 
       {/* Feature pills */}
       <div className="mt-10 flex flex-wrap justify-center gap-3">
-        {[
-          "Structured Lectures",
-          "Interactive Roadmap",
-          "Progress Tracking",
-          "Code Examples",
-        ].map((label) => (
+        {t.pills.map((label) => (
           <span
             key={label}
             className="rounded-lg px-3 py-1.5 text-xs font-medium"

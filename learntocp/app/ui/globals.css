@@ -1,9 +1,15 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+/* This site is dark-only by design (the entire UI hard-codes dark surfaces).
+   Previously the background defaulted to white and only became dark under
+   `prefers-color-scheme: dark`, so machines set to light mode rendered an
+   unstyled white background. Pin the dark palette regardless of OS setting and
+   declare `color-scheme: dark` so native controls/scrollbars match too. */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: dark;
+  --background: #00131b;
+  --foreground: #ededed;
 }
 
 @theme inline {
@@ -13,13 +19,6 @@
      on <html>. Fallback stack matches each family's intent. */
   --font-sans: var(--font-space-grotesk), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #00131b;
-    --foreground: #ededed;
-  }
 }
 
 @theme {

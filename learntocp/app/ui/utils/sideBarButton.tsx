@@ -1,6 +1,6 @@
 'use client'
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useParams } from "next/navigation";
 
 type SideBarButtonInput = {
   name: string;
@@ -12,12 +12,22 @@ type SideBarButtonInput = {
 // button intentionally does NOT trigger the lesson-specific pending overlay.
 export default function SideBarButton({ name, href }: SideBarButtonInput) {
   const rawPathname = usePathname();
+  const params = useParams();
+  const locale = (params.locale as string) || "en";
+
   const pathname = rawPathname.replace(/^\/[^/]+/, "") || "/";
   const isActive = pathname === href;
 
+  // Build a locale-prefixed href. Without the locale in the URL these links
+  // resolve via the NEXT_LOCALE cookie + middleware redirect, but Next caches
+  // the prefetched RSC payload by this (locale-less) href — so after switching
+  // language the cache serves the previous locale until a hard refresh. Baking
+  // the locale into the href gives each language a distinct cache key.
+  const localizedHref = `/${locale}${href === "/" ? "" : href}`;
+
   return (
     <Link
-      href={href}
+      href={localizedHref}
       prefetch={true}
       className="flex w-full items-center gap-2.5 py-2.5 pr-3.5 text-sm font-medium select-none transition-all duration-150"
       style={{
