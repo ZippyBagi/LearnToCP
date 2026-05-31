@@ -1,1 +1,1 @@
-/Theory/Basics/Data%20types%20and%20IO
+/Theory/Osnove/Tipovi podataka%2C Unos i Izlaz
