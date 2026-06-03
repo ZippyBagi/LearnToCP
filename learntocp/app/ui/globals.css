@@ -347,3 +347,22 @@ code, kbd, samp, pre {
   color: #ffffff !important;
 }
 
+.prose blockquote {
+  font-style: normal;
+  quotes: none;
+  /* Optional: changed this from #4b5563 to your accent blue so it stands out nicely in the dark theme */
+  border-left: 3px solid #7c9ef8; 
+  background: rgba(255, 255, 255, 0.03);
+  padding: 0.75em 1em;
+  border-radius: 0 6px 6px 0;
+  
+  /* Force the blockquote text to be crisp white */
+  color: #ffffff !important; 
+}
+
+.prose blockquote p { 
+  margin: 0; 
+  /* Force any paragraphs inside the blockquote to inherit the white color */
+  color: inherit !important; 
+}
+
