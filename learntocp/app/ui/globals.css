@@ -357,7 +357,7 @@ code, kbd, samp, pre {
   border-radius: 0 6px 6px 0;
   
   /* Force the blockquote text to be crisp white */
-  color: #ffffff !important; 
+  color: #2596be !important; 
 }
 
 .prose blockquote p { 
