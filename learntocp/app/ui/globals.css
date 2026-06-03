@@ -327,3 +327,23 @@ code, kbd, samp, pre {
   margin: 1.5em 0;
 }
 
+.prose [data-highlighted-chars],
+.prose [data-highlighted-chars] span,
+.prose [data-chars-id] {
+  color: #ffffff !important;
+}
+
+/* 2. Markdown Inline Marks */
+/* If the muddy color is inside a <mark> tag or text block fallback */
+.prose mark {
+  color: #ffffff !important;
+}
+
+/* 3. Global Text Selection Highlight */
+/* If the color appears when you manually click and drag to highlight text */
+.prose ::selection,
+::selection {
+  background-color: rgba(124, 158, 248, 0.3); /* Uses your accent color with transparency */
+  color: #ffffff !important;
+}
+
