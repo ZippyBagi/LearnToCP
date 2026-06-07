@@ -91,6 +91,8 @@ code, kbd, samp, pre {
 .prose a {
   text-decoration: none;
   text-underline-offset: 3px;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .prose .external-link {
