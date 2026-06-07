@@ -78,3 +78,14 @@ Feel free to use whichever method seems easier
 
 >Note:
 >Binary numbers are usually written in clusters of 4, that is only done for human readability. Both `0111 1001` and `01111001` mean the same thing. 
+
+### Operations with binary numbers
+
+All standard operations (addition, subtraction, multiplication, division) are the same as with decimal numbers.
+
+`101` + `011` = `1000`
+`101` - `011` = `010`
+`101` * `011` = `1111`
+`101` / `011` = `1`
+
+There are tricks and algorithms for doing these operations, but the simplest way to do them is just to convert to the decimal system, do the calculation and then convert back to binary

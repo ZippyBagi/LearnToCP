@@ -84,3 +84,16 @@ Koristite metodu koja vam deluje jednostavnije.
 
 > Napomena:
 > Binarni brojevi se često pišu grupisani po 4 bita, isključivo radi preglednosti. Zapisi `0111 1001` i `01111001` predstavljaju potpuno isti broj.
+
+### Operacije nad binarnim brojevima
+
+Sve standardne operacije (sabiranje, oduzimanje, množenje i deljenje) funkcionišu na isti način kao i u dekadnom sistemu.
+
+`101` + `011` = `1000`  
+`101` - `011` = `010`  
+`101` * `011` = `1111`  
+`101` / `011` = `1`
+
+Postoje različiti trikovi i algoritmi koji omogućavaju efikasno izvršavanje ovih operacija direktno nad binarnim brojevima.
+
+Ipak, najjednostavniji način da ih razumemo jeste da binarne brojeve prvo pretvorimo u dekadne, izvršimo željenu operaciju, a zatim rezultat ponovo pretvorimo u binarni zapis.
