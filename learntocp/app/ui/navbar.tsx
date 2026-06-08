@@ -18,7 +18,6 @@ export default function Navbar({
         height: "52px",
       }}
     >
-      {/* Left: hamburger + brand */}
       <div className="flex items-center gap-1">
         <button
           onClick={setSideBarActiveFunction}
@@ -50,7 +49,6 @@ export default function Navbar({
         </span>
       </div>
 
-      {/* Right: language + sign in */}
       <div className="flex items-center gap-3 pr-4">
         <LanguageSelector />
         <SignInButton />

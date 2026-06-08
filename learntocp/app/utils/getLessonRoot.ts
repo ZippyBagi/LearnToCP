@@ -1,4 +1,3 @@
-// lib/content.ts
 import path from 'path'
 import fs from 'fs'
 import { cookies } from 'next/headers'

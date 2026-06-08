@@ -34,7 +34,6 @@ export default async function App({ params }: PageProps) {
       className="flex flex-col items-center justify-center min-h-full px-6 py-16 text-center"
       style={{ background: "var(--color-bg-page)" }}
     >
-      {/* Badge */}
       <span
         className="mb-6 inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-widest"
         style={{
@@ -50,7 +49,6 @@ export default async function App({ params }: PageProps) {
         {t.badge}
       </span>
 
-      {/* Headline */}
       <h1
         className="mb-4 text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl"
         style={{ color: "var(--color-text-heading)" }}
@@ -69,7 +67,6 @@ export default async function App({ params }: PageProps) {
         {t.headlineTail}
       </h1>
 
-      {/* Subheadline */}
       <p
         className="mb-10 max-w-lg text-base leading-relaxed sm:text-lg"
         style={{ color: "rgba(200,218,240,0.6)" }}
@@ -77,7 +74,6 @@ export default async function App({ params }: PageProps) {
         {t.subheadline}
       </p>
 
-      {/* CTAs */}
       <div className="flex flex-wrap items-center justify-center gap-3">
         <Link
           href={`/${locale}/roadmap`}
@@ -91,13 +87,11 @@ export default async function App({ params }: PageProps) {
         </Link>
       </div>
 
-      {/* Subtle divider */}
       <div
         className="mt-20 w-full max-w-2xl h-px"
         style={{ background: "linear-gradient(90deg, transparent, rgba(124,158,248,0.15), transparent)" }}
       />
 
-      {/* Feature pills */}
       <div className="mt-10 flex flex-wrap justify-center gap-3">
         {t.pills.map((label) => (
           <span

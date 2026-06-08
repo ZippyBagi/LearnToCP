@@ -12,11 +12,7 @@ type LayoutShellProps = {
   containers: SidebarContainer[];
 };
 
-/**
- * Only lesson navigations trigger the pending overlay. Home / Roadmap / About
- * are fast and Next's segment-level `loading.tsx` handles them well, so we
- * deliberately don't swap their content for a skeleton.
- */
+// Only lesson routes need the pending overlay — other pages use loading.tsx
 function isLessonHref(href: string): boolean {
   return /^\/[^/]+\/Theory\//.test(href);
 }
@@ -26,8 +22,7 @@ export default function LayoutShell({ children, containers }: LayoutShellProps) 
   const [sideBarActive, setSideBarActive] = useState(true);
   const [pendingHref, setPendingHref] = useState<string | null>(null);
 
-  // Any pathname change resolves the pending state (success OR redirect OR
-  // user hit back). Prevents a stuck skeleton.
+  // Clear pending on any navigation — covers success, redirect, and back
   useEffect(() => {
     setPendingHref(null);
   }, [pathname]);

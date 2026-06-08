@@ -18,7 +18,6 @@ export function useRoadmapCanvas(matrix: RoadmapMatrix) {
   const [checkedState, setCheckedState] = useState<CheckedState>({});
   const [modal, setModal] = useState<ModalTarget | null>(null);
 
-  // Hydrate from localStorage on mount
   useEffect(() => {
     setCheckedState(loadCheckedState(matrix));
   }, [matrix]);

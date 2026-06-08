@@ -41,11 +41,8 @@ export default function SideBar({ toggled, containers }: SideBarInput) {
         borderRight: "1px solid rgba(124,158,248,0.12)",
       }}
     >
-      {/* Scrollable inner wrapper */}
       <div className="overflow-y-auto flex-1 min-h-0 w-full">
         <div className="flex flex-col w-full py-2">
-          
-          {/* Navigation group */}
           <SectionLabel>{getLocale() == "en" ? "Navigation" : "Navigacija"}</SectionLabel>
           <SideBarButton name={getLocale() == "en" ? "Home" : "Početna"} href="/" />
           <SideBarButton name={getLocale() == "en" ? "Roadmap" : "Road-mapa"} href="/roadmap" />
@@ -53,7 +50,6 @@ export default function SideBar({ toggled, containers }: SideBarInput) {
 
           <Divider />
 
-          {/* Lessons group */}
           <SectionLabel>{getLocale() == "en" ? "Theory" : "Teorija"}</SectionLabel>
           <SidebarSection containers={containers} />
         </div>

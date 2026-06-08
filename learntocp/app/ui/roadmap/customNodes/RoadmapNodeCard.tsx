@@ -67,13 +67,11 @@ export function RoadmapNodeCard({
           el.style.boxShadow = `0 0 0 1px ${glowColor}, 0 2px 12px rgba(0,0,0,0.4)`;
         }}
       >
-        {/* Top sheen */}
         <span
           aria-hidden
           className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"
         />
 
-        {/* Main content */}
         <div className="flex items-center gap-2.5 px-4 pt-5 pb-4">
           {isComplete && (
             <span
@@ -114,7 +112,6 @@ export function RoadmapNodeCard({
           )}
         </div>
 
-        {/* Progress bar */}
         <div className="h-[3px] w-full" style={{ background: "rgba(255,255,255,0.05)" }}>
           {showPct && (
             <div

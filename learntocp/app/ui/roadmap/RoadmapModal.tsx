@@ -68,11 +68,8 @@ function ModalItem({
       }`}
       style={{ background: checked ? "rgba(80,250,123,0.04)" : "transparent" }}
     >
-      {/* Checkbox: the button sits above the link's stretched ::before via z-10,
-          so clicks on it toggle state and don't navigate. The button's own
-          invisible ::before expands the clickable area ~10px in every direction
-          so the user doesn't have to aim precisely at the 16x16 square — it
-          covers most of the row's height and a chunk of the gap toward the label. */}
+      {/* z-10 places this above the link's stretched ::before so clicks toggle rather than navigate;
+          ::before on the button expands the hit area ~10px beyond the 16×16 square */}
       <button
         type="button"
         role="checkbox"
@@ -85,8 +82,7 @@ function ModalItem({
         {checked && <CheckIcon />}
       </button>
 
-      {/* Stretched link: ::before with inset-0 makes the whole row clickable as a link,
-          except for the checkbox button which is layered above it. */}
+      {/* ::before with inset-0 makes the whole row a link target; checkbox sits above via z-10 */}
       <a
         href={item.href}
         target={item.href !== "#" ? "_blank" : undefined}
@@ -119,7 +115,7 @@ export function RoadmapModal({
   const pct = total > 0 ? (completedCount / total) * 100 : 0;
   const isAllDone = total > 0 && completedCount === total;
 
-  // Escape-to-close + body scroll lock, combined into a single effect.
+  // Escape-to-close + body scroll lock, combined into a single effect
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
@@ -147,14 +143,12 @@ export function RoadmapModal({
           if (e.target === e.currentTarget) onClose();
         }}
       >
-        {/* Backdrop */}
         <div
           aria-hidden
           className="absolute inset-0 backdrop-blur-[6px]"
           style={{ backgroundColor: "rgba(0, 10, 20, 0.80)" }}
         />
 
-        {/* Card */}
         <div
           className="roadmap-modal-card relative z-10 w-full max-w-md rounded-2xl overflow-hidden flex flex-col"
           style={{
@@ -171,7 +165,6 @@ export function RoadmapModal({
             transition: "border-color 300ms ease, box-shadow 300ms ease",
           }}
         >
-          {/* Header */}
           <div
             className="flex items-center justify-between gap-4 px-5 py-4 shrink-0"
             style={{ borderBottom: "1px solid rgba(124,158,248,0.12)" }}
@@ -207,7 +200,6 @@ export function RoadmapModal({
             </button>
           </div>
 
-          {/* Items list */}
           <ul
             className="space-y-0.5 px-3 py-3 overflow-y-auto flex-1"
             style={{ scrollbarWidth: "thin", scrollbarColor: "rgba(124,158,248,0.2) transparent" }}
@@ -222,7 +214,6 @@ export function RoadmapModal({
             ))}
           </ul>
 
-          {/* Footer progress */}
           <div
             className="px-5 py-4 shrink-0"
             style={{ borderTop: "1px solid rgba(124,158,248,0.12)" }}

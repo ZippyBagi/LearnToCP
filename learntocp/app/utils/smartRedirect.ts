@@ -39,20 +39,19 @@ export async function getSmartRedirect(
   newLocale: string
 ): Promise<string> {
   const fallback = `/${newLocale}`
-  
+
   try {
     const segments = pathname.split('/').filter(Boolean)
-    // Expecting structure: /[locale]/Theory/[folder]/[lesson]
+    // Expects /[locale]/Theory/[folder]/[lesson]
     if (segments.length < 4) return fallback
 
     const currentLocale = segments[0]
-    // Decode these immediately so "Linear%20Algebra" becomes "Linear Algebra"
+    // Decode immediately so "Linear%20Algebra" becomes "Linear Algebra" before matching
     const groupSlug = safeDecode(segments.at(-2) || "")
     const pageSlug  = safeDecode(segments.at(-1) || "")
 
     if (!groupSlug || !pageSlug) return fallback
 
-    // 1. Find the source directory on disk by matching the stripped name
     const sourceRoot = getLessonsRoot(currentLocale)
     const sourceGroupDir = readDirs(sourceRoot).find(
       dir => stripOrderPrefix(dir) === groupSlug
@@ -62,7 +61,6 @@ export async function getSmartRedirect(
     const groupPrefix = getPrefix(sourceGroupDir)
     if (groupPrefix === null) return fallback
 
-    // 2. Find the source file on disk
     const sourceGroupPath = path.join(sourceRoot, sourceGroupDir)
     const sourcePageFile = readMdFiles(sourceGroupPath).find(
       file => stripOrderPrefix(path.basename(file, '.md')) === pageSlug
@@ -72,7 +70,7 @@ export async function getSmartRedirect(
     const pagePrefix = getPrefix(sourcePageFile)
     if (pagePrefix === null) return fallback
 
-    // 3. Locate the corresponding folder/file in the NEW locale using the numeric prefix
+    // Match the same numeric prefix in the target locale to find the equivalent content
     const targetRoot = getLessonsRoot(newLocale)
     const targetGroupDir = readDirs(targetRoot).find(
       dir => getPrefix(dir) === groupPrefix
@@ -85,11 +83,9 @@ export async function getSmartRedirect(
     )
     if (!targetPageFile) return fallback
 
-    // 4. Generate the new slugs using the same stripping logic as generateStaticParams
     const targetGroupSlug = stripOrderPrefix(targetGroupDir)
     const targetPageSlug  = stripOrderPrefix(path.basename(targetPageFile, '.md'))
 
-    // Return the correctly encoded URI
     return `/${newLocale}/Theory/${encodeURIComponent(targetGroupSlug)}/${encodeURIComponent(targetPageSlug)}`
 
   } catch (error) {

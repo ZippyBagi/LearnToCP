@@ -5,12 +5,7 @@ import path from "path";
 import type { RoadmapMatrix } from "@/app/[locale]/roadmap/roadmap.types";
 import { getSmartRedirect } from '@/app/utils/smartRedirect'
 
-/**
- * Load content/[locale]/roadmap_data/L{n}/<Node>/<item>.txt into a RoadmapMatrix.
- *
- * `cache()` dedupes calls within a single render pass so the roadmap page and
- * any future consumer share one set of fs reads PER LOCALE.
- */
+// cache() dedupes disk reads — roadmap page and any future consumer share one read per locale
 export const getRoadmapMatrix = cache((locale: string): RoadmapMatrix => {
   const ROADMAP_DATA_DIR = path.join(process.cwd(), "content", locale, "roadmap_data");
 
