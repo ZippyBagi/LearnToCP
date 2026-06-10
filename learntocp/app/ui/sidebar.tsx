@@ -47,6 +47,7 @@ export default function SideBar({ toggled, containers }: SideBarInput) {
           <SideBarButton name={getLocale() == "en" ? "Home" : "Početna"} href="/" />
           <SideBarButton name={getLocale() == "en" ? "Roadmap" : "Road-mapa"} href="/roadmap" />
           <SideBarButton name={getLocale() == "en" ? "About Us" : "O Nama"} href="/about-us" />
+          <SideBarButton name={getLocale() == "en" ? "Problems" : "Zadaci"} href="/Problems" />
 
           <Divider />
 

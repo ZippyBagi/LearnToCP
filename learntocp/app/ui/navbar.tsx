@@ -1,4 +1,4 @@
-import SignInButton from "@/app/ui/utils/signInButton";
+import AuthButton from "@/app/ui/utils/authButton";
 import LanguageSelector from "@/app/ui/utils/languageSelect";
 import { Menu } from "lucide-react";
 
@@ -51,7 +51,7 @@ export default function Navbar({
 
       <div className="flex items-center gap-3 pr-4">
         <LanguageSelector />
-        <SignInButton />
+        <AuthButton />
       </div>
     </nav>
   );
