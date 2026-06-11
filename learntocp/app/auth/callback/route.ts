@@ -10,9 +10,9 @@ export async function GET(request: Request) {
   const { searchParams, origin } = new URL(request.url);
   const code = searchParams.get("code");
 
-  // Only allow relative redirect targets to prevent open-redirect attacks.
+  // Only allow same-origin relative redirect targets to prevent open-redirect attacks. "//evil.com" is protocol-relative and would leave the site.
   let next = searchParams.get("next") ?? "/";
-  if (!next.startsWith("/")) next = "/";
+  if (!next.startsWith("/") || next.startsWith("//")) next = "/";
 
   if (code) {
     const supabase = await createClient();

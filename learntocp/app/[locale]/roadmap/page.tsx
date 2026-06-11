@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { RoadmapCanvas } from "@/app/ui/roadmap/RoadmapCanvas";
 import { getRoadmapMatrix } from "@/app/utils/getRoadmapMatrix";
+import { requireAuth } from "@/app/utils/requireAuth";
 
 export const metadata: Metadata = {
   title: "Roadmap",
@@ -14,6 +15,8 @@ interface RoadmapPageProps {
 export default async function RoadmapPage({ params }: RoadmapPageProps) {
 
   const {locale} = await params
+  await requireAuth(locale, `/${locale}/roadmap`);
+
   const matrix = getRoadmapMatrix(locale);
 
   return (

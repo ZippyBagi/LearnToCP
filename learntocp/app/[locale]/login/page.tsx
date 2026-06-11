@@ -11,21 +11,24 @@ export const metadata: Metadata = {
 
 type LoginPageProps = {
   params: Promise<{ locale: string }>;
+  searchParams: Promise<{ next?: string }>;
 };
 
-export default async function LoginPage({ params }: LoginPageProps) {
+export default async function LoginPage({ params, searchParams }: LoginPageProps) {
   const { locale } = await params;
+  const { next } = await searchParams;
 
-  // Redirect if signed in
+  // Already signed in: skip the login form and go straight to where the user was headed
   const supabase = await createClient();
   const { data } = await supabase.auth.getClaims();
   if (data?.claims) {
-    redirect(`/${locale}`);
+    const safeNext =
+      next && next.startsWith("/") && !next.startsWith("//") ? next : `/${locale}`;
+    redirect(safeNext);
   }
 
   return (
-    // -m-3 cancels the p-3 on the layout content wrapper so the background is full-bleed with no surrounding gap.
-    <div className="relative -m-3 flex min-h-[calc(100%+1.5rem)] items-center justify-center overflow-hidden">
+    <div className="relative -m-3 h-[calc(100%+1.5rem)] overflow-hidden">
       <div
         aria-hidden
         className="absolute inset-0"
@@ -47,8 +50,8 @@ export default async function LoginPage({ params }: LoginPageProps) {
             "radial-gradient(ellipse 60% 60% at 50% 50%, #000 0%, transparent 90%)",
         }}
       />
-
-      <div className="relative">
+      
+      <div className="absolute left-1/2 top-1/2 w-[min(440px,calc(100%-2rem))] -translate-x-1/2 -translate-y-1/2">
         <Suspense>
           <LoginPanel locale={locale} />
         </Suspense>

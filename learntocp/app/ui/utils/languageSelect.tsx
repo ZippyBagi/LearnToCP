@@ -12,25 +12,38 @@ export default function LanguageSelector() {
 
   const currentLocale = pathname.split('/')[1] || 'en'
 
+  function getPreservedQuery(newLocale: string): string {
+    const params = new URLSearchParams(window.location.search)
+
+    const next = params.get('next')
+    if (next && (next === `/${currentLocale}` || next.startsWith(`/${currentLocale}/`))) {
+      params.set('next', `/${newLocale}${next.slice(currentLocale.length + 1)}`)
+    }
+
+    const query = params.toString()
+    return query ? `?${query}` : ''
+  }
+
   async function changeLanguage(newLocale: string) {
-    
+
     if(currentLocale === newLocale){
       return;
     }
-    
+
     document.cookie = `NEXT_LOCALE=${newLocale}; path=/; max-age=31536000; SameSite=Lax`
-    
+
+    const query = getPreservedQuery(newLocale)
     const segments = pathname.split('/')
-    
+
     const isTheoryRoute = segments.includes('Theory')
 
-    if (isTheoryRoute) {   
+    if (isTheoryRoute) {
       const redirectPath = await getSmartRedirect(pathname, newLocale)
-      router.replace(redirectPath)
+      router.replace(`${redirectPath}${query}`)
     } else {
 
       segments[1] = newLocale
-      
+
       const newPath = segments
         .map((segment, index) => {
           if (index <= 1) return segment;
@@ -38,7 +51,7 @@ export default function LanguageSelector() {
         })
         .join('/')
 
-      router.replace(newPath)
+      router.replace(`${newPath}${query}`)
     }
 
   }
@@ -53,6 +66,7 @@ export default function LanguageSelector() {
         transition-colors duration-150
         hover:bg-bg-surface hover:inset-ring-accent-border-hover
         focus:outline-none
+        cursor-pointer
       ">
         {languageNames[currentLocale as keyof typeof languageNames]}
         <ChevronDownIcon aria-hidden="true" className="-mr-1 size-5 text-text-muted" />

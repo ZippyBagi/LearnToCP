@@ -1,28 +1,39 @@
 'use client'
 import Link from "next/link";
-import { usePathname, useParams } from "next/navigation";
+import { usePathname, useParams, useSearchParams } from "next/navigation";
 
 type SideBarButtonInput = {
   name: string;
   href: string;
 };
 
-// Used for top-level nav (Home / Roadmap / About Us). These routes are small
-// and Next.js's own `loading.tsx` already handles them smoothly, so this
-// button intentionally does NOT trigger the lesson-specific pending overlay.
+function withoutLocale(path: string): string {
+  return path.replace(/^\/[^/]+/, "") || "/";
+}
+
 export default function SideBarButton({ name, href }: SideBarButtonInput) {
   const rawPathname = usePathname();
+  const searchParams = useSearchParams();
   const params = useParams();
   const locale = (params.locale as string) || "en";
 
-  const pathname = rawPathname.replace(/^\/[^/]+/, "") || "/";
-  const isActive = pathname === href;
+  let pathname = withoutLocale(rawPathname);
 
-  // Build a locale-prefixed href. Without the locale in the URL these links
-  // resolve via the NEXT_LOCALE cookie + middleware redirect, but Next caches
-  // the prefetched RSC payload by this (locale-less) href — so after switching
-  // language the cache serves the previous locale until a hard refresh. Baking
-  // the locale into the href gives each language a distinct cache key.
+  // On the login page, highlight the page the user was trying to reach (carried in the `next` redirect param) instead of nothing.
+  const next = searchParams.get("next");
+  if (
+    pathname === "/login" &&
+    next &&
+    next.startsWith("/") &&
+    !next.startsWith("//")
+  ) {
+    pathname = withoutLocale(next.split("?")[0]);
+  }
+
+  // Exact match, or a subpage (e.g. /Problems/two-sum highlights Problems).
+  const isActive =
+    pathname === href || (href !== "/" && pathname.startsWith(`${href}/`));
+    
   const localizedHref = `/${locale}${href === "/" ? "" : href}`;
 
   return (

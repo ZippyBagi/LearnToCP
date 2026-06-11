@@ -4,7 +4,7 @@ import SideBar from "@/app/ui/sidebar";
 import LessonSkeleton from "./Theory/_components/LessonSkeleton";
 import { NavigationContext } from "@/app/ui/utils/navigationContext";
 import { usePathname } from "next/navigation";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { Suspense, useCallback, useEffect, useMemo, useState } from "react";
 import type { SidebarContainer } from "@/app/ui/utils/sidebar.types";
 
 type LayoutShellProps = {
@@ -48,7 +48,11 @@ export default function LayoutShell({ children, containers }: LayoutShellProps) 
       <div className="flex flex-col h-screen w-screen">
         <Navbar setSideBarActiveFunction={() => setSideBarActive((prev) => !prev)} />
         <div className="flex flex-1 min-h-0">
-          <SideBar toggled={sideBarActive} containers={containers} />
+          {/* Suspense: SideBarButton reads useSearchParams (for the login
+              `next` highlight), which requires a boundary during prerender. */}
+          <Suspense fallback={null}>
+            <SideBar toggled={sideBarActive} containers={containers} />
+          </Suspense>
           <div className="p-3 flex-1 overflow-auto">
             {showingLessonSkeleton ? <LessonSkeleton /> : children}
           </div>

@@ -45,6 +45,11 @@ function Wordmark() {
   );
 }
 
+function sanitizeNext(raw: string | null): string | null {
+  if (raw && raw.startsWith("/") && !raw.startsWith("//")) return raw;
+  return null;
+}
+
 export default function LoginPanel({ locale }: { locale: string }) {
   const t = getLoginMessages(locale);
   const searchParams = useSearchParams();
@@ -54,6 +59,16 @@ export default function LoginPanel({ locale }: { locale: string }) {
     searchParams.get("error") ? t.errorGeneric : null,
   );
 
+  const next = sanitizeNext(searchParams.get("next"));
+
+  const noticePage = (() => {
+    if (!next) return null;
+    const section = next.split("?")[0].split("/").filter(Boolean)[1]?.toLowerCase();
+    if (section === "roadmap") return t.pageRoadmap;
+    if (section === "problems") return t.pageProblems;
+    return t.pageGeneric;
+  })();
+
   const lit = hover && !loading;
 
   async function signInWithGoogle() {
@@ -61,12 +76,12 @@ export default function LoginPanel({ locale }: { locale: string }) {
     setError(null);
 
     const supabase = createClient();
-    const next = searchParams.get("next") ?? `/${locale}`;
+    const redirectTarget = next ?? `/${locale}`;
 
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: `${location.origin}/auth/callback?next=${encodeURIComponent(next)}`,
+        redirectTo: `${location.origin}/auth/callback?next=${encodeURIComponent(redirectTarget)}`,
       },
     });
 
@@ -80,6 +95,7 @@ export default function LoginPanel({ locale }: { locale: string }) {
   return (
     <div
       style={{
+        position: "relative",
         width: "min(440px, 100%)",
         animation: "ltcp-pop 420ms cubic-bezier(0.16,1,0.3,1) both",
       }}
@@ -91,6 +107,52 @@ export default function LoginPanel({ locale }: { locale: string }) {
         }
         @keyframes ltcp-spin { to { transform: rotate(360deg); } }
       `}</style>
+
+      {noticePage && (
+        <div
+          role="status"
+          style={{
+            position: "absolute",
+            bottom: "calc(100% + 14px)",
+            left: 0,
+            right: 0,
+            display: "flex",
+            gap: 10,
+            alignItems: "flex-start",
+            padding: "12px 16px",
+            borderRadius: 12,
+            fontSize: 14,
+            lineHeight: 1.55,
+            color: "var(--color-text-muted)",
+            background:
+              "#0a1c2e",
+            border: "1px solid rgba(124,158,248,0.30)",
+            boxShadow: "0 4px 20px rgba(0,0,0,0.35)",
+          }}
+        >
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.8"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+            style={{
+              flexShrink: 0,
+              marginTop: 2,
+              color: "var(--color-accent)",
+            }}
+          >
+            <circle cx="12" cy="12" r="10" />
+            <path d="M12 16v-4" />
+            <path d="M12 8h.01" />
+          </svg>
+          <span>{t.signInRequired.replace("{page}", noticePage)}</span>
+        </div>
+      )}
 
       <div
         style={{
