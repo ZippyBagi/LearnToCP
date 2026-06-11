@@ -3,7 +3,7 @@
 import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { createClient } from "@/app/supabase/client";
-import { getLoginMessages } from "@/i18n";
+import { getLoginMessages } from "@/translaitons";
 
 function GoogleG({ size = 20 }: { size?: number }) {
   return (

@@ -3,7 +3,7 @@
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import { usePathname, useRouter } from 'next/navigation'
-import { locales, languageNames } from '@/i18n'
+import { locales, languageNames } from '@/translaitons'
 import { getSmartRedirect } from '@/app/utils/smartRedirect'
 
 export default function LanguageSelector() {

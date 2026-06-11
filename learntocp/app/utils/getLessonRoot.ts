@@ -1,7 +1,7 @@
 import path from 'path'
 import fs from 'fs'
 import { cookies } from 'next/headers'
-import { locales } from '@/i18n'
+import { locales } from '@/translaitons'
 
 export const DEFAULT_LOCALE = locales[0]
 
