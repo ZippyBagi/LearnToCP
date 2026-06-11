@@ -97,7 +97,7 @@ export default function LoginPanel({ locale }: { locale: string }) {
       style={{
         position: "relative",
         width: "min(440px, 100%)",
-        transform: "scale(1.1)",
+        transform: "scale(1.1)", 
         animation: "ltcp-pop 420ms cubic-bezier(0.16,1,0.3,1) both",
       }}
     >
