@@ -45,6 +45,7 @@ For the input we use `scanf("%d", &a)`:
 - The `d` in `%d` means we want to input an **integer** (every data type has its own code)
 - Then comes the `&a`, for now you can think of it as we want to put the typed in value **into a**
 Put together it looks like this:
+
 ~!
 ```c++
 int main(){ 

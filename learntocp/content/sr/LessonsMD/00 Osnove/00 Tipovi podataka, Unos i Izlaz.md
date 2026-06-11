@@ -47,6 +47,7 @@ Za unos koristimo `scanf("%d", &a)`:
 - `d` u `%d` znači da želimo da unesemo **float (ceo broj)** (svaki tip podataka ima svoj kod)
 - Zatim dolazi `&a`, za sada možete razmišljati o tome kao da želimo da stavimo unetu vrednost **u a**  
 Kada se spoji izgleda ovako:  
+
 ~!
 ```c++
 int main(){ 
