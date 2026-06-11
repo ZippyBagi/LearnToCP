@@ -3,7 +3,7 @@
 import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { createClient } from "@/app/supabase/client";
-import { getLoginMessages } from "@/translaitons";
+import { getLoginMessages } from "@/translations";
 
 function GoogleG({ size = 20 }: { size?: number }) {
   return (
@@ -97,13 +97,14 @@ export default function LoginPanel({ locale }: { locale: string }) {
       style={{
         position: "relative",
         width: "min(440px, 100%)",
+        transform: "scale(1.1)",
         animation: "ltcp-pop 420ms cubic-bezier(0.16,1,0.3,1) both",
       }}
     >
       <style>{`
         @keyframes ltcp-pop {
-          from { opacity: 0; transform: translateY(10px) scale(0.97); }
-          to   { opacity: 1; transform: none; }
+          from { opacity: 0; transform: translateY(10px) scale(1.05); }
+          to   { opacity: 1; transform: scale(1.1); }
         }
         @keyframes ltcp-spin { to { transform: rotate(360deg); } }
       `}</style>

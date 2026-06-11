@@ -45,3 +45,42 @@ export const loginMessages = {
 export function getLoginMessages(locale: string) {
   return loginMessages[locale as Locale] ?? loginMessages.en
 }
+
+export const homeMessages = {
+  en: {
+    badges: ['#100%', '#FREE'],
+    tagline: 'Learn To Competitively Program',
+    map: {
+      label: 'Map',
+      title: 'Roadmap',
+      description: 'A topic graph that tracks your progress node by node.',
+    },
+    solve: {
+      label: 'Solve',
+      title: 'Problems',
+      description: 'A curated, difficulty-tagged practice set to grind.',
+    },
+    accepted: 'Accepted',
+    copy: 'Copy',
+  },
+  sr: {
+    badges: ['#100%', '#BESPLATNO'],
+    tagline: 'Nauči Takmičarsko Programiranje',
+    map: {
+      label: 'Mapa',
+      title: 'Road-mapa',
+      description: 'Graf tema koji prati tvoj napredak, čvor po čvor.',
+    },
+    solve: {
+      label: 'Rešavaj',
+      title: 'Problemi',
+      description: 'Pažljivo odabran skup zadataka označenih po težini.',
+    },
+    accepted: 'Accepted',
+    copy: 'Kopiraj',
+  },
+} as const
+
+export function getHomeMessages(locale: string) {
+  return homeMessages[locale as Locale] ?? homeMessages.en
+}
