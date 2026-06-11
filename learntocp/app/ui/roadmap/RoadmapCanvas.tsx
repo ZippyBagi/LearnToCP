@@ -6,12 +6,14 @@ import { RoadmapCanvasInner } from "./RoadmapCanvasInner";
 
 type RoadmapCanvasProps = {
   matrix: RoadmapMatrix;
+  // Completed item keys (`<node-id>/<item-id>`) loaded server-side for the current user.
+  initialCompleted: string[];
 }
 
-export function RoadmapCanvas({ matrix }: RoadmapCanvasProps) {
+export function RoadmapCanvas({ matrix, initialCompleted }: RoadmapCanvasProps) {
   return (
     <ReactFlowProvider>
-      <RoadmapCanvasInner matrix={matrix} />
+      <RoadmapCanvasInner matrix={matrix} initialCompleted={initialCompleted} />
     </ReactFlowProvider>
   );
 }

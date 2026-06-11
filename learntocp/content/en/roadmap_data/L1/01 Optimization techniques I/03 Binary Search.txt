@@ -1,1 +1,2 @@
-/Theory/Elementary Techniques/Binary Search
+id: binary-search
+href: /Theory/Elementary Techniques/Binary Search

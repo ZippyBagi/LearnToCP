@@ -1,1 +1,2 @@
-/Theory/Osnove/Tipovi podataka%2C Unos i Izlaz
+id: data-types-and-io
+href: /Theory/Osnove/Tipovi podataka%2C Unos i Izlaz

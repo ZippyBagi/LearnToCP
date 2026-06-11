@@ -1,1 +1,2 @@
-/Theory/Osnove/Modulo
+id: modulo
+href: /Theory/Osnove/Modulo

@@ -1,1 +1,2 @@
-/Theory/Osnovne Tehnike/Dva Pokazivača
+id: two-pointers
+href: /Theory/Osnovne Tehnike/Dva Pokazivača

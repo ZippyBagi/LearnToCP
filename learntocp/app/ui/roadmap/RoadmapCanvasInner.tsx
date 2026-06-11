@@ -11,6 +11,7 @@ import { useRoadmapNodes } from "./utils/useRoadmapNodes";
 
 type RoadmapCanvasInnerProps = {
   matrix: RoadmapMatrix;
+  initialCompleted: string[];
 }
 
 const nodeTypes = {
@@ -18,8 +19,8 @@ const nodeTypes = {
   connector: RoadmapConnectorNode,
 };
 
-export function RoadmapCanvasInner({ matrix }: RoadmapCanvasInnerProps) {
-  const { modal, setModal, modalNode, modalChecked, getProgress, isComplete, handleToggle } = useRoadmapCanvas(matrix);
+export function RoadmapCanvasInner({ matrix, initialCompleted }: RoadmapCanvasInnerProps) {
+  const { modal, setModal, modalNode, modalChecked, getProgress, isComplete, handleToggle } = useRoadmapCanvas(matrix, initialCompleted);
   const { nodeValues, edgeValues } = useRoadmapNodes(matrix, getProgress, isComplete, setModal);
   const [nodes, setNodes] = useState<Node[]>(nodeValues);
   const [edges, setEdges] = useState<Edge[]>(edgeValues);

@@ -1,1 +1,2 @@
-/Theory/Basics/C%2B%2B%20syntax
+id: cpp-syntax
+href: /Theory/Basics/C%2B%2B%20syntax

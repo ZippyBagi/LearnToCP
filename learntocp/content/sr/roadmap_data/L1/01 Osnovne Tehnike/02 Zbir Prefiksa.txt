@@ -1,1 +1,2 @@
-/Theory/Osnovne Tehnike/Zbir Prefiksa
+id: prefix-sum
+href: /Theory/Osnovne Tehnike/Zbir Prefiksa

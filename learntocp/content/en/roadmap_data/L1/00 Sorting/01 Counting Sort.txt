@@ -1,1 +1,2 @@
-/Theory/Sorting/Counting sort
+id: counting-sort
+href: /Theory/Sorting/Counting sort

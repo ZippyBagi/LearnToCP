@@ -206,7 +206,7 @@ export function RoadmapModal({
           >
             {node.items.map((item, i) => (
               <ModalItem
-                key={i}
+                key={item.id}
                 item={item}
                 checked={checked[i] ?? false}
                 onToggle={() => onToggle(i)}

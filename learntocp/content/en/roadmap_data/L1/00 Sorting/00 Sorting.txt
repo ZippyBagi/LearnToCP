@@ -1,1 +1,2 @@
-/Theory/Sorting/Sorting
+id: sorting
+href: /Theory/Sorting/Sorting

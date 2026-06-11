@@ -1,1 +1,2 @@
-/Theory/Basics/Vectors
+id: vectors
+href: /Theory/Basics/Vectors

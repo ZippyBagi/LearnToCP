@@ -1,1 +1,2 @@
-/Theory/Basics/Time Complexity
+id: time-complexity
+href: /Theory/Basics/Time Complexity

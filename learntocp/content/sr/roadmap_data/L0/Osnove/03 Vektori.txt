@@ -1,1 +1,2 @@
-/Theory/Osnove/Vektori
+id: vectors
+href: /Theory/Osnove/Vektori
