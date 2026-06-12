@@ -7,12 +7,14 @@ export function RoadmapCustomNode({ data }: NodeProps) {
   return (
     <>
       {data.hideTopNode === false? <Handle type="target" position={Position.Top} isConnectable={false} style={{ opacity: 0 }}/> : '' }
-      <RoadmapNodeCard
-        title={(data.label as string).replace(/^[0-9]+/, '')}
-        progress={data.progress as number ?? 1}
-        isComplete={data.isComplete as boolean ?? false}
-        onClick={data.onClick as () => void ?? (() => {})}
-      />
+      <div className="pop-in" style={{ animationDelay: `${data.popDelay as number ?? 0}ms` }}>
+        <RoadmapNodeCard
+          title={(data.label as string).replace(/^[0-9]+/, '')}
+          progress={data.progress as number ?? 1}
+          isComplete={data.isComplete as boolean ?? false}
+          onClick={data.onClick as () => void ?? (() => {})}
+        />
+      </div>
       {data.hideBottomNode === false? <Handle type="source" position={Position.Bottom} isConnectable={false} style={{ opacity: 0 }}/> : ''}
     </>
   );
@@ -22,9 +24,9 @@ export function RoadmapConnectorNode({data} : NodeProps){
   return (
     <>
       {data.hideTopNode === false? <Handle type="target" position={Position.Top} isConnectable={false} style={{ opacity: 0 }}/> : ''}
-      <ConnectorNode
-        
-      />
+      <div className="connector-pop" style={{ animationDelay: `${data.popDelay as number ?? 0}ms` }}>
+        <ConnectorNode />
+      </div>
       {data.hideBottomNode === false? <Handle type="source" position={Position.Bottom} isConnectable={false} style={{ opacity: 0 }}/> : ''}
     </>
   );

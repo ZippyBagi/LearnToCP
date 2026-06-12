@@ -52,6 +52,49 @@ body {
   font-family: var(--font-sans);
 }
 
+/* Pop-in entrance animation (same as the home page's ltcp-pop) */
+@keyframes ltcp-pop {
+  from { opacity: 0; transform: translateY(10px) scale(0.97); }
+  to   { opacity: 1; transform: none; }
+}
+
+.pop-in {
+  animation: ltcp-pop 420ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Roadmap connector dots: bloom from the center as the drawing edge passes
+   through them — no translate, so it reads as part of the stroke.
+   Explicitly hidden (opacity: 0) for the whole entrance phase; the delayed
+   animation overrides that while it runs and `both` holds the final frame.
+   When RoadmapCanvasInner drops .edges-revealing, the rule no longer matches
+   and connectors render normally. */
+@keyframes ltcp-connector-pop {
+  0%   { opacity: 0; transform: scale(0); }
+  70%  { opacity: 1; transform: scale(1.25); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+.edges-revealing .connector-pop {
+  opacity: 0;
+  animation: ltcp-connector-pop 220ms ease-out both;
+}
+
+/* Roadmap edge entrance: standard React Flow technique — animate
+   stroke-dashoffset on the edge paths so each edge "draws" from its source
+   downward. Per-edge delay comes from the edge's `style` prop (inline
+   animation-delay), staggered row by row after the nodes pop in.
+   The .edges-revealing class is removed once the entrance finishes so the
+   dash pattern can't affect edges afterwards. */
+@keyframes ltcp-edge-draw {
+  from { stroke-dashoffset: 400; }
+  to   { stroke-dashoffset: 0; }
+}
+
+.edges-revealing .react-flow__edge-path {
+  stroke-dasharray: 400;
+  animation: ltcp-edge-draw 300ms ease-out both;
+}
+
 code, kbd, samp, pre {
   font-family: var(--font-mono);
 }

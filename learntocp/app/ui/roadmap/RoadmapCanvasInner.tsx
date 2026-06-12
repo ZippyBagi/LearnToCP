@@ -7,7 +7,7 @@ import { useRoadmapCanvas } from "./utils/useRoadmapCanvas";
 import "@xyflow/react/dist/style.css";
 import { Node, Edge, NodeChange, ReactFlow, applyNodeChanges, Background, useReactFlow } from '@xyflow/react';
 import { RoadmapCustomNode, RoadmapConnectorNode } from "./ReactFlowCustomNodeWrapper";
-import { useRoadmapNodes } from "./utils/useRoadmapNodes";
+import { useRoadmapNodes, entranceDoneAt } from "./utils/useRoadmapNodes";
 
 type RoadmapCanvasInnerProps = {
   matrix: RoadmapMatrix;
@@ -24,6 +24,16 @@ export function RoadmapCanvasInner({ matrix, initialCompleted }: RoadmapCanvasIn
   const { nodeValues, edgeValues } = useRoadmapNodes(matrix, getProgress, isComplete, setModal);
   const [nodes, setNodes] = useState<Node[]>(nodeValues);
   const [edges, setEdges] = useState<Edge[]>(edgeValues);
+
+  // Edges draw in row by row (stroke-dashoffset animation, per-edge delays set
+  // in useRoadmapNodes) after the nodes finish popping in. The class is
+  // dropped once the last row is done so the dash pattern can't linger.
+  const edgesDoneAt = entranceDoneAt(matrix.length);
+  const [edgesRevealed, setEdgesRevealed] = useState(false);
+  useEffect(() => {
+    const t = setTimeout(() => setEdgesRevealed(true), edgesDoneAt);
+    return () => clearTimeout(t);
+  }, [edgesDoneAt]);
 
   const containerRef = useRef<HTMLDivElement>(null);
   const prevWidthRef = useRef<number | null>(null);
@@ -64,7 +74,7 @@ export function RoadmapCanvasInner({ matrix, initialCompleted }: RoadmapCanvasIn
   return (
     <div ref={containerRef} className="-m-3 h-[calc(100%+1.5rem)] w-[calc(100%+1.5rem)]">
       <div
-        className="h-full w-full rounded-xl overflow-hidden"
+        className={`h-full w-full rounded-xl overflow-hidden ${edgesRevealed ? "" : "edges-revealing"}`}
         style={{
           border: "1px solid var(--color-accent-border)",
           background: "var(--color-bg-page)",

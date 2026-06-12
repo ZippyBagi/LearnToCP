@@ -1,38 +1,29 @@
 export default function Loading() {
   return (
     <main className="min-h-fill px-4 py-4" style={{ background: "var(--color-bg-page)" }}>
-      <section
-        aria-label="Roadmap loading"
-        className="relative w-full h-[calc(100vh-7rem)] overflow-hidden rounded-xl"
-        style={{
-          border: "1px solid rgba(124,158,248,0.18)",
-          background: "var(--color-bg-page)",
-          boxShadow: "inset 0 0 80px rgba(124,158,248,0.03)",
-        }}
-      >
-        {/* subtle background grid dots to match React Flow background */}
-        <div
-          aria-hidden
-          className="absolute inset-0 opacity-30"
-          style={{
-            backgroundImage:
-              "radial-gradient(rgba(124,158,248,0.35) 1px, transparent 1.5px)",
-            backgroundSize: "24px 24px",
-          }}
-        />
-
-        {/* centered spinner */}
-        <div className="absolute inset-0 flex items-center justify-center">
+      <section aria-label="Roadmap loading" className="w-full h-[calc(100vh-7rem)]">
+        <div className="-m-3 h-[calc(100%+1.5rem)] w-[calc(100%+1.5rem)]">
           <div
-            aria-label="Loading roadmap"
-            role="status"
-            className="h-12 w-12 rounded-full border-[3px] border-transparent animate-spin"
+            className="relative h-full w-full rounded-xl overflow-hidden"
             style={{
-              borderTopColor: "rgba(124, 158, 248, 0.45)",
-              borderRightColor: "rgba(124, 158, 248, 0.25)",
-              animationDuration: "0.75s",
+              border: "1px solid var(--color-accent-border)",
+              background: "var(--color-bg-page)",
+              boxShadow: "inset 0 0 80px rgba(124,158,248,0.03)",
             }}
-          />
+          >
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div
+                aria-label="Loading roadmap"
+                role="status"
+                className="h-12 w-12 rounded-full border-[3px] border-transparent animate-spin"
+                style={{
+                  borderTopColor: "rgba(124, 158, 248, 0.45)",
+                  borderRightColor: "rgba(124, 158, 248, 0.25)",
+                  animationDuration: "0.75s",
+                }}
+              />
+            </div>
+          </div>
         </div>
       </section>
     </main>
