@@ -41,6 +41,8 @@ export async function GET(req: NextRequest) {
     submissions: (rows as SubmissionRow[]).map((row) => ({
       ...toPublicSubmission(row),
       code: row.code,
+      runtime : row.results.some(r => r.time == null) ? null: Math.max(...row.results.map(r => r.time ?? -1)),
+      memory : row.results.some(r => r.memory == null) ? null: Math.max(...row.results.map(r => r.memory ?? -1)),
     })),
   });
 }

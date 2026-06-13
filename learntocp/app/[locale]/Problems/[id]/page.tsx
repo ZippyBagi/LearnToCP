@@ -4,9 +4,12 @@ import markdownToHtml from "@/app/utils/mdToHTML";
 import {
   getProblem,
   getProblemDescription,
+  getProblemNote,
+  getProblemSolution,
   getProblemTitle,
+  getProblemLimits,
 } from "@/lib/problems";
-import SubmitPanel from "../_components/SubmitPanel";
+import ProblemView from "../_components/ProblemView";
 
 interface ProblemPageProps {
   params: Promise<{ locale: string; id: string }>;
@@ -30,23 +33,47 @@ export default async function ProblemPage({ params }: ProblemPageProps) {
   if (!problem) notFound();
 
   const title = getProblemTitle(problem, locale);
-  const markdown = getProblemDescription(slug, locale);
-  const htmlContent = markdown ? await markdownToHtml(markdown, title) : null;
+  const { timeLimit, memoryLimit } = getProblemLimits(problem);
+
+  const statementMd = getProblemDescription(slug, locale);
+  const statementHtml = statementMd
+    ? await markdownToHtml(statementMd, title, { includeTitle: false })
+    : null;
+
+  const solutionMd = getProblemSolution(slug, locale);
+  const solutionHtml = solutionMd
+    ? await markdownToHtml(solutionMd, title, { includeTitle: false })
+    : null;
+
+  const meta = {
+    title,
+    difficulty: problem.meta.difficulty ?? null,
+    number: problem.meta.number ?? null,
+    note: getProblemNote(problem, locale),
+    timeLimitLabel: formatTime(timeLimit),
+    memoryLabel: formatMemory(memoryLimit),
+    inputSource: problem.meta.inputSource ?? "stdin",
+    outputSource: problem.meta.outputSource ?? "stdout",
+  };
 
   return (
-    <div className="max-w-3xl mx-auto px-4 py-8">
-      {htmlContent ? (
-        <article
-          className="prose prose-slate dark:prose-invert max-w-none"
-          dangerouslySetInnerHTML={{ __html: htmlContent }}
-        />
-      ) : (
-        <h1 className="text-2xl font-semibold">{title}</h1>
-      )}
-
-      <SubmitPanel problemId={slug} />
-    </div>
+    <ProblemView
+      problemId={slug}
+      meta={meta}
+      statementHtml={statementHtml}
+      solutionHtml={solutionHtml}
+    />
   );
+}
+
+function formatTime(seconds: number): string {
+  // Trim trailing zeros: 1.0 → "1 s", 2.5 → "2.5 s"
+  return `${parseFloat(String(seconds))} s`;
+}
+
+function formatMemory(kb: number): string {
+  const mb = kb / 1024;
+  return `${Number.isInteger(mb) ? mb : mb.toFixed(0)} MB`;
 }
 
 function safeDecode(s: string): string {

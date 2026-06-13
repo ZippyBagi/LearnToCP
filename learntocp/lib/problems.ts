@@ -24,10 +24,21 @@ import path from "path";
  * and only aggregate pass counts are exposed to clients.
  */
 
+export type Difficulty = "Easy" | "Medium" | "Hard";
+
 export interface ProblemMeta {
   title: Record<string, string>;
   timeLimit?: number;
   memoryLimit?: number; // in KB
+  /** Shown as the difficulty badge in the header. */
+  difficulty?: Difficulty;
+  /** Display-only problem number, e.g. 20 → "Problem #20". */
+  number?: number;
+  /** I/O source labels for the metadata table. Default stdin/stdout. */
+  inputSource?: string;
+  outputSource?: string;
+  /** Optional italic intro line shown under the metadata table. */
+  note?: Record<string, string> | string;
 }
 
 export interface Testcase {
@@ -107,6 +118,34 @@ export function getProblemDescription(
     if (fs.existsSync(p)) return fs.readFileSync(p, "utf-8");
   }
   return null;
+}
+
+/**
+ * Editorial / solution write-up for a problem, or null if none exists.
+ * Looks for solution-<locale>.md, falling back to solution-en.md.
+ */
+export function getProblemSolution(
+  slug: string,
+  locale: string,
+): string | null {
+  if (!isValidSlug(slug)) return null;
+  const dir = problemDir(slug);
+  for (const loc of [locale, "en"]) {
+    const p = path.join(dir, `solution-${loc}.md`);
+    if (fs.existsSync(p)) return fs.readFileSync(p, "utf-8");
+  }
+  return null;
+}
+
+/** Localized intro note (italic line under the metadata table), or null. */
+export function getProblemNote(
+  problem: Problem,
+  locale: string,
+): string | null {
+  const note = problem.meta.note;
+  if (!note) return null;
+  if (typeof note === "string") return note;
+  return note[locale] ?? note.en ?? null;
 }
 
 /**
