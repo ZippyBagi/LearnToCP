@@ -1,8 +1,27 @@
+import "server-only";
+
+/**
+ * Judge0 CE client (hosted on RapidAPI).
+ *
+ * Server-only: the RapidAPI key is billed per submission, so all calls go
+ * through our API routes — the browser never talks to Judge0 directly.
+ */
+
 export const LANGUAGE_IDS = {
-  cpp:   54,  // C++ GCC 9.2.0
-  cpp17: 76,  // C++ 17 GCC 7.4.0
-  cpp20: 91,  // C++ 20 GCC 12.2.0
+  cpp14: 105, // C++ (GCC 14.1.0)
+  cpp9:  54,  // C++ (GCC 9.2.0)
 } as const;
+
+export const DEFAULT_LANGUAGE_ID = LANGUAGE_IDS.cpp14;
+
+/**
+ * Compiler flags: -O2 (standard for competitive judging — without it TLE
+ * limits are misleading) and C++20. 
+ */
+export const COMPILER_OPTIONS: string | null = "-O2 -std=c++20";
+
+/** Hosted plans cap submissions per batch call (commonly 20) — we chunk to stay under it. */
+const MAX_BATCH_SIZE = 20;
 
 export interface SubmissionRequest {
   sourceCode: string;
@@ -24,7 +43,36 @@ export interface SubmissionResult {
   message: string | null;
 }
 
-const JUDGE0_URL = process.env.JUDGE0_URL!;            
+// Judge0 status ids
+export const STATUS = {
+  IN_QUEUE: 1,
+  PROCESSING: 2,
+  ACCEPTED: 3,
+  WRONG_ANSWER: 4,
+  TIME_LIMIT_EXCEEDED: 5,
+  COMPILATION_ERROR: 6,
+} as const;
+
+export function isFinal(statusId: number) {
+  return statusId >= STATUS.ACCEPTED;
+}
+
+export function isAccepted(statusId: number) {
+  return statusId === STATUS.ACCEPTED;
+}
+
+// Thrown when Judge0/RapidAPI rejects a call — carries the upstream HTTP status.
+export class Judge0Error extends Error {
+  constructor(
+    public readonly httpStatus: number,
+    message: string,
+  ) {
+    super(message);
+    this.name = "Judge0Error";
+  }
+}
+
+const JUDGE0_URL = process.env.JUDGE0_URL!;
 const RAPIDAPI_KEY = process.env.JUDGE0_RAPIDAPI_KEY!;
 const RAPIDAPI_HOST = process.env.JUDGE0_RAPIDAPI_HOST!;
 
@@ -36,73 +84,63 @@ function headers() {
   };
 }
 
-export async function submitOne(req: SubmissionRequest): Promise<string> {
-  const res = await fetch(
-    `${JUDGE0_URL}/submissions?base64_encoded=false&wait=false`,
-    {
+function toJudge0Payload(req: SubmissionRequest) {
+  return {
+    language_id: req.languageId ?? DEFAULT_LANGUAGE_ID,
+    compiler_options: COMPILER_OPTIONS,
+    source_code: req.sourceCode,
+    stdin: req.stdin ?? "",
+    expected_output: req.expectedOutput ?? null,
+    cpu_time_limit: req.cpuTimeLimit ?? 2.0,
+    memory_limit: req.memoryLimit ?? 262144,
+  };
+}
+
+/**
+ * Submit testcases as Judge0 batch submissions; returns one token per testcase,
+ * in input order. Chunks into multiple batch calls when over the hosted cap.
+ *
+ * NEVER auto-retry this on failure — each submitted testcase is billable, and a
+ * blind retry double-bills.
+ */
+export async function submitBatch(
+  submissions: SubmissionRequest[],
+): Promise<string[]> {
+  const tokens: string[] = [];
+
+  for (let i = 0; i < submissions.length; i += MAX_BATCH_SIZE) {
+    const chunk = submissions.slice(i, i + MAX_BATCH_SIZE);
+    const res = await fetch(`${JUDGE0_URL}/submissions/batch?base64_encoded=false`, {
       method: "POST",
       headers: headers(),
-      body: JSON.stringify({
-        language_id: req.languageId ?? LANGUAGE_IDS.cpp,
-        source_code: req.sourceCode,
-        stdin: req.stdin ?? "",
-        expected_output: req.expectedOutput ?? null,
-        cpu_time_limit: req.cpuTimeLimit ?? 2.0,
-        memory_limit: req.memoryLimit ?? 262144,
-      }),
+      body: JSON.stringify({ submissions: chunk.map(toJudge0Payload) }),
+    });
+    if (!res.ok) {
+      throw new Judge0Error(res.status, `Judge0 batch submit failed: ${res.status} ${await res.text()}`);
     }
-  );
-  if (!res.ok) throw new Error(`Judge0 submit failed: ${res.status} ${await res.text()}`);
-  const data = await res.json();
-  return data.token as string;
-}
-
-export async function submitBatch(submissions: SubmissionRequest[]): Promise<string[]> {
-  const res = await fetch(
-    `${JUDGE0_URL}/submissions/batch?base64_encoded=false`,
-    {
-      method: "POST",
-      headers: headers(),
-      body: JSON.stringify({
-        submissions: submissions.map((req) => ({
-          language_id: req.languageId ?? LANGUAGE_IDS.cpp,
-          source_code: req.sourceCode,
-          stdin: req.stdin ?? "",
-          expected_output: req.expectedOutput ?? null,
-          cpu_time_limit: req.cpuTimeLimit ?? 2.0,
-          memory_limit: req.memoryLimit ?? 262144,
-        })),
-      }),
-    }
-  );
-  if (!res.ok) throw new Error(`Judge0 batch failed: ${res.status} ${await res.text()}`);
-  const data: { token: string }[] = await res.json();
-  return data.map((d) => d.token);
-}
-
-export async function pollBatch(tokens: string[]): Promise<SubmissionResult[]> {
-  const res = await fetch(
-    `${JUDGE0_URL}/submissions/batch?tokens=${tokens.join(",")}&base64_encoded=false&fields=token,status,stdout,stderr,compile_output,time,memory,message`,
-    { headers: headers() }
-  );
-  if (!res.ok) throw new Error(`Judge0 poll failed: ${res.status} ${await res.text()}`);
-  const data: { submissions: SubmissionResult[] } = await res.json();
-  return data.submissions;
-}
-
-export async function waitForBatch(
-  tokens: string[],
-  { intervalMs = 1000, timeoutMs = 30_000 } = {}
-): Promise<SubmissionResult[]> {
-  const start = Date.now();
-  while (true) {
-    if (Date.now() - start > timeoutMs) throw new Error("Judge0 polling timed out");
-    const results = await pollBatch(tokens);
-    if (results.every((r) => r.status.id >= 3)) return results;
-    await new Promise((resolve) => setTimeout(resolve, intervalMs));
+    const data: { token: string }[] = await res.json();
+    tokens.push(...data.map((d) => d.token));
   }
+
+  return tokens;
 }
 
-export function isAccepted(statusId: number) {
-  return statusId === 3;
+// Fetch current results for an array of tokens (chunked like submit).
+export async function pollBatch(tokens: string[]): Promise<SubmissionResult[]> {
+  const results: SubmissionResult[] = [];
+
+  for (let i = 0; i < tokens.length; i += MAX_BATCH_SIZE) {
+    const chunk = tokens.slice(i, i + MAX_BATCH_SIZE);
+    const res = await fetch(
+      `${JUDGE0_URL}/submissions/batch?tokens=${chunk.join(",")}&base64_encoded=false&fields=token,status,stdout,stderr,compile_output,time,memory,message`,
+      { headers: headers() },
+    );
+    if (!res.ok) {
+      throw new Judge0Error(res.status, `Judge0 poll failed: ${res.status} ${await res.text()}`);
+    }
+    const data: { submissions: SubmissionResult[] } = await res.json();
+    results.push(...data.submissions);
+  }
+
+  return results;
 }
