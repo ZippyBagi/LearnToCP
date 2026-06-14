@@ -7,18 +7,22 @@ import "server-only";
  * through our API routes — the browser never talks to Judge0 directly.
  */
 
+// Selectable C++ compilers + helpers live in a shared (non-server) module so
+// the client submit UI can render the same list this server code judges with.
+export {
+  CPP_LANGUAGES,
+  DEFAULT_LANGUAGE_ID,
+  isSupportedLanguageId,
+  compilerOptionsFor,
+} from "./cppLanguages";
+export type { CppLanguage } from "./cppLanguages";
+
+import { DEFAULT_LANGUAGE_ID, compilerOptionsFor } from "./cppLanguages";
+
 export const LANGUAGE_IDS = {
   cpp14: 105, // C++ (GCC 14.1.0)
   cpp9:  54,  // C++ (GCC 9.2.0)
 } as const;
-
-export const DEFAULT_LANGUAGE_ID = LANGUAGE_IDS.cpp14;
-
-/**
- * Compiler flags: -O2 (standard for competitive judging — without it TLE
- * limits are misleading) and C++20. 
- */
-export const COMPILER_OPTIONS: string | null = "-O2 -std=c++20";
 
 /** Hosted plans cap submissions per batch call (commonly 20) — we chunk to stay under it. */
 const MAX_BATCH_SIZE = 20;
@@ -85,9 +89,10 @@ function headers() {
 }
 
 function toJudge0Payload(req: SubmissionRequest) {
+  const languageId = req.languageId ?? DEFAULT_LANGUAGE_ID;
   return {
-    language_id: req.languageId ?? DEFAULT_LANGUAGE_ID,
-    compiler_options: COMPILER_OPTIONS,
+    language_id: languageId,
+    compiler_options: compilerOptionsFor(languageId),
     source_code: req.sourceCode,
     stdin: req.stdin ?? "",
     expected_output: req.expectedOutput ?? null,

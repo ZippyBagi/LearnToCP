@@ -1,7 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/app/supabase/server";
 import { createAdminClient } from "@/app/supabase/admin";
-import { submitBatch, DEFAULT_LANGUAGE_ID, Judge0Error } from "@/lib/judge0";
+import {
+  submitBatch,
+  DEFAULT_LANGUAGE_ID,
+  isSupportedLanguageId,
+  Judge0Error,
+} from "@/lib/judge0";
 import { getProblem, getProblemLimits, getTestcases } from "@/lib/problems";
 import {
   DAILY_SUBMISSION_LIMIT,
@@ -31,7 +36,7 @@ export async function POST(req: NextRequest) {
   }
 
   // ── Input validation ──────────────────────────────────────────────────
-  let body: { problemId?: unknown; code?: unknown };
+  let body: { problemId?: unknown; code?: unknown; languageId?: unknown };
   try {
     body = await req.json();
   } catch {
@@ -40,6 +45,12 @@ export async function POST(req: NextRequest) {
 
   const problemId = typeof body.problemId === "string" ? body.problemId : "";
   const code = typeof body.code === "string" ? body.code : "";
+
+  // Default to our newest compiler; only accept ids we actually expose.
+  const languageId =
+    typeof body.languageId === "number" && isSupportedLanguageId(body.languageId)
+      ? body.languageId
+      : DEFAULT_LANGUAGE_ID;
 
   if (!problemId || !code.trim()) {
     return NextResponse.json(
@@ -125,7 +136,7 @@ export async function POST(req: NextRequest) {
     .insert({
       user_id: userId,
       problem_slug: problemId,
-      language_id: DEFAULT_LANGUAGE_ID,
+      language_id: languageId,
       code,
       status: "judging",
       total_count: testcases.length,
@@ -146,6 +157,7 @@ export async function POST(req: NextRequest) {
     tokens = await submitBatch(
       testcases.map((tc) => ({
         sourceCode: code,
+        languageId,
         stdin: tc.input,
         expectedOutput: tc.expectedOutput,
         cpuTimeLimit: limits.timeLimit,

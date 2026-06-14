@@ -15,6 +15,8 @@ import {
   CodeBracketIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
+import { DEFAULT_LANGUAGE_ID } from "@/lib/cppLanguages";
+import CppVersionSelect from "./CppVersionSelect";
 
 /**
  * Submit UI: paste C++ code, submit, poll until judged.
@@ -92,7 +94,7 @@ function highlightCpp(
 
 export default function SubmitPanel({ problemId,time_limit,memory_limit}: { problemId: string, time_limit : number, memory_limit : number}) {
   const [code, setCode] = useState("");
-  const [language] = useState("C++");
+  const [languageId, setLanguageId] = useState<number>(DEFAULT_LANGUAGE_ID);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [result, setResult] = useState<PublicSubmission | null>(null);
@@ -240,7 +242,7 @@ export default function SubmitPanel({ problemId,time_limit,memory_limit}: { prob
       const res = await fetch("/api/submit", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ problemId, code }),
+        body: JSON.stringify({ problemId, code, languageId }),
       });
       const data = await res.json();
       if (!res.ok) {
@@ -260,14 +262,11 @@ export default function SubmitPanel({ problemId,time_limit,memory_limit}: { prob
     <section className="submit-panel">
       <div className="submit-header">
         <h2 className="submit-title">Submit your solution</h2>
-        <select
-          className="submit-language"
-          value={language}
-          disabled
-          aria-label="Language"
-        >
-          <option value="C++">C++</option>
-        </select>
+        <CppVersionSelect
+          value={languageId}
+          onChange={setLanguageId}
+          disabled={submitting}
+        />
       </div>
 
       <div className="code-editor">
@@ -518,7 +517,7 @@ function formatRuntime(time: number | null | undefined, time_limit? : number | n
 }
 
 function formatMemory(kb: number | null | undefined, memory_limit? : number | null | undefined): string {
-  if (kb == null) return "—";
+  if (kb == null) return "-";
   if(memory_limit == null) return `${(kb / 1024).toFixed(1)} MB`;
   if(kb/1024 > memory_limit) return `>=${memory_limit} MB`
   return `${(kb / 1024).toFixed(1)} MB`;

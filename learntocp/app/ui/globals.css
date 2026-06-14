@@ -582,22 +582,6 @@ code, kbd, samp, pre {
   font-weight: 700;
   color: var(--color-text-heading);
 }
-.submit-language {
-  appearance: none;
-  background: var(--color-bg-page);
-  color: var(--color-text-primary);
-  border: 1px solid var(--color-border-blue);
-  border-radius: 8px;
-  padding: 0.45rem 2rem 0.45rem 0.9rem;
-  font-size: 0.9rem;
-  font-weight: 600;
-  cursor: pointer;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%237c9ef8'%3E%3Cpath fill-rule='evenodd' d='M5.23 7.21a.75.75 0 011.06.02L10 11.17l3.71-3.94a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z' clip-rule='evenodd'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 0.6rem center;
-  background-size: 1.1em;
-}
-
 .code-editor {
   border: 1px solid var(--color-border-subtle);
   border-radius: 10px;
@@ -723,13 +707,14 @@ code, kbd, samp, pre {
   color: var(--color-success);
   background: rgba(80, 250, 123, 0.1);
   border: 1px solid rgba(80, 250, 123, 0.4);
+  box-shadow: 0 0 0 1px rgba(80, 250, 123, 0.08);
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease, background 0.15s ease;
 }
 .submit-button:hover:not(:disabled) {
   background: rgba(80, 250, 123, 0.18);
   border-color: rgba(80, 250, 123, 0.7);
-  box-shadow: 0 0 14px rgba(80, 250, 123, 0.18);
+  box-shadow: 0 0 0 1px rgba(80, 250, 123, 0.12), 0 0 8px rgba(80, 250, 123, 0.14);
 }
 .submit-button:disabled { opacity: 0.45; cursor: not-allowed; }
 
