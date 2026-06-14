@@ -14,12 +14,10 @@ A single integer — the value of $a + b$.
 
 ## Example
 
-Input
-```
+```Input
 2 3
 ```
 
-Output
-```
+```Output
 5
 ```

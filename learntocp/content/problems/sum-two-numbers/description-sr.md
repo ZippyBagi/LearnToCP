@@ -10,12 +10,10 @@ Jedan ceo broj — vrednost $a + b$.
 
 ## Primer
 
-Ulaz
-```
+```Ulaz
 2 3
 ```
 
-Izlaz
-```
+```Izlaz
 5
 ```
