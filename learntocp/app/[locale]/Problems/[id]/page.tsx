@@ -8,7 +8,7 @@ import {
   getProblemSolution,
   getProblemTitle,
   getProblemLimits,
-} from "@/lib/problems";
+} from "@/app/judge0/problems";
 import ProblemView from "../_components/ProblemView";
 
 interface ProblemPageProps {

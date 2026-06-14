@@ -2,7 +2,7 @@
 
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
-import { CPP_LANGUAGES } from '@/lib/cppLanguages'
+import { CPP_LANGUAGES } from '@/app/judge0/cppLanguages'
 
 /**
  * C++ compiler picker for the submit panel. Built on Headless UI's Menu so the

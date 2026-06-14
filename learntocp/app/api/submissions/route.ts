@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/app/supabase/server";
-import { toPublicSubmission, type SubmissionRow } from "@/lib/judging";
+import { toPublicSubmission, type SubmissionRow } from "@/app/judge0/judging";
 
 const HISTORY_PAGE_SIZE = 50;
 

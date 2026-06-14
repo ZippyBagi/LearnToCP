@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/app/supabase/server";
 import { createAdminClient } from "@/app/supabase/admin";
-import { pollBatch, isFinal } from "@/lib/judge0";
+import { pollBatch, isFinal } from "@/app/judge0/judge0";
 import {
   allFinal,
   countPassed,
@@ -9,7 +9,7 @@ import {
   mergeResults,
   toPublicSubmission,
   type SubmissionRow,
-} from "@/lib/judging";
+} from "@/app/judge0/judging";
 
 /**
  * GET /api/submissions/[id]

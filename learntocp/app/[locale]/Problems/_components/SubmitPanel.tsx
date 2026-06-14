@@ -15,7 +15,7 @@ import {
   CodeBracketIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
-import { DEFAULT_LANGUAGE_ID } from "@/lib/cppLanguages";
+import { DEFAULT_LANGUAGE_ID } from "@/app/judge0/cppLanguages";
 import CppVersionSelect from "./CppVersionSelect";
 
 /**

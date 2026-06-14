@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { requireAuth } from "@/app/utils/requireAuth";
-import { listProblems, getProblemTitle } from "@/lib/problems";
-import { getSolvedProblemSlugs } from "@/lib/progress";
+import { listProblems, getProblemTitle } from "@/app/judge0/problems";
+import { getSolvedProblemSlugs } from "@/app/judge0/progress";
 
 interface ProblemsPageProps {
   params: Promise<{ locale: string }>;

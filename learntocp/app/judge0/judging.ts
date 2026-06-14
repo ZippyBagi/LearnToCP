@@ -1,5 +1,5 @@
 import "server-only";
-import { STATUS, isAccepted, isFinal, type SubmissionResult } from "@/lib/judge0";
+import { STATUS, isAccepted, isFinal, type SubmissionResult } from "@/app/judge0/judge0";
 
 /**
  * Shared judging logic between the submit and poll API routes.

@@ -6,14 +6,14 @@ import {
   DEFAULT_LANGUAGE_ID,
   isSupportedLanguageId,
   Judge0Error,
-} from "@/lib/judge0";
-import { getProblem, getProblemLimits, getTestcases } from "@/lib/problems";
+} from "@/app/judge0/judge0";
+import { getProblem, getProblemLimits, getTestcases } from "@/app/judge0/problems";
 import {
   DAILY_SUBMISSION_LIMIT,
   MAX_CODE_LENGTH,
   SUBMIT_COOLDOWN_S,
   type TestResult,
-} from "@/lib/judging";
+} from "@/app/judge0/judging";
 
 /**
  * POST /api/submit  { problemId: string, code: string }
