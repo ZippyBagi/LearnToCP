@@ -5,12 +5,12 @@
   },
   "timeLimit": 0.1,
   "memoryLimit": 262144,
-  "difficulty": "Easy",
+  "difficulty": "Super Easy",
   "number": 1,
   "inputSource": "stdin",
   "outputSource": "stdout",
   "note": {
     "en": "This task is provided to practice reading input and writing output. Aim for a clean, single pass.",
-    "sr": "Ovaj zadatak služi za vežbanje čitanja ulaza i ispisa podataka."
+    "sr": "Ovaj zadatak služi za vežbanje čitanja sa ulaza i ispis podataka."
   }
 }

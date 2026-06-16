@@ -102,7 +102,7 @@ interface ProblemMessages {
   tabStatement: string
   tabSolution: string
   // difficulty labels (keyed by the meta value, which stays English)
-  difficulty: Record<'Easy' | 'Medium' | 'Hard', string>
+  difficulty: Record<'Super Easy' | 'Easy' | 'Medium' | 'Hard' | 'Olympiad Level', string>
   problemNumber: (n: number) => string
   // meta table
   thTime: string
@@ -153,7 +153,7 @@ export const problemMessages: Record<'en' | 'sr', ProblemMessages> = {
     notFound: 'Problem not found',
     tabStatement: 'Problem',
     tabSolution: 'Solution',
-    difficulty: { Easy: 'Easy', Medium: 'Medium', Hard: 'Hard' },
+    difficulty: { 'Super Easy': 'Super Easy', Easy: 'Easy', Medium: 'Medium', Hard: 'Hard', 'Olympiad Level': 'Olympiad Level' },
     problemNumber: (n) => `Problem #${n}`,
     thTime: 'Time Limit',
     thMemory: 'Memory',
@@ -212,7 +212,7 @@ export const problemMessages: Record<'en' | 'sr', ProblemMessages> = {
     notFound: 'Zadatak nije pronađen',
     tabStatement: 'Problem',
     tabSolution: 'Rešenje',
-    difficulty: { Easy: 'Easy', Medium: 'Medium', Hard: 'Hard' },
+    difficulty: { 'Super Easy': 'Super Easy', Easy: 'Easy', Medium: 'Medium', Hard: 'Hard', 'Olympiad Level': 'Olympiad Level' },
     problemNumber: (n) => `Zadatak #${n}`,
     thTime: 'Vreme',
     thMemory: 'Memorija',

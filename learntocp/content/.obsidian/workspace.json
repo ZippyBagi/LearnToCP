@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "problems/sum-two-numbers/solution-sr.md",
+                "file": "problems/sum-two-numbers/problem.json",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "solution-sr"
+              "title": "problem"
             }
           }
         ]
@@ -185,11 +185,13 @@
   },
   "active": "aed0321ae9423fb2",
   "lastOpenFiles": [
-    "problems/sum-two-numbers/solution-en.md",
-    "problems/sum-two-numbers/solution-sr.md",
+    "Pasted image 20260616232021.png",
     "problems/sum-two-numbers/description-sr.md",
     "problems/sum-two-numbers/description-en.md",
     "problems/sum-two-numbers/problem.json",
+    "Untitled.canvas",
+    "problems/sum-two-numbers/solution-en.md",
+    "problems/sum-two-numbers/solution-sr.md",
     "problems/sum-two-numbers/tests/02.in",
     "problems/sum-two-numbers/tests/02.out",
     "problems/sum-two-numbers/tests/01.out",
@@ -197,7 +199,6 @@
     "problems/sum-two-numbers/tests/03.out",
     "problems/sum-two-numbers/tests/03.in",
     "2026-06-16.md",
-    "Untitled.canvas",
     "docs/judge0-backend-answers.md",
     "problems/sum-two-numbers/problem.json.tmp.23084.1342c34c0379",
     "docs/judge0-backend-summary.md",

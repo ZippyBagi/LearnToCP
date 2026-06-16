@@ -12,7 +12,7 @@ import { getProblemMessages } from "@/translations";
 
 interface ProblemMetaView {
   title: string;
-  difficulty: "Easy" | "Medium" | "Hard" | null;
+  difficulty: "Super Easy" | "Easy" | "Medium" | "Hard" | "Olympiad Level" | null;
   number: number | null;
   note: string | null;
   timeLimitLabel: string;
@@ -34,9 +34,11 @@ interface ProblemViewProps {
 type Tab = "statement" | "solution";
 
 const DIFFICULTY_CLASS: Record<string, string> = {
+  "Super Easy": "difficulty-super-easy",
   Easy: "difficulty-easy",
   Medium: "difficulty-medium",
   Hard: "difficulty-hard",
+  "Olympiad Level": "difficulty-olympiad",
 };
 
 export default function ProblemView({

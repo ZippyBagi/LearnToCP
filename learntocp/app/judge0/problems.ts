@@ -24,7 +24,12 @@ import path from "path";
  * and only aggregate pass counts are exposed to clients.
  */
 
-export type Difficulty = "Easy" | "Medium" | "Hard";
+export type Difficulty =
+  | "Super Easy"
+  | "Easy"
+  | "Medium"
+  | "Hard"
+  | "Olympiad Level";
 
 export interface ProblemMeta {
   title: Record<string, string>;
