@@ -46,6 +46,7 @@ export default function ProblemView({
       {/* Tab toggle */}
       <div className="flex justify-center mb-8">
         <div className="problem-tabs">
+          <span className="problem-tab-indicator" data-tab={tab} aria-hidden="true" />
           <button
             type="button"
             className={`problem-tab ${tab === "statement" ? "is-active" : ""}`}

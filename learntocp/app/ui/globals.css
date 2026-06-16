@@ -429,33 +429,56 @@ code, kbd, samp, pre {
    Problem page — tabs
    ============================================================ */
 .problem-tabs {
-  display: inline-flex;
-  gap: 0.25rem;
+  position: relative;
+  display: inline-grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
   padding: 0.3rem;
   border-radius: 12px;
   background: rgba(0, 0, 0, 0.35);
   border: 1px solid var(--color-border-subtle);
 }
+/* Sliding visual indicator — sits behind the buttons and translates between them */
+.problem-tab-indicator {
+  position: absolute;
+  top: 0.3rem;
+  bottom: 0.3rem;
+  left: 0.3rem;
+  width: calc(50% - 0.3rem);
+  border-radius: 9px;
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-accent-border);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+  transform: translateX(0);
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 0;
+  pointer-events: none;
+}
+.problem-tab-indicator[data-tab="solution"] {
+  transform: translateX(100%);
+}
 .problem-tab {
+  position: relative;
+  z-index: 1;
+  width: 100%;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.45rem;
   padding: 0.5rem 1.1rem;
   border-radius: 9px;
   font-size: 0.9rem;
   font-weight: 600;
+  white-space: nowrap;
   color: var(--color-text-muted);
   background: transparent;
   border: 1px solid transparent;
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: color 0.15s ease;
 }
 .problem-tab:hover { color: var(--color-text-heading); }
 .problem-tab.is-active {
   color: var(--color-text-heading);
-  background: var(--color-bg-surface);
-  border-color: var(--color-accent-border);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
 }
 
 /* ============================================================
