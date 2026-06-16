@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "problems/sum-two-numbers/description-en.md",
+                "file": "problems/sum-two-numbers/solution-sr.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "description-en"
+              "title": "solution-sr"
             }
           }
         ]
@@ -185,12 +185,22 @@
   },
   "active": "aed0321ae9423fb2",
   "lastOpenFiles": [
-    "docs/judge0-backend-answers.md",
     "problems/sum-two-numbers/solution-en.md",
+    "problems/sum-two-numbers/solution-sr.md",
+    "problems/sum-two-numbers/description-sr.md",
+    "problems/sum-two-numbers/description-en.md",
+    "problems/sum-two-numbers/problem.json",
+    "problems/sum-two-numbers/tests/02.in",
+    "problems/sum-two-numbers/tests/02.out",
+    "problems/sum-two-numbers/tests/01.out",
+    "problems/sum-two-numbers/tests/01.in",
+    "problems/sum-two-numbers/tests/03.out",
+    "problems/sum-two-numbers/tests/03.in",
+    "2026-06-16.md",
+    "Untitled.canvas",
+    "docs/judge0-backend-answers.md",
     "problems/sum-two-numbers/problem.json.tmp.23084.1342c34c0379",
     "docs/judge0-backend-summary.md",
-    "problems/sum-two-numbers/description-en.md",
-    "problems/sum-two-numbers/description-sr.md",
     "sr/LessonsMD/03 Binarni Brojevi/02 Operacije nad Bitovima.md",
     "en/LessonsMD/03 Binary Numbers/02 Bitwise Operations.md",
     "Untitled.base",
@@ -201,12 +211,8 @@
     "sr/LessonsMD/02 Osnovne Tehnike/03 Zbir Prefiksa.md",
     "en/LessonsMD/02 Elementary Techniques/03 Prefix sum.md",
     "sr/LessonsMD/03 Binarni Brojevi",
-    "en/LessonsMD/03 Binary Numbers",
-    "en/LessonsMD/02 Elementary Techniques/Untitled",
     "sr/LessonsMD/04 Matematika/00 Binary Exponentiation.md",
-    "sr/LessonsMD/04 Matematika",
     "en/LessonsMD/04 Math/00 Binary Exponentiation.md",
-    "en/LessonsMD/04 Math",
     "sr/LessonsMD/02 Osnovne Tehnike/04 Binarna Pretraga.md",
     "en/LessonsMD/02 Elementary Techniques/04 Binary Search.md",
     "sr/LessonsMD/01 Sortiranje/01 Sortiranje Prebrojavanjem.md",
@@ -215,15 +221,11 @@
     "sr/LessonsMD/01 Sortiranje/00 Sortiranje.md",
     "en/LessonsMD/DataStructures/SparseTable.md",
     "sr/LessonsMD/02 Osnovne Tehnike/02 Zbir brojeva od 1 do n.md",
-    "en/LessonsMD/02 Elementary Techniques/02 Sum of numbers 1 to n.md",
-    "sr/LessonsMD/02 Osnovne Tehnike/01 Dva Pokazivača.md",
-    "en/LessonsMD/02 Elementary Techniques/01 Two Pointers.md",
     "images/big-o.jpg",
     "images/Couning Sort.jpg",
     "images/1_5ZLci3SuR0zM_QlZOADv8Q-1558881035.jpg",
     "images/Sum of elements.jpg",
     "images/matrix.png",
-    "images",
     "Couning Sort.jpg"
   ]
 }

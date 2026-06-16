@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "@/app/ui/globals.css";
+import "katex/dist/katex.min.css";
 import LayoutShell from "@/app/[locale]/layoutShell";
 import { generateSidebarContainers } from "@/app/utils/generateSidebarContainers";
 

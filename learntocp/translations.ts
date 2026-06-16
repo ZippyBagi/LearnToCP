@@ -160,24 +160,24 @@ export const problemMessages: Record<'en' | 'sr', ProblemMessages> = {
     thInput: 'Input',
     thOutput: 'Output',
     noStatement: 'No statement available.',
-    editorialTitle: (title) => `Editorial — ${title}`,
+    editorialTitle: (title) => `Solution - ${title}`,
     noSolutionTitle: 'No solution published yet',
     noSolutionBody:
-      "The editorial for this problem hasn't been written. Check back later.",
+      "The solution for this problem hasn't been written. Check back later.",
     revealTitle: 'Reveal the solution?',
     revealBody:
-      "You haven't solved this problem yet. Viewing the editorial will spoil the solution. Are you sure you want to continue?",
+      "You haven't solved this problem yet. Viewing the solution will spoil the solution. Are you sure you want to continue?",
     keepTrying: 'Keep trying',
     revealConfirm: 'Reveal solution',
     submitTitle: 'Submit your solution',
     pasteLabel: 'Paste your code below',
     editorPlaceholder: '// Paste your full C++ solution here…',
     submissionFailed: 'Submission failed',
-    networkError: 'Network error — please try again.',
+    networkError: 'Network error - please try again.',
     judgingProgress: (passed, total) =>
       `Judging… ${passed}/${total} testcases passed so far`,
     verdictResult: (label, passed, total) =>
-      `${label} — ${passed}/${total} testcases passed`,
+      `${label} - ${passed}/${total} testcases passed`,
     verdictPlaceholder: 'Your verdict appears here after submitting.',
     judging: 'Judging…',
     submit: 'Submit',
@@ -219,10 +219,10 @@ export const problemMessages: Record<'en' | 'sr', ProblemMessages> = {
     thInput: 'Ulaz',
     thOutput: 'Izlaz',
     noStatement: 'Iskaz nije dostupan.',
-    editorialTitle: (title) => `Rešenje — ${title}`,
+    editorialTitle: (title) => `Rešenje - ${title}`,
     noSolutionTitle: 'Rešenje još nije objavljeno',
     noSolutionBody:
-      'Rešenje za ovaj zadatak još nije napisano. Navrati kasnije.',
+      'Rešenje za ovaj zadatak još nije napisano. Pogledajte kasnije.',
     revealTitle: 'Otkri rešenje?',
     revealBody:
       'Još uvek niste rešili ovaj zadatak. Pregledanje rešenja će otkriti odgovor. Da li ste sigurni da želite da nastavite?',
@@ -232,11 +232,11 @@ export const problemMessages: Record<'en' | 'sr', ProblemMessages> = {
     pasteLabel: 'Paste-uj svoj kod ispod',
     editorPlaceholder: '// Paste-uj svoje kompletno C++ rešenje ovde…',
     submissionFailed: 'Slanje nije uspelo',
-    networkError: 'Greška u mreži — pokušaj ponovo.',
+    networkError: 'Greška u mreži - pokušaj ponovo.',
     judgingProgress: (passed, total) =>
       `Ocenjivanje… ${passed}/${total} test-primera do sada prošlo`,
     verdictResult: (label, passed, total) =>
-      `${label} — ${passed}/${total} test-primera prošlo`,
+      `${label} - ${passed}/${total} test-primera prošlo`,
     verdictPlaceholder: 'Tvoj rezultat se pojavljuje ovde nakon slanja.',
     judging: 'Ocenjivanje…',
     submit: 'Pošalji',

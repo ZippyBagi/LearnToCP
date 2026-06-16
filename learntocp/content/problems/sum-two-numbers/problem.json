@@ -3,7 +3,7 @@
     "en": "Sum of Two Numbers",
     "sr": "Zbir dva broja"
   },
-  "timeLimit": 1.0,
+  "timeLimit": 0.1,
   "memoryLimit": 262144,
   "difficulty": "Easy",
   "number": 1,
@@ -11,6 +11,6 @@
   "outputSource": "stdout",
   "note": {
     "en": "This task is provided to practice reading input and writing output. Aim for a clean, single pass.",
-    "sr": "Ovaj zadatak služi za vežbanje čitanja ulaza i ispisa izlaza. Cilj je čist prolaz kroz podatke."
+    "sr": "Ovaj zadatak služi za vežbanje čitanja ulaza i ispisa podataka."
   }
 }

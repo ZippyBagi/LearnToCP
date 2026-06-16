@@ -1,12 +1,12 @@
-Data su dva cela broja, ispiši njihov zbir.
+Data su dva cela cela broja, odštampati njihov zbir.
 
 ## Ulaz
 
-Jedna linija sa dva cela broja $a$ i $b$ ($-10^9 \le a, b \le 10^9$).
+Jedna linije, sa 2 integer-a, $a$ i $b$
 
 ## Izlaz
 
-Jedan ceo broj — vrednost $a + b$.
+Vrednost: $a + b$
 
 ## Primer
 
@@ -17,3 +17,7 @@ Jedan ceo broj — vrednost $a + b$.
 ```Izlaz
 5
 ```
+
+## Ograničenja
+
+$-10^9 \le a, b \le 10^9$
