@@ -17,6 +17,9 @@ import {
 } from "@heroicons/react/24/outline";
 import { DEFAULT_LANGUAGE_ID } from "@/app/judge0/cppLanguages";
 import CppVersionSelect from "./CppVersionSelect";
+import { getProblemMessages } from "@/translations";
+
+type ProblemT = ReturnType<typeof getProblemMessages>;
 
 /**
  * Submit UI: paste C++ code, submit, poll until judged.
@@ -92,7 +95,8 @@ function highlightCpp(
   });
 }
 
-export default function SubmitPanel({ problemId,time_limit,memory_limit}: { problemId: string, time_limit : number, memory_limit : number}) {
+export default function SubmitPanel({ problemId,locale,time_limit,memory_limit}: { problemId: string, locale: string, time_limit : number, memory_limit : number}) {
+  const t = getProblemMessages(locale);
   const [code, setCode] = useState("");
   const [languageId, setLanguageId] = useState<number>(DEFAULT_LANGUAGE_ID);
   const [submitting, setSubmitting] = useState(false);
@@ -247,13 +251,13 @@ export default function SubmitPanel({ problemId,time_limit,memory_limit}: { prob
       const data = await res.json();
       if (!res.ok) {
         // 429s carry the human-readable cooldown / daily-limit message
-        setError(data.error ?? "Submission failed");
+        setError(data.error ?? t.submissionFailed);
         setSubmitting(false);
         return;
       }
       startPolling(data.submissionId);
     } catch {
-      setError("Network error — please try again.");
+      setError(t.networkError);
       setSubmitting(false);
     }
   };
@@ -261,7 +265,7 @@ export default function SubmitPanel({ problemId,time_limit,memory_limit}: { prob
   return (
     <section className="submit-panel">
       <div className="submit-header">
-        <h2 className="submit-title">Submit your solution</h2>
+        <h2 className="submit-title">{t.submitTitle}</h2>
         <CppVersionSelect
           value={languageId}
           onChange={setLanguageId}
@@ -272,7 +276,7 @@ export default function SubmitPanel({ problemId,time_limit,memory_limit}: { prob
       <div className="code-editor">
         <div className="code-editor-bar">
           <ClipboardIcon className="size-4" />
-          <span>Paste your code below</span>
+          <span>{t.pasteLabel}</span>
         </div>
         <div className="code-input">
           <div ref={gutterRef} className="code-input-gutter" aria-hidden>
@@ -293,7 +297,7 @@ export default function SubmitPanel({ problemId,time_limit,memory_limit}: { prob
           <textarea
             ref={editorRef}
             className={`code-input-area ${inputHtml ? "is-highlighted" : ""}`}
-            placeholder={"// Paste your full C++ solution here…"}
+            placeholder={t.editorPlaceholder}
             value={code}
             onChange={(e) => setCode(e.target.value)}
             onScroll={syncScroll}
@@ -310,15 +314,18 @@ export default function SubmitPanel({ problemId,time_limit,memory_limit}: { prob
             <span className="text-danger">{error}</span>
           ) : result && !result.done ? (
             <span>
-              Judging… {result.passed}/{result.total} testcases passed so far
+              {t.judgingProgress(result.passed, result.total)}
             </span>
           ) : result && result.done ? (
             <span className={verdictTone(result.verdict) === "ok" ? "text-success" : "text-danger"}>
-              {VERDICT_LABELS[result.verdict ?? ""] ?? result.verdict} —{" "}
-              {result.passed}/{result.total} testcases passed
+              {t.verdictResult(
+                VERDICT_LABELS[result.verdict ?? ""] ?? result.verdict ?? "—",
+                result.passed,
+                result.total,
+              )}
             </span>
           ) : (
-            <span>Your verdict appears here after submitting.</span>
+            <span>{t.verdictPlaceholder}</span>
           )}
         </div>
         <button
@@ -327,7 +334,7 @@ export default function SubmitPanel({ problemId,time_limit,memory_limit}: { prob
           className="submit-button"
         >
           <PaperAirplaneIcon className="size-4" />
-          {submitting ? "Judging…" : "Submit"}
+          {submitting ? t.judging : t.submit}
         </button>
       </div>
 
@@ -339,14 +346,14 @@ export default function SubmitPanel({ problemId,time_limit,memory_limit}: { prob
 
       <div className="submissions-section">
         <h3 className="submissions-title">
-          Your submissions{" "}
+          {t.submissionsTitle}{" "}
           <span className="submissions-count">
-            {history.length} {history.length === 1 ? "attempt" : "attempts"}
+            {t.attemptsCount(history.length)}
           </span>
         </h3>
 
         {history.length === 0 ? (
-          <p className="text-text-muted text-sm">No submissions yet.</p>
+          <p className="text-text-muted text-sm">{t.noSubmissions}</p>
         ) : (
           <ul className="submissions-list">
             {history.map((s) => {
@@ -354,7 +361,7 @@ export default function SubmitPanel({ problemId,time_limit,memory_limit}: { prob
                 s.status === "judging" ? "pending" : verdictTone(s.verdict);
               const label =
                 s.status === "judging"
-                  ? "Judging…"
+                  ? t.judging
                   : (VERDICT_LABELS[s.verdict ?? ""] ?? s.verdict ?? "—");
               return (
                 <li key={s.submissionId} className={`submission-card tone-${tone}`}>
@@ -365,25 +372,25 @@ export default function SubmitPanel({ problemId,time_limit,memory_limit}: { prob
                       <span className="submission-lang">C++</span>
                     </div>
                     <div className="submission-passed">
-                      {s.passed} / {s.total} testcases passed
+                      {t.testcasesPassed(s.passed, s.total)}
                     </div>
                   </div>
                   <div className="submission-perf">
-                    <span>runtime {formatRuntime(s.runtime,time_limit)}</span>
-                    <span>memory {formatMemory(s.memory,memory_limit)}</span>
+                    <span>{t.runtimeLabel} {formatRuntime(s.runtime,time_limit)}</span>
+                    <span>{t.memoryLabel} {formatMemory(s.memory,memory_limit)}</span>
                   </div>
                   <time className="submission-time" dateTime={s.createdAt}>
-                    {timeAgo(s.createdAt)}
+                    {t.timeAgo(s.createdAt)}
                   </time>
                   {s.code && (
                     <button
                       type="button"
                       className="submission-view-btn"
                       onClick={() => setViewing(s)}
-                      title="View submitted code"
+                      title={t.viewCodeTitle}
                     >
                       <CodeBracketIcon className="size-4" />
-                      <span className="submission-view-label">Code</span>
+                      <span className="submission-view-label">{t.codeLabel}</span>
                     </button>
                   )}
                 </li>
@@ -394,7 +401,7 @@ export default function SubmitPanel({ problemId,time_limit,memory_limit}: { prob
       </div>
 
       {viewing && (
-        <CodeViewer submission={viewing} onClose={() => setViewing(null)} />
+        <CodeViewer submission={viewing} t={t} onClose={() => setViewing(null)} />
       )}
     </section>
   );
@@ -402,9 +409,11 @@ export default function SubmitPanel({ problemId,time_limit,memory_limit}: { prob
 
 function CodeViewer({
   submission,
+  t,
   onClose,
 }: {
   submission: PublicSubmission;
+  t: ProblemT;
   onClose: () => void;
 }) {
   const [copied, setCopied] = useState(false);
@@ -413,7 +422,7 @@ function CodeViewer({
     submission.status === "judging" ? "pending" : verdictTone(submission.verdict);
   const label =
     submission.status === "judging"
-      ? "Judging…"
+      ? t.judging
       : (VERDICT_LABELS[submission.verdict ?? ""] ?? submission.verdict ?? "—");
 
   // Lock background scroll while the modal is open.
@@ -462,7 +471,7 @@ function CodeViewer({
       className="code-modal-overlay"
       role="dialog"
       aria-modal="true"
-      aria-label="Submitted code"
+      aria-label={t.submittedCodeAria}
       onClick={onClose}
     >
       <div className="code-modal" onClick={(e) => e.stopPropagation()}>
@@ -471,7 +480,7 @@ function CodeViewer({
             <span className={`submission-dot tone-${tone}`} aria-hidden />
             <span className={`submission-verdict tone-${tone}`}>{label}</span>
             <span className="submission-lang">C++</span>
-            <span className="code-modal-time">{timeAgo(submission.createdAt)}</span>
+            <span className="code-modal-time">{t.timeAgo(submission.createdAt)}</span>
           </div>
           <div className="code-modal-actions">
             <button
@@ -479,13 +488,13 @@ function CodeViewer({
               className={`code-copy-btn ${copied ? "copied" : ""}`}
               onClick={handleCopy}
             >
-              {copied ? "Copied!" : "Copy"}
+              {copied ? t.copied : t.copy}
             </button>
             <button
               type="button"
               className="code-modal-close"
               onClick={onClose}
-              aria-label="Close"
+              aria-label={t.close}
             >
               <XMarkIcon className="size-5" />
             </button>
@@ -521,18 +530,4 @@ function formatMemory(kb: number | null | undefined, memory_limit? : number | nu
   if(memory_limit == null) return `${(kb / 1024).toFixed(1)} MB`;
   if(kb/1024 > memory_limit) return `>=${memory_limit} MB`
   return `${(kb / 1024).toFixed(1)} MB`;
-}
-
-function timeAgo(iso: string): string {
-  const then = new Date(iso).getTime();
-  if (Number.isNaN(then)) return "";
-  const diff = Math.max(0, Date.now() - then);
-  const min = Math.floor(diff / 60000);
-  if (min < 1) return "just now";
-  if (min < 60) return `${min} minute${min === 1 ? "" : "s"} ago`;
-  const hr = Math.floor(min / 60);
-  if (hr < 24) return `${hr} hour${hr === 1 ? "" : "s"} ago`;
-  const day = Math.floor(hr / 24);
-  if (day < 30) return `${day} day${day === 1 ? "" : "s"} ago`;
-  return new Date(iso).toLocaleDateString();
 }

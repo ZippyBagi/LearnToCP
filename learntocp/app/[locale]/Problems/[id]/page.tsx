@@ -9,6 +9,8 @@ import {
   getProblemTitle,
   getProblemLimits,
 } from "@/app/judge0/problems";
+import { hasSolvedProblem } from "@/app/judge0/progress";
+import { getProblemMessages } from "@/translations";
 import ProblemView from "../_components/ProblemView";
 
 interface ProblemPageProps {
@@ -18,7 +20,7 @@ interface ProblemPageProps {
 export async function generateMetadata({ params }: ProblemPageProps) {
   const { locale, id } = await params;
   const problem = getProblem(safeDecode(id));
-  if (!problem) return { title: "Problem not found" };
+  if (!problem) return { title: getProblemMessages(locale).notFound };
   return { title: getProblemTitle(problem, locale) };
 }
 
@@ -45,6 +47,8 @@ export default async function ProblemPage({ params }: ProblemPageProps) {
     ? await markdownToHtml(solutionMd, title, { includeTitle: false })
     : null;
 
+  const solved = await hasSolvedProblem(slug);
+
   const meta = {
     title,
     difficulty: problem.meta.difficulty ?? null,
@@ -59,9 +63,11 @@ export default async function ProblemPage({ params }: ProblemPageProps) {
   return (
     <ProblemView
       problemId={slug}
+      locale={locale}
       meta={meta}
       statementHtml={statementHtml}
       solutionHtml={solutionHtml}
+      solved={solved}
     />
   );
 }
