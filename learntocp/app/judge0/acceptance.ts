@@ -55,7 +55,7 @@ export async function getAcceptanceStats(
       .in("problem_slug", slugs)
       .not("verdict", "is", null);
     if (res.error) return stats;
-    data = res.data as typeof data;
+    data = res.data as Array<{ problem_slug: string; verdict: string }>;
   } catch {
     return stats;
   }
