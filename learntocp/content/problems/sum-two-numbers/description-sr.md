@@ -2,7 +2,7 @@ Data su dva cela cela broja, odštampati njihov zbir.
 
 ## Ulaz
 
-Jedna linije, sa 2 integer-a, $a$ i $b$
+Jedna linije, sa 2 cela broja, $a$ i $b$
 
 ## Izlaz
 

@@ -24,12 +24,10 @@ import path from "path";
  * and only aggregate pass counts are exposed to clients.
  */
 
-export type Difficulty =
-  | "Super Easy"
-  | "Easy"
-  | "Medium"
-  | "Hard"
-  | "Olympiad Level";
+// Canonical difficulty ladder lives in its own (non-server) module so client
+// components can import the ordered list too. Re-exported here for convenience.
+export { DIFFICULTIES } from "./difficulties";
+export type { Difficulty } from "./difficulties";
 
 export interface ProblemMeta {
   title: Record<string, string>;
@@ -39,6 +37,18 @@ export interface ProblemMeta {
   difficulty?: Difficulty;
   /** Display-only problem number, e.g. 20 → "Problem #20". */
   number?: number;
+  /**
+   * Topic / category shown under the title on the Problems list (e.g. "Graphs",
+   * "Dynamic Programming"). Localizable like `title`; a plain string is treated
+   * as locale-agnostic. Also powers the topic filter dropdown.
+   */
+  topic?: Record<string, string> | string;
+  /**
+   * Language-neutral tag slugs (e.g. ["dp", "binary-search"]). Rendered as
+   * "#tag" chips on the list and searchable. Kept in slug form across locales
+   * so filtering stays stable.
+   */
+  tags?: string[];
   /** I/O source labels for the metadata table. Default stdin/stdout. */
   inputSource?: string;
   outputSource?: string;
@@ -140,6 +150,22 @@ export function getProblemSolution(
     if (fs.existsSync(p)) return fs.readFileSync(p, "utf-8");
   }
   return null;
+}
+
+/** Localized topic/category label for the list (e.g. "Graphs"), or null. */
+export function getProblemTopic(
+  problem: Problem,
+  locale: string,
+): string | null {
+  const topic = problem.meta.topic;
+  if (!topic) return null;
+  if (typeof topic === "string") return topic;
+  return topic[locale] ?? topic.en ?? null;
+}
+
+/** Tag slugs for a problem (always an array, possibly empty). */
+export function getProblemTags(problem: Problem): string[] {
+  return Array.isArray(problem.meta.tags) ? problem.meta.tags : [];
 }
 
 /** Localized intro note (italic line under the metadata table), or null. */

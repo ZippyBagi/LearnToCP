@@ -6,7 +6,7 @@ A single line with two integers $a$ and $b$.
 
 ## Output
 
-A single integer — the value of $a + b$.
+A single integer - the value of $a + b$.
 
 ## Example
 

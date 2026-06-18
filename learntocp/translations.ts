@@ -274,3 +274,94 @@ export const problemMessages: Record<'en' | 'sr', ProblemMessages> = {
 export function getProblemMessages(locale: string): ProblemMessages {
   return problemMessages[locale as Locale] ?? problemMessages.en
 }
+
+// ── Problems list (index) page ────────────────────────────────────────────
+interface ProblemListMessages {
+  title: string
+  subtitle: (total: number, solved: number) => string
+  solvedSuffix: string
+  searchPlaceholder: string
+  allDifficulties: string
+  allTopics: string
+  statusAny: string
+  statusSolved: string
+  statusUnsolved: string
+  clear: string
+  colProblem: string
+  colTags: string
+  colLevel: string
+  colAc: string
+  acceptanceTooltip: string
+  noAttemptsTooltip: string
+  solvedTooltip: string
+  unsolvedTooltip: string
+  emptyTitle: string
+  emptyBody: string
+  noProblems: string
+  range: (start: number, end: number, total: number) => string
+  pageOf: (current: number, total: number) => string
+  prev: string
+  next: string
+}
+
+export const problemListMessages: Record<'en' | 'sr', ProblemListMessages> = {
+  en: {
+    title: 'Problems',
+    subtitle: (total) => `Sharpen your skills on ${total} curated problem${total === 1 ? '' : 's'}`,
+    solvedSuffix: 'solved',
+    searchPlaceholder: 'Search problems, topics or tags…',
+    allDifficulties: 'All difficulties',
+    allTopics: 'All topics',
+    statusAny: 'Any',
+    statusSolved: 'Solved',
+    statusUnsolved: 'Unsolved',
+    clear: 'Clear',
+    colProblem: 'Problem',
+    colTags: 'Tags',
+    colLevel: 'Level',
+    colAc: 'AC',
+    acceptanceTooltip: 'Acceptance rate (accepted / total submissions)',
+    noAttemptsTooltip: 'No submissions yet',
+    solvedTooltip: 'Solved',
+    unsolvedTooltip: 'Unsolved',
+    emptyTitle: 'No matching problems',
+    emptyBody: 'Try a different search term or loosen the filters above.',
+    noProblems: 'No problems yet. Check back soon.',
+    range: (start, end, total) => `${start}–${end} of ${total}`,
+    pageOf: (current, total) => `Page ${current} / ${total}`,
+    prev: 'Prev',
+    next: 'Next',
+  },
+  sr: {
+    title: 'Problemi',
+    subtitle: (total) =>
+      `Izoštri svoje veštine na ${total} ${srPlural(total, 'probranom zadatku', 'probrana zadatka', 'probranih zadataka')}`,
+    solvedSuffix: 'rešeno',
+    searchPlaceholder: 'Pretraži zadatke, teme ili tagove…',
+    allDifficulties: 'Sve težine',
+    allTopics: 'Sve teme',
+    statusAny: 'Svi',
+    statusSolved: 'Rešeni',
+    statusUnsolved: 'Nerešeni',
+    clear: 'Poništi',
+    colProblem: 'Zadatak',
+    colTags: 'Tagovi',
+    colLevel: 'Nivo',
+    colAc: 'AC',
+    acceptanceTooltip: 'Stopa prihvatanja (prihvaćena / ukupna slanja)',
+    noAttemptsTooltip: 'Još nema slanja',
+    solvedTooltip: 'Rešeno',
+    unsolvedTooltip: 'Nerešeno',
+    emptyTitle: 'Nema odgovarajućih zadataka',
+    emptyBody: 'Pokušaj sa drugim pojmom ili ublaži filtere iznad.',
+    noProblems: 'Još nema zadataka. Vrati se uskoro.',
+    range: (start, end, total) => `${start}–${end} od ${total}`,
+    pageOf: (current, total) => `Strana ${current} / ${total}`,
+    prev: 'Nazad',
+    next: 'Dalje',
+  },
+}
+
+export function getProblemListMessages(locale: string): ProblemListMessages {
+  return problemListMessages[locale as Locale] ?? problemListMessages.en
+}

@@ -7,6 +7,11 @@
   "memoryLimit": 262144,
   "difficulty": "Super Easy",
   "number": 1,
+  "topic": {
+    "en": "Implementation",
+    "sr": "Implementacija"
+  },
+  "tags": ["math"],
   "inputSource": "stdin",
   "outputSource": "stdout",
   "note": {
