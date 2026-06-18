@@ -25,9 +25,11 @@ import path from "path";
  */
 
 // Canonical difficulty ladder lives in its own (non-server) module so client
-// components can import the ordered list too. Re-exported here for convenience.
-export { DIFFICULTIES } from "./difficulties";
-export type { Difficulty } from "./difficulties";
+// components can import the ordered list too. Imported into scope here (used by
+// ProblemMeta below) and re-exported for convenience.
+import { DIFFICULTIES, type Difficulty } from "./difficulties";
+export { DIFFICULTIES };
+export type { Difficulty };
 
 export interface ProblemMeta {
   title: Record<string, string>;
