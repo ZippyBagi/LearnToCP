@@ -1,2 +1,0 @@
-id: cpp-syntax
-href: /Theory/Osnove/C%2B%2B sintaksa

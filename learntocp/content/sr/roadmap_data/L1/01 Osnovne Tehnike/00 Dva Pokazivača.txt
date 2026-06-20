@@ -1,2 +1,0 @@
-id: two-pointers
-href: /Theory/Osnovne Tehnike/Dva Pokazivača

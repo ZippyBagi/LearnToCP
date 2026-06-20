@@ -1,2 +1,0 @@
-id: sum-1-to-n
-href: /Theory/Osnovne Tehnike/Zbir brojeva od 1 do n

@@ -1,2 +1,0 @@
-id: sorting
-href: /Theory/Sorting/Sorting

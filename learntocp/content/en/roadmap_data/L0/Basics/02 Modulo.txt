@@ -1,2 +1,0 @@
-id: modulo
-href: /Theory/Basics/Modulo

@@ -1,2 +1,0 @@
-id: two-pointers
-href: /Theory/Elementary Techniques/Two Pointers

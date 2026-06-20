@@ -1,2 +1,0 @@
-id: time-complexity
-href: /Theory/Osnove/Vremenska Složenost Algoritma

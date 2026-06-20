@@ -1,2 +1,0 @@
-id: prefix-sum
-href: /Theory/Elementary Techniques/Prefix sum
