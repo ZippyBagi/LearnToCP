@@ -2,7 +2,7 @@ import "server-only";
 import { cache } from "react";
 import fs from "fs";
 import path from "path";
-import type { RoadmapMatrix } from "@/app/[locale]/roadmap/roadmap.types";
+import type { RoadmapItem, RoadmapMatrix } from "@/app/[locale]/roadmap/roadmap.types";
 import { DEFAULT_LOCALE } from "@/app/utils/getLessonRoot";
 import { stripOrderPrefix } from "@/app/utils/generateSidebarContainers";
 import { resolveLessonLocale, safeDecode } from "@/app/utils/resolveLessonLocale";
@@ -119,7 +119,8 @@ export const getRoadmapMatrix = cache((locale: string): RoadmapMatrix => {
 
           const label = parsed[`${locale}-name`] ?? stripOrderPrefix(fileBase);
 
-          const type = parsed.type === "problem" ? "problem" : "theory";
+          const type: RoadmapItem["type"] =
+            parsed.type === "problem" ? "problem" : "theory";
           const rawHref = parsed.href ?? "#";
           // Problem solved-status is keyed by slug — the last path segment of
           // /Problems/<slug>. Decode in case the stored href is encoded.
