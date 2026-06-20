@@ -52,6 +52,28 @@ function CheckIcon() {
   );
 }
 
+// Read-only status circle for problem items — mirrors the Problems page.
+// It never toggles; it turns green only once the problem is actually solved.
+function ProblemCircle({ solved }: { solved: boolean }) {
+  // Same fill/border as the theory checkbox so solved problems read identically;
+  // a touch larger (18px) since a circle looks smaller than the 16px square.
+  return solved ? (
+    <span
+      aria-hidden
+      className="flex h-[18px] w-[18px] shrink-0 items-center justify-center rounded-full"
+      style={checkboxCheckedStyle}
+    >
+      <CheckIcon />
+    </span>
+  ) : (
+    <span
+      aria-hidden
+      className="block h-[18px] w-[18px] shrink-0 rounded-full"
+      style={checkboxUncheckedStyle}
+    />
+  );
+}
+
 function ModalItem({
   item,
   checked,
@@ -61,6 +83,8 @@ function ModalItem({
   checked: boolean;
   onToggle: () => void;
 }) {
+  const isProblem = item.type === "problem";
+
   return (
     <li
       className={`roadmap-row relative flex items-center gap-3 rounded-lg px-3 py-2.5 transition-colors duration-150 ${
@@ -68,19 +92,30 @@ function ModalItem({
       }`}
       style={{ background: checked ? "rgba(80,250,123,0.04)" : "transparent" }}
     >
-      {/* z-10 places this above the link's stretched ::before so clicks toggle rather than navigate;
-          ::before on the button expands the hit area ~10px beyond the 16×16 square */}
-      <button
-        type="button"
-        role="checkbox"
-        aria-checked={checked}
-        aria-label={`Mark "${item.label}" as ${checked ? "incomplete" : "complete"}`}
-        onClick={onToggle}
-        className="relative z-10 h-4 w-4 shrink-0 cursor-pointer rounded-[4px] flex items-center justify-center transition-all duration-150 before:content-[''] before:absolute before:-inset-2.5"
-        style={checked ? checkboxCheckedStyle : checkboxUncheckedStyle}
-      >
-        {checked && <CheckIcon />}
-      </button>
+      {isProblem ? (
+        // Read-only: solved-status is derived from submissions, so the whole row
+        // simply links to the problem (no z-10 / hit-area override needed).
+        <span
+          role="img"
+          aria-label={`Problem "${item.label}" — ${checked ? "solved" : "unsolved"}`}
+        >
+          <ProblemCircle solved={checked} />
+        </span>
+      ) : (
+        // z-10 places this above the link's stretched ::before so clicks toggle rather than navigate;
+        // ::before on the button expands the hit area ~10px beyond the 16×16 square
+        <button
+          type="button"
+          role="checkbox"
+          aria-checked={checked}
+          aria-label={`Mark "${item.label}" as ${checked ? "incomplete" : "complete"}`}
+          onClick={onToggle}
+          className="relative z-10 h-4 w-4 shrink-0 cursor-pointer rounded-[4px] flex items-center justify-center transition-all duration-150 before:content-[''] before:absolute before:-inset-2.5"
+          style={checked ? checkboxCheckedStyle : checkboxUncheckedStyle}
+        >
+          {checked && <CheckIcon />}
+        </button>
+      )}
 
       {/* ::before with inset-0 makes the whole row a link target; checkbox sits above via z-10 */}
       <a

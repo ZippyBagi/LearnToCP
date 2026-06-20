@@ -4,6 +4,11 @@ export interface RoadmapItem {
   id: string;
   label: string;
   href: string;
+  // "theory" (default) renders a user-toggleable checkbox; "problem" renders a
+  // read-only circle that turns green only when the problem is actually solved.
+  type: "theory" | "problem";
+  // For problem items: the problem slug used to look up solved status.
+  slug?: string;
 }
 
 export interface RoadmapNode {

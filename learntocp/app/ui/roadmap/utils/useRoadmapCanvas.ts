@@ -1,7 +1,12 @@
 "use client";
 
 import { useState, useCallback, useMemo } from "react";
-import { itemKey, type RoadmapMatrix } from "@/app/[locale]/roadmap/roadmap.types";
+import {
+  itemKey,
+  type RoadmapItem,
+  type RoadmapMatrix,
+  type RoadmapNode,
+} from "@/app/[locale]/roadmap/roadmap.types";
 import { createClient } from "@/app/supabase/client";
 
 export interface ModalTarget {
@@ -9,23 +14,37 @@ export interface ModalTarget {
   nodeIndex: number;
 }
 
-export function useRoadmapCanvas(matrix: RoadmapMatrix, initialCompleted: string[]) {
+export function useRoadmapCanvas(
+  matrix: RoadmapMatrix,
+  initialCompleted: string[],
+  solvedSlugs: string[],
+) {
   const supabase = useMemo(() => createClient(), []);
   const [completed, setCompleted] = useState<Set<string>>(
     () => new Set(initialCompleted),
   );
+  // Solved problems are read-only — sourced from judged submissions, never toggled here.
+  const solved = useMemo(() => new Set(solvedSlugs), [solvedSlugs]);
   const [modal, setModal] = useState<ModalTarget | null>(null);
+
+  // A theory item is "done" when the user has checked it; a problem item is
+  // "done" only when its slug appears in the solved set.
+  const isItemDone = useCallback(
+    (node: RoadmapNode, item: RoadmapItem): boolean =>
+      item.type === "problem"
+        ? !!item.slug && solved.has(item.slug)
+        : completed.has(itemKey(node.id, item.id)),
+    [completed, solved],
+  );
 
   const getProgress = useCallback(
     (li: number, ni: number): number => {
       const node = matrix[li]?.[ni];
       if (!node || node.items.length === 0) return 0;
-      const done = node.items.filter((item) =>
-        completed.has(itemKey(node.id, item.id)),
-      ).length;
+      const done = node.items.filter((item) => isItemDone(node, item)).length;
       return done / node.items.length;
     },
-    [matrix, completed],
+    [matrix, isItemDone],
   );
 
   const isComplete = useCallback(
@@ -38,6 +57,8 @@ export function useRoadmapCanvas(matrix: RoadmapMatrix, initialCompleted: string
       const node = matrix[li]?.[ni];
       const item = node?.items[itemIdx];
       if (!node || !item) return;
+      // Problems are completed by solving them, not by toggling — ignore.
+      if (item.type === "problem") return;
 
       const key = itemKey(node.id, item.id);
       const checking = !completed.has(key);
@@ -73,7 +94,7 @@ export function useRoadmapCanvas(matrix: RoadmapMatrix, initialCompleted: string
   const modalNode =
     modal !== null ? matrix[modal.layerIndex][modal.nodeIndex] : null;
   const modalChecked = modalNode
-    ? modalNode.items.map((item) => completed.has(itemKey(modalNode.id, item.id)))
+    ? modalNode.items.map((item) => isItemDone(modalNode, item))
     : [];
 
   return {

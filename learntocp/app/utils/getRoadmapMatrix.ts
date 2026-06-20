@@ -119,10 +119,21 @@ export const getRoadmapMatrix = cache((locale: string): RoadmapMatrix => {
 
           const label = parsed[`${locale}-name`] ?? stripOrderPrefix(fileBase);
 
+          const type = parsed.type === "problem" ? "problem" : "theory";
+          const rawHref = parsed.href ?? "#";
+          // Problem solved-status is keyed by slug — the last path segment of
+          // /Problems/<slug>. Decode in case the stored href is encoded.
+          const slug =
+            type === "problem"
+              ? safeDecode(rawHref.split("/").filter(Boolean).pop() ?? "")
+              : undefined;
+
           return {
             id: parsed.id ?? slugify(fileBase),
             label,
-            href: localeHref(parsed.href ?? "#", locale),
+            href: localeHref(rawHref, locale),
+            type,
+            slug,
           };
         });
 
