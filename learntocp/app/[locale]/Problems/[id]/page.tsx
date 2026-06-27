@@ -7,10 +7,12 @@ import {
   getProblemNote,
   getProblemSolution,
   getProblemTitle,
+  getProblemTopic,
   getProblemLimits,
 } from "@/app/judge0/problems";
 import { hasSolvedProblem } from "@/app/judge0/progress";
 import { getProblemMessages } from "@/translations";
+import { pageMetadata } from "@/app/utils/seo";
 import ProblemView from "../_components/ProblemView";
 
 interface ProblemPageProps {
@@ -19,9 +21,26 @@ interface ProblemPageProps {
 
 export async function generateMetadata({ params }: ProblemPageProps) {
   const { locale, id } = await params;
-  const problem = getProblem(safeDecode(id));
+  const slug = safeDecode(id);
+  const problem = getProblem(slug);
   if (!problem) return { title: getProblemMessages(locale).notFound };
-  return { title: getProblemTitle(problem, locale) };
+
+  const title = getProblemTitle(problem, locale);
+  const topic = getProblemTopic(problem, locale);
+  const difficulty = problem.meta.difficulty ?? null;
+  const descriptor = [difficulty, topic].filter(Boolean).join(" · ");
+
+  const description =
+    locale === "sr"
+      ? `Reši „${title}”${descriptor ? ` (${descriptor})` : ""} - takmičarski zadatak na LearnToCP.`
+      : `Solve "${title}"${descriptor ? ` (${descriptor})` : ""} - a competitive-programming problem on LearnToCP.`;
+
+  return pageMetadata({
+    locale,
+    path: `Problems/${encodeURIComponent(slug)}`,
+    title,
+    description,
+  });
 }
 
 export default async function ProblemPage({ params }: ProblemPageProps) {

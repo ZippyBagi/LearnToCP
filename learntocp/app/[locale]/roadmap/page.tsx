@@ -4,11 +4,21 @@ import { getRoadmapMatrix } from "@/app/utils/getRoadmapMatrix";
 import { requireAuth } from "@/app/utils/requireAuth";
 import { getCompletedItemIds } from "@/app/utils/getRoadmapProgress";
 import { getSolvedProblemSlugs } from "@/app/judge0/progress";
+import { getHomeMessages } from "@/translations";
+import { pageMetadata } from "@/app/utils/seo";
 
-export const metadata: Metadata = {
-  title: "Roadmap",
-  description: "Track your learning path and progress through the roadmap.",
-};
+export async function generateMetadata({
+  params,
+}: RoadmapPageProps): Promise<Metadata> {
+  const { locale } = await params;
+  const { map } = getHomeMessages(locale);
+  return pageMetadata({
+    locale,
+    path: "roadmap",
+    title: map.title,
+    description: map.description,
+  });
+}
 
 interface RoadmapPageProps {
   params: Promise<{ locale: string }>;

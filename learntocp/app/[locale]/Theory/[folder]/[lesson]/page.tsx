@@ -6,6 +6,8 @@ import markdownToHtml from "@/app/utils/mdToHTML";
 import LessonSkeleton from "../../_components/LessonSkeleton";
 import { stripOrderPrefix } from "@/app/utils/generateSidebarContainers";
 import { getLessonsRoot } from "@/app/utils/getLessonRoot";
+import { pageMetadata, SITE_URL, SITE_NAME, localizedPath } from "@/app/utils/seo";
+import JsonLd from "@/app/ui/JsonLd";
 
 type ParamsPromise = Promise<{ locale: string; folder: string; lesson: string }>;
 interface PageProps {
@@ -63,16 +65,25 @@ export const dynamicParams = false;
 export const revalidate = false;
 
 export async function generateMetadata({ params }: PageProps) {
-  const { folder, lesson } = await params;
+  const { locale, folder, lesson } = await params;
   const lessonTitle = safeDecode(lesson);
   const folderTitle = safeDecode(folder);
-  return {
-    title: `${lessonTitle} — ${folderTitle}`,
-    description: `${lessonTitle} lesson in the ${folderTitle} track.`,
-  };
+
+  const description =
+    locale === "sr"
+      ? `Lekcija „${lessonTitle}” iz oblasti ${folderTitle} - takmičarsko programiranje na LearnToCP.`
+      : `Learn ${lessonTitle} in the ${folderTitle} track - a competitive-programming lecture on LearnToCP.`;
+
+  return pageMetadata({
+    locale,
+    path: `Theory/${encodeURIComponent(folderTitle)}/${encodeURIComponent(lessonTitle)}`,
+    title: `${lessonTitle} - ${folderTitle}`,
+    ogTitle: lessonTitle,
+    description,
+  });
 }
 
-// Outer component must stay sync — awaiting params here delays the Suspense boundary,
+// Outer component must stay sync - awaiting params here delays the Suspense boundary,
 // causing the old page to freeze on screen until the server finishes all fs+markdown work.
 export default function LessonPage({ params }: PageProps) {
   return (
@@ -89,7 +100,7 @@ async function LessonContent({ paramsPromise }: { paramsPromise: ParamsPromise }
 
   const lessonsRoot = getLessonsRoot(locale);
 
-  // Disk folders/files may have a numeric order prefix (e.g. "01 Basics") — match by stripped name
+  // Disk folders/files may have a numeric order prefix (e.g. "01 Basics") - match by stripped name
   const allFolders = fs
     .readdirSync(lessonsRoot, { withFileTypes: true })
     .filter((e) => e.isDirectory() && !e.name.startsWith("."))
@@ -115,11 +126,32 @@ async function LessonContent({ paramsPromise }: { paramsPromise: ParamsPromise }
   const markdown = fs.readFileSync(filePath, "utf8");
   const htmlContent = await markdownToHtml(markdown, actualFile);
 
+  const lessonUrl = `${SITE_URL}${localizedPath(
+    locale,
+    `Theory/${encodeURIComponent(folderDecoded)}/${encodeURIComponent(lessonDecoded)}`,
+  )}`;
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "LearningResource",
+    name: `${lessonDecoded} - ${folderDecoded}`,
+    headline: lessonDecoded,
+    url: lessonUrl,
+    inLanguage: locale,
+    learningResourceType: "Lecture",
+    educationalLevel: folderDecoded,
+    about: folderDecoded,
+    isAccessibleForFree: true,
+    provider: { "@type": "EducationalOrganization", name: SITE_NAME, url: `${SITE_URL}/` },
+  };
+
   return (
-    <article
-      className="prose prose-slate dark:prose-invert max-w-none"
-      dangerouslySetInnerHTML={{ __html: htmlContent }}
-    />
+    <>
+      <JsonLd data={jsonLd} />
+      <article
+        className="prose prose-slate dark:prose-invert max-w-none"
+        dangerouslySetInnerHTML={{ __html: htmlContent }}
+      />
+    </>
   );
 }
 

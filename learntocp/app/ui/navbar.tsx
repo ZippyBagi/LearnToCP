@@ -1,6 +1,7 @@
 import AuthButton from "@/app/ui/utils/authButton";
 import LanguageSelector from "@/app/ui/utils/languageSelect";
 import { Menu } from "lucide-react";
+import Image from "next/image";
 
 export default function Navbar({
   setSideBarActiveFunction,
@@ -35,6 +36,15 @@ export default function Navbar({
         >
           <Menu size={18} strokeWidth={2} />
         </button>
+        
+        <Image
+          src="../icon.svg"
+          alt=""
+          width={40}
+          height={40}
+          draggable={false}
+          className="select-none"
+        />
 
         <span
           className="text-sm font-bold tracking-wide select-none px-1"
@@ -47,6 +57,7 @@ export default function Navbar({
         >
           LearnToCP
         </span>
+        
       </div>
 
       <div className="flex items-center gap-3 pr-4">

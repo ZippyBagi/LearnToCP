@@ -9,6 +9,7 @@ import {
 import { getSolvedProblemSlugs } from "@/app/judge0/progress";
 import { getAcceptanceStats } from "@/app/judge0/acceptance";
 import { getProblemListMessages } from "@/translations";
+import { pageMetadata } from "@/app/utils/seo";
 import ProblemsExplorer, {
   type ProblemListItem,
 } from "./_components/ProblemsExplorer";
@@ -21,7 +22,14 @@ export async function generateMetadata({
   params,
 }: ProblemsPageProps): Promise<Metadata> {
   const { locale } = await params;
-  return { title: getProblemListMessages(locale).title };
+  const total = listProblems().length;
+  const messages = getProblemListMessages(locale);
+  return pageMetadata({
+    locale,
+    path: "Problems",
+    title: messages.title,
+    description: messages.subtitle(total),
+  });
 }
 
 export default async function ProblemsPage({ params }: ProblemsPageProps) {

@@ -2,12 +2,28 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { getHomeMessages } from "@/translations";
+import { pageMetadata, siteDescription, SITE_URL, SITE_NAME, localizedPath } from "@/app/utils/seo";
+import JsonLd from "@/app/ui/JsonLd";
 
-export const metadata: Metadata = {
-  title: "Home",
-  description:
-    "Master algorithms and data structures with structured lessons and an interactive roadmap.",
-};
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const { locale } = await params;
+  const { tagline } = getHomeMessages(locale);
+  const fullTitle = `LearnToCP — ${tagline}`;
+
+  const base = pageMetadata({
+    locale,
+    path: "",
+    title: fullTitle,
+    ogTitle: fullTitle,
+    description: siteDescription(locale),
+  });
+
+  // Override the parent's "%s · LearnToCP" template on the home page so the
+  // brand isn't duplicated in the <title>.
+  return { ...base, title: { absolute: fullTitle } };
+}
 
 type PageProps = {
   params: Promise<{ locale: string }>;
@@ -156,6 +172,30 @@ export default async function App({ params }: PageProps) {
   const { locale } = await params;
   const t = getHomeMessages(locale);
 
+  const homeUrl = `${SITE_URL}${localizedPath(locale, "")}`;
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "EducationalOrganization",
+        "@id": `${SITE_URL}/#organization`,
+        name: SITE_NAME,
+        url: `${SITE_URL}/`,
+        logo: `${SITE_URL}/icon.svg`,
+        description: siteDescription(locale),
+      },
+      {
+        "@type": "WebSite",
+        "@id": `${SITE_URL}/#website`,
+        name: SITE_NAME,
+        url: homeUrl,
+        inLanguage: locale,
+        publisher: { "@id": `${SITE_URL}/#organization` },
+        description: siteDescription(locale),
+      },
+    ],
+  };
+
   const cards = [
     {
       href: `/${locale}/roadmap`,
@@ -175,6 +215,7 @@ export default async function App({ params }: PageProps) {
 
   return (
     <main className="relative -m-3 flex min-h-[calc(100%+1.5rem)] overflow-hidden">
+      <JsonLd data={jsonLd} />
       <style>{`
         @keyframes ltcp-pop {
           from { opacity: 0; transform: translateY(10px) scale(0.97); }

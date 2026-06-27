@@ -4,6 +4,13 @@ import "@/app/ui/globals.css";
 import "katex/dist/katex.min.css";
 import LayoutShell from "@/app/[locale]/layoutShell";
 import { generateSidebarContainers } from "@/app/utils/generateSidebarContainers";
+import {
+  SITE_NAME,
+  SITE_URL,
+  buildAlternates,
+  ogLocale,
+  siteDescription,
+} from "@/app/utils/seo";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -17,23 +24,69 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
-export const metadata: Metadata = {
-  title: {
-    default: "LearnToCP — Competitive Programming Lectures",
-    template: "%s · LearnToCP",
-  },
-  description:
-    "Structured competitive-programming lectures, problem sets, and an interactive roadmap — from fundamentals to mastery.",
-  applicationName: "LearnToCP",
-  keywords: [
-    "competitive programming",
-    "algorithms",
-    "data structures",
-    "C++",
-    "LearnToCP",
-  ],
-  robots: { index: true, follow: true },
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const description = siteDescription(locale);
+
+  return {
+    // Centralizes the origin so canonical/OG/sitemap URLs resolve to absolute
+    // URLs. Change once (or via NEXT_PUBLIC_SITE_URL) and it propagates.
+    metadataBase: new URL(SITE_URL),
+    title: {
+      default: "LearnToCP - Competitive Programming Lectures",
+      template: "%s · LearnToCP",
+    },
+    description,
+    applicationName: SITE_NAME,
+    keywords: [
+      "competitive programming",
+      "algorithms",
+      "data structures",
+      "C++",
+      "coding problems",
+      "programming roadmap",
+      "LearnToCP",
+    ],
+    authors: [{ name: SITE_NAME }],
+    creator: SITE_NAME,
+    publisher: SITE_NAME,
+    category: "education",
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+        "max-video-preview": -1,
+      },
+    },
+    // Icons (app/icon.svg, app/apple-icon, app/favicon.ico) and the web
+    // manifest (app/manifest.ts) are wired up automatically by Next's
+    // file-based conventions - no explicit config needed here.
+    // Home/base hreflang set; individual pages override with their own path.
+    alternates: buildAlternates(locale, ""),
+    openGraph: {
+      type: "website",
+      siteName: SITE_NAME,
+      locale: ogLocale(locale),
+      url: `/${locale}`,
+      title: "LearnToCP - Competitive Programming Lectures",
+      description,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "LearnToCP - Competitive Programming Lectures",
+      description,
+    },
+    formatDetection: { telephone: false, email: false, address: false },
+  };
+}
 
 export const viewport: Viewport = {
   colorScheme: "dark",

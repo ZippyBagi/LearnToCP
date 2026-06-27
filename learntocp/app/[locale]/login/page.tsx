@@ -2,12 +2,24 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import { redirect } from "next/navigation";
 import { createClient } from "@/app/supabase/server";
+import { getLoginMessages } from "@/translations";
+import { pageMetadata } from "@/app/utils/seo";
 import LoginPanel from "./components/LoginPanel";
 
-export const metadata: Metadata = {
-  title: "Log In",
-  description: "Sign in to LearnToCP to track your progress.",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const m = getLoginMessages(locale);
+  return pageMetadata({
+    locale,
+    path: "login",
+    title: m.eyebrow,
+    description: m.description,
+  });
+}
 
 type LoginPageProps = {
   params: Promise<{ locale: string }>;
