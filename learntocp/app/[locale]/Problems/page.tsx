@@ -23,12 +23,13 @@ export async function generateMetadata({
 }: ProblemsPageProps): Promise<Metadata> {
   const { locale } = await params;
   const total = listProblems().length;
+  const solved = await getSolvedProblemSlugs();
   const messages = getProblemListMessages(locale);
   return pageMetadata({
     locale,
     path: "Problems",
     title: messages.title,
-    description: messages.subtitle(total),
+    description: messages.subtitle(total,solved.size),
   });
 }
 

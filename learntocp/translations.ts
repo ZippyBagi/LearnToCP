@@ -278,7 +278,7 @@ export function getProblemMessages(locale: string): ProblemMessages {
 // ── Problems list (index) page ────────────────────────────────────────────
 interface ProblemListMessages {
   title: string
-  subtitle: (total: number) => string
+  subtitle: (total: number, solved: number) => string
   solvedSuffix: string
   searchPlaceholder: string
   allDifficulties: string
