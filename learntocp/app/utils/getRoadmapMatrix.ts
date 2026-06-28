@@ -107,11 +107,11 @@ export const getRoadmapMatrix = cache((locale: string): RoadmapMatrix => {
 
       const items = fs
         .readdirSync(nodePath, { withFileTypes: true })
-        .filter((e) => e.isFile() && e.name.endsWith(".txt"))
+        .filter((e) => e.isFile() && (e.name.endsWith(".txt")) || e.name.endsWith(".md")) 
         .sort((a, b) => a.name.localeCompare(b.name))
         .map((file) => {
           const parsed = parseItemFile(fs.readFileSync(path.join(nodePath, file.name), "utf-8"));
-          const fileBase = file.name.replace(/\.txt$/, "");
+          const fileBase = file.name.replace(/\.txt$/, "").replace(/\.md$/, "");
 
           if (!parsed.id) {
             console.warn(`[getRoadmapMatrix] No id in "${nodeDir.name}/${file.name}" — falling back to filename slug. Renaming this file will reset user progress.`);
