@@ -365,3 +365,24 @@ export const problemListMessages: Record<'en' | 'sr', ProblemListMessages> = {
 export function getProblemListMessages(locale: string): ProblemListMessages {
   return problemListMessages[locale as Locale] ?? problemListMessages.en
 }
+
+export const notFoundMessages = {
+  en: {
+    errorCode: '// error_code: 404',
+    heading: 'Page not found',
+    body1: "/* The page you're looking for",
+    body2: '   doesn\'t exist or was moved */',
+    returnHome: 'Return home',
+  },
+  sr: {
+    errorCode: '// error_code: 404',
+    heading: 'Stranica nije pronađena',
+    body1: '/* Stranica koju tražite',
+    body2: '   ne postoji ili je premeštena */',
+    returnHome: 'Početna',
+  },
+} as const
+ 
+export function getNotFoundMessages(locale: string) {
+  return notFoundMessages[locale as Locale] ?? notFoundMessages.en
+}

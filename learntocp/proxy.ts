@@ -56,6 +56,8 @@ export async function proxy(request: NextRequest) {
       return redirectWithAuthCookies(loginUrl, supabaseResponse)
     }
 
+    // Forward the locale so not-found.tsx (outside [locale] layout) can read it
+    supabaseResponse.headers.set('x-locale', locale)
     return supabaseResponse
   }
 
