@@ -69,7 +69,7 @@ export const homeMessages = {
     map: {
       label: 'Mapa',
       title: 'Road-mapa',
-      description: 'Graf tema koji prati tvoj napredak, čvor po čvor.',
+      description: 'Road-mapa za praćenje napretka',
     },
     solve: {
       label: 'Rešavaj',
@@ -77,7 +77,7 @@ export const homeMessages = {
       description: 'Pažljivo odabran skup zadataka označenih po težini.',
     },
     accepted: 'Accepted',
-    copy: 'Kopiraj',
+    copy: 'Copy',
   },
 } as const
 
@@ -209,11 +209,11 @@ export const problemMessages: Record<'en' | 'sr', ProblemMessages> = {
     },
   },
   sr: {
-    notFound: 'Zadatak nije pronađen',
+    notFound: 'Problem nije pronađen',
     tabStatement: 'Problem',
     tabSolution: 'Rešenje',
     difficulty: { 'Super Easy': 'Super Easy', Easy: 'Easy', Medium: 'Medium', Hard: 'Hard', 'Olympiad Level': 'Olympiad Level' },
-    problemNumber: (n) => `Zadatak #${n}`,
+    problemNumber: (n) => `Problem #${n}`,
     thTime: 'Vreme',
     thMemory: 'Memorija',
     thInput: 'Ulaz',
@@ -225,7 +225,7 @@ export const problemMessages: Record<'en' | 'sr', ProblemMessages> = {
       'Rešenje za ovaj zadatak još nije napisano. Pogledajte kasnije.',
     revealTitle: 'Otkri rešenje?',
     revealBody:
-      'Još uvek niste rešili ovaj zadatak. Pregledanje rešenja će otkriti odgovor. Da li ste sigurni da želite da nastavite?',
+      'Još uvek niste rešili ovaj zadatak. Otvaranje rešenja će otkriti odgovor. Da li ste sigurni da želite da nastavite?',
     keepTrying: 'Nazad',
     revealConfirm: 'Otkri rešenje',
     submitTitle: 'Pošalji svoje rešenje',
@@ -335,9 +335,9 @@ export const problemListMessages: Record<'en' | 'sr', ProblemListMessages> = {
   sr: {
     title: 'Problemi',
     subtitle: (total) =>
-      `Izoštri svoje veštine na ${total} ${srPlural(total, 'probranom zadatku', 'probrana zadatka', 'probranih zadataka')}`,
+      `Provežbaj ${total} ${srPlural(total, 'odabran problem', 'odabrana problema', 'odabraih problema')}`,
     solvedSuffix: 'rešeno',
-    searchPlaceholder: 'Pretraži zadatke, teme ili tagove…',
+    searchPlaceholder: 'Pretraži probleme, teme ili tagove…',
     allDifficulties: 'Sve težine',
     allTopics: 'Sve teme',
     statusAny: 'Svi',
@@ -348,12 +348,12 @@ export const problemListMessages: Record<'en' | 'sr', ProblemListMessages> = {
     colTags: 'Tagovi',
     colLevel: 'Nivo',
     colAc: 'AC',
-    acceptanceTooltip: 'Stopa prihvatanja (prihvaćena / ukupna slanja)',
-    noAttemptsTooltip: 'Još nema slanja',
+    acceptanceTooltip: 'Stopa prihvatanja (broj uspešnih / ukupan broj pokušaja)',
+    noAttemptsTooltip: 'Još nema pokušaja',
     solvedTooltip: 'Rešeno',
     unsolvedTooltip: 'Nerešeno',
     emptyTitle: 'Nema odgovarajućih zadataka',
-    emptyBody: 'Pokušaj sa drugim pojmom ili ublaži filtere iznad.',
+    emptyBody: 'Pokušaj sa drugim pojmom ili odaberi drugačije filtere.',
     noProblems: 'Još nema zadataka. Vrati se uskoro.',
     range: (start, end, total) => `${start}–${end} od ${total}`,
     pageOf: (current, total) => `Strana ${current} / ${total}`,

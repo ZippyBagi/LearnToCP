@@ -23,7 +23,7 @@ const OG_LOCALE: Record<string, string> = {
 /** Localized site-level descriptions, used as the metadata fallback. */
 export const SITE_DESCRIPTION: Record<string, string> = {
   en: "Structured competitive-programming lectures, problem sets, and an interactive roadmap - from fundamentals to mastery. 100% free.",
-  sr: "Strukturirana predavanja iz takmičarskog programiranja, skupovi zadataka i interaktivna road-mapa - od osnova do majstorstva. 100% besplatno.",
+  sr: "Lekcije iz takmičarskog programiranja, zadaci i interaktivna road-mapa - od osnova do olimpijade. 100% besplatno.",
 };
 
 export function ogLocale(locale: string): string {
