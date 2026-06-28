@@ -38,7 +38,7 @@ export default function Navbar({
         </button>
         
         <Image
-          src="../icon.svg"
+          src="/icon.svg"
           alt=""
           width={40}
           height={40}
