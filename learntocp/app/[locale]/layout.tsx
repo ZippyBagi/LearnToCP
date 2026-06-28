@@ -12,6 +12,7 @@ import {
   siteDescription,
 } from "@/app/utils/seo";
 import { Analytics } from "@vercel/analytics/next"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -113,6 +114,7 @@ export default async function RootLayout({
       <body className="antialiased font-sans">
         <LayoutShell containers={containers}>{children}</LayoutShell>
         <Analytics />
+        <SpeedInsights/>
       </body>
     </html>
   );
