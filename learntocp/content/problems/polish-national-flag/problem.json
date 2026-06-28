@@ -1,0 +1,21 @@
+{
+  "title": {
+    "en": "Polish National Flag Problem",
+    "sr": "Poljska Nacionalna Zastava"
+  },
+  "timeLimit": 0.25,
+  "memoryLimit": 65536,
+  "difficulty": "Easy",
+  "number": 2,
+  "topic": {
+    "en": "Two Pointer",
+    "sr": "Dva Pokazivaca"
+  },
+  "tags": ["two pointer", "math"],
+  "inputSource": "stdin",
+  "outputSource": "stdout",
+  "note": {
+    "en": "",
+    "sr": ""
+  }
+}
