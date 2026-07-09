@@ -41,13 +41,16 @@ export default function SideBar({ toggled, containers }: SideBarInput) {
         borderRight: "1px solid rgba(124,158,248,0.12)",
       }}
     >
-      <div className="overflow-y-auto flex-1 min-h-0 w-full">
+      {/* overscroll-contain: when the sidebar list hits its end, the wheel
+          event must not chain up and scroll the document out from under
+          the navbar. */}
+      <div className="overflow-y-auto overscroll-contain flex-1 min-h-0 w-full">
         <div className="flex flex-col w-full py-2">
           <SectionLabel>{getLocale() == "en" ? "Navigation" : "Navigacija"}</SectionLabel>
           <SideBarButton name={getLocale() == "en" ? "Home" : "Početna"} href="/" />
           <SideBarButton name={getLocale() == "en" ? "Roadmap" : "Road-mapa"} href="/roadmap" />
-          <SideBarButton name={getLocale() == "en" ? "About Us" : "O Nama"} href="/about-us" />
           <SideBarButton name={getLocale() == "en" ? "Problems" : "Problemi"} href="/Problems" />
+          <SideBarButton name={getLocale() == "en" ? "About Us" : "O Nama"} href="/about-us" />
 
           <Divider />
 

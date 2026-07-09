@@ -46,6 +46,15 @@
   --color-border-subtle:       rgba(124, 158, 248, 0.12);
 }
 
+/* The app is a pinned shell (navbar + sidebar + internal scroll pane), so the
+   document itself must never scroll — otherwise wheel events that chain out of
+   a nested scroll area (e.g. the sidebar) drag the whole shell off screen. */
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);

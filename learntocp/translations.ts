@@ -386,3 +386,64 @@ export const notFoundMessages = {
 export function getNotFoundMessages(locale: string) {
   return notFoundMessages[locale as Locale] ?? notFoundMessages.en
 }
+
+export const aboutMessages = {
+  en: {
+    eyebrow: 'About Us',
+    title: 'About LearnToCP',
+    lede: 'LearnToCP is a free way to learn Competitive Programming, that focuses more on intuition and logic than pure math. It is made with the goal of teaching high school students how to go from beginners, to Olympiad contenders by providing both the theory and the problems in one platform! ',
+    goalLabel: 'Goals',
+    goals: [
+      {
+        title: 'Free theory lessons',
+        description:
+          'Long-form lessons on algorithms, data structures and ways of thinking.',
+      },
+      {
+        title: 'A structured roadmap',
+        description:
+          'An ordered roadmap that clearly tells you what to focus on, and when.',
+      },
+      {
+        title: 'Hand-picked problems',
+        description:
+          'Curated problems that both teach basics, and test logic the harder they get',
+      },
+      {
+        title: '100% free, forever',
+        description:
+          `No paywalls, no locked chapters, no ads. Learning CP shouldn't cost anything.`,
+      },
+    ],
+    developerLabel: 'The Developer',
+    developerName: 'Dušan Kovačević',
+    developerHandle: '@ZippyBagi · solo developer',
+    developerNote:
+      `My name is Dušan Kovačević and I'm a 17 year old high school student from Serbia. I built this website for two reasons. The first is to share my knowledge and inspire more people to get into competitive programming. And the second is to prepare for future competitions. My future goals are to improve this website, get to an Olympiad level competiton (SIO, maybe even IIO if I train hard enough), and get into MIT.`,
+    emailCopied: 'Copied!',
+    emailCopyAria: 'Copy e-mail address to clipboard',
+  },
+  sr: {
+    eyebrow: 'O Nama',
+    title: 'O LearnToCP-u',
+    lede: 'LearnToCP je besplatana platforma za učenje takmičarskog programiranja, koja stavlja fokus na razvijanje intuicije i logičkog razmišljanja više nego na čistu matematiku. Sajt je napravljen sa ciljem da srednjoškolcima pomogne da od potpunih početnika postanu kandidati za uspeh na informatičkim olimpijadama, pružajući na jednom mestu i teoriju i probleme.',
+    goalLabel: 'Ciljevi',
+    goals: [
+      { title: 'Besplatne lekcije iz teorije', description: 'Detaljne lekcije o algoritmima, strukturama podataka i načinima razmišljanja.', },
+      { title: 'Jasno organizovan put učenja', description: 'Road-mapa koja ti jasno pokazuje tačno šta treba da učiš, i kada', },
+      { title: 'Pažljivo odabrani zadaci', description: 'Pažljivo odabrani zadaci koji te uče osnovama, a zatim sve više testiraju tvoju logiku kako postaju teži.', },
+      { title: '100% besplatno, zauvek', description: 'Bez paywall-ova, zaključanih poglavlja i reklama. Znaje bi trebalo da bude besplatno', },
+    ],
+    developerLabel: 'Autor',
+    developerName: 'Dušan Kovačević',
+    developerHandle: '@ZippyBagi · samostalni programer',
+    developerNote:
+      'Ja sam Dušan Kovačević, imam 17 godina i napravio sam ovaj sajt iz dva razloga. Prvi je da zainteresujem više ljudi da se bave takmičarskim programiranjem. A drugi da vežbam teoriju i zadatke za buduća takmičenja. Moji ciljevi su da nastavim da unapređujem ovaj sajt, dođem do SIO-a (možda i dalje ako budem imao sreće) i da upišem MIT fakultet u Americi.',
+    emailCopied: 'Copied!',
+    emailCopyAria: 'Copy e-mail adress',
+  },
+} as const
+
+export function getAboutMessages(locale: string) {
+  return aboutMessages[locale as Locale] ?? aboutMessages.en
+}

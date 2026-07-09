@@ -45,15 +45,18 @@ export default function LayoutShell({ children, containers }: LayoutShellProps) 
 
   return (
     <NavigationContext.Provider value={contextValue}>
-      <div className="flex flex-col h-screen w-screen">
+      {/* overflow-hidden pins the shell: the document itself can never
+          scroll, so the navbar/sidebar always stay in view — all scrolling
+          happens inside the content pane below. */}
+      <div className="flex h-screen w-screen flex-col overflow-hidden">
         <Navbar setSideBarActiveFunction={() => setSideBarActive((prev) => !prev)} />
-        <div className="flex flex-1 min-h-0">
+        <div className="flex min-h-0 flex-1">
           {/* Suspense: SideBarButton reads useSearchParams (for the login
               `next` highlight), which requires a boundary during prerender. */}
           <Suspense fallback={null}>
             <SideBar toggled={sideBarActive} containers={containers} />
           </Suspense>
-          <div className="p-3 flex-1 overflow-auto">
+          <div className="min-w-0 flex-1 overflow-auto overscroll-contain p-3">
             {showingLessonSkeleton ? <LessonSkeleton /> : children}
           </div>
         </div>
