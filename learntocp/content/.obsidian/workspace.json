@@ -11,10 +11,14 @@
             "id": "53b488337544ba2c",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "problems/polish-national-flag/description-en.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "description-en"
             }
           }
         ]
@@ -181,6 +185,11 @@
   },
   "active": "53b488337544ba2c",
   "lastOpenFiles": [
+    "problems/polish-national-flag/description-sr.md",
+    "problems/polish-national-flag/problem.json",
+    "problems/polish-national-flag/description-en.md",
+    "sr/LessonsMD/04 Matematika/00 Binary Exponentiation.md",
+    "en/LessonsMD/04 Math/00 Binary Exponentiation.md",
     "roadmap_data/L4/00 Test 1/meta.json",
     "roadmap_data/L4/00 Test 1/init.py",
     "roadmap_data/L4/00 Test 1",
@@ -191,12 +200,8 @@
     "roadmap_data/L2/00 Math I/meta.json",
     "roadmap_data/L2/00 Math I",
     "roadmap_data/L1/02 Binary Numbers/02 Bitwise Operations.md",
-    "roadmap_data/L1/02 Binary Numbers/meta.json",
     "roadmap_data/L1/02 Binary Numbers/01 Numbers in Code.md",
     "roadmap_data/L1/02 Binary Numbers/00 Binary Numbers.md",
-    "roadmap_data/L1/02 Binary Numbers",
-    "problems/polish-national-flag/description-en.md",
-    "problems/polish-national-flag/description-sr.md",
     "problems/polish-national-flag/solution-sr.md",
     "problems/polish-national-flag/solution-en.md",
     "problems/number-of-minesweeper-bombs/solution-sr.md",
@@ -221,8 +226,6 @@
     "sr/LessonsMD/03 Binarni Brojevi/02 Operacije nad Bitovima.md",
     "en/LessonsMD/03 Binary Numbers/02 Bitwise Operations.md",
     "sr/LessonsMD/03 Binarni Brojevi/01 Brojevi u kodu.md",
-    "en/LessonsMD/03 Binary Numbers/01 Numbers in code.md",
-    "sr/LessonsMD/03 Binarni Brojevi/00 Binarni Brojevi.md",
     "images/1_5ZLci3SuR0zM_QlZOADv8Q-1558881035.jpg",
     "Couning Sort.jpg"
   ]

@@ -46,15 +46,13 @@ int main(){
     long long ans = 1;
 
     while(b > 0){
-
-        if(b % 2 == 0){ // this tells us if b is even
-            a = a*a;
-            b = b/2;
-        }else{
+        if(b % 2 == 1){
             ans = ans * a;
-            b = b-1;
         }
+        a = a * a;
+        b /= 2;
     }
+    return ans;
 
     cout<<ans;
 

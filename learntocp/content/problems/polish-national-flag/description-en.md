@@ -16,14 +16,20 @@ For each testcase output an array of size $n$, that is ordered as described
 ## Example
 
 ```Input
-
+1
+5 3
+1 2 4 4 100
 ```
 
 ```Output
-
+1 2 100 4 4
 ```
 
-Note that this is just one of the possible outputs
+Note that this is just one of the possible outputs, this is also valid
+
+```Output
+1 2 4 4 100
+```
 ## Constraints
 
 $0 \le a[i] \le 10^9$, where $ 0\le i < n$

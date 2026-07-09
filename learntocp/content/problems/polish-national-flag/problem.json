@@ -15,7 +15,7 @@
   "inputSource": "stdin",
   "outputSource": "stdout",
   "note": {
-    "en": "",
-    "sr": ""
+    "en": "Sorting is too slow for this problem",
+    "sr": "Sortiranje niza je presporo za ovaj problem"
   }
 }
