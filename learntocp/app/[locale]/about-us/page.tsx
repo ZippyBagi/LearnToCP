@@ -24,13 +24,16 @@ export async function generateMetadata({
 function Eyebrow({
   children,
   className = "",
+  style,
 }: {
   children: React.ReactNode;
   className?: string;
+  style?: React.CSSProperties;
 }) {
   return (
     <div
       className={`text-xs font-semibold uppercase tracking-[0.18em] text-text-muted ${className}`}
+      style={style}
     >
       {children}
     </div>
@@ -48,14 +51,24 @@ export default async function Page({ params }: PageProps) {
     // Plain flowing content, like the Theory/Problems pages — the layout
     // shell's scroll pane handles all scrolling.
     <main className="mx-auto max-w-6xl px-10 pb-[88px] pt-[72px]">
-      <Eyebrow>{t.eyebrow}</Eyebrow>
-      <h1 className="mt-2.5 text-[40px] font-extrabold tracking-[-0.02em] text-text-heading">
+      <Eyebrow className="pop-in">{t.eyebrow}</Eyebrow>
+      <h1
+        className="pop-in mt-2.5 text-[40px] font-extrabold tracking-[-0.02em] text-text-heading"
+        style={{ animationDelay: "60ms" }}
+      >
         {t.title}
       </h1>
-      <p className="mt-[18px] text-lg leading-[1.8]">{t.lede}</p>
+      <p className="pop-in mt-[18px] text-lg leading-[1.8]" style={{ animationDelay: "120ms" }}>
+        {t.lede}
+      </p>
 
-      <Eyebrow className="mt-12">{t.goalLabel}</Eyebrow>
-      <section className="mt-5 flex flex-col gap-[22px]">
+      <Eyebrow className="pop-in mt-12" style={{ animationDelay: "180ms" }}>
+        {t.goalLabel}
+      </Eyebrow>
+      <section
+        className="pop-in mt-5 flex flex-col gap-[22px]"
+        style={{ animationDelay: "240ms" }}
+      >
         {t.goals.map((goal) => (
           <div key={goal.title} className="flex items-start gap-3.5">
             <span className="mt-px flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-success/45 bg-success/10 font-mono text-xs text-success">
@@ -73,10 +86,15 @@ export default async function Page({ params }: PageProps) {
         ))}
       </section>
 
-      <hr className="my-11 border-0 border-t border-border-subtle" />
+      <hr
+        className="pop-in my-11 border-0 border-t border-border-subtle"
+        style={{ animationDelay: "300ms" }}
+      />
 
-      <Eyebrow>{t.developerLabel}</Eyebrow>
-      <div className="mt-5 flex items-center gap-4">
+      <Eyebrow className="pop-in" style={{ animationDelay: "300ms" }}>
+        {t.developerLabel}
+      </Eyebrow>
+      <div className="pop-in mt-5 flex items-center gap-4" style={{ animationDelay: "360ms" }}>
         <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-accent-border-hover bg-accent/10 text-[19px] font-bold text-accent">
           DK
         </span>
@@ -89,9 +107,15 @@ export default async function Page({ params }: PageProps) {
           </div>
         </div>
       </div>
-      <p className="mt-4 text-[15.5px] leading-[1.75]">{t.developerNote}</p>
+      <p className="pop-in mt-4 text-[15.5px] leading-[1.75]" style={{ animationDelay: "420ms" }}>
+        {t.developerNote}
+      </p>
 
-      <nav className="mt-6 flex flex-wrap gap-3" aria-label="Developer links">
+      <nav
+        className="pop-in mt-6 flex flex-wrap gap-3"
+        style={{ animationDelay: "480ms" }}
+        aria-label="Developer links"
+      >
         <a
           href="https://github.com/ZippyBagi"
           target="_blank"

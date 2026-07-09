@@ -391,7 +391,7 @@ export const aboutMessages = {
   en: {
     eyebrow: 'About Us',
     title: 'About LearnToCP',
-    lede: 'LearnToCP is a free way to learn Competitive Programming, that focuses more on intuition and logic than pure math. It is made with the goal of teaching high school students how to go from beginners, to Olympiad contenders by providing both the theory and the problems in one platform! ',
+    lede: 'LearnToCP is a free way to learn Competitive Programming, that focuses more on intuition and logic than pure math. It is made with the goal of teaching high school students how to go from beginners, to serious contestants by providing both the theory and the problems in one platform! ',
     goalLabel: 'Goals',
     goals: [
       {
@@ -426,7 +426,7 @@ export const aboutMessages = {
   sr: {
     eyebrow: 'O Nama',
     title: 'O LearnToCP-u',
-    lede: 'LearnToCP je besplatana platforma za učenje takmičarskog programiranja, koja stavlja fokus na razvijanje intuicije i logičkog razmišljanja više nego na čistu matematiku. Sajt je napravljen sa ciljem da srednjoškolcima pomogne da od potpunih početnika postanu kandidati za uspeh na informatičkim olimpijadama, pružajući na jednom mestu i teoriju i probleme.',
+    lede: 'LearnToCP je besplatana platforma za učenje takmičarskog programiranja, koja stavlja fokus na razvijanje intuicije i logičkog razmišljanja više nego na čistu matematiku. Sajt je napravljen sa ciljem da srednjoškolcima pomogne da od potpunih početnika postanu kandidati za uspeh na takmičenjima, pružajući na jednom mestu i teoriju i probleme.',
     goalLabel: 'Ciljevi',
     goals: [
       { title: 'Besplatne lekcije iz teorije', description: 'Detaljne lekcije o algoritmima, strukturama podataka i načinima razmišljanja.', },
