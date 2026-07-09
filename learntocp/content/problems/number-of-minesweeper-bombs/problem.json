@@ -8,8 +8,8 @@
   "difficulty": "Super Easy",
   "number": 2,
   "topic": {
-    "en": "Matrix",
-    "sr": "Matrice"
+    "en": "Implementation",
+    "sr": "Implementacija"
   },
   "tags": ["matrix"],
   "inputSource": "stdin",
