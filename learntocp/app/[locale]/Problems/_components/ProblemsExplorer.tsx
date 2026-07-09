@@ -205,13 +205,13 @@ export default function ProblemsExplorer({
       {problems.length === 0 ? (
         <EmptyState title={t.noProblems} />
       ) : filtered.length === 0 ? (
-        <div className="pop-in" style={{ animationDelay: "190ms" }}>
+        <div className="pop-in" style={{ animationDelay: "180ms" }}>
           <EmptyState title={t.emptyTitle} body={t.emptyBody} />
         </div>
       ) : (
         <div
           className="pop-in overflow-hidden rounded-xl border border-border-subtle bg-bg-surface"
-          style={{ animationDelay: "190ms" }}
+          style={{ animationDelay: "180ms" }}
         >
           {/* Column header */}
           <div

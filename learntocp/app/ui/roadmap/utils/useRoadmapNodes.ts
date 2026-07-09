@@ -12,7 +12,7 @@ const gap_x = 350;
    chain runs down the graph: edges draw into a connector, the connector pops
    the moment the stroke reaches it, and the edges below continue on. */
 export const POP_DURATION = 420;        // matches .pop-in in globals.css
-export const LAYER_STAGGER = 190;        // delay between node layers popping in
+export const LAYER_STAGGER = 60;         // delay between node layers popping in (synced with home/problems 60ms stagger)
 export const EDGE_DRAW_DURATION = 150;  // matches ltcp-edge-draw in globals.css
 // The stroke visually reaches its target well before the animation ends:
 // the dash (400) is longer than the paths and ease-out front-loads the draw.
