@@ -64,15 +64,24 @@ export async function generateStaticParams({
 export const dynamicParams = false;
 export const revalidate = false;
 
+/** Shared between generateMetadata and the JSON-LD block so the meta
+ *  description and structured-data description never drift apart. */
+function lessonDescription(
+  locale: string,
+  lessonTitle: string,
+  folderTitle: string,
+): string {
+  return locale === "sr"
+    ? `Lekcija „${lessonTitle}” iz oblasti ${folderTitle} - takmičarsko programiranje na LearnToCP.`
+    : `Learn ${lessonTitle} in the ${folderTitle} track - a competitive-programming lecture on LearnToCP.`;
+}
+
 export async function generateMetadata({ params }: PageProps) {
   const { locale, folder, lesson } = await params;
   const lessonTitle = safeDecode(lesson);
   const folderTitle = safeDecode(folder);
 
-  const description =
-    locale === "sr"
-      ? `Lekcija „${lessonTitle}” iz oblasti ${folderTitle} - takmičarsko programiranje na LearnToCP.`
-      : `Learn ${lessonTitle} in the ${folderTitle} track - a competitive-programming lecture on LearnToCP.`;
+  const description = lessonDescription(locale, lessonTitle, folderTitle);
 
   return pageMetadata({
     locale,
@@ -130,18 +139,69 @@ async function LessonContent({ paramsPromise }: { paramsPromise: ParamsPromise }
     locale,
     `Theory/${encodeURIComponent(folderDecoded)}/${encodeURIComponent(lessonDecoded)}`,
   )}`;
+
+  // Real content date from the markdown file - an honest dateModified signal.
+  let dateModified: string | undefined;
+  try {
+    dateModified = fs.statSync(filePath).mtime.toISOString();
+  } catch {
+    /* omit when unavailable */
+  }
+
+  // Matches the Organization published on the home page (same @id), so
+  // Google can merge the two into a single entity.
+  const organization = {
+    "@type": "EducationalOrganization",
+    "@id": `${SITE_URL}/#organization`,
+    name: SITE_NAME,
+    url: `${SITE_URL}/`,
+    logo: `${SITE_URL}/icon.svg`,
+  };
+
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "LearningResource",
-    name: `${lessonDecoded} - ${folderDecoded}`,
-    headline: lessonDecoded,
-    url: lessonUrl,
-    inLanguage: locale,
-    learningResourceType: "Lecture",
-    educationalLevel: folderDecoded,
-    about: folderDecoded,
-    isAccessibleForFree: true,
-    provider: { "@type": "EducationalOrganization", name: SITE_NAME, url: `${SITE_URL}/` },
+    "@graph": [
+      {
+        // Dual-typed: TechArticle drives Article rich results; LearningResource
+        // describes the educational nature of the page.
+        "@type": ["TechArticle", "LearningResource"],
+        "@id": `${lessonUrl}#article`,
+        name: `${lessonDecoded} - ${folderDecoded}`,
+        headline: lessonDecoded,
+        description: lessonDescription(locale, lessonDecoded, folderDecoded),
+        url: lessonUrl,
+        mainEntityOfPage: lessonUrl,
+        inLanguage: locale,
+        learningResourceType: "Lecture",
+        about: folderDecoded,
+        isAccessibleForFree: true,
+        ...(dateModified ? { dateModified } : {}),
+        author: organization,
+        publisher: organization,
+        provider: organization,
+      },
+      {
+        // Folder pages don't exist as routes, so the trail is Home -> lesson.
+        // Google only requires `item` on non-final crumbs, and the final crumb
+        // is this page. If folder index pages are ever added, insert a middle
+        // crumb pointing at them.
+        "@type": "BreadcrumbList",
+        "@id": `${lessonUrl}#breadcrumb`,
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: SITE_NAME,
+            item: `${SITE_URL}${localizedPath(locale)}`,
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: `${folderDecoded}: ${lessonDecoded}`,
+          },
+        ],
+      },
+    ],
   };
 
   return (
