@@ -1,5 +1,6 @@
 import { ImageResponse } from "next/og";
 import { getHomeMessages } from "@/translations";
+import { SITE_URL } from "@/app/utils/seo";
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
@@ -14,8 +15,9 @@ export default async function OpengraphImage({
   const { tagline } = getHomeMessages(locale);
 
   // Satori needs an absolute URL to fetch the image from your public folder.
-  // Make sure NEXT_PUBLIC_SITE_URL is defined in your environment variables!
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://learn-to-cp.vercel.app";
+  // SITE_URL already resolves NEXT_PUBLIC_SITE_URL with the canonical domain
+  // as fallback, keeping this consistent with the rest of the SEO config.
+  const siteUrl = SITE_URL;
 
   return new ImageResponse(
     (

@@ -5,7 +5,6 @@ import { locales } from "@/translations";
 import { SITE_URL, localizedPath, DEFAULT_LOCALE } from "@/app/utils/seo";
 import { getLessonsRoot } from "@/app/utils/getLessonRoot";
 import { stripOrderPrefix } from "@/app/utils/generateSidebarContainers";
-import { listProblems } from "@/app/judge0/problems";
 
 const abs = (p: string) => `${SITE_URL}${p}`;
 
@@ -17,20 +16,29 @@ function languagesFor(routePath: string): Record<string, string> {
   return languages;
 }
 
-/** Routes that exist identically under every locale. */
+/**
+ * Public routes that exist identically under every locale.
+ *
+ * Deliberately excluded:
+ * - "Problems", "Problems/[slug]", "roadmap": auth-gated in proxy.ts, so
+ *   Googlebot is redirected to /login. Listing URLs a crawler can't reach
+ *   generates Search Console errors and erodes sitemap trust. Re-add them
+ *   here if they ever become public.
+ * - "login": utility page with no search value; it is noindexed.
+ *
+ * `lastModified` is intentionally omitted: emitting `new Date()` on every
+ * build tells Google "everything changed" on each deploy, which trains it
+ * to ignore the field entirely.
+ */
 function staticEntries(): MetadataRoute.Sitemap {
   const routes: Array<{ path: string; priority: number }> = [
     { path: "", priority: 1.0 },
-    { path: "Problems", priority: 0.9 },
-    { path: "roadmap", priority: 0.8 },
     { path: "about-us", priority: 0.5 },
-    { path: "login", priority: 0.3 },
   ];
 
   return routes.flatMap(({ path: routePath, priority }) =>
     locales.map((locale) => ({
       url: abs(localizedPath(locale, routePath)),
-      lastModified: new Date(),
       changeFrequency: "weekly" as const,
       priority,
       alternates: { languages: languagesFor(routePath) },
@@ -62,16 +70,17 @@ function lessonEntries(): MetadataRoute.Sitemap {
         const displayLesson = stripOrderPrefix(path.basename(file.name, ".md"));
         const routePath = `Theory/${encodeURIComponent(displayFolder)}/${encodeURIComponent(displayLesson)}`;
 
-        let lastModified = new Date();
+        // Real file mtime - an honest lastmod signal, unlike `new Date()`.
+        let lastModified: Date | undefined;
         try {
           lastModified = fs.statSync(path.join(folderPath, file.name)).mtime;
         } catch {
-          /* fall back to now */
+          /* omit when unavailable */
         }
 
         entries.push({
           url: abs(localizedPath(locale, routePath)),
-          lastModified,
+          ...(lastModified ? { lastModified } : {}),
           changeFrequency: "monthly",
           priority: 0.7,
         });
@@ -82,20 +91,6 @@ function lessonEntries(): MetadataRoute.Sitemap {
   return entries;
 }
 
-/** Problem statements - slugs are shared across locales, so we add hreflang. */
-function problemEntries(): MetadataRoute.Sitemap {
-  return listProblems().flatMap((problem) => {
-    const routePath = `Problems/${encodeURIComponent(problem.slug)}`;
-    return locales.map((locale) => ({
-      url: abs(localizedPath(locale, routePath)),
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.6,
-      alternates: { languages: languagesFor(routePath) },
-    }));
-  });
-}
-
 export default function sitemap(): MetadataRoute.Sitemap {
-  return [...staticEntries(), ...lessonEntries(), ...problemEntries()];
+  return [...staticEntries(), ...lessonEntries()];
 }

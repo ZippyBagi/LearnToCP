@@ -18,6 +18,8 @@ export async function generateMetadata({
     path: "login",
     title: m.eyebrow,
     description: m.description,
+    // Utility page - keep it out of search results.
+    noindex: true,
   });
 }
 

@@ -73,6 +73,12 @@ type PageMetaOptions = {
   description: string;
   /** Optional override for the social-share title (defaults to `title`). */
   ogTitle?: string;
+  /**
+   * Set for pages search engines should not index: auth-gated pages
+   * (crawlers get redirected to /login anyway) and utility pages like the
+   * login form itself.
+   */
+  noindex?: boolean;
 };
 
 /**
@@ -81,13 +87,14 @@ type PageMetaOptions = {
  * `opengraph-image` convention, so it is intentionally omitted here.
  */
 export function pageMetadata(opts: PageMetaOptions): Metadata {
-  const { locale, path = "", title, description, ogTitle } = opts;
+  const { locale, path = "", title, description, ogTitle, noindex } = opts;
   const url = localizedPath(locale, path);
   const shareTitle = ogTitle ?? title;
 
   return {
     title,
     description,
+    ...(noindex ? { robots: { index: false, follow: false } } : {}),
     alternates: buildAlternates(locale, path),
     openGraph: {
       title: shareTitle,

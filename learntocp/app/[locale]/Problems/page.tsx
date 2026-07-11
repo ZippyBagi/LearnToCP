@@ -30,6 +30,9 @@ export async function generateMetadata({
     path: "Problems",
     title: messages.title,
     description: messages.subtitle(total,solved.size),
+    // Auth-gated (proxy.ts redirects crawlers to /login) - don't index.
+    // Remove this once the page is public, and re-add it to sitemap.ts.
+    noindex: true,
   });
 }
 

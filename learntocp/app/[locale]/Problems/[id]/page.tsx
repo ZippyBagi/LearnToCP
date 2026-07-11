@@ -40,6 +40,9 @@ export async function generateMetadata({ params }: ProblemPageProps) {
     path: `Problems/${encodeURIComponent(slug)}`,
     title,
     description,
+    // Auth-gated (proxy.ts redirects crawlers to /login) - don't index.
+    // Remove this once problems are public, and re-add them to sitemap.ts.
+    noindex: true,
   });
 }
 

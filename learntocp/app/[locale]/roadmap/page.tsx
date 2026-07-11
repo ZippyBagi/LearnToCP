@@ -17,6 +17,9 @@ export async function generateMetadata({
     path: "roadmap",
     title: map.title,
     description: map.description,
+    // Auth-gated (proxy.ts redirects crawlers to /login) - don't index.
+    // Remove this once the page is public, and re-add it to sitemap.ts.
+    noindex: true,
   });
 }
 
