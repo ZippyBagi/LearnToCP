@@ -119,6 +119,9 @@ interface ProblemMessages {
   revealBody: string
   keepTrying: string
   revealConfirm: string
+  // signed-out call-to-action shown in place of the submit panel
+  signInPrompt: string
+  signInAction: string
   // submit panel
   submitTitle: string
   pasteLabel: string
@@ -169,6 +172,8 @@ export const problemMessages: Record<'en' | 'sr', ProblemMessages> = {
       "You haven't solved this problem yet. Viewing the solution will spoil the solution. Are you sure you want to continue?",
     keepTrying: 'Keep trying',
     revealConfirm: 'Reveal solution',
+    signInPrompt: 'Sign in to submit your solution and track your progress.',
+    signInAction: 'Sign in to submit',
     submitTitle: 'Submit your solution',
     pasteLabel: 'Paste your code below',
     editorPlaceholder: '// Paste your full C++ solution here…',
@@ -228,6 +233,8 @@ export const problemMessages: Record<'en' | 'sr', ProblemMessages> = {
       'Još uvek niste rešili ovaj zadatak. Otvaranje rešenja će otkriti odgovor. Da li ste sigurni da želite da nastavite?',
     keepTrying: 'Nazad',
     revealConfirm: 'Otkri rešenje',
+    signInPrompt: 'Prijavi se da pošalješ rešenje i pratiš svoj napredak.',
+    signInAction: 'Prijavi se',
     submitTitle: 'Pošalji svoje rešenje',
     pasteLabel: 'Paste-uj svoj kod ispod',
     editorPlaceholder: '// Paste-uj svoje kompletno C++ rešenje ovde…',
@@ -280,6 +287,7 @@ interface ProblemListMessages {
   title: string
   subtitle: (total: number, solved: number) => string
   solvedSuffix: string
+  signInToTrack: string
   searchPlaceholder: string
   allDifficulties: string
   allTopics: string
@@ -309,6 +317,7 @@ export const problemListMessages: Record<'en' | 'sr', ProblemListMessages> = {
     title: 'Problems',
     subtitle: (total) => `Sharpen your skills on ${total} curated problem${total === 1 ? '' : 's'}`,
     solvedSuffix: 'solved',
+    signInToTrack: 'Sign in to track your progress',
     searchPlaceholder: 'Search problems, topics or tags…',
     allDifficulties: 'All difficulties',
     allTopics: 'All topics',
@@ -337,6 +346,7 @@ export const problemListMessages: Record<'en' | 'sr', ProblemListMessages> = {
     subtitle: (total) =>
       `Provežbaj ${total} ${srPlural(total, 'odabran problem', 'odabrana problema', 'odabraih problema')}`,
     solvedSuffix: 'rešeno',
+    signInToTrack: 'Prijavi se da pratiš svoj napredak',
     searchPlaceholder: 'Pretraži probleme, teme ili tagove…',
     allDifficulties: 'Sve težine',
     allTopics: 'Sve teme',

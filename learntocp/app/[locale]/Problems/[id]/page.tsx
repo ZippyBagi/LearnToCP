@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { requireAuth } from "@/app/utils/requireAuth";
+import { isAuthenticated } from "@/app/utils/requireAuth";
 import markdownToHtml from "@/app/utils/mdToHTML";
 import {
   getProblem,
@@ -40,15 +40,12 @@ export async function generateMetadata({ params }: ProblemPageProps) {
     path: `Problems/${encodeURIComponent(slug)}`,
     title,
     description,
-    // Auth-gated (proxy.ts redirects crawlers to /login) - don't index.
-    // Remove this once problems are public, and re-add them to sitemap.ts.
-    noindex: true,
   });
 }
 
 export default async function ProblemPage({ params }: ProblemPageProps) {
   const { locale, id } = await params;
-  await requireAuth(locale, `/${locale}/Problems/${encodeURIComponent(id)}`);
+  const isAuthed = await isAuthenticated();
 
   const slug = safeDecode(id);
 
@@ -69,7 +66,7 @@ export default async function ProblemPage({ params }: ProblemPageProps) {
     ? await markdownToHtml(solutionMd, title, { includeTitle: false })
     : null;
 
-  const solved = await hasSolvedProblem(slug);
+  const solved = isAuthed ? await hasSolvedProblem(slug) : false;
 
   const meta = {
     title,
@@ -90,6 +87,7 @@ export default async function ProblemPage({ params }: ProblemPageProps) {
       statementHtml={statementHtml}
       solutionHtml={solutionHtml}
       solved={solved}
+      isAuthed={isAuthed}
     />
   );
 }

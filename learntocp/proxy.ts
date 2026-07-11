@@ -5,7 +5,10 @@ import { updateSession } from '@/app/supabase/proxy'
 const locales = ['en', 'sr']
 const defaultLocale = 'en'
 
-const protectedSegments = ['roadmap', 'problems']
+// Pages are public so search engines can crawl them; auth is enforced on
+// write paths instead (submission API routes, roadmap progress writes via
+// RLS). Add a segment here only if a whole route tree must be login-only.
+const protectedSegments: string[] = []
 
 function getLocale(request: NextRequest) {
   const cookieLocale = request.cookies.get('NEXT_LOCALE')?.value

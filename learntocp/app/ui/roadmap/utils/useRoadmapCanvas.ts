@@ -18,17 +18,16 @@ export function useRoadmapCanvas(
   matrix: RoadmapMatrix,
   initialCompleted: string[],
   solvedSlugs: string[],
+  loginUrl: string | null = null,
 ) {
   const supabase = useMemo(() => createClient(), []);
   const [completed, setCompleted] = useState<Set<string>>(
     () => new Set(initialCompleted),
   );
-  // Solved problems are read-only — sourced from judged submissions, never toggled here.
+
   const solved = useMemo(() => new Set(solvedSlugs), [solvedSlugs]);
   const [modal, setModal] = useState<ModalTarget | null>(null);
 
-  // A theory item is "done" when the user has checked it; a problem item is
-  // "done" only when its slug appears in the solved set.
   const isItemDone = useCallback(
     (node: RoadmapNode, item: RoadmapItem): boolean =>
       item.type === "problem"
@@ -57,8 +56,13 @@ export function useRoadmapCanvas(
       const node = matrix[li]?.[ni];
       const item = node?.items[itemIdx];
       if (!node || !item) return;
-      // Problems are completed by solving them, not by toggling — ignore.
+
       if (item.type === "problem") return;
+
+      if (loginUrl) {
+        window.location.assign(loginUrl);
+        return;
+      }
 
       const key = itemKey(node.id, item.id);
       const checking = !completed.has(key);
@@ -88,7 +92,7 @@ export function useRoadmapCanvas(
         }
       });
     },
-    [matrix, completed, supabase],
+    [matrix, completed, supabase, loginUrl],
   );
 
   const modalNode =

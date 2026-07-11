@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { requireAuth } from "@/app/utils/requireAuth";
+import { isAuthenticated } from "@/app/utils/requireAuth";
 import {
   listProblems,
   getProblemTitle,
@@ -23,22 +23,18 @@ export async function generateMetadata({
 }: ProblemsPageProps): Promise<Metadata> {
   const { locale } = await params;
   const total = listProblems().length;
-  const solved = await getSolvedProblemSlugs();
   const messages = getProblemListMessages(locale);
   return pageMetadata({
     locale,
     path: "Problems",
     title: messages.title,
-    description: messages.subtitle(total,solved.size),
-    // Auth-gated (proxy.ts redirects crawlers to /login) - don't index.
-    // Remove this once the page is public, and re-add it to sitemap.ts.
-    noindex: true,
+    description: messages.subtitle(total, 0),
   });
 }
 
 export default async function ProblemsPage({ params }: ProblemsPageProps) {
   const { locale } = await params;
-  await requireAuth(locale, `/${locale}/Problems`);
+  const isAuthed = await isAuthenticated();
 
   // Ordered hardest-last by display number; nulls (un-numbered) sort to the end.
   const problems = listProblems().sort((a, b) => {
@@ -50,10 +46,8 @@ export default async function ProblemsPage({ params }: ProblemsPageProps) {
 
   const slugs = problems.map((p) => p.slug);
 
-  // The signed-in user's solved set + community acceptance stats. Both are
-  // independent reads, so run them concurrently.
   const [solved, acceptance] = await Promise.all([
-    getSolvedProblemSlugs(),
+    isAuthed ? getSolvedProblemSlugs() : Promise.resolve(new Set<string>()),
     getAcceptanceStats(slugs),
   ]);
 
@@ -68,5 +62,5 @@ export default async function ProblemsPage({ params }: ProblemsPageProps) {
     acceptance: acceptance.get(p.slug)?.rate ?? null,
   }));
 
-  return <ProblemsExplorer locale={locale} problems={items} />;
+  return <ProblemsExplorer locale={locale} problems={items} isAuthed={isAuthed} />;
 }

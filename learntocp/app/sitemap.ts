@@ -5,6 +5,7 @@ import { locales } from "@/translations";
 import { SITE_URL, localizedPath, DEFAULT_LOCALE } from "@/app/utils/seo";
 import { getLessonsRoot } from "@/app/utils/getLessonRoot";
 import { stripOrderPrefix } from "@/app/utils/generateSidebarContainers";
+import { listProblems } from "@/app/judge0/problems";
 
 const abs = (p: string) => `${SITE_URL}${p}`;
 
@@ -19,12 +20,8 @@ function languagesFor(routePath: string): Record<string, string> {
 /**
  * Public routes that exist identically under every locale.
  *
- * Deliberately excluded:
- * - "Problems", "Problems/[slug]", "roadmap": auth-gated in proxy.ts, so
- *   Googlebot is redirected to /login. Listing URLs a crawler can't reach
- *   generates Search Console errors and erodes sitemap trust. Re-add them
- *   here if they ever become public.
- * - "login": utility page with no search value; it is noindexed.
+ * "login" is deliberately excluded: a utility page with no search value
+ * (it is noindexed).
  *
  * `lastModified` is intentionally omitted: emitting `new Date()` on every
  * build tells Google "everything changed" on each deploy, which trains it
@@ -33,6 +30,8 @@ function languagesFor(routePath: string): Record<string, string> {
 function staticEntries(): MetadataRoute.Sitemap {
   const routes: Array<{ path: string; priority: number }> = [
     { path: "", priority: 1.0 },
+    { path: "Problems", priority: 0.9 },
+    { path: "roadmap", priority: 0.8 },
     { path: "about-us", priority: 0.5 },
   ];
 
@@ -91,6 +90,19 @@ function lessonEntries(): MetadataRoute.Sitemap {
   return entries;
 }
 
+/** Problem statements - slugs are shared across locales, so we add hreflang. */
+function problemEntries(): MetadataRoute.Sitemap {
+  return listProblems().flatMap((problem) => {
+    const routePath = `Problems/${encodeURIComponent(problem.slug)}`;
+    return locales.map((locale) => ({
+      url: abs(localizedPath(locale, routePath)),
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+      alternates: { languages: languagesFor(routePath) },
+    }));
+  });
+}
+
 export default function sitemap(): MetadataRoute.Sitemap {
-  return [...staticEntries(), ...lessonEntries()];
+  return [...staticEntries(), ...lessonEntries(), ...problemEntries()];
 }

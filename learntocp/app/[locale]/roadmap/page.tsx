@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { RoadmapCanvas } from "@/app/ui/roadmap/RoadmapCanvas";
 import { getRoadmapMatrix } from "@/app/utils/getRoadmapMatrix";
-import { requireAuth } from "@/app/utils/requireAuth";
+import { isAuthenticated } from "@/app/utils/requireAuth";
 import { getCompletedItemIds } from "@/app/utils/getRoadmapProgress";
 import { getSolvedProblemSlugs } from "@/app/judge0/progress";
 import { getHomeMessages } from "@/translations";
@@ -17,9 +17,6 @@ export async function generateMetadata({
     path: "roadmap",
     title: map.title,
     description: map.description,
-    // Auth-gated (proxy.ts redirects crawlers to /login) - don't index.
-    // Remove this once the page is public, and re-add it to sitemap.ts.
-    noindex: true,
   });
 }
 
@@ -28,17 +25,13 @@ interface RoadmapPageProps {
 }
 
 export default async function RoadmapPage({ params }: RoadmapPageProps) {
-
-  const {locale} = await params
-  await requireAuth(locale, `/${locale}/roadmap`);
+  const { locale } = await params;
+  const isAuthed = await isAuthenticated();
 
   const matrix = getRoadmapMatrix(locale);
-  // Theory progress (user-toggled) and solved problems (read-only) are
-  // independent reads — fetch concurrently.
-  const [completedIds, solvedSlugs] = await Promise.all([
-    getCompletedItemIds(),
-    getSolvedProblemSlugs(),
-  ]);
+  const [completedIds, solvedSlugs] = isAuthed
+    ? await Promise.all([getCompletedItemIds(), getSolvedProblemSlugs()])
+    : [[], new Set<string>()];
 
   return (
     <main className="min-h-fill bg-[var(--color-bg-page)] px-4 py-4">
@@ -47,6 +40,11 @@ export default async function RoadmapPage({ params }: RoadmapPageProps) {
           matrix={matrix}
           initialCompleted={completedIds}
           solvedSlugs={[...solvedSlugs]}
+          loginUrl={
+            isAuthed
+              ? null
+              : `/${locale}/login?next=${encodeURIComponent(`/${locale}/roadmap`)}`
+          }
         />
       </section>
     </main>

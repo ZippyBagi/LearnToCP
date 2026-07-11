@@ -17,3 +17,14 @@ export async function requireAuth(locale: string, next: string) {
     redirect(`/${locale}/login?next=${encodeURIComponent(next)}`);
   }
 }
+
+/**
+ * Non-redirecting variant for public pages that adapt their UI to auth
+ * state (e.g. Problems/roadmap render for everyone, but progress tracking
+ * and submissions require sign-in).
+ */
+export async function isAuthenticated(): Promise<boolean> {
+  const supabase = await createClient();
+  const { data } = await supabase.auth.getClaims();
+  return !!data?.claims;
+}

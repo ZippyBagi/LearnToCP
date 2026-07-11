@@ -37,6 +37,8 @@ export interface ProblemListItem {
 interface ProblemsExplorerProps {
   locale: string;
   problems: ProblemListItem[];
+  /** Signed-out visitors see the list without personal progress UI. */
+  isAuthed: boolean;
 }
 
 const PAGE_SIZE = 5;
@@ -64,6 +66,7 @@ type StatusFilter = "all" | "solved" | "unsolved";
 export default function ProblemsExplorer({
   locale,
   problems,
+  isAuthed,
 }: ProblemsExplorerProps) {
   const t = getProblemListMessages(locale);
   const difficultyLabels = getProblemMessages(locale).difficulty;
@@ -145,9 +148,18 @@ export default function ProblemsExplorer({
         <p className="mt-2 text-[15px] text-text-muted">
           {t.subtitle(problems.length, solvedCount)}
           {" · "}
-          <span className="font-mono text-success">
-            {solvedCount} {t.solvedSuffix}
-          </span>
+          {isAuthed ? (
+            <span className="font-mono text-success">
+              {solvedCount} {t.solvedSuffix}
+            </span>
+          ) : (
+            <Link
+              href={`/${locale}/login?next=${encodeURIComponent(`/${locale}/Problems`)}`}
+              className="font-semibold text-accent hover:underline"
+            >
+              {t.signInToTrack}
+            </Link>
+          )}
         </p>
       </header>
 
@@ -177,15 +189,18 @@ export default function ProblemsExplorer({
           onChange={(v) => setDifficulty(v as "all" | Difficulty)}
           options={difficultyOptions}
         />
-        <SlidingSegmented
-          value={status}
-          onChange={setStatus}
-          options={[
-            { value: "all", label: t.statusAny },
-            { value: "solved", label: t.statusSolved },
-            { value: "unsolved", label: t.statusUnsolved },
-          ]}
-        />
+
+        {isAuthed && (
+          <SlidingSegmented
+            value={status}
+            onChange={setStatus}
+            options={[
+              { value: "all", label: t.statusAny },
+              { value: "solved", label: t.statusSolved },
+              { value: "unsolved", label: t.statusUnsolved },
+            ]}
+          />
+        )}
         {topicOptions.length > 1 && (
           <FilterSelect value={topic} onChange={setTopic} options={topicOptions} />
         )}
@@ -241,6 +256,7 @@ export default function ProblemsExplorer({
               noAttemptsTooltip={t.noAttemptsTooltip}
               solvedTooltip={t.solvedTooltip}
               unsolvedTooltip={t.unsolvedTooltip}
+              showStatus={isAuthed}
             />
           ))}
         </div>
@@ -294,6 +310,7 @@ function ProblemRow({
   noAttemptsTooltip,
   solvedTooltip,
   unsolvedTooltip,
+  showStatus,
 }: {
   locale: string;
   p: ProblemListItem;
@@ -304,6 +321,8 @@ function ProblemRow({
   noAttemptsTooltip: string;
   solvedTooltip: string;
   unsolvedTooltip: string;
+  /** Hide the personal solved/unsolved marker for signed-out visitors. */
+  showStatus: boolean;
 }) {
   const shownTags = p.tags.slice(0, MAX_VISIBLE_TAGS);
   const extra = p.tags.length - shownTags.length;
@@ -316,9 +335,9 @@ function ProblemRow({
         last ? "" : "border-b border-border-subtle"
       }`}
     >
-      {/* Status */}
+      {/* Status — empty cell (keeps grid alignment) when signed out */}
       <span className="justify-self-start">
-        {p.solved ? (
+        {!showStatus ? null : p.solved ? (
           <span
             title={solvedTooltip}
             className="flex size-6 items-center justify-center rounded-full border border-[rgba(80,250,123,0.4)] bg-[rgba(80,250,123,0.15)] text-success"

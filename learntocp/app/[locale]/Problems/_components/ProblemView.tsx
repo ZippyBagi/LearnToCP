@@ -6,6 +6,7 @@ import {
   DocumentTextIcon,
   LightBulbIcon,
   ExclamationTriangleIcon,
+  ArrowRightEndOnRectangleIcon,
 } from "@heroicons/react/24/outline";
 import SubmitPanel from "./SubmitPanel";
 import { getProblemMessages } from "@/translations";
@@ -29,6 +30,8 @@ interface ProblemViewProps {
   solutionHtml: string | null;
   /** Whether the signed-in user has already solved (AC'd) this problem. */
   solved: boolean;
+  /** Signed-out visitors see a sign-in CTA instead of the submit panel. */
+  isAuthed: boolean;
 }
 
 type Tab = "statement" | "solution";
@@ -48,6 +51,7 @@ export default function ProblemView({
   statementHtml,
   solutionHtml,
   solved,
+  isAuthed,
 }: ProblemViewProps) {
   const t = getProblemMessages(locale);
   const [tab, setTab] = useState<Tab>("statement");
@@ -157,7 +161,25 @@ export default function ProblemView({
             <p className="text-text-muted">{t.noStatement}</p>
           )}
 
-          <SubmitPanel problemId={problemId} locale={locale} time_limit={parseFloat(meta.timeLimitLabel)} memory_limit={parseInt(meta.memoryLabel)}/>
+          {isAuthed ? (
+            <SubmitPanel problemId={problemId} locale={locale} time_limit={parseFloat(meta.timeLimitLabel)} memory_limit={parseInt(meta.memoryLabel)}/>
+          ) : (
+            <section className="submit-panel">
+              <div className="submit-header">
+                <h2 className="submit-title">{t.submitTitle}</h2>
+              </div>
+              <div className="signin-cta">
+                <ArrowRightEndOnRectangleIcon className="size-8 text-text-muted" />
+                <p className="signin-cta-text">{t.signInPrompt}</p>
+                <a
+                  href={`/${locale}/login?next=${encodeURIComponent(`/${locale}/Problems/${encodeURIComponent(problemId)}`)}`}
+                  className="signin-cta-button"
+                >
+                  {t.signInAction}
+                </a>
+              </div>
+            </section>
+          )}
         </>
       ) : (
         <section>

@@ -13,6 +13,7 @@ type RoadmapCanvasInnerProps = {
   matrix: RoadmapMatrix;
   initialCompleted: string[];
   solvedSlugs: string[];
+  loginUrl: string | null;
 }
 
 const nodeTypes = {
@@ -20,15 +21,12 @@ const nodeTypes = {
   connector: RoadmapConnectorNode,
 };
 
-export function RoadmapCanvasInner({ matrix, initialCompleted, solvedSlugs }: RoadmapCanvasInnerProps) {
-  const { modal, setModal, modalNode, modalChecked, getProgress, isComplete, handleToggle } = useRoadmapCanvas(matrix, initialCompleted, solvedSlugs);
+export function RoadmapCanvasInner({ matrix, initialCompleted, solvedSlugs, loginUrl }: RoadmapCanvasInnerProps) {
+  const { modal, setModal, modalNode, modalChecked, getProgress, isComplete, handleToggle } = useRoadmapCanvas(matrix, initialCompleted, solvedSlugs, loginUrl);
   const { nodeValues, edgeValues } = useRoadmapNodes(matrix, getProgress, isComplete, setModal);
   const [nodes, setNodes] = useState<Node[]>(nodeValues);
   const [edges, setEdges] = useState<Edge[]>(edgeValues);
 
-  // Edges draw in row by row (stroke-dashoffset animation, per-edge delays set
-  // in useRoadmapNodes) after the nodes finish popping in. The class is
-  // dropped once the last row is done so the dash pattern can't linger.
   const edgesDoneAt = entranceDoneAt(matrix.length);
   const [edgesRevealed, setEdgesRevealed] = useState(false);
   useEffect(() => {
