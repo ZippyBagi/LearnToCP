@@ -28,6 +28,9 @@ printf 'abcde\nace\n'                          > $PROB/lcs/tests/01.in
 printf '8\n3 6 1 2 8 2 4 5\n'                  > $PROB/lis/tests/01.in
 printf '8\n3 6 1 2 8 2 4 5\n'                  > $PROB/lis-2/tests/01.in
 printf '4 5\n4 1\n5 2\n1 3\n3 4\n'             > $PROB/knapsack/tests/01.in
+printf '4\n1 3\n2 5\n4 7\n6 9\n'                > $PROB/movie-marathon/tests/01.in
+printf '(()())\n'                            > $PROB/balanced-brackets/tests/01.in
+printf 'banana\n'                             > $PROB/letter-frequency/tests/01.in
 
 gen_tests max-matrix-sum 5
 gen_tests robber 5
@@ -35,4 +38,7 @@ gen_tests lcs 5
 gen_tests lis 5
 gen_tests lis-2 6
 gen_tests knapsack 5
+gen_tests movie-marathon 6
+gen_tests balanced-brackets 7
+gen_tests letter-frequency 5
 echo "All tests generated."
