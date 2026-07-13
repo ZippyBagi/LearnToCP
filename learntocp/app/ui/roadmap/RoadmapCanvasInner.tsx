@@ -23,7 +23,7 @@ const nodeTypes = {
 
 export function RoadmapCanvasInner({ matrix, initialCompleted, solvedSlugs, loginUrl }: RoadmapCanvasInnerProps) {
   const { modal, setModal, modalNode, modalChecked, getProgress, isComplete, handleToggle } = useRoadmapCanvas(matrix, initialCompleted, solvedSlugs, loginUrl);
-  const { nodeValues, edgeValues } = useRoadmapNodes(matrix, getProgress, isComplete, setModal);
+  const { nodeValues, edgeValues, fitNodeIds } = useRoadmapNodes(matrix, getProgress, isComplete, setModal, loginUrl === null); //loginURL === null means logged in
   const [nodes, setNodes] = useState<Node[]>(nodeValues);
   const [edges, setEdges] = useState<Edge[]>(edgeValues);
 
@@ -84,6 +84,7 @@ export function RoadmapCanvasInner({ matrix, initialCompleted, solvedSlugs, logi
           proOptions={{ hideAttribution: false }}
           nodeTypes={nodeTypes}
           fitView
+          fitViewOptions={{ nodes: fitNodeIds.map((id) => ({ id })) }}
           nodes={nodes}
           edges={edges}
           onNodesChange={onNodesChange}

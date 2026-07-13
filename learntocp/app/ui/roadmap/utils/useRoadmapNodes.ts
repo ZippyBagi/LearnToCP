@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import type { RoadmapMatrix } from "@/app/[locale]/roadmap/roadmap.types";
 import { Node, Edge } from '@xyflow/react';
 import { getElementPositions } from "./roadmap.utils";
-import { NODE_WIDTH, CONNECTOR_X } from "./roadmap.constants";
+import { NODE_WIDTH, CONNECTOR_X, INITIAL_FIT_LAYERS } from "./roadmap.constants";
 
 const gap_y = 100;
 const gap_x = 350;
@@ -37,10 +37,22 @@ export function useRoadmapNodes(
   getProgress: (i: number, j: number) => number,
   isComplete: (i: number, j: number) => boolean,
   setModal: (val: { layerIndex: number; nodeIndex: number } | null) => void,
+  loggedIn: boolean = false,
 ) {
   return useMemo(() => {
     const nodeValues: Node[] = [];
     const edgeValues: Edge[] = [];
+    const fitNodeIds: string[] = [];
+    let fitStart = 0;
+    if (loggedIn) {
+      for (let i = 0; i < matrix.length; i++) {
+        const layerComplete = matrix[i].every((_, j) => isComplete(i, j));
+        if (!layerComplete) break;
+        fitStart = i;
+      }
+    }
+    fitStart = Math.max(0, Math.min(fitStart, matrix.length - INITIAL_FIT_LAYERS));
+    const fitEnd = fitStart + INITIAL_FIT_LAYERS; // exclusive
     let cur_y = 0;
     let next_index = 0;
 
@@ -67,6 +79,7 @@ export function useRoadmapNodes(
             popDelay: i * LAYER_STAGGER,
           },
         });
+        if (i >= fitStart && i < fitEnd) fitNodeIds.push(next_index.toString());
         next_index++;
       }
 
@@ -79,6 +92,8 @@ export function useRoadmapNodes(
         position: { x: CONNECTOR_X, y: cur_y + 20 },
         data: { label: "Question", progress: 0, isComplete: false, onClick: () => {}, hideBottomNode: false, hideTopNode: false, popDelay: edgeBase + i * EDGE_CYCLE + EDGE_HIT_TIME },
       });
+      // Connector between layer i and i+1 — in view only if both layers are.
+      if (i >= fitStart && i + 1 < fitEnd) fitNodeIds.push(next_index.toString());
       next_index++;
       cur_y += gap_y;
 
@@ -118,6 +133,6 @@ export function useRoadmapNodes(
     nodeValues[0].data.hideTopNode = true;
     nodeValues[nodeValues.length-1].data.hideBottomNode = true;
 
-    return { nodeValues, edgeValues };
-  }, [matrix, getProgress, isComplete]);
+    return { nodeValues, edgeValues, fitNodeIds };
+  }, [matrix, getProgress, isComplete, setModal, loggedIn]);
 }
