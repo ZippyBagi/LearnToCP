@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "roadmap_data/L6/00 Dynamic Programming/00 About DP.md",
+                "file": "roadmap_data/L6/02 Optimization Techniques III/meta.json",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "00 About DP"
+              "title": "meta"
             }
           }
         ]
@@ -183,8 +183,11 @@
       "bases:Create new base": false
     }
   },
-  "active": "253a54509f3591be",
+  "active": "5785c4dad5bfd622",
   "lastOpenFiles": [
+    "roadmap_data/L6/00 Dynamic Programming/00 About DP.md",
+    "roadmap_data/L6/02 Optimization Techniques III/meta.json",
+    "roadmap_data/L6/02 Optimization Techniques III",
     "roadmap_data/L6/00 Dynamic Programming/meta.json",
     "roadmap_data/L6/01 Graph Theory/meta.json",
     "roadmap_data/L6/00 Dynamic Programming/06 Problem - Knapsack.md",
@@ -197,12 +200,9 @@
     "roadmap_data/L6/00 Dynamic Programming/03 Problem - Longest Common Subsequence (LCS).md.tmp.23056.34ce14db0853",
     "roadmap_data/L6/00 Dynamic Programming/02 Problem - Robber.md",
     "roadmap_data/L6/00 Dynamic Programming/01 Problem - Max Matrix Sum.md",
-    "roadmap_data/L6/00 Dynamic Programming/00 About DP.md",
     "roadmap_data/L5/02 Geometry I/meta.json",
     "roadmap_data/L5/01 Recursion/meta.json",
-    "roadmap_data/L5/00 Data Structures II/meta.json",
     "sr/LessonsMD/05 Strukture Podataka/02 Red.md",
-    "roadmap_data/L5/02 Geometry I",
     "roadmap_data/L2/01 Data Structures I/02 Queue.md",
     "roadmap_data/L2/01 Data Structures I/01 Problem - Balanced Brackets.md",
     "roadmap_data/L2/01 Data Structures I/04 Problem - Letter Frequency.md",
