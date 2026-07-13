@@ -32,6 +32,21 @@ printf '4\n1 3\n2 5\n4 7\n6 9\n'                > $PROB/movie-marathon/tests/01.
 printf '(()())\n'                            > $PROB/balanced-brackets/tests/01.in
 printf 'banana\n'                             > $PROB/letter-frequency/tests/01.in
 
+# monopoly: all tests handcrafted (adapted with permission from petlja.org
+# Zbirka3/monopol; the 10 original single cases are batched into files 02-05,
+# 06 is edge cases). No gen.cpp - only .out files are regenerated.
+mkdir -p $PROB/monopoly/tests
+printf '2\n10 3 7\n10 7 3\n'                                    > $PROB/monopoly/tests/01.in
+printf '3\n64 27 5\n198 63 141\n202 20 176\n'                   > $PROB/monopoly/tests/02.in
+printf '3\n396 245 330\n478 18 241\n390 301 252\n'              > $PROB/monopoly/tests/03.in
+printf '2\n513 262 323\n199 74 163\n'                           > $PROB/monopoly/tests/04.in
+printf '2\n78 6 46\n766 726 18\n'                               > $PROB/monopoly/tests/05.in
+printf '7\n1 0 0\n1 1000000000 999999999\n5 7 7\n10 13 3\n1000000000 0 999999999\n1000000000 999999999 0\n1000000000 1000000000 999999999\n' > $PROB/monopoly/tests/06.in
+g++ -O2 -o /tmp/sol_monopoly monopoly/solution.cpp
+for f in $PROB/monopoly/tests/*.in; do
+  /tmp/sol_monopoly < "$f" > "${f%.in}.out"
+done
+
 gen_tests max-matrix-sum 5
 gen_tests robber 5
 gen_tests lcs 5

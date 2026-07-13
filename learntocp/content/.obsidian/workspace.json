@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "roadmap_data/L6/02 Optimization Techniques III/meta.json",
+                "file": "problems/monopoly/description-en.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "meta"
+              "title": "description-en"
             }
           }
         ]
@@ -185,23 +185,27 @@
   },
   "active": "5785c4dad5bfd622",
   "lastOpenFiles": [
+    "problems/monopoly/description-sr.md",
+    "problems/monopoly/tests/06.in",
+    "problems/monopoly/tests/05.in",
+    "problems/monopoly/tests/04.in",
+    "problems/monopoly/tests/01.in",
+    "problems/monopoly/solution-en.md",
+    "roadmap_data/L0/Basics/04 Problem - Monopoly.txt",
+    "roadmap_data/L0/Basics/05 Vectors.txt",
+    "roadmap_data/L0/Basics/06 Matrices.txt",
+    "roadmap_data/L0/Basics/07 Problem - Number of Minesweeper bombs.txt",
+    "roadmap_data/L0/Basics/08 Time Complexity.txt",
+    "problems/monopoly/problem.json",
+    "problems/monopoly/description-en.md",
+    "problems/monopoly/solution-sr.md",
     "roadmap_data/L6/00 Dynamic Programming/00 About DP.md",
-    "roadmap_data/L6/02 Optimization Techniques III/meta.json",
-    "roadmap_data/L6/02 Optimization Techniques III",
-    "roadmap_data/L6/00 Dynamic Programming/meta.json",
-    "roadmap_data/L6/01 Graph Theory/meta.json",
     "roadmap_data/L6/00 Dynamic Programming/06 Problem - Knapsack.md",
-    "roadmap_data/L6/00 Dynamic Programming/06 Problem - Knapsack.md.tmp.23056.0cb009717f8a",
     "roadmap_data/L6/00 Dynamic Programming/05 Problem - Longest Increasing Subsequence II.md",
-    "roadmap_data/L6/00 Dynamic Programming/05 Problem - Longest Increasing Subsequence II.md.tmp.23056.2e4403f5a90b",
     "roadmap_data/L6/00 Dynamic Programming/04 Problem - Longest Increasing Subsequence (LIS).md",
-    "roadmap_data/L6/00 Dynamic Programming/04 Problem - Longest Increasing Subsequence (LIS).md.tmp.23056.b559326a905c",
     "roadmap_data/L6/00 Dynamic Programming/03 Problem - Longest Common Subsequence (LCS).md",
-    "roadmap_data/L6/00 Dynamic Programming/03 Problem - Longest Common Subsequence (LCS).md.tmp.23056.34ce14db0853",
     "roadmap_data/L6/00 Dynamic Programming/02 Problem - Robber.md",
     "roadmap_data/L6/00 Dynamic Programming/01 Problem - Max Matrix Sum.md",
-    "roadmap_data/L5/02 Geometry I/meta.json",
-    "roadmap_data/L5/01 Recursion/meta.json",
     "sr/LessonsMD/05 Strukture Podataka/02 Red.md",
     "roadmap_data/L2/01 Data Structures I/02 Queue.md",
     "roadmap_data/L2/01 Data Structures I/01 Problem - Balanced Brackets.md",
@@ -219,10 +223,6 @@
     "sr/LessonsMD/04 Matematika/04 Eratostenovo Sito.md",
     "sr/LessonsMD/04 Matematika/03 NZD i NZS.md",
     "sr/LessonsMD/04 Matematika/02 Rastavljanje na proste činioce.md",
-    "en/LessonsMD/04 Math/02 Prime Factorization.md",
-    "en/LessonsMD/04 Math/01 Prime Numbers.md",
-    "sr/LessonsMD/04 Matematika/01 Prosti Brojevi.md",
-    "sr/LessonsMD/02 Tehnike Optimizacije/06 Funkcije Binarne Pretrage.md",
     "images/Sum of elements.jpg",
     "images/matrix.png",
     "images/Couning Sort.jpg",
