@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "problems/monopoly/description-en.md",
+                "file": "problems/monopoly/solution-en.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "description-en"
+              "title": "solution-en"
             }
           }
         ]
@@ -185,6 +185,9 @@
   },
   "active": "5785c4dad5bfd622",
   "lastOpenFiles": [
+    "problems/monopoly/solution-sr.md.tmp.9236.b42c4a94f125",
+    "problems/monopoly/solution-en.md.tmp.9236.9f2ba2ecb413",
+    "problems/monopoly/description-en.md",
     "problems/monopoly/description-sr.md",
     "problems/monopoly/tests/06.in",
     "problems/monopoly/tests/05.in",
@@ -196,8 +199,6 @@
     "roadmap_data/L0/Basics/06 Matrices.txt",
     "roadmap_data/L0/Basics/07 Problem - Number of Minesweeper bombs.txt",
     "roadmap_data/L0/Basics/08 Time Complexity.txt",
-    "problems/monopoly/problem.json",
-    "problems/monopoly/description-en.md",
     "problems/monopoly/solution-sr.md",
     "roadmap_data/L6/00 Dynamic Programming/00 About DP.md",
     "roadmap_data/L6/00 Dynamic Programming/06 Problem - Knapsack.md",
