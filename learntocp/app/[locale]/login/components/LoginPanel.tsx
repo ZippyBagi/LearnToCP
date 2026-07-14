@@ -63,6 +63,8 @@ export default function LoginPanel({ locale }: { locale: string }) {
 
   const noticePage = (() => {
     if (!next) return null;
+    // Voluntary sign-in from the navbar — no "sign in required" notice needed.
+    if (searchParams.get("src") === "nav") return null;
     const section = next.split("?")[0].split("/").filter(Boolean)[1]?.toLowerCase();
     if (section === "roadmap") return t.pageRoadmap;
     if (section === "problems") return t.pageProblems;
@@ -78,10 +80,18 @@ export default function LoginPanel({ locale }: { locale: string }) {
     const supabase = createClient();
     const redirectTarget = next ?? `/${locale}`;
 
+    // Query params on `redirectTo` can fail Supabase's redirect-URL allow-list
+    // matching (glob match runs against the full URL incl. query string). On a
+    // mismatch Supabase silently falls back to the Site URL and the target is
+    // lost. So keep the callback URL clean and carry the target in a
+    // short-lived cookie that /auth/callback reads. SameSite=Lax survives the
+    // top-level redirect back from Google/Supabase.
+    document.cookie = `ltcp-auth-next=${encodeURIComponent(redirectTarget)}; Path=/; Max-Age=600; SameSite=Lax${location.protocol === "https:" ? "; Secure" : ""}`;
+
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: `${location.origin}/auth/callback?next=${encodeURIComponent(redirectTarget)}`,
+        redirectTo: `${location.origin}/auth/callback`,
       },
     });
 

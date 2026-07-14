@@ -4,7 +4,7 @@ import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import { LogOut } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import type { User } from "@supabase/supabase-js";
 import { createClient } from "@/app/supabase/client";
@@ -13,6 +13,7 @@ import getLocale from "@/app/utils/getLocale";
 export default function AuthButton() {
   const locale = getLocale();
   const router = useRouter();
+  const pathname = usePathname();
   const [user, setUser] = useState<User | null>(null);
   const [loaded, setLoaded] = useState(false);
 
@@ -41,9 +42,19 @@ export default function AuthButton() {
   }
 
   if (!user) {
+    // Send the current page along so the login flow returns here instead of home.
+    // `src=nav` marks this as a voluntary sign-in so the login panel doesn't
+    // show the "sign in required" notice. Skip `next` on the login page itself
+    // to avoid a self-referencing redirect.
+    const isOnLoginPage = pathname?.split("/")[2]?.toLowerCase() === "login";
+    const loginHref =
+      pathname && !isOnLoginPage
+        ? `/${locale}/login?next=${encodeURIComponent(pathname)}&src=nav`
+        : `/${locale}/login`;
+
     return (
       <Link
-        href={`/${locale}/login`}
+        href={loginHref}
         className="
           inline-flex items-center justify-center
           rounded-md px-3 py-2 text-sm font-semibold
