@@ -1,10 +1,11 @@
-> U ovoj lekciji naučićemo kako se koncepti poput if naredbi, for petlji i poređenja pišu u c++-u
+> Do sada su se naši programi izvršavali od vrha ka dnu, liniju po liniju. Ova lekcija uvodi alate koji programu omogućavaju da **donosi odluke** (if naredbe) i da **ponavlja stvari** (petlje).
 
 ### Uslovi:
 
 1. If naredbe
-	If naredbe predstavljaju osnovne gradivne elemente našeg koda. Pišu se ovako: `if(condition){}`, na primer:
+	If naredbe predstavljaju osnovne gradivne elemente našeg koda. If naredba izvršava kod između svojih vitičastih zagrada **samo kada je njen uslov tačan**. Piše se ovako: `if(condition){}`, na primer:
 
+~!
 ```c++
 int main(){ 
 	int a = 3;
@@ -16,9 +17,12 @@ int main(){
 }
 ```
 
+Ovde je uslov `a > 3` ("da li je a veće od 3?"). Pošto je `a` tačno 3, uslov nije ispunjen i program ne ispisuje ništa.
+
 2. Else
 Ovaj blok koda se izvršava ukoliko uslov iz `if` naredbe nije ispunjen: `if(condition){}else{}`
 
+~!
 ```c++
 int main(){ 
 	int a;
@@ -35,7 +39,9 @@ int main(){
 
 3. Else if
 Možemo kombinovati više uslova pomoću `else if` blokova: `if(condition){} else if(condition2){}`
+Uslovi se proveravaju od vrha ka dnu, i izvršava se samo **prvi** koji je tačan:
 
+~!
 ```c++
 int main(){ 
 	int a;
@@ -66,6 +72,8 @@ Ovo su svi operatori poređenja koje koristimo:
 - `if (a <= b)` - da li je **a** manje ili jednako **b**
 - `if (a == b)` - da li je **a** jednako **b**
 - `if (a != b)` - da li se **a** razlikuje od **b**
+
+> Pazite na duplo jednako: `a == b` **poredi** dve vrednosti, dok jedno `a = b` **dodeljuje** vrednost b promenljivoj a. Mešanje ova dva je jedna od najčešćih početničkih grešaka.
 
 Operator negacije `!` takođe možemo koristiti ispred drugih izraza:
 
@@ -128,6 +136,8 @@ int main(){
 
 `Output: 0 1 2 3 4 5 6 7 8 9`
 
+> `i++` koje vidite ovde je samo skraćeni zapis za `i = i + 1` - "povećaj i za jedan".
+
 2. For petlje
 
 For petlje pišu se ovako: `for(int i=0;i<n;i++)`
@@ -151,3 +161,5 @@ int main(){
 ```
 
 `Output: 0 1 2 3 4 5 6 7 8 9`
+
+Primetite da for petlja radi potpuno istu stvar kao while petlja iznad, samo su brojač, uslov i povećavanje spakovani u jednu liniju. Zato ćete for petlje viđati mnogo češće u takmičarskom programiranju.
