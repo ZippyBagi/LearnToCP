@@ -1,4 +1,18 @@
-> U ovoj lekciji upoznaćemo se sa glavnom array-like strukturom podataka u c++-u — vektorima ( vector )
+> U ovoj lekciji naučićemo kako da čuvamo mnogo vrednosti odjednom - prvo ideju **niza (array)**, a zatim glavnu array-like strukturu podataka u c++-u — vektore ( vector )
+
+### Nizovi (Arrays)
+
+Do sada je jedna promenljiva držala jednu vrednost. Ali šta ako nam problem da 100 brojeva sa kojima treba da radimo? Pravljenje `a1, a2, a3, ...` sve do `a100` očigledno nije rešenje.
+
+Rešenje je **niz** (na engleskom **array**) - red kutija pod jednim imenom. Svaka kutija drži jednu vrednost istog tipa podataka, a kutije su numerisane tako da možemo pokazati na bilo koju od njih:
+
+	![[array.png]]
+
+Broj kutije se zove **indeks**, i o njemu treba zapamtiti dve stvari:
+- Indeksiranje **počinje od 0** - prvi element niza `a` je `a[0]`, drugi je `a[1]`, i tako dalje
+- Pristup elementu preko indeksa je trenutan bez obzira koliko je niz veliki - niz nikada ne mora da ga "traži"
+
+Dakle, umesto 100 promenljivih, napravimo jedan niz sa 100 kutija, i `a[57]` nam daje 58-mi broj. Ostaje još samo da vidimo kako ovo izgleda u c++-u.
 
 ### Vektori
 

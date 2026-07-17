@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "sr/LessonsMD/00 Osnove/00 Tvoj Prvi Program.md",
+                "file": "sr/LessonsMD/00 Osnove/04 Vektori.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "00 Tvoj Prvi Program"
+              "title": "04 Vektori"
             }
           }
         ]
@@ -185,8 +185,12 @@
   },
   "active": "5785c4dad5bfd622",
   "lastOpenFiles": [
-    "sr/LessonsMD/00 Osnove/01 Tipovi podataka, Unos i Izlaz.md",
+    "en/LessonsMD/00 Basics/04 Vectors.md",
+    "en/LessonsMD/00 Basics/03 Modulo.md",
+    "sr/LessonsMD/00 Osnove/04 Vektori.md",
     "sr/LessonsMD/00 Osnove/00 Tvoj Prvi Program.md",
+    "images/array.png",
+    "sr/LessonsMD/00 Osnove/01 Tipovi podataka, Unos i Izlaz.md",
     "en/LessonsMD/00 Basics/01 Data types and IO.md",
     "sr/LessonsMD/00 Osnove/01 Tipovi podataka, Unos i Izlaz.md.tmp.9428.e30b91cac177",
     "sr/LessonsMD/00 Osnove/00 Tvoj Prvi Program.md.tmp.9428.3a66f50fad64",
@@ -218,19 +222,15 @@
     "sr/LessonsMD/05 Strukture Podataka/01 Stek.md",
     "en/LessonsMD/05 Data Structures/01 Stack.md",
     "sr/LessonsMD/05 Strukture Podataka/00 Niske (Stringovi).md",
-    "en/LessonsMD/05 Data Structures/00 Strings.md",
     "images/ascii-table-sr.png",
     "images/ascii-table-en.png",
     "images/Pasted image 20260711161238.png",
-    "en/LessonsMD/04 Math/04 Sieve of Eratosthenes.md",
-    "en/LessonsMD/04 Math/03 GCD and LCM.md",
     "images/Sum of elements.jpg",
     "images/matrix.png",
     "images/Couning Sort.jpg",
     "images/big-o.jpg",
     "Pasted image 20260616232021.png",
     "Untitled.canvas",
-    "images/1_5ZLci3SuR0zM_QlZOADv8Q-1558881035.jpg",
-    "Couning Sort.jpg"
+    "images/1_5ZLci3SuR0zM_QlZOADv8Q-1558881035.jpg"
   ]
 }

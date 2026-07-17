@@ -1,4 +1,18 @@
->In this lecture we will learn about the main array like data structure in c++ - vectors
+>In this lecture we will learn how to store many values at once - first the idea of an **array**, and then c++'s main array-like data structure - vectors
+
+### Arrays
+
+So far, one variable held one value. But what if a problem gives us 100 numbers to work with? Creating `a1, a2, a3, ...` all the way to `a100` is obviously not the way.
+
+The solution is an **array** - a row of boxes under a single name. Every box holds one value of the same data type, and the boxes are numbered so we can point at any one of them:
+
+	![[array.png]]
+
+The number of a box is called its **index**, and there are two things to remember about it:
+- Indexing **starts from 0** - the first element of `a` is `a[0]`, the second is `a[1]`, and so on
+- Accessing an element by its index is instant no matter how big the array is - the array never has to "search" for it
+
+So instead of 100 variables, we make one array with 100 boxes, and `a[57]` hands us the 58th number. All that's left is to see what this looks like in c++.
 
 ### Vectors
 
