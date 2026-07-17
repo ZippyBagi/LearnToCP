@@ -20,10 +20,10 @@ Lets unpack this:
 - `vector<vector<data_type>>` - is how we declare the matrix
 - `name_of_the_matrix` - is the name of the matrix
 - `n` - is the number of rows our matrix will have
-- `vector<data_type>(m, default_value)` - is what each column will look like, this is a vector
+- `vector<data_type>(m, default_value)` - is what each row will look like - a vector with `m` elements (one for each column)
 
 We can also access the element in row **i** and column **j** with: `a[i][j]`
-Just like vectors, matrices are 0 indexed by default, this means that the value in the second row and third column is in `a[3][4]`
+Just like vectors, matrices are 0 indexed by default, this means that the value in the second row and third column is in `a[1][2]`
 
 Example code which shows the i and j values of each field:
 
@@ -32,7 +32,11 @@ Solution.cpp
 #include <bits/stdc++.h>
 
 using namespace std;
+
 int main(){
+
+    cin.tie(0);
+    ios_base::sync_with_stdio(false);
 
     int n = 3;
     int m = 4;

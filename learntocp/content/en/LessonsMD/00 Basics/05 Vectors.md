@@ -89,7 +89,7 @@ Solution.cpp
 
 using namespace std; 
 
-void print_vector(vector<int> a){ // This is a custom function
+void print_vector(vector<int> a){ // This is a custom function, like we learned in the Functions lesson
 	
 	for(int i=0;i<a.size();i++){ //notice the a.size()
 	
@@ -100,6 +100,9 @@ void print_vector(vector<int> a){ // This is a custom function
 }
 
 int main(){
+
+    cin.tie(0);
+    ios_base::sync_with_stdio(false);
 
     int n = 3;
 

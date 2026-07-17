@@ -50,8 +50,12 @@ Output: `2`
 
 Takođe možemo proveriti da li je jedan broj deljiv drugim pomoću uslova: `if(a % b == 0)`
 
-~!
+Solution.cpp
 ```c++
+#include <bits/stdc++.h>
+
+using namespace std;
+
 int main(){
 
 	cin.tie(0);

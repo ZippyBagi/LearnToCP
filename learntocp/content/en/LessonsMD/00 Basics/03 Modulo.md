@@ -44,8 +44,12 @@ Output: `2`
 
 We can also check if two numbers are divisible by using: `if(a % b == 0)`
 
-~!
+Solution.cpp
 ```c++
+#include <bits/stdc++.h>
+
+using namespace std;
+
 int main(){
 
 	cin.tie(0);

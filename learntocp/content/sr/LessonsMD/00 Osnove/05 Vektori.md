@@ -98,7 +98,7 @@ Solution.cpp
 
 using namespace std; 
 
-void stampaj_vektor(vector<int> a){ // Ovo je naša proizvoljna funkcija
+void stampaj_vektor(vector<int> a){ // Ovo je naša proizvoljna funkcija, kao što smo naučili u lekciji Funkcije
 	
 	for(int i=0;i<a.size();i++){ //primetite a.size()
 	
@@ -109,6 +109,9 @@ void stampaj_vektor(vector<int> a){ // Ovo je naša proizvoljna funkcija
 }
 
 int main(){
+
+    cin.tie(0);
+    ios_base::sync_with_stdio(false);
 
     int n = 3;
 
