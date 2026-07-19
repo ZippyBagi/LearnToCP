@@ -42,7 +42,7 @@ Jedina nova stvar je `substr(start, length)` - vraća deo niske u složenosti **
 
 Računar zapravo ne ume da čuva "karaktere" - on čuva samo brojeve. Zato su se programeri davno dogovorili oko tabele koja svakom karakteru dodeljuje broj (kod). Ta tabela se zove **ASCII**, i kada u kodu napišemo `'4'`, računar zapravo vidi njen ASCII kod - broj `52`.
 
-Važan deo je *kako* su kodovi dodeljeni. Na primer, cifre od `0` do `9` su dobile kodove od `48` do `57` - stoje **jedna pored druge, po redu**:
+Važan deo je kako su kodovi dodeljeni. Na primer, cifre od `0` do `9` su dobile kodove od `48` do `57` - stoje **jedna pored druge, po redu**:
 
 ![[ascii-table-sr.png]]
 

@@ -42,7 +42,7 @@ The only newcomer here is `substr(start, length)` - it returns a piece of the st
 
 A computer can't actually store "characters" - it only stores numbers. So a long time ago, programmers agreed on a table that assigns a number (a code) to every character. That table is called **ASCII**, and when we write `'4'` in code, the computer really sees its ASCII code - the number `52`.
 
-The important part is *how* the codes were assigned. For example the digits `0` to `9` got the codes `48` to `57` - they sit **next to each other, in order**:
+The important part is how the codes were assigned. For example the digits `0` to `9` got the codes `48` to `57` - they sit **next to each other, in order**:
 
 ![[ascii-table-en.png]]
 

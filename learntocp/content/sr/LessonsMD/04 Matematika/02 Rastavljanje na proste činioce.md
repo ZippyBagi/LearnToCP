@@ -8,7 +8,7 @@ Na primer:
 `97 = 97` (već je prost)
 `360 = 2 * 2 * 2 * 3 * 3 * 5`
 
-Ovo se zove **rastavljanje na proste činioce** (en. prime factorization), i toliko je fundamentalno da su matematičari ovo pravilo nazvali *Osnovna teorema aritmetike*.
+Ovo se zove **rastavljanje na proste činioce** (en. prime factorization), i toliko je fundamentalno da su matematičari ovo pravilo nazvali Osnovna teorema aritmetike.
 ### Teorija
 
 Da bismo pronašli činioce, sve što treba da radimo je da uzastopno delimo brojeve

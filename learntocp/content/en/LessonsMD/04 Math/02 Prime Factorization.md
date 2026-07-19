@@ -8,7 +8,7 @@ For example:
 `97 = 97` (already prime)
 `360 = 2 * 2 * 2 * 3 * 3 * 5`
 
-This is called the **prime factorization** of a number, and it is so fundamental that mathematicians named the rule the *Fundamental Theorem of Arithmetic*.
+This is called the **prime factorization** of a number, and it is so fundamental that mathematicians named the rule the Fundamental Theorem of Arithmetic.
 ### Theory
 
 In order to find the factorization, all we have to do it repeatedly divide the numbers

@@ -152,7 +152,7 @@ int main(){
 }
 ```
 
->These two lines can look confusing, and you don't need to understand *how* they work yet - but **make writing them a habit**. Start every solution that uses `cin` and `cout` with them, and slow input/output will simply never be the reason a solution fails. You will see them in most lectures on this site for exactly that reason.
+>These two lines can look confusing, and you don't need to understand how they work yet - but **make writing them a habit**. Start every solution that uses `cin` and `cout` with them, and slow input/output will simply never be the reason a solution fails. You will see them in most lectures on this site for exactly that reason.
 
 Learn more about them here: https://stackoverflow.com/questions/31162367/significance-of-ios-basesync-with-stdiofalse-cin-tienull
 

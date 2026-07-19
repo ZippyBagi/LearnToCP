@@ -29,7 +29,7 @@ Ovo je ceo jedan program. Trenutno ne radi ništa, ali se sastoji iz:
 
 ### return 0
 
-Pošto smo obećali da `main` vraća ceo broj, dobra je praksa da ga zaista i vratimo. Vraćanje `0` znači *"sve je prošlo u redu"*:
+Pošto smo obećali da `main` vraća ceo broj, dobra je praksa da ga zaista i vratimo. Vraćanje `0` znači "sve je prošlo u redu":
 
 ~!
 ```c++
@@ -92,4 +92,4 @@ int main(){
 }
 ```
 
-> Ne brinite ako vam `#include` i `namespace` i dalje deluju pomalo kao magične reči. Za sada je potpuno u redu da ih tretirate kao *"one dve linije na vrhu"* - detalji iza njih će imati više smisla kako budete pisali više programa.
+> Ne brinite ako vam `#include` i `namespace` i dalje deluju pomalo kao magične reči. Za sada je potpuno u redu da ih tretirate kao "one dve linije na vrhu" - detalji iza njih će imati više smisla kako budete pisali više programa.

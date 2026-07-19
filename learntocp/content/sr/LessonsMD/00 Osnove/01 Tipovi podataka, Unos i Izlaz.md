@@ -150,7 +150,7 @@ int main(){
 }
 ```
 
-> Ove dve linije mogu izgledati zbunjujuće i još ne morate razumeti *kako* rade - ali **neka vam pisanje njih postane navika**. Počnite svako rešenje koje koristi `cin` i `cout` sa njima, i spor unos/izlaz jednostavno nikada neće biti razlog zašto rešenje pada. Upravo zato ćete ih viđati u većini lekcija na ovom sajtu.
+> Ove dve linije mogu izgledati zbunjujuće i još ne morate razumeti kako rade - ali **neka vam pisanje njih postane navika**. Počnite svako rešenje koje koristi `cin` i `cout` sa njima, i spor unos/izlaz jednostavno nikada neće biti razlog zašto rešenje pada. Upravo zato ćete ih viđati u većini lekcija na ovom sajtu.
 
 Saznajte više o njima ovde: [https://stackoverflow.com/questions/31162367/significance-of-ios-basesync-with-stdiofalse-cin-tienull](https://stackoverflow.com/questions/31162367/significance-of-ios-basesync-with-stdiofalse-cin-tienull)
 

@@ -29,7 +29,7 @@ This is a whole program that runs, it does nothing, but it runs. Let's break dow
 
 ### return 0
 
-Since we promised that `main` returns an integer, it is good practice to actually return one. Returning `0` means *"everything went fine"*:
+Since we promised that `main` returns an integer, it is good practice to actually return one. Returning `0` means "everything went fine":
 
 ~!
 ```c++
@@ -50,7 +50,7 @@ An empty program is boring, let's make it say hello. To print text, we use `cout
 cout << "Hello!";
 ```
 
-The `<<` arrows point *into* `cout` - you can think of it as "send `"Hello!"` to the console output".
+The `<<` arrows point into `cout` - you can think of it as "send `"Hello!"` to the console output".
 
 But there is a catch: `cout` doesn't exist on its own. It lives inside the **standard library** - a big collection of ready-made tools that comes with C++. To use it, we have to add two lines **above** our `main` function:
 
@@ -92,4 +92,4 @@ int main(){
 }
 ```
 
-> Don't worry if `#include` and `namespace` still feel a bit like magic words. For now it is completely fine to treat them as *"the two lines at the top"* - the details behind them will make more sense as you write more programs.
+> Don't worry if `#include` and `namespace` still feel a bit like magic words. For now it is completely fine to treat them as "the two lines at the top" - the details behind them will make more sense as you write more programs.
