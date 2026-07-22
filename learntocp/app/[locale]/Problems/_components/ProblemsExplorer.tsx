@@ -59,7 +59,7 @@ const DIFFICULTY_CLASS: Record<Difficulty, string> = {
 const GRID =
   "grid items-center gap-7 px-5 " +
   "grid-cols-[24px_36px_minmax(0,1fr)_110px_56px] " +
-  "sm:grid-cols-[24px_36px_minmax(0,1fr)_180px_110px_56px]";
+  "sm:grid-cols-[24px_36px_minmax(0,1fr)_210px_110px_56px]";
 
 type StatusFilter = "all" | "solved" | "unsolved";
 
@@ -374,9 +374,9 @@ function ProblemRow({
       </div>
 
       {/* Tags */}
-      <div className="hidden items-center justify-center justify-self-center gap-1.5 sm:flex">
+      <div className="hidden min-w-0 max-w-full flex-wrap items-center justify-center justify-self-center gap-1.5 sm:flex">
         {shownTags.map((tag) => (
-          <span key={tag} className="tag font-mono">
+          <span key={tag} className="tag whitespace-nowrap font-mono">
             #{tag}
           </span>
         ))}

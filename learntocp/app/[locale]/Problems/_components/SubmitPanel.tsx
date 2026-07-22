@@ -95,7 +95,7 @@ function highlightCpp(
   });
 }
 
-export default function SubmitPanel({ problemId,locale,time_limit,memory_limit}: { problemId: string, locale: string, time_limit : number, memory_limit : number}) {
+export default function SubmitPanel({ problemId,locale,time_limit,memory_limit,onSolved}: { problemId: string, locale: string, time_limit : number, memory_limit : number, onSolved?: () => void}) {
   const t = getProblemMessages(locale);
   const [code, setCode] = useState("");
   const [languageId, setLanguageId] = useState<number>(DEFAULT_LANGUAGE_ID);
@@ -229,6 +229,7 @@ export default function SubmitPanel({ problemId,locale,time_limit,memory_limit}:
           stopPolling();
           setSubmitting(false);
           loadHistory();
+          if (data.verdict === "AC") onSolved?.();
         }
       } catch {
         // transient network error — keep polling

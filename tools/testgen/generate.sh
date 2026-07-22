@@ -57,3 +57,27 @@ gen_tests movie-marathon 6
 gen_tests balanced-brackets 7
 gen_tests letter-frequency 5
 echo "All tests generated."
+
+# ---------------------------------------------------------------------------
+# Petlja adaptations, 2026-07-19 (Zbirka2). All statements are multi-testcase;
+# 01.in is the statement example, the rest come from each problem's gen.cpp.
+printf '2\n5\n1 3 4 -2 10\n4\n2 2 3 1\n'                                    > $PROB/increasing-segments/tests/01.in
+printf '2\n6\n2 -3 4 -1 3 -2\n3\n-5 -2 -8\n'                                > $PROB/max-segment-sum/tests/01.in
+printf '2\n6 13\n29 -11 15 13 -68 -4\n3 2\n10 1 4\n'                          > $PROB/street-lamp/tests/01.in
+printf '2\n6 7\n2 5 4 7 0 6\n5 8\n1 2 3 4 6\n'                              > $PROB/pairs-with-given-sum/tests/01.in
+printf '2\n5 2350\n15745 18095 15745 16234 13395\n4 1\n7 7 8 9\n'            > $PROB/height-difference/tests/01.in
+printf '1\n9\n-8 -5 7 4 1 -2 9 -3 2\n'                                      > $PROB/three-sum/tests/01.in
+printf '1\n5\n1 2 3 4 5\n3\n0 4\n1 3\n2 2\n'                                > $PROB/segment-sums/tests/01.in
+printf '1\n5 5\n1 3 5 6 7\n2 3 4 5 8\n'                                     > $PROB/barcodes/tests/01.in
+printf '1\n13 6\n210 2310 390 30 510 66 6 138 46 106 59 17 23\n10 2 6 2 4 15\n' > $PROB/first-not-divisible/tests/01.in
+
+gen_tests increasing-segments 6
+gen_tests max-segment-sum 6
+gen_tests street-lamp 6
+gen_tests pairs-with-given-sum 6
+gen_tests height-difference 6
+gen_tests three-sum 6
+gen_tests segment-sums 6
+gen_tests barcodes 5
+gen_tests first-not-divisible 5
+echo "Petlja adaptation tests generated."

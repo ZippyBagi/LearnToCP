@@ -162,7 +162,7 @@ export default function ProblemView({
           )}
 
           {isAuthed ? (
-            <SubmitPanel problemId={problemId} locale={locale} time_limit={parseFloat(meta.timeLimitLabel)} memory_limit={parseInt(meta.memoryLabel)}/>
+            <SubmitPanel problemId={problemId} locale={locale} time_limit={parseFloat(meta.timeLimitLabel)} memory_limit={parseInt(meta.memoryLabel)} onSolved={() => setSolutionUnlocked(true)}/>
           ) : (
             <section className="submit-panel">
               <div className="submit-header">
