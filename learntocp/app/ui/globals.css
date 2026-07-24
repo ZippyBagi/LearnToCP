@@ -660,6 +660,9 @@ code, kbd, samp, pre {
   tab-size: 2;
   white-space: pre;
   overflow-wrap: normal;
+  /* Keep code punctuation literal — no ==/>=/<= ligatures in the editor */
+  font-variant-ligatures: none;
+  font-feature-settings: "liga" 0, "calt" 0;
 }
 
 /* Always-present line-number gutter (pinned to the left) */
