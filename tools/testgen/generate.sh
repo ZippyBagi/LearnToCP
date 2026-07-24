@@ -81,3 +81,32 @@ gen_tests segment-sums 6
 gen_tests barcodes 5
 gen_tests first-not-divisible 5
 echo "Petlja adaptation tests generated."
+
+# ---------------------------------------------------------------------------
+# Petlja adaptations, batch 2 (Math I, DS I, OT II, Test 1).
+printf '2\n17\n903543481\n'                                                  > $PROB/prime-check/tests/01.in
+printf '2\n900\n97\n'                                                        > $PROB/prime-factorization/tests/01.in
+printf '2\n20 30 40\n1000000000 2000000000 500000000\n'                      > $PROB/gcd/tests/01.in
+printf '1\n1 1000\n'                                                         > $PROB/primes-in-interval/tests/01.in
+printf '2\n12+3*\n11+2*345+*+\n'                                             > $PROB/postfix-expression/tests/01.in
+printf '2\n8 3\n2 2\n'                                                       > $PROB/josephus/tests/01.in
+printf '2\npanta redovno zakasni\nneopravdan izostanak\noni su skrsili vagu\nsuvisni kilogrami\n' > $PROB/anagram/tests/01.in
+printf '2\n5\n32 11 987 12 3\n2\n91919 919191\n'                             > $PROB/smallest-concatenation/tests/01.in
+printf '1\n5 4\n89 73 73 56 23\n95 50 70 0\n'                                > $PROB/above-threshold/tests/01.in
+printf '3\n2 13 3\n10 5 3\n3452 20 4\n'                                      > $PROB/last-digits-of-power/tests/01.in
+printf '2\n8\n3 5 12 7 5 9 0 17\n3\n0 0 0\n'                                 > $PROB/h-index/tests/01.in
+printf '1\n8\n3 7\n7 8\n2 5\n6 8\n4 6\n1 6\n4 5\n1 2\n'                      > $PROB/crowded-pool/tests/01.in
+
+gen_tests prime-check 6
+gen_tests prime-factorization 6
+gen_tests gcd 5
+gen_tests primes-in-interval 5
+gen_tests postfix-expression 5
+gen_tests josephus 5
+gen_tests anagram 5
+gen_tests smallest-concatenation 6
+gen_tests above-threshold 5
+gen_tests last-digits-of-power 5
+gen_tests h-index 6
+gen_tests crowded-pool 6
+echo "Batch 2 tests generated."

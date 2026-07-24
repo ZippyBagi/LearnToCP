@@ -17,8 +17,6 @@ Posle skraćivanja prozor $[left, right]$ ponovo staje pod jednu svetiljku, pa j
 
 Svaki pokazivač napravi najviše $n$ koraka, pa je prolaz $O(n)$ - posle sortiranja od $O(n \log n)$. I ništa nismo preskočili: za svako `right` smo našli najširi dobar prozor koji se tu završava.
 
-**Pažnja:** $x_{right} - x_{left}$ može da dostigne $2 \cdot 10^9$, a $2d$ takođe - oba prekoračuju `int`. Koordinate i $d$ drži u `long long`-u.
-
 ## Primer
 
 Prvi test primer sortiran: $[-68, -11, -4, 13, 15, 29]$, dužina prozora $2d = 26$:
@@ -50,11 +48,10 @@ int main() {
 
     while(t--) {
 
-        int n;
-        long long d;
+        int n, d;
         cin >> n >> d;
 
-        vector<long long> x(n);
+        vector<int> x(n); // coordinates within +-10^9, and 2*d up to 2*10^9, both fit in an int
         for(int i = 0; i < n; i++) cin >> x[i];
 
         sort(x.begin(), x.end());

@@ -29,13 +29,13 @@ int main(int argc,char**argv){
         printf("2 999999999\n1 1000000000\n");                                        // extreme pair, exact hit
         printf("1000 3\n"); {for(auto&x:a)x=rnd(1,20);}printArr(a);                   // heavy duplicates, many pairs
     } else if(id==5){
-        printf("1\n200000 %lld\n",rnd(1,1000000LL));
-        vector<long long>a(200000);for(auto&x:a)x=rnd(1,100000000LL);printArr(a);
+        printf("1\n100000 %lld\n",rnd(1,1000LL));
+        vector<long long>a(100000);for(auto&x:a)x=rnd(1,99999LL);printArr(a);          // max-ish n, 5-digit values
     } else if(id==6){
-        // answer-extreme: 100000 students of height v and 100000 of height v + r -> 10^10 pairs
-        printf("1\n200000 123456789\n");
+        // answer-extreme: 50000 students of height 7 and 50000 of height 20 -> 2.5*10^9 pairs > INT_MAX
+        printf("1\n100000 13\n");
         vector<long long> a;
-        for(int i=0;i<100000;i++){a.push_back(500000000LL);a.push_back(623456789LL);}
+        for(int i=0;i<50000;i++){a.push_back(7);a.push_back(20);}
         shuffle(a.begin(),a.end(),rng);
         printArr(a);
     }

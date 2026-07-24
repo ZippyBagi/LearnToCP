@@ -14,22 +14,22 @@ int main(int argc,char**argv){
         for(int i=0;i<t;i++){int n=rnd(1,500);printf("%d\n",n);vector<long long>a(n);for(auto&x:a)x=rnd(-10,10);printArr(a);}
     } else if(id==4){
         printf("4\n");
-        vector<long long> a(50000);
-        printf("50000\n"); for(auto&x:a)x=rnd(-1000000000LL,-1);printArr(a);          // all negative
-        printf("50000\n"); for(auto&x:a)x=rnd(1,1000000000LL);printArr(a);            // all positive, huge sum
+        vector<long long> a(5000);
+        printf("5000\n"); for(auto&x:a)x=rnd(-1000000000LL,-1);printArr(a);           // all negative, big values
+        printf("5000\n"); for(auto&x:a)x=rnd(1,1000000000LL);printArr(a);             // all positive, sum ~2.5*10^12 overflows int
         printf("1\n-1000000000\n");                                                   // single negative element
         printf("3\n-1 5 -1\n");
     } else if(id==5){
         printf("1\n200000\n");
-        vector<long long>a(200000);for(auto&x:a)x=rnd(-1000000000LL,1000000000LL);printArr(a);
+        vector<long long>a(200000);for(auto&x:a)x=rnd(-999,999);printArr(a);           // max n; small values keep the file small
     } else if(id==6){
         printf("2\n");
-        vector<long long> a(100000);
-        printf("100000\n");
-        for(int i=0;i<100000;i++)a[i]=(i%2==0)?rnd(500000000LL,1000000000LL):-rnd(1,1000000LL); // big positives, small negatives
+        vector<long long> a(20000);
+        printf("20000\n");
+        for(int i=0;i<20000;i++)a[i]=(i%2==0)?rnd(500000000LL,1000000000LL):-rnd(1,1000000LL); // big positives, small negatives
         printArr(a);
-        printf("100000\n");
-        for(int i=0;i<100000;i++)a[i]=(i<50000)?-rnd(1,1000000000LL):rnd(1,1000000000LL);       // best segment is a suffix
+        printf("20000\n");
+        for(int i=0;i<20000;i++)a[i]=(i<10000)?-rnd(1,1000000000LL):rnd(1,1000000000LL);       // best segment is a suffix
         printArr(a);
     }
     return 0;

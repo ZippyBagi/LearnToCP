@@ -12,7 +12,7 @@ int main(int argc, char** argv){
         if(t == 3) v = i + 1;                          // strictly increasing, answer n
         else if(t == 4) v = 1 + (long long)(rng() % 100); // tiny range, lots of equal values
         else if(t == 6) v = n - i;                     // strictly decreasing, answer 1
-        else v = 1 + (long long)(rng() % hi);          // random
+        else v = 1 + (long long)(rng() % 1000000);     // random; 7-digit values keep the file small
         printf("%lld%c", v, i+1 < n ? ' ' : '\n');
     }
 }

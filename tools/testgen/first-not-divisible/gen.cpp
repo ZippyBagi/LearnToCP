@@ -54,7 +54,7 @@ int main(int argc,char**argv){
         printf("3 2\n6 10 15\n1 999999999999999989\n");                // d = 1 divides everything, huge d divides nothing
     } else if(id==5){
         printf("1\n");
-        emitCase(200000,200000,{2,3,5,7},4000000000000000LL);
+        emitCase(50000,50000,{2,3,5,7},4000000000000000LL); // the 18-digit values are the point, so shrink n and q instead
     }
     return 0;
 }

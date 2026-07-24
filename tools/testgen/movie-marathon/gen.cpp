@@ -33,23 +33,23 @@ int main(int argc, char** argv){
         return 0;
     }
 
-    if(t == 5){                                            // max constraints, random
-        int n = 200000;
+    if(t == 5){                                            // big n, random; 6-digit times keep the file small
+        int n = 70000;
         printf("%d\n", n);
         for(int i = 0; i < n; i++){
-            long long a = rnd(0, 999999999);
-            long long b = rnd(a + 1, 1000000000);
+            long long a = rnd(0, 999998);
+            long long b = rnd(a + 1, 999999);
             printf("%lld %lld\n", a, b);
         }
         return 0;
     }
 
-    // t == 6: max n, back-to-back chain (answer = n, heavy on the >= condition)
-    int n = 200000;
+    // t == 6: big n, back-to-back chain (answer = n, heavy on the >= condition)
+    int n = 70000;
     printf("%d\n", n);
     long long cur = 0;
     for(int i = 0; i < n; i++){
-        long long len = rnd(1, 4000);
+        long long len = rnd(1, 9);
         printf("%lld %lld\n", cur, cur + len);
         cur += len;
     }

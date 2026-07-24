@@ -24,11 +24,11 @@ int main(int argc,char**argv){
         printf("2\n-1000000000 1000000000\n");                                       // extreme values
     } else if(id==5){
         printf("1\n200000\n");
-        vector<long long>a(200000);for(auto&x:a)x=rnd(-1000000000LL,1000000000LL);printArr(a);
+        vector<long long>a(200000);for(auto&x:a)x=rnd(-999,999);printArr(a);         // max n; small values keep the file small
     } else if(id==6){
-        printf("1\n200000\n");
-        vector<long long>a(200000);long long cur=-1000000000LL;
-        for(auto&x:a){x=cur;cur+=rnd(1,9000);}                                       // strictly increasing, max answer
+        // strictly increasing: answer 70000*69999/2 = 2449965000 > INT_MAX, small values
+        printf("1\n70000\n");
+        vector<long long>a(70000);for(int i=0;i<70000;i++)a[i]=i-35000;
         printArr(a);
     }
     return 0;

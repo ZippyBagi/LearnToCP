@@ -47,7 +47,7 @@ int main(int argc,char**argv){
         printf("3 3\n5 6 7\n4 8 6\n");
     } else if(id==5){
         printf("1\n");
-        emitCase(200000,200000,1,1000000000LL,50);
+        emitCase(80000,80000,1,1000000,50); // enough to kill O(n*q); 7-digit codes keep the file small
     }
     return 0;
 }

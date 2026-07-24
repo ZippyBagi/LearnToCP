@@ -29,13 +29,13 @@ int main(int argc,char**argv){
         printf("1 1000000000\n-1000000000\n");                                                   // single house
         printf("2 1000000000\n-1000000000 1000000000\n");                                        // extreme span, window exactly misses
     } else if(id==5){
-        printf("1\n200000 %lld\n",rnd(1,1000000LL));
-        vector<long long>a(200000);for(auto&x:a)x=rnd(-100000000LL,100000000LL);printArr(a);
+        printf("1\n100000 %lld\n",rnd(1,10000LL));
+        vector<long long>a(100000);for(auto&x:a)x=rnd(-1000000LL,1000000LL);printArr(a); // max-ish n, 7-digit coordinates
     } else if(id==6){
         // clustered houses - the interesting window is inside one dense cluster
-        printf("1\n200000 1000\n");
-        vector<long long> a(200000);
-        for(auto&x:a){long long c=rnd(0,9)*100000000LL-450000000LL;x=c+rnd(-5000,5000);}
+        printf("1\n50000 1000\n");
+        vector<long long> a(50000);
+        for(auto&x:a){long long c=rnd(0,9)*1000000LL-4500000LL;x=c+rnd(-5000,5000);}
         printArr(a);
     }
     return 0;

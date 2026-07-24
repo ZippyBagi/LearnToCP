@@ -116,13 +116,10 @@ function ModalItem({
           {checked && <CheckIcon />}
         </button>
       )}
-
-      {/* ::before with inset-0 makes the whole row a link target; checkbox sits above via z-10 */}
+      
       <a
         href={item.href}
-        target={item.href !== "#" ? "_blank" : undefined}
-        rel="noopener noreferrer"
-        className="flex-1 min-w-0 text-sm transition-colors duration-150 before:content-[''] before:absolute before:inset-0"
+        className="flex-1 min-w-0 text-sm transition-colors duration-150 before:content-[''] before:absolute"
         style={
           checked
             ? {

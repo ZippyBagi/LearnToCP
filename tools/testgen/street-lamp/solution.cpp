@@ -10,11 +10,10 @@ int main() {
 
     while(t--) {
 
-        int n;
-        long long d;
+        int n, d;
         cin >> n >> d;
 
-        vector<long long> x(n);
+        vector<int> x(n); // coordinates within +-10^9, and 2*d up to 2*10^9, both fit in an int
         for(int i = 0; i < n; i++) cin >> x[i];
 
         sort(x.begin(), x.end());

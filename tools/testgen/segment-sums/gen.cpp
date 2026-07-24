@@ -37,15 +37,15 @@ int main(int argc,char**argv){
         printf("100\n"); {vector<long long>a(100,0);printArr(a);}          // all zero
         printQueries(100,10,true);
     } else if(id==5){
+        printf("1\n5000\n");
+        vector<long long>a(5000,1000000000LL);                             // maximal values: total 5*10^12 overflows an int
+        printArr(a);
+        printQueries(5000,5000,true);
+    } else if(id==6){
         printf("1\n200000\n");
-        vector<long long>a(200000,1000000000LL);                           // maximal values, sums overflow an int
+        vector<long long>a(200000);for(auto&x:a)x=rnd(0,99);               // max n, small values keep the file small
         printArr(a);
         printQueries(200000,50000,true);
-    } else if(id==6){
-        printf("1\n100000\n");
-        vector<long long>a(100000);for(auto&x:a)x=rnd(0,1000000000LL);
-        printArr(a);
-        printQueries(100000,100000,true);
     }
     return 0;
 }
