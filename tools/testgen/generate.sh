@@ -110,3 +110,12 @@ gen_tests last-digits-of-power 5
 gen_tests h-index 6
 gen_tests crowded-pool 6
 echo "Batch 2 tests generated."
+
+# ---------------------------------------------------------------------------
+# Codeforces adaptation: Ideal Elections (Round 1103 Div.3, F1). Multi-testcase
+# already; the easy version's x=1 is dropped from our input. 01.in batches the
+# four official examples; 02-06 come from gen.cpp.
+printf '4\n4\n2 3 1 4\n2\n2 4\n6\n3 9 1 6 4 5\n7\n1 2 3 67 13 8 8\n'          > $PROB/ideal-elections/tests/01.in
+
+gen_tests ideal-elections 6
+echo "Ideal Elections tests generated."
