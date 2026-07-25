@@ -65,6 +65,9 @@ Ovaj proces ponavljamo dok:
 - ili dok se pokazivači ne sretnu: `while(left <= right)`
 
 Važno je primetiti da moramo uključiti i slučaj kada je `left == right`.
+
+	![[binary-search.png]]
+
 ### Implementacija
 
 **Problem:** Dat je niz **a** od **n** elemenata. Postavlja se **q** pitanja, za svako pitanje unosi se jedan element i treba odgovoriti da li se taj element nalazi u nizu **a**. 

@@ -83,6 +83,8 @@ And getting `Sum(a to b)` becomes:
 
 `Sum(a to b) = sums[b] - sums[a-1]`
 
+	![[prefix-sum.png]]
+
 Keep in mind the case when `a == 0`, then we just want to know the sum from 0 to n
 
 The full code would look something like this: 

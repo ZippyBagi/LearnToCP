@@ -41,6 +41,8 @@ Every divisor bigger than `6` is paired up with a divisor smaller than `6`. And 
 
 In other words: **if n has any divisor, it has one that is <= sqrt(n)**
 
+	![[divisor-pairs.png]]
+
 So instead of checking all the way up to `n`, it is enough to check up to `sqrt(n)`. 
 ### Implementation
 

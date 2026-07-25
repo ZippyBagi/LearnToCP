@@ -22,6 +22,8 @@ Lets look at the whole equation now:
 
 If we count the operations, we get `5`, compare to the `10` it would have taken if we multiplied by three 10 times
 
+	![[binary-exponentiation.png]]
+
 The larger the `b`, the more time we save by doing it this way. 
 
 For a general case, the algorithm looks like this ( ans = 1 at the beginning ):

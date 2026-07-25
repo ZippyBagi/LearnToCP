@@ -84,6 +84,8 @@ Umesto da poredimo svaki element sa svakim drugim elementom, možemo prolaziti k
    - ne pronađemo rešenje
    - ili dok se pokazivači ne sretnu `while(left < right)`
 
+	![[two-pointers.png]]
+
 Kada ovu ideju pretvorimo u kod dobijamo: 
 
 Solution.cpp

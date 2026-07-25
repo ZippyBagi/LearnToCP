@@ -41,6 +41,8 @@ Svaki delilac veći od `6` je uparen sa deliocem manjim od `6`. A `6` je tačno 
 
 Drugim rečima: **ako n ima bilo koji delilac, ima i jedan koji je <= sqrt(n)**
 
+	![[divisor-pairs.png]]
+
 Zato umesto da proveravamo sve do `n`, dovoljno je proveriti do `sqrt(n)`. 
 ### Implementacija
 

@@ -36,6 +36,8 @@ Evo primera kako rade za vrednost `3` u nizu ispod, `lower_bound` pokazuje na **
 | vrednost | 1   | **3**       | **3** | 5           | 8   | 10  |
 |          |     | lower_bound |       | upper_bound |     |     |
 
+	![[lower-upper-bound.png]]
+
 To nam otkriva koristan trik - broj pojavljivanja vrednosti `k` je prosto `upper_bound - lower_bound` (veličina tog bloka)!
 
 Sve tri funkcije rade u vremenskoj složenosti **O(log n)** po pozivu.

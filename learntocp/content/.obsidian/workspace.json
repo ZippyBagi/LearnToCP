@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "problems/ideal-elections/description-sr.md",
+                "file": "en/LessonsMD/02 Optimization Techniques/05 Greedy.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "description-sr"
+              "title": "05 Greedy"
             }
           }
         ]
@@ -185,6 +185,7 @@
   },
   "active": "5785c4dad5bfd622",
   "lastOpenFiles": [
+    "problems/ideal-elections/description-sr.md",
     "problems/ideal-elections/solution-sr.md.tmp.24256.7b169baefdea",
     "problems/ideal-elections/description-en.md",
     "problems/ideal-elections/solution-sr.md",
@@ -201,8 +202,6 @@
     "problems/ideal-elections/tests/05.out",
     "problems/ideal-elections/tests/04.out",
     "problems/ideal-elections/tests/03.out",
-    "problems/ideal-elections/tests/02.out",
-    "problems/ideal-elections/description-sr.md",
     "roadmap_data/L7/00 Dynamic Programming/01 Problem - Max Matrix Sum.md",
     "sr/LessonsMD/04 Matematika/05 Modifikovano Sito.md",
     "en/LessonsMD/04 Math/05 Modified Sieve.md",

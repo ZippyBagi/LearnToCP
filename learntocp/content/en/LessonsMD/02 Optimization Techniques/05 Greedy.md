@@ -47,6 +47,8 @@ Change the coins to `{4, 3, 1}` and let `k = 6`.
 - Greedy: takes `4` (2 left), then `1`, then `1` => **3 coins**
 - Optimal: `3 + 3` => **2 coins**
 
+	![[greedy-fails.png]]
+
 Whether this algorithm works or not depends entirely on the values of the coins. There is some interesting math as to why this happens, but that is beyond the scope of this lecture.
 
 >The thing to remember is to always thoroughly check if the greedy strategy works before implementing it.

@@ -25,6 +25,8 @@ Let's run it for `n = 30`:
 
 Whatever survives the crossing out is a prime: `2 3 5 7 11 13 17 19 23 29`
 
+	![[sieve-of-eratosthenes.png]]
+
 ### Two optimizations
 
 - When crossing out multiples of `i`, we can start from `i * i` instead of `2 * i`. Why? Every smaller multiple of `i` (like `3 * i`) has a factor smaller than `i`, so it was **already crossed out** by that smaller prime.

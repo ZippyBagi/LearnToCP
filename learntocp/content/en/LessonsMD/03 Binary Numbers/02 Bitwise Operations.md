@@ -187,6 +187,8 @@ And:
 
 `x ^ 0 = x` (If we XOR a number with `0`, we get that number)
 
+	![[bitwise-ops.png]]
+
 ### Note:
 
 We can also use the equal sign when using bitwise operations:

@@ -36,6 +36,8 @@ The names are easy to mix up, so remember it this way: for the value `3` in the 
 | value | 1   | **3**       | **3** | 5           | 8   | 10  |
 |       |     | lower_bound |       | upper_bound |     |     |
 
+	![[lower-upper-bound.png]]
+
 That gives us a handy bonus trick - the number of times `k` appears is simply `upper_bound - lower_bound` (the size of that block)!
 
 All three functions run in **O(log n)** per call.

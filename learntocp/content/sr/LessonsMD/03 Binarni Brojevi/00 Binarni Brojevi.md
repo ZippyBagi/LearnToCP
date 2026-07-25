@@ -45,6 +45,8 @@ Broj `1001 1101` u binarnom sistemu predstavlja:
 
 `= 157`
 
+	![[binary-place-value.png]]
+
 ### Pretvaranje iz dekadnog u binarni sistem
 
 Da bismo broj pretvorili u binarni zapis, možemo krenuti od najvećeg stepena broja 2 koji može da "stane" u naš broj.

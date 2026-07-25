@@ -41,6 +41,8 @@ We should be comfortable converting both decimal numbers into binary, and binary
 `= 128 + 16 + 8 + 4 + 1`
 `= 157`
 
+	![[binary-place-value.png]]
+
 #### Decimal to binary: 
 
 To convert to binary, simply subtract the largest possible power of 2, then keep going to smaller powers of 2, and if they "fit", subtract them and write `1`, and if they don't write `0`.

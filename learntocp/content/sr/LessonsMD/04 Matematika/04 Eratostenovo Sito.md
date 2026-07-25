@@ -25,6 +25,8 @@ Hajde da izvrtimo za `n = 30`:
 
 Šta god preživi precrtavanje - prost je: `2 3 5 7 11 13 17 19 23 29`
 
+	![[sieve-of-eratosthenes.png]]
+
 ### Dve optimizacije
 
 - Kada precrtavamo umnoške broja `i`, možemo krenuti od `i * i` umesto od `2 * i`. Zašto? Svaki manji umnožak broja `i` (npr. `3 * i`) ima činilac manji od `i`, pa ga je taj manji prost broj **već precrtao**.

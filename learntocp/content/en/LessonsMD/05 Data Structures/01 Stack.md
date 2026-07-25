@@ -6,6 +6,9 @@ Imagine a stack of plates. You can only do two things with it:
 - take the plate **from the top**
 
 You can't pull a plate from the middle without everything crashing down. That is the entire idea of a **stack**: the last element that came in is the first one to come out (**LIFO** - Last In, First Out).
+
+	![[stack.png]]
+
 ### The functions
 
 C++ gives us a ready-made `stack`, with these operations:

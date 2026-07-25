@@ -196,6 +196,8 @@ I:
 
 `x ^ 0 = x` (Ako XOR-ujemo broj sa `0`, dobijamo isti taj broj.)
 
+	![[bitwise-ops.png]]
+
 ### Napomena:
 
 Možemo koristiti i skraćeni zapis sa operatorom dodele:

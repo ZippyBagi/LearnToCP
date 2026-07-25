@@ -5,6 +5,9 @@ U prošloj lekciji smo naučili o steku, gde poslednji element koji uđe prvi iz
 **Red** (en. queue) je potpuna suprotnost - baš kao red ispred prodavnice: ko prvi dođe, prvi bude uslužen (**FIFO** - First In, First Out).
 
 Novi elementi ulaze **pozadi**, a izlaze **spreda**.
+
+	![[queue.png]]
+
 ### Funkcije
 
 C++ nam takođe daje gotov `queue`:

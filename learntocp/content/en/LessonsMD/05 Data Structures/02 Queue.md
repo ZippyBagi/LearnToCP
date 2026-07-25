@@ -5,6 +5,9 @@ Last lesson we learned about the stack, where the last element in is the first o
 A **queue** is the exact opposite - just like a line in front of a store: the first person to arrive is the first person served (**FIFO** - First In, First Out).
 
 New elements enter at the **back**, and leave from the **front**.
+
+	![[queue.png]]
+
 ### The functions
 
 C++ also gives us a ready-made `queue`:

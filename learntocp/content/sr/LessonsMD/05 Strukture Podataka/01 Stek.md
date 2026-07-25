@@ -6,6 +6,9 @@ Zamisli gomilu tanjira. Sa njom možeš da uradiš samo dve stvari:
 - uzmeš tanjir **sa vrha**
 
 Ne možeš da izvučeš tanjir iz sredine a da se sve ne sruši. To je cela ideja **steka** (en. stack): poslednji element koji je ušao - prvi izlazi (**LIFO** - Last In, First Out).
+
+	![[stack.png]]
+
 ### Funkcije
 
 C++ nam daje gotov `stack`, sa sledećim operacijama:

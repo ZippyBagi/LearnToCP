@@ -22,6 +22,8 @@ Pogledajmo sada celu jednačinu:
 
 Ako izbrojimo operacije, dobijamo `5`, u poređenju sa `10` koliko bi trebalo da smo množili trojkom 10 puta
 
+	![[binary-exponentiation.png]]
+
 Što je `b` veće, više vremena štedimo na ovaj način.
 
 Za opšti slučaj, algoritam izgleda ovako ( ans = 1 na početku ):

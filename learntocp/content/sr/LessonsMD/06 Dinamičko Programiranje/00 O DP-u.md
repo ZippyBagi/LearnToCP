@@ -20,6 +20,8 @@ Mogli bismo jednostavno rekurzivno da pozivamo ove funkcije, ali kako bismo izbe
 
 Ovaj postupak naziva se **memoizacija!**
 
+	![[dp-memoization.png]]
+
 Takođe moramo definisati **bazne slučajeve**. U ovom zadatku to su $n=0$ i $n=1$, pošto su njihove vrednosti već zadate u opisu problema.
 
 Kod

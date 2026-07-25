@@ -84,6 +84,8 @@ Instead of comparing every element with every other element, we can traverse the
     - we find the solution
     - or the pointers meet:  `while(left < right)`
 
+	![[two-pointers.png]]
+
 When we translate this idea into code, we get:
 
 Solution.cpp

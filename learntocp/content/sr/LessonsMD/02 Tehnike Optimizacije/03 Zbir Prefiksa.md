@@ -87,6 +87,8 @@ Pa pronalaženje zbira od `a` do `b` postaje:
 
 `Zbir(od a do b) = sums[b] - sums[a-1]`
 
+	![[prefix-sum.png]]
+
 Treba obratiti pažnju na slučaj kada je `a == 0`, jer tada samo želimo zbir od `0` do `b`.
 
 Kompletno rešenje izgleda ovako:

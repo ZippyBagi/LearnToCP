@@ -8,6 +8,8 @@ For example:
 `97 = 97` (already prime)
 `360 = 2 * 2 * 2 * 3 * 3 * 5`
 
+	![[prime-factor-tree.png]]
+
 This is called the **prime factorization** of a number, and it is so fundamental that mathematicians named the rule the Fundamental Theorem of Arithmetic.
 ### Theory
 
