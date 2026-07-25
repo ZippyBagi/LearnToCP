@@ -94,14 +94,18 @@ body {
    downward. Per-edge delay comes from the edge's `style` prop (inline
    animation-delay), staggered row by row after the nodes pop in.
    The .edges-revealing class is removed once the entrance finishes so the
-   dash pattern can't affect edges afterwards. */
+   dash pattern can't affect edges afterwards.
+   Each edge carries its own dash length in --ltcp-edge-len (set inline from the
+   edge's real path length), so a long diagonal — a 4-node layer feeding one
+   connector — draws as one continuous stroke instead of a repeating dash, and
+   every edge lands on its connector at the same moment regardless of length. */
 @keyframes ltcp-edge-draw {
-  from { stroke-dashoffset: 400; }
+  from { stroke-dashoffset: var(--ltcp-edge-len, 400); }
   to   { stroke-dashoffset: 0; }
 }
 
 .edges-revealing .react-flow__edge-path {
-  stroke-dasharray: 400;
+  stroke-dasharray: var(--ltcp-edge-len, 400);
   animation: ltcp-edge-draw 300ms ease-out both;
 }
 

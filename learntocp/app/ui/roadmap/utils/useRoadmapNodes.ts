@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+import type { CSSProperties } from "react";
 import type { RoadmapMatrix } from "@/app/[locale]/roadmap/roadmap.types";
 import { Node, Edge } from '@xyflow/react';
 import { getElementPositions } from "./roadmap.utils";
@@ -13,7 +14,7 @@ const gap_x = 350;
    the moment the stroke reaches it, and the edges below continue on. */
 export const POP_DURATION = 420;        // matches .pop-in in globals.css
 export const LAYER_STAGGER = 60;         // delay between node layers popping in (synced with home/problems 60ms stagger)
-export const EDGE_DRAW_DURATION = 150;  // matches ltcp-edge-draw in globals.css
+export const EDGE_DRAW_DURATION = 300;  // matches ltcp-edge-draw in globals.css
 // The stroke visually reaches its target well before the animation ends:
 // the dash (400) is longer than the paths and ease-out front-loads the draw.
 export const EDGE_HIT_TIME = 140;       // when the stroke visually lands
@@ -26,6 +27,23 @@ export const EDGE_CYCLE = 2.5 * EDGE_STEP;
 // mostly settled — and the chain races down while later layers are
 // still popping in (the pops easily outpace the 400ms-per-level chain).
 export const EDGE_START_DELAY = 250;
+
+const EDGE_DASH = 400;
+
+/**
+ * The dash has to cover the whole path or it repeats and the edge draws as
+ * broken segments — the outer edges of a 4-wide layer run past 400px. Duration
+ * grows with the dash so every stroke keeps the same speed, just more ground
+ * to cover. `dx` is the horizontal run, the only part that varies.
+ */
+function edgeStyle(delay: number, dx: number): CSSProperties {
+  const dash = Math.max(Math.abs(dx) + 80, EDGE_DASH);
+  return {
+    animationDelay: `${delay}ms`,
+    animationDuration: `${EDGE_DRAW_DURATION * (dash / EDGE_DASH)}ms`,
+    ["--ltcp-edge-len" as string]: `${dash}px`,
+  } as CSSProperties;
+}
 
 /** When the whole entrance (incl. the last edge row) has finished. */
 export function entranceDoneAt(layerCount: number) {
@@ -53,6 +71,13 @@ export function useRoadmapNodes(
     }
     fitStart = Math.max(0, Math.min(fitStart, matrix.length - INITIAL_FIT_LAYERS));
     const fitEnd = fitStart + INITIAL_FIT_LAYERS; // exclusive
+
+    // The chain starts one layer above the initial viewport, so it drops into
+    // view instead of having already finished offscreen. Logged out
+    // (fitStart === 0) that is the top of the graph, as before.
+    const animStart = Math.max(fitStart - 1, 0);
+    const rel = (i: number) => Math.max(i - animStart, 0);
+
     let cur_y = 0;
     let next_index = 0;
 
@@ -76,7 +101,7 @@ export function useRoadmapNodes(
             onClick: () => setModal({ layerIndex: li, nodeIndex: lj }),
             hideBottomNode: false,
             hideTopNode : false,
-            popDelay: i * LAYER_STAGGER,
+            popDelay: rel(i) * LAYER_STAGGER,
           },
         });
         if (i >= fitStart && i < fitEnd) fitNodeIds.push(next_index.toString());
@@ -90,7 +115,7 @@ export function useRoadmapNodes(
         id: next_index.toString(),
         type: 'connector',
         position: { x: CONNECTOR_X, y: cur_y + 20 },
-        data: { label: "Question", progress: 0, isComplete: false, onClick: () => {}, hideBottomNode: false, hideTopNode: false, popDelay: edgeBase + i * EDGE_CYCLE + EDGE_HIT_TIME },
+        data: { label: "Question", progress: 0, isComplete: false, onClick: () => {}, hideBottomNode: false, hideTopNode: false, popDelay: edgeBase + rel(i) * EDGE_CYCLE + EDGE_HIT_TIME },
       });
       // Connector between layer i and i+1 — in view only if both layers are.
       if (i >= fitStart && i + 1 < fitEnd) fitNodeIds.push(next_index.toString());
@@ -103,7 +128,7 @@ export function useRoadmapNodes(
           source: `${nodeValues.length-1 - matrix[i].length + j}`,
           target: `${nodeValues.length - 1}`,
           selectable: false,
-          style: { animationDelay: `${edgeBase + i * EDGE_CYCLE}ms` },
+          style: edgeStyle(edgeBase + rel(i) * EDGE_CYCLE, positions[j]),
         });
       }
       if (i !== 0) {
@@ -113,26 +138,27 @@ export function useRoadmapNodes(
             source: `${nodeValues.length - matrix[i].length - 2}`,
             target: `${nodeValues.length - 1 - matrix[i].length + j}`,
             selectable: false,
-            style: { animationDelay: `${edgeBase + (i - 1) * EDGE_CYCLE + EDGE_STEP}ms` },
+            style: edgeStyle(edgeBase + rel(i - 1) * EDGE_CYCLE + EDGE_STEP, positions[j]),
           });
         }
       }
     }
 
     const i = matrix.length - 1;
+    const lastPositions = getElementPositions(matrix[i].length, gap_x);
     for (let j = 0; j < matrix[i].length; j++) {
       edgeValues.push({
         id: `${nodeValues.length - 1 - matrix[i].length + j}-${nodeValues.length - matrix[i].length}`,
         source: `${nodeValues.length - 1 - matrix[i].length + j}`,
         target: `${nodeValues.length - matrix[i].length}`,
         selectable: false,
-        style: { animationDelay: `${edgeBase + Math.max(i - 1, 0) * EDGE_CYCLE + EDGE_STEP}ms` },
+        style: edgeStyle(edgeBase + rel(Math.max(i - 1, 0)) * EDGE_CYCLE + EDGE_STEP, lastPositions[j]),
       });
     }
-    
+
     nodeValues[0].data.hideTopNode = true;
     nodeValues[nodeValues.length-1].data.hideBottomNode = true;
 
-    return { nodeValues, edgeValues, fitNodeIds };
+    return { nodeValues, edgeValues, fitNodeIds, entranceDuration: entranceDoneAt(matrix.length - animStart) };
   }, [matrix, getProgress, isComplete, setModal, loggedIn]);
 }

@@ -7,7 +7,7 @@ import { useRoadmapCanvas } from "./utils/useRoadmapCanvas";
 import "@xyflow/react/dist/style.css";
 import { Node, Edge, NodeChange, ReactFlow, applyNodeChanges, Background, useReactFlow } from '@xyflow/react';
 import { RoadmapCustomNode, RoadmapConnectorNode } from "./ReactFlowCustomNodeWrapper";
-import { useRoadmapNodes, entranceDoneAt } from "./utils/useRoadmapNodes";
+import { useRoadmapNodes } from "./utils/useRoadmapNodes";
 
 type RoadmapCanvasInnerProps = {
   matrix: RoadmapMatrix;
@@ -23,16 +23,17 @@ const nodeTypes = {
 
 export function RoadmapCanvasInner({ matrix, initialCompleted, solvedSlugs, loginUrl }: RoadmapCanvasInnerProps) {
   const { modal, setModal, modalNode, modalChecked, getProgress, isComplete, handleToggle } = useRoadmapCanvas(matrix, initialCompleted, solvedSlugs, loginUrl);
-  const { nodeValues, edgeValues, fitNodeIds } = useRoadmapNodes(matrix, getProgress, isComplete, setModal, loginUrl === null); //loginURL === null means logged in
+  const { nodeValues, edgeValues, fitNodeIds, entranceDuration } = useRoadmapNodes(matrix, getProgress, isComplete, setModal, loginUrl === null); //loginURL === null means logged in
   const [nodes, setNodes] = useState<Node[]>(nodeValues);
   const [edges, setEdges] = useState<Edge[]>(edgeValues);
 
-  const edgesDoneAt = entranceDoneAt(matrix.length);
+  // The entrance starts at the layer above the initial viewport, so its length
+  // depends on how far down the graph the user's progress placed that viewport.
   const [edgesRevealed, setEdgesRevealed] = useState(false);
   useEffect(() => {
-    const t = setTimeout(() => setEdgesRevealed(true), edgesDoneAt);
+    const t = setTimeout(() => setEdgesRevealed(true), entranceDuration);
     return () => clearTimeout(t);
-  }, [edgesDoneAt]);
+  }, [entranceDuration]);
 
   const containerRef = useRef<HTMLDivElement>(null);
   const prevWidthRef = useRef<number | null>(null);

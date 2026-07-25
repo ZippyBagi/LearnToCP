@@ -4,7 +4,7 @@ import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import { LogOut } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import type { User } from "@supabase/supabase-js";
 import { createClient } from "@/app/supabase/client";
@@ -12,7 +12,6 @@ import getLocale from "@/app/utils/getLocale";
 
 export default function AuthButton() {
   const locale = getLocale();
-  const router = useRouter();
   const pathname = usePathname();
   const [user, setUser] = useState<User | null>(null);
   const [loaded, setLoaded] = useState(false);
@@ -38,7 +37,10 @@ export default function AuthButton() {
   async function signOut() {
     const supabase = createClient();
     await supabase.auth.signOut();
-    router.refresh();
+    // Full reload, not router.refresh(): refresh re-renders the server tree but
+    // keeps client state, so anything seeded from server props (roadmap
+    // checkmarks, solved problems) would still show the signed-in progress.
+    window.location.reload();
   }
 
   if (!user) {
