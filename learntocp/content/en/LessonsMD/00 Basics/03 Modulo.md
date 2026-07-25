@@ -73,3 +73,21 @@ Output: `The numbers are NOT divisible`
 
 Input: `100 5`
 Output: `The numbers are divisible`
+
+### Rules of modulo
+
+In many problems the answer is a huge number, so the statement asks us to print it **modulo** some number (usually `1000000007`). Instead of computing the giant number first and taking the remainder at the end (which would overflow), we take the remainder after every single operation.
+
+This works because of the following rules:
+
+**Addition**
+`(a + b) % m = (a % m + b % m) % m`
+
+**Subtraction**
+`(a - b) % m = (a % m - b % m + m) % m`
+
+**Multiplication**
+`(a * b) % m = ((a % m) * (b % m)) % m`
+
+**Exponentiation**
+`(a^b) % m = ((a % m)^b) % m`

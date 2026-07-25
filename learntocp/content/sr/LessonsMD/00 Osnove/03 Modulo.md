@@ -80,3 +80,21 @@ Output: `Brojevi NISU deljivi`
 
 Input: `100 5`  
 Output: `Brojevi JESU deljivi`
+
+### Pravila modulo operacije
+
+U mnogim zadacima rešenje je ogroman broj, pa se u postavci traži da ispišemo rezultat **po modulu** nekog broja (najčešće `1000000007`). Umesto da prvo izračunamo ogroman broj pa tek na kraju uzmemo ostatak (što bi izazvalo prekoračenje), uzimamo ostatak posle svake operacije.
+
+To radi zbog sledećih pravila:
+
+**Sabiranje**
+`(a + b) % m = (a % m + b % m) % m`
+
+**Oduzimanje**
+`(a - b) % m = (a % m - b % m + m) % m`
+
+**Množenje**
+`(a * b) % m = ((a % m) * (b % m)) % m`
+
+**Stepenovanje**
+`(a^b) % m = ((a % m)^b) % m`
