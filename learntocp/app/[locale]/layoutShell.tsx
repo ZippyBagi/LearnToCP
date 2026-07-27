@@ -2,10 +2,10 @@
 import Navbar from "@/app/ui/navbar";
 import SideBar from "@/app/ui/sidebar";
 import LessonSkeleton from "../ui/theory/LessonSkeleton";
-import { NavigationContext } from "@/app/ui/utils/navigationContext";
+import { NavigationContext } from "@/app/ui/sidebar/navigationContext";
 import { usePathname } from "next/navigation";
 import { Suspense, useCallback, useEffect, useMemo, useState } from "react";
-import type { SidebarContainer } from "@/app/ui/utils/sidebar.types";
+import type { SidebarContainer } from "@/app/ui/sidebar/sidebar.types";
 
 type LayoutShellProps = {
   children: React.ReactNode;

@@ -1,7 +1,7 @@
 'use client'
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useNavigation } from '@/app/ui/utils/navigationContext';
+import { useNavigation } from '@/app/ui/sidebar/navigationContext';
 
 type SideBarButtonInput = {
   name: string;

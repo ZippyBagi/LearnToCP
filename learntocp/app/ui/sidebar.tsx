@@ -1,8 +1,8 @@
 "use client";
 import { useRef, useState } from "react";
-import SideBarButton from "@/app/ui/utils/sideBarButton";
-import SidebarSection from "@/app/ui/utils/sideBarSection";
-import type { SidebarContainer } from "@/app/ui/utils/sidebar.types";
+import SideBarButton from "@/app/ui/sidebar/sideBarButton";
+import SidebarSection from "@/app/ui/sidebar/sideBarSection";
+import type { SidebarContainer } from "@/app/ui/sidebar/sidebar.types";
 import getLocale from '@/app/utils/getLocale'
 
 type SideBarInput = {

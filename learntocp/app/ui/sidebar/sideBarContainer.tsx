@@ -1,5 +1,5 @@
 'use client'
-import SideBarContainerItem from './sideBarContainerItem';
+import SideBarContainerItem from '@/app/ui/sidebar/sideBarContainerItem';
 import { useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { ChevronDown } from "lucide-react";

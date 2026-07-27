@@ -20,8 +20,7 @@ export async function requireAuth(locale: string, next: string) {
 
 /**
  * Non-redirecting variant for public pages that adapt their UI to auth
- * state (e.g. Problems/roadmap render for everyone, but progress tracking
- * and submissions require sign-in).
+ * state (e.g. Problems/roadmap render for everyone)
  */
 export async function isAuthenticated(): Promise<boolean> {
   const supabase = await createClient();

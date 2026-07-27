@@ -1,5 +1,5 @@
-import AuthButton from "@/app/ui/utils/authButton";
-import LanguageSelector from "@/app/ui/utils/languageSelect";
+import AuthButton from "@/app/ui/navbar/authButton";
+import LanguageSelector from "@/app/ui/navbar/languageSelect";
 import { Menu } from "lucide-react";
 import Image from "next/image";
 

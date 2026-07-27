@@ -2,7 +2,7 @@ import "server-only";
 import { cache } from "react";
 import fs from "fs";
 import path from "path";
-import type { SidebarContainer } from "@/app/ui/utils/sidebar.types";
+import type { SidebarContainer } from "@/app/ui/sidebar/sidebar.types";
 import { getLessonsRoot } from "@/app/utils/getLessonRoot";
 
 export type { SidebarContainer };
