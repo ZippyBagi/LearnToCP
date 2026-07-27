@@ -1,3 +1,0 @@
-sr-name: Tipovi Podatatka i IO
-id: data-types-and-io
-href: /Theory/Basics/Data%20types%20and%20IO

@@ -1,3 +1,3 @@
 sr-name: Princip Uključenja Isključenja
-id: inclusion-exclusion-princible
+id: inclusion-exclusion-principle
 href: /Theory/Combinatorics/Inclusion Exclusion Principle
