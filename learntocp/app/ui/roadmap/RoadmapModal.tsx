@@ -87,7 +87,7 @@ function ModalItem({
 
   return (
     <li
-      className={`roadmap-row relative flex items-center gap-3 rounded-lg px-3 py-2.5 transition-colors duration-150 ${
+      className={`roadmap-row relative flex items-center gap-3 rounded-lg px-3 py-3 sm:py-2.5 transition-colors duration-150 ${
         checked ? "is-checked" : ""
       }`}
       style={{ background: checked ? "rgba(80,250,123,0.04)" : "transparent" }}
@@ -170,7 +170,7 @@ export function RoadmapModal({
         role="dialog"
         aria-modal="true"
         aria-label={node.title.replace(/^[0-9]+/, '')}
-        className="fixed inset-0 z-50 flex items-center justify-center p-4"
+        className="fixed inset-0 z-50 flex items-end justify-center p-3 sm:items-center sm:p-4"
         onClick={(e) => {
           if (e.target === e.currentTarget) onClose();
         }}
@@ -193,7 +193,7 @@ export function RoadmapModal({
             boxShadow: isAllDone
               ? "0 0 0 1px rgba(80,250,123,0.08), 0 24px 60px rgba(0,0,0,0.7), 0 0 80px rgba(80,250,123,0.06)"
               : "0 0 0 1px rgba(124,158,248,0.06), 0 24px 60px rgba(0,0,0,0.7), 0 0 80px rgba(50,100,200,0.08)",
-            maxHeight: "85vh",
+            maxHeight: "min(85dvh, 42rem)",
             transition: "border-color 300ms ease, box-shadow 300ms ease",
           }}
         >

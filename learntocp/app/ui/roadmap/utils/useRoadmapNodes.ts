@@ -56,6 +56,7 @@ export function useRoadmapNodes(
   isComplete: (i: number, j: number) => boolean,
   setModal: (val: { layerIndex: number; nodeIndex: number } | null) => void,
   loggedIn: boolean = false,
+  fitLayers: number = INITIAL_FIT_LAYERS,
 ) {
   return useMemo(() => {
     const nodeValues: Node[] = [];
@@ -69,8 +70,8 @@ export function useRoadmapNodes(
         fitStart = i;
       }
     }
-    fitStart = Math.max(0, Math.min(fitStart, matrix.length - INITIAL_FIT_LAYERS));
-    const fitEnd = fitStart + INITIAL_FIT_LAYERS; // exclusive
+    fitStart = Math.max(0, Math.min(fitStart, matrix.length - fitLayers));
+    const fitEnd = fitStart + fitLayers; // exclusive
 
     // The chain starts one layer above the initial viewport, so it drops into
     // view instead of having already finished offscreen. Logged out
@@ -160,5 +161,5 @@ export function useRoadmapNodes(
     nodeValues[nodeValues.length-1].data.hideBottomNode = true;
 
     return { nodeValues, edgeValues, fitNodeIds, entranceDuration: entranceDoneAt(matrix.length - animStart) };
-  }, [matrix, getProgress, isComplete, setModal, loggedIn]);
+  }, [matrix, getProgress, isComplete, setModal, loggedIn, fitLayers]);
 }

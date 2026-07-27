@@ -1,7 +1,10 @@
 export default function Loading() {
   return (
-    <main className="min-h-fill px-4 py-4" style={{ background: "var(--color-bg-page)" }}>
-      <section aria-label="Roadmap loading" className="w-full h-[calc(100vh-7rem)]">
+    <main className="min-h-fill px-1 py-1 md:px-4 md:py-4" style={{ background: "var(--color-bg-page)" }}>
+      <section
+        aria-label="Roadmap loading"
+        className="w-full h-[calc(100dvh-5.5rem)] md:h-[calc(100dvh-7rem)]"
+      >
         <div className="-m-3 h-[calc(100%+1.5rem)] w-[calc(100%+1.5rem)]">
           <div
             className="relative h-full w-full rounded-xl overflow-hidden"

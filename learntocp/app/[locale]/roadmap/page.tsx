@@ -34,8 +34,11 @@ export default async function RoadmapPage({ params }: RoadmapPageProps) {
     : [[], new Set<string>()];
 
   return (
-    <main className="min-h-fill bg-[var(--color-bg-page)] px-4 py-4">
-      <section aria-label="Roadmap diagram" className="w-full h-[calc(100vh-7rem)]">
+    <main className="min-h-fill bg-[var(--color-bg-page)] px-1 py-1 md:px-4 md:py-4">
+      <section
+        aria-label="Roadmap diagram"
+        className="w-full h-[calc(100dvh-5.5rem)] md:h-[calc(100dvh-7rem)]"
+      >
         <RoadmapCanvas
           matrix={matrix}
           initialCompleted={completedIds}

@@ -71,7 +71,7 @@ export default function LayoutShell({ children, containers }: LayoutShellProps) 
       {/* overflow-hidden pins the shell: the document itself can never
           scroll, so the navbar/sidebar always stay in view — all scrolling
           happens inside the content pane below. */}
-      <div className="flex h-screen w-screen flex-col overflow-hidden">
+      <div className="flex h-dvh w-screen flex-col overflow-hidden">
         <Navbar setSideBarActiveFunction={() => setSideBarActive((prev) => !prev)} />
         <div className="relative flex min-h-0 flex-1">
           {/* Suspense: SideBarButton reads useSearchParams (for the login

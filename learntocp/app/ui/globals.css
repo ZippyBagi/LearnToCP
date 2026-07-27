@@ -109,6 +109,51 @@ body {
   animation: ltcp-edge-draw 300ms ease-out both;
 }
 
+/* React Flow ships light-theme controls; restyle them to match the panel and
+   grow the hit area to a comfortable touch target on phones. */
+.ltcp-flow-controls {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(124, 158, 248, 0.18);
+}
+
+.ltcp-flow-controls .react-flow__controls-button {
+  width: 34px;
+  height: 34px;
+  background: rgba(9, 24, 38, 0.92);
+  border-bottom: 1px solid rgba(124, 158, 248, 0.12);
+  color: rgba(200, 218, 240, 0.75);
+  transition: background 150ms ease, color 150ms ease;
+}
+
+.ltcp-flow-controls .react-flow__controls-button:last-child {
+  border-bottom: none;
+}
+
+.ltcp-flow-controls .react-flow__controls-button svg {
+  fill: currentColor;
+  max-width: 14px;
+  max-height: 14px;
+}
+
+.ltcp-flow-controls .react-flow__controls-button:hover {
+  background: rgba(124, 158, 248, 0.14);
+  color: var(--color-accent);
+}
+
+@media (max-width: 767px) {
+  .ltcp-flow-controls .react-flow__controls-button {
+    width: 42px;
+    height: 42px;
+  }
+
+  .ltcp-flow-controls .react-flow__controls-button svg {
+    max-width: 17px;
+    max-height: 17px;
+  }
+}
+
 code, kbd, samp, pre {
   font-family: var(--font-mono);
 }
