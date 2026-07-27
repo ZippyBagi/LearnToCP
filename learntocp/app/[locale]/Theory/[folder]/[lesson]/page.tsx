@@ -3,7 +3,7 @@ import path from "path";
 import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import markdownToHtml from "@/app/utils/mdToHTML";
-import LessonSkeleton from "../../_components/LessonSkeleton";
+import LessonSkeleton from "../../../../ui/theory/LessonSkeleton";
 import { stripOrderPrefix } from "@/app/utils/generateSidebarContainers";
 import { getLessonsRoot } from "@/app/utils/getLessonRoot";
 import { pageMetadata, SITE_URL, SITE_NAME, localizedPath } from "@/app/utils/seo";

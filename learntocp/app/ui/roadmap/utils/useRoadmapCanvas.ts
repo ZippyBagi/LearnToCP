@@ -6,7 +6,7 @@ import {
   type RoadmapItem,
   type RoadmapMatrix,
   type RoadmapNode,
-} from "@/app/[locale]/roadmap/roadmap.types";
+} from "@/app/ui/roadmap/roadmap.types";
 import { createClient } from "@/app/supabase/client";
 
 export interface ModalTarget {

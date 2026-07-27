@@ -1,7 +1,7 @@
 "use client";
 import Navbar from "@/app/ui/navbar";
 import SideBar from "@/app/ui/sidebar";
-import LessonSkeleton from "./Theory/_components/LessonSkeleton";
+import LessonSkeleton from "../ui/theory/LessonSkeleton";
 import { NavigationContext } from "@/app/ui/utils/navigationContext";
 import { usePathname } from "next/navigation";
 import { Suspense, useCallback, useEffect, useMemo, useState } from "react";

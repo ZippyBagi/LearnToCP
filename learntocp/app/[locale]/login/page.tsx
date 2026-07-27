@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 import { createClient } from "@/app/supabase/server";
 import { getLoginMessages } from "@/translations";
 import { pageMetadata } from "@/app/utils/seo";
-import LoginPanel from "./components/LoginPanel";
+import LoginPanel from "../../ui/login/LoginPanel";
 
 export async function generateMetadata({
   params,

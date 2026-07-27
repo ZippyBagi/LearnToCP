@@ -63,8 +63,7 @@ export default function LoginPanel({ locale }: { locale: string }) {
 
   const noticePage = (() => {
     if (!next) return null;
-    // Voluntary sign-in from the navbar — no "sign in required" notice needed.
-    if (searchParams.get("src") === "nav") return null;
+    if (searchParams.get("src") === "nav") return null; //from navbar - no need to show
     const section = next.split("?")[0].split("/").filter(Boolean)[1]?.toLowerCase();
     if (section === "roadmap") return t.pageRoadmap;
     if (section === "problems") return t.pageProblems;
@@ -95,7 +94,6 @@ export default function LoginPanel({ locale }: { locale: string }) {
       },
     });
 
-    // On success the browser navigates away; only errors land here.
     if (error) {
       setError(t.errorStart);
       setLoading(false);

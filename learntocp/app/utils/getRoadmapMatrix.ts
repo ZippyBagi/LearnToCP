@@ -2,7 +2,7 @@ import "server-only";
 import { cache } from "react";
 import fs from "fs";
 import path from "path";
-import type { RoadmapItem, RoadmapMatrix } from "@/app/[locale]/roadmap/roadmap.types";
+import type { RoadmapItem, RoadmapMatrix } from "@/app/ui/roadmap/roadmap.types";
 import { DEFAULT_LOCALE } from "@/app/utils/getLessonRoot";
 import { stripOrderPrefix } from "@/app/utils/generateSidebarContainers";
 import { resolveLessonLocale, safeDecode } from "@/app/utils/resolveLessonLocale";

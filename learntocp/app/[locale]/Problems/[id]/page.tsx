@@ -13,7 +13,7 @@ import {
 import { hasSolvedProblem } from "@/app/judge0/progress";
 import { getProblemMessages } from "@/translations";
 import { pageMetadata } from "@/app/utils/seo";
-import ProblemView from "../_components/ProblemView";
+import ProblemView from "@/app/ui/problems/ProblemView";
 
 interface ProblemPageProps {
   params: Promise<{ locale: string; id: string }>;

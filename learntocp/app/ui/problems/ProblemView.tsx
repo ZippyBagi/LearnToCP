@@ -28,9 +28,7 @@ interface ProblemViewProps {
   meta: ProblemMetaView;
   statementHtml: string | null;
   solutionHtml: string | null;
-  /** Whether the signed-in user has already solved (AC'd) this problem. */
   solved: boolean;
-  /** Signed-out visitors see a sign-in CTA instead of the submit panel. */
   isAuthed: boolean;
 }
 
@@ -55,8 +53,6 @@ export default function ProblemView({
 }: ProblemViewProps) {
   const t = getProblemMessages(locale);
   const [tab, setTab] = useState<Tab>("statement");
-  // Once the solution has been revealed (or the problem is already solved),
-  // we don't keep nagging on every tab switch.
   const [solutionUnlocked, setSolutionUnlocked] = useState(solved);
   const [confirmingReveal, setConfirmingReveal] = useState(false);
 

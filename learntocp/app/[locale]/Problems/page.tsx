@@ -12,7 +12,7 @@ import { getProblemListMessages } from "@/translations";
 import { pageMetadata } from "@/app/utils/seo";
 import ProblemsExplorer, {
   type ProblemListItem,
-} from "./_components/ProblemsExplorer";
+} from "@/app/ui/problems/ProblemsExplorer";
 
 interface ProblemsPageProps {
   params: Promise<{ locale: string }>;
@@ -36,7 +36,6 @@ export default async function ProblemsPage({ params }: ProblemsPageProps) {
   const { locale } = await params;
   const isAuthed = await isAuthenticated();
 
-  // Ordered hardest-last by display number; nulls (un-numbered) sort to the end.
   const problems = listProblems().sort((a, b) => {
     const an = a.meta.number ?? Infinity;
     const bn = b.meta.number ?? Infinity;

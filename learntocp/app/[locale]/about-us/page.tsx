@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { getAboutMessages } from "@/translations";
-import CopyEmailPill from "./_components/CopyEmailPill";
+import CopyEmailPill from "../../ui/about-us/CopyEmailPill";
 import { pageMetadata } from "@/app/utils/seo";
 
 type PageProps = { params: Promise<{ locale: string }> };

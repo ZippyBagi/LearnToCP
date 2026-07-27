@@ -4,11 +4,6 @@ import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import { CPP_LANGUAGES } from '@/app/judge0/cppLanguages'
 
-/**
- * C++ compiler picker for the submit panel. Built on Headless UI's Menu so the
- * button and dropdown options match the navbar language selector exactly
- * (a native <select> can't style its option list to fit the site).
- */
 export default function CppVersionSelect({
   value,
   onChange,

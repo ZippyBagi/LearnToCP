@@ -1,4 +1,4 @@
-import LessonSkeleton from "../../_components/LessonSkeleton";
+import LessonSkeleton from "../../../../ui/theory/LessonSkeleton";
 
 /**
  * Segment-level fallback for the [lesson] route under [locale].

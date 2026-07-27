@@ -21,12 +21,6 @@ import { getProblemMessages } from "@/translations";
 
 type ProblemT = ReturnType<typeof getProblemMessages>;
 
-/**
- * Submit UI: paste C++ code, submit, poll until judged.
- * Shows only aggregate feedback (passed/total + verdict; compiler output on CE)
- * — never per-testcase data.
- */
-
 interface PublicSubmission {
   submissionId: string;
   problemId: string;
@@ -39,7 +33,6 @@ interface PublicSubmission {
   createdAt: string;
   runtime?: number | null;
   memory?: number | null;
-  /** Source the user submitted — returned by the history endpoint. */
   code?: string;
 }
 
@@ -52,7 +45,6 @@ const VERDICT_LABELS: Record<string, string> = {
   IE: "Judge Error — something went wrong on our side, try again",
 };
 
-// AC is the only "good" verdict; everything else renders red.
 function verdictTone(verdict: string | null): "ok" | "bad" | "pending" {
   if (!verdict) return "pending";
   return verdict === "AC" ? "ok" : "bad";
@@ -60,9 +52,6 @@ function verdictTone(verdict: string | null): "ok" | "bad" | "pending" {
 
 const POLL_INTERVAL_MS = 1500;
 
-// Lazy, memoized Shiki highlighter so the modal renders code exactly like the
-// theory lessons (same dracula theme + .shiki-block markup). Loaded on demand
-// the first time a submission's code is opened.
 let highlighterPromise: Promise<
   import("shiki").Highlighter
 > | null = null;
@@ -75,7 +64,6 @@ function getHighlighter() {
   return highlighterPromise;
 }
 
-// Render C++ to Shiki HTML with our shiki-block markup (matches theory lessons).
 function highlightCpp(
   hl: import("shiki").Highlighter,
   code: string,
@@ -110,8 +98,7 @@ export default function SubmitPanel({ problemId,locale,time_limit,memory_limit,o
   const highlightRef = useRef<HTMLDivElement>(null);
   const gutterRef = useRef<HTMLDivElement>(null);
 
-  // Line count drives the always-present gutter (min 1 so the empty editor
-  // still shows line "1").
+  // Line count drives the always-present gutter (min 1 so the empty editor still shows line "1").
   const lineCount = useMemo(
     () => Math.max(1, code.split("\n").length),
     [code],
@@ -132,22 +119,18 @@ export default function SubmitPanel({ problemId,locale,time_limit,memory_limit,o
   const inputHtml = useMemo(() => {
     if (!hl || !code) return null;
     try {
-      // Plain Shiki output (no .shiki-block) so we can match the textarea's
-      // line metrics exactly for caret alignment.
       const html = hl.codeToHtml(code, {
         lang: "cpp",
         theme: "dracula",
         transformers: [
           {
             pre(node) {
-              // The layer is decorative; keep it out of the tab order.
               delete node.properties.tabindex;
             },
           },
         ],
       });
-      // Shiki puts a literal newline between each .line; with block-level lines
-      // that would double the spacing, so drop the inter-line newlines.
+      // Shiki puts a literal newline between each .line; with block-level lines that would double the spacing, so drop the inter-line newlines.
       return html.replace(/\n(<span class="line")/g, "$1");
     } catch {
       return null;
@@ -207,7 +190,6 @@ export default function SubmitPanel({ problemId,locale,time_limit,memory_limit,o
     return stopPolling;
   }, [loadHistory]);
 
-  // Close the code viewer on Escape.
   useEffect(() => {
     if (!viewing) return;
     const onKey = (e: KeyboardEvent) => {
@@ -232,7 +214,7 @@ export default function SubmitPanel({ problemId,locale,time_limit,memory_limit,o
           if (data.verdict === "AC") onSolved?.();
         }
       } catch {
-        // transient network error — keep polling
+        // transient network error - keep polling
       }
     };
     poll();
@@ -435,7 +417,6 @@ function CodeViewer({
     };
   }, []);
 
-  // Syntax-highlight the code the same way theory lessons do.
   useEffect(() => {
     let cancelled = false;
     setHighlighted(null);
@@ -447,7 +428,7 @@ function CodeViewer({
         const html = highlightCpp(hl, code.replace(/\n$/, ""));
         if (!cancelled) setHighlighted(html);
       } catch {
-        // Highlighter failed to load — keep the plain fallback.
+        // Highlighter failed to load - keep the plain fallback.
       }
     })();
     return () => {

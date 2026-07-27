@@ -20,24 +20,20 @@ import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import { DIFFICULTIES, type Difficulty } from "@/app/judge0/difficulties";
 import { getProblemMessages, getProblemListMessages } from "@/translations";
 
-/** One row of the Problems list — fully resolved & localized on the server. */
 export interface ProblemListItem {
   slug: string;
-  /** Display number ("01"); falls back to list position when absent. */
   number: number | null;
   title: string;
   topic: string | null;
   difficulty: Difficulty | null;
   tags: string[];
   solved: boolean;
-  /** Community acceptance in [0,1], or null when nothing has been judged. */
   acceptance: number | null;
 }
 
 interface ProblemsExplorerProps {
   locale: string;
   problems: ProblemListItem[];
-  /** Signed-out visitors see the list without personal progress UI. */
   isAuthed: boolean;
 }
 
@@ -52,10 +48,6 @@ const DIFFICULTY_CLASS: Record<Difficulty, string> = {
   "Olympiad Level": "difficulty-olympiad",
 };
 
-// One shared grid template for the header row AND every problem row, so the
-// Tags / Level / AC columns line up exactly. Tags column is dropped on small
-// screens (5 tracks); restored from `sm` up (6 tracks). Cells render in the
-// same order and the hidden Tags cell is removed from grid flow on mobile.
 const GRID =
   "grid items-center gap-7 px-5 " +
   "grid-cols-[24px_36px_minmax(0,1fr)_110px_56px] " +
@@ -77,8 +69,6 @@ export default function ProblemsExplorer({
   const [topic, setTopic] = useState<string>("all");
   const [page, setPage] = useState(0);
 
-  // Full canonical difficulty ladder (not just what's present), per the
-  // single source of truth in judge0/difficulties.
   const difficultyOptions = useMemo(
     () => [
       { value: "all" as const, label: t.allDifficulties },
@@ -117,7 +107,6 @@ export default function ProblemsExplorer({
     });
   }, [problems, query, difficulty, status, topic]);
 
-  // Filters changing should always bring you back to the first page.
   useEffect(() => {
     setPage(0);
   }, [query, difficulty, status, topic]);
@@ -140,7 +129,6 @@ export default function ProblemsExplorer({
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-10">
-      {/* Header */}
       <header className="pop-in mb-7">
         <h1 className="text-[2rem] font-bold tracking-tight text-text-heading">
           {t.title}
@@ -163,7 +151,6 @@ export default function ProblemsExplorer({
         </p>
       </header>
 
-      {/* Search — the whole box is a label so clicking anywhere focuses it */}
       <label
         className="pop-in mb-4 flex cursor-text items-center gap-2.5 rounded-xl border border-border-subtle bg-bg-page px-4 py-3 transition-colors focus-within:border-accent-border-hover"
         style={{ animationDelay: "60ms" }}
@@ -179,7 +166,6 @@ export default function ProblemsExplorer({
         />
       </label>
 
-      {/* Filters — difficulty, then status, topic, clear */}
       <div
         className="pop-in mb-5 flex flex-wrap items-center gap-3"
         style={{ animationDelay: "120ms" }}
@@ -216,7 +202,6 @@ export default function ProblemsExplorer({
         )}
       </div>
 
-      {/* List */}
       {problems.length === 0 ? (
         <EmptyState title={t.noProblems} />
       ) : filtered.length === 0 ? (
@@ -228,7 +213,6 @@ export default function ProblemsExplorer({
           className="pop-in overflow-hidden rounded-xl border border-border-subtle bg-bg-surface"
           style={{ animationDelay: "180ms" }}
         >
-          {/* Column header */}
           <div
             className={`${GRID} border-b border-border-subtle py-3 font-mono text-[11px] uppercase tracking-[0.1em] text-text-muted`}
           >
@@ -262,7 +246,6 @@ export default function ProblemsExplorer({
         </div>
       )}
 
-      {/* Pagination — always shown (even for a single page) once there are rows */}
       {filtered.length > 0 && (
         <div className="mt-5 flex items-center justify-between">
           <span className="font-mono text-[13px] text-text-muted tabular-nums">
@@ -297,9 +280,6 @@ export default function ProblemsExplorer({
   );
 }
 
-/* ────────────────────────────────────────────────────────────────────────
-   Row
-   ──────────────────────────────────────────────────────────────────────── */
 function ProblemRow({
   locale,
   p,
@@ -321,7 +301,6 @@ function ProblemRow({
   noAttemptsTooltip: string;
   solvedTooltip: string;
   unsolvedTooltip: string;
-  /** Hide the personal solved/unsolved marker for signed-out visitors. */
   showStatus: boolean;
 }) {
   const shownTags = p.tags.slice(0, MAX_VISIBLE_TAGS);
@@ -335,7 +314,6 @@ function ProblemRow({
         last ? "" : "border-b border-border-subtle"
       }`}
     >
-      {/* Status — empty cell (keeps grid alignment) when signed out */}
       <span className="justify-self-start">
         {!showStatus ? null : p.solved ? (
           <span
@@ -352,12 +330,10 @@ function ProblemRow({
         )}
       </span>
 
-      {/* Index */}
       <span className="justify-self-center font-mono text-sm font-semibold text-text-muted tabular-nums">
         {String(displayNumber).padStart(2, "0")}
       </span>
 
-      {/* Title + topic */}
       <div className="min-w-0">
         <div
           className={`truncate text-base font-semibold transition-colors group-hover:text-accent ${
@@ -373,7 +349,6 @@ function ProblemRow({
         )}
       </div>
 
-      {/* Tags */}
       <div className="hidden min-w-0 max-w-full flex-wrap items-center justify-center justify-self-center gap-1.5 sm:flex">
         {shownTags.map((tag) => (
           <span key={tag} className="tag whitespace-nowrap font-mono">
@@ -385,7 +360,6 @@ function ProblemRow({
         )}
       </div>
 
-      {/* Difficulty */}
       <div className="justify-self-center">
         {p.difficulty && (
           <span className={`difficulty-badge ${DIFFICULTY_CLASS[p.difficulty]}`}>
@@ -394,7 +368,6 @@ function ProblemRow({
         )}
       </div>
 
-      {/* Acceptance */}
       <span
         title={p.acceptance === null ? noAttemptsTooltip : acceptanceTooltip}
         className="justify-self-center text-center font-mono text-sm text-text-muted tabular-nums"
@@ -405,9 +378,6 @@ function ProblemRow({
   );
 }
 
-/* ────────────────────────────────────────────────────────────────────────
-   Sliding segmented control (mirrors the problem-page tab indicator)
-   ──────────────────────────────────────────────────────────────────────── */
 function SlidingSegmented<T extends string>({
   value,
   onChange,
@@ -461,9 +431,6 @@ function SlidingSegmented<T extends string>({
   );
 }
 
-/* ────────────────────────────────────────────────────────────────────────
-   Dropdown select (Headless UI Listbox, themed to the app)
-   ──────────────────────────────────────────────────────────────────────── */
 function FilterSelect({
   value,
   onChange,
@@ -478,7 +445,6 @@ function FilterSelect({
   return (
     <Listbox value={value} onChange={onChange}>
       <div className="relative inline-block">
-        {/* Matches the navbar language selector's styling */}
         <ListboxButton className="inline-flex w-full cursor-pointer items-center justify-between gap-x-1.5 rounded-md border border-border-subtle bg-bg-page px-3 py-2 text-sm font-semibold text-text-primary transition-colors duration-150 hover:border-accent-border-hover hover:bg-bg-surface focus:outline-none">
           <span className="truncate">{selected?.label}</span>
           <ChevronDownIcon
@@ -514,9 +480,6 @@ function FilterSelect({
   );
 }
 
-/* ────────────────────────────────────────────────────────────────────────
-   Pagination button + empty state
-   ──────────────────────────────────────────────────────────────────────── */
 function PageButton({
   disabled,
   onClick,
