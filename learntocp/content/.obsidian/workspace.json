@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "51a8070e8a823cd3",
+        "id": "6792422c849c4304",
         "type": "tabs",
         "children": [
           {
-            "id": "5785c4dad5bfd622",
+            "id": "c15ec58d0b5475f4",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "roadmap_data/L12/01 Data Structures VI/01 Trie.md",
+                "file": "problems/strong-pairs/problem.json",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "01 Trie"
+              "title": "problem"
             }
           }
         ]
@@ -183,44 +183,44 @@
       "bases:Create new base": false
     }
   },
-  "active": "5785c4dad5bfd622",
+  "active": "c15ec58d0b5475f4",
   "lastOpenFiles": [
+    "problems/strong-pairs/solution-en.md",
+    "problems/and-until-zero/solution-sr.md",
+    "problems/and-until-zero/solution-en.md",
+    "problems/smallest-xor-sum/solution-sr.md",
+    "problems/smallest-xor-sum/solution-en.md",
+    "problems/smallest-xor-sum/solution-en.md.tmp.20264.6f643810affc",
+    "problems/and-until-zero/solution-en.md.tmp.20264.a199414fc56f",
+    "problems/smallest-xor-sum/description-en.md",
+    "sr/LessonsMD/00 Takmičarsko Znanje/00 Izbor Radnog Okruženja (IDE).md",
+    "roadmap_data/L5/00 Test 1/05 Problem - Strong Pairs.txt",
+    "roadmap_data/L3/01 Binary Numbers/04 Problem - AND Until Zero.md",
+    "roadmap_data/L3/01 Binary Numbers/03 Problem - Smallest XOR Sum.md",
+    "problems/strong-pairs/solution-sr.md",
+    "problems/strong-pairs/description-sr.md",
+    "problems/strong-pairs/description-en.md",
+    "problems/strong-pairs/problem.json",
+    "problems/strong-pairs/problem.json.tmp.24548.c3247d307237",
+    "problems/and-until-zero/solution-en.md.tmp.24548.25650ceb342e",
+    "problems/and-until-zero/description-sr.md",
+    "problems/and-until-zero/description-en.md",
+    "problems/and-until-zero/problem.json",
+    "problems/smallest-xor-sum/solution-en.md.tmp.24548.c1487384bdfb",
+    "problems/smallest-xor-sum/description-sr.md",
+    "problems/smallest-xor-sum/description-sr.md.tmp.24548.bc8978390fde",
+    "problems/smallest-xor-sum/problem.json",
+    "en/LessonsMD/00 Contest Knowledge/00 Selecting an IDE.md",
+    "images/online-gdb.png",
+    "roadmap_data/L12/01 Data Structures VI/01 Trie.md",
+    "en/Theory/Math/Modified.md",
     "roadmap_data/L12/02 Contest Knowledge/01 Output-Only Tasks.md",
     "roadmap_data/L12/02 Contest Knowledge/00 Interactive Tasks.md",
-    "roadmap_data/L12/02 Contest Knowledge/meta.json",
-    "roadmap_data/L12/02 Contest Knowledge",
-    "roadmap_data/L0/Intro to C++/00 Selecting an IDE.txt",
-    "roadmap_data/L0/Intro to C++/01 Your First Program.txt",
-    "roadmap_data/L0/Intro to C++/02 Data types and IO.txt",
-    "roadmap_data/L0/Intro to C++/03 C++ syntax.txt",
-    "roadmap_data/L0/Intro to C++/04 Problem - Sum of Two Numbers.txt",
-    "roadmap_data/L0/Intro to C++/05 Modulo.txt",
-    "roadmap_data/L0/Intro to C++/06 Problem - Monopoly.txt",
-    "roadmap_data/L0/Intro to C++/07 Functions.txt",
     "roadmap_data/L12/01 Data Structures VI/03 Mo's Algorithm.md",
     "roadmap_data/L9/03 Data Structures IV/02 Sqrt Decomposition.md",
     "sr/LessonsMD/13 Napredne Strukture Podataka/07 Moov Algoritam.md",
     "en/LessonsMD/13 Advanced Data Structures/07 Mo's Algorithm.md",
     "sr/LessonsMD/06 Strukture Podataka/11 Sqrt Dekompozicija.md",
-    "en/LessonsMD/06 Data Structures/11 Sqrt Decomposition.md",
-    "sr/LessonsMD/00 Takmičarsko Znanje/02 Output-only Zadaci.md",
-    "en/LessonsMD/00 Contest Knowledge/02 Output-Only Tasks.md",
-    "sr/LessonsMD/00 Takmičarsko Znanje/01 Interaktivni Zadaci.md",
-    "en/LessonsMD/00 Contest Knowledge/01 Interactive Tasks.md",
-    "sr/LessonsMD/00 Takmičarsko Znanje/00 Izbor Radnog Okruženja (IDE).md",
-    "en/LessonsMD/00 Contest Knowledge/00 Selecting an IDE.md",
-    "sr/LessonsMD/13 Napredne Strukture Podataka/06 Balansirana Binarna Stabla Pretrage.md",
-    "sr/LessonsMD/13 Napredne Strukture Podataka/05 Trie.md",
-    "sr/LessonsMD/13 Napredne Strukture Podataka/04 Najbliži Zajednički Predak.md",
-    "sr/LessonsMD/13 Napredne Strukture Podataka/03 Perzistentna Segmentna Stabla.md",
-    "sr/LessonsMD/13 Napredne Strukture Podataka/02 Implicitna Segmentna Stabla.md",
-    "sr/LessonsMD/13 Napredne Strukture Podataka/01 Lenjo Propagiranje.md",
-    "sr/LessonsMD/13 Napredne Strukture Podataka/00 2D i 3D Segmentna Stabla.md",
-    "sr/LessonsMD/12 Napredna Teorija Grafova/07 Centroidna Dekompozicija.md",
-    "sr/LessonsMD/12 Napredna Teorija Grafova/06 Teško-Laka Dekompozicija.md",
-    "sr/LessonsMD/12 Napredna Teorija Grafova/05 Dualnost Protoka i Minimalnog Preseka.md",
-    "sr/LessonsMD/12 Napredna Teorija Grafova/04 Ford-Fulkersonov Algoritam.md",
-    "sr/LessonsMD/12 Napredna Teorija Grafova/03 Maksimalni Protok u Grafu.md",
     "images/smallest-prime-factor.png",
     "images/array.png",
     "images/ascii-table-sr.png",
@@ -230,7 +230,6 @@
     "images/matrix.png",
     "images/Couning Sort.jpg",
     "images/big-o.jpg",
-    "Pasted image 20260616232021.png",
     "Untitled.canvas"
   ]
 }

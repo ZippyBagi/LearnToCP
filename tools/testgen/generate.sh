@@ -119,3 +119,16 @@ printf '4\n4\n2 3 1 4\n2\n2 4\n6\n3 9 1 6 4 5\n7\n1 2 3 67 13 8 8\n'          > 
 
 gen_tests ideal-elections 6
 echo "Ideal Elections tests generated."
+
+# ---------------------------------------------------------------------------
+# Codeforces adaptations, bitwise operations (L3/01 Binary Numbers + L5/00 Test 1).
+# All three are multi-testcase upstream, so the format is kept as is; 01.in is
+# our own statement example (also the walkthrough in each editorial).
+printf '3\n6 12\n4 9\n5 5\n'                                                  > $PROB/smallest-xor-sum/tests/01.in
+printf '4\n2\n5\n17\n1\n'                                                     > $PROB/and-until-zero/tests/01.in
+printf '3\n5\n1 4 3 7 10\n4\n6 2 5 3\n2\n2 4\n'                               > $PROB/strong-pairs/tests/01.in
+
+gen_tests smallest-xor-sum 5
+gen_tests and-until-zero 5
+gen_tests strong-pairs 6
+echo "Bitwise adaptation tests generated."
