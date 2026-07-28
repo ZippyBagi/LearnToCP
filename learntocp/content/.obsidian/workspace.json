@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "problems/strong-pairs/problem.json",
+                "file": "sr/LessonsMD/06 Strukture Podataka/04 Skupovi (Set).md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "problem"
+              "title": "04 Skupovi (Set)"
             }
           }
         ]
@@ -185,6 +185,11 @@
   },
   "active": "c15ec58d0b5475f4",
   "lastOpenFiles": [
+    "sr/LessonsMD/06 Strukture Podataka/03 Mape.md",
+    "en/LessonsMD/06 Data Structures/04 Sets.md.tmp.15052.08c95e44d1c5",
+    "en/LessonsMD/06 Data Structures/03 Maps.md",
+    "en/LessonsMD/06 Data Structures/04 Sets.md.tmp.19640.28d39413ae4d",
+    "problems/strong-pairs/problem.json",
     "problems/strong-pairs/solution-en.md",
     "problems/and-until-zero/solution-sr.md",
     "problems/and-until-zero/solution-en.md",
@@ -200,7 +205,6 @@
     "problems/strong-pairs/solution-sr.md",
     "problems/strong-pairs/description-sr.md",
     "problems/strong-pairs/description-en.md",
-    "problems/strong-pairs/problem.json",
     "problems/strong-pairs/problem.json.tmp.24548.c3247d307237",
     "problems/and-until-zero/solution-en.md.tmp.24548.25650ceb342e",
     "problems/and-until-zero/description-sr.md",
@@ -208,8 +212,6 @@
     "problems/and-until-zero/problem.json",
     "problems/smallest-xor-sum/solution-en.md.tmp.24548.c1487384bdfb",
     "problems/smallest-xor-sum/description-sr.md",
-    "problems/smallest-xor-sum/description-sr.md.tmp.24548.bc8978390fde",
-    "problems/smallest-xor-sum/problem.json",
     "en/LessonsMD/00 Contest Knowledge/00 Selecting an IDE.md",
     "images/online-gdb.png",
     "roadmap_data/L12/01 Data Structures VI/01 Trie.md",
@@ -220,7 +222,6 @@
     "roadmap_data/L9/03 Data Structures IV/02 Sqrt Decomposition.md",
     "sr/LessonsMD/13 Napredne Strukture Podataka/07 Moov Algoritam.md",
     "en/LessonsMD/13 Advanced Data Structures/07 Mo's Algorithm.md",
-    "sr/LessonsMD/06 Strukture Podataka/11 Sqrt Dekompozicija.md",
     "images/smallest-prime-factor.png",
     "images/array.png",
     "images/ascii-table-sr.png",
