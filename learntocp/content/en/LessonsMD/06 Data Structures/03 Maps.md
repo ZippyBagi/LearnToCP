@@ -1,4 +1,4 @@
->In this lesson we will learn about a data structure used to efficiently link one value to another - maps (also known as dictionaries)
+>In this lesson we will learn about a data structure used to efficiently link one value to another - maps (also known as dictionaries or heaps)
 
 Imagine we are given `n` numbers and we have to count how many times each of them appears.
 

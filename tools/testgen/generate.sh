@@ -56,6 +56,48 @@ gen_tests knapsack 5
 gen_tests movie-marathon 6
 gen_tests balanced-brackets 7
 gen_tests letter-frequency 5
+# median-updates + suspicious-transactions: adapted with permission from
+# petlja.org (Zbirka2/azuriranje_medijane and Zbirka2/sumnjive_transakcije).
+# 01 = statement example, 02 = handcrafted edge cases, 03..06 from gen.cpp.
+gen_tests_from3() {
+  local slug=$1 count=$2
+  local dir=$PROB/$slug/tests
+  mkdir -p "$dir"
+  g++ -O2 -o /tmp/gen_$slug $slug/gen.cpp
+  g++ -O2 -o /tmp/sol_$slug $slug/solution.cpp
+  for i in $(seq 3 "$count"); do
+    /tmp/gen_$slug "$i" > "$dir/$(printf %02d "$i").in"
+  done
+  for f in "$dir"/*.in; do
+    /tmp/sol_$slug < "$f" > "${f%.in}.out"
+  done
+}
+
+mkdir -p $PROB/median-updates/tests $PROB/suspicious-transactions/tests
+
+printf '1\n6\nd 5\nd 7\nd 6\nm\nd 8\nm\n' > $PROB/median-updates/tests/01.in
+printf '7\n2\nd 1\nm\n3\nd 1\nd 2\nm\n5\nd 1000000000\nd 1000000000\nm\nd 999999999\nm\n7\nd 5\nm\nd 5\nm\nd 5\nm\nd 5\n6\nd 9\nd 7\nd 5\nd 3\nd 1\nm\n6\nd 1\nd 2\nd 3\nd 4\nd 5\nm\n3\nd 1\nd 1000000000\nm\n' > $PROB/median-updates/tests/02.in
+
+printf '1\n8 3\n2 5 3 4 3 6 2 9\n' > $PROB/suspicious-transactions/tests/01.in
+printf '8\n2 1\n1 2\n2 2\n2 1\n5 5\n7 7 7 7 7\n6 1\n1 2 4 8 16 32\n4 2\n1000000000 1000000000 1000000000 1000000000\n3 2\n1 1000000000 1000000000\n5 4\n100 50 25 12 6\n6 2\n1 1 1 1 1 1000000000\n' > $PROB/suspicious-transactions/tests/02.in
+
+gen_tests_from3 median-updates 6
+gen_tests_from3 suspicious-transactions 6
+
+# permutation-check + strongest-magician: adapted with permission from petlja.org
+# (Zbirka2/provera_permutacija1 and Zbirka2/najjaci_madjionicar). Same layout:
+# 01 = statement example, 02 = handcrafted edge cases, 03..06 from gen.cpp.
+mkdir -p $PROB/permutation-check/tests $PROB/strongest-magician/tests
+
+printf '2\n5\n1 3 2 4 3\n5\n4 3 2 3 1\n3\n1000000000000000000 5 1000000000000000000\n3\n1000000000000000000 5 5\n' > $PROB/permutation-check/tests/01.in
+printf '8\n1\n7\n1\n7\n1\n7\n1\n8\n1\n5\n2\n5 5\n2\n5 5\n1\n5\n4\n1000000000000000000 1000000000000000000 1 1\n4\n1 1000000000000000000 1 1000000000000000000\n3\n1000000000000000000 999999999999999999 1000000000000000000\n3\n999999999999999999 1000000000000000000 999999999999999999\n5\n1 2 3 4 5\n5\n5 4 3 2 1\n4\n2 2 2 2\n4\n2 2 2 3\n' > $PROB/permutation-check/tests/02.in
+
+printf '1\n12\ni 1\ni 5\ni 5\ni 8\nm\ne 5\ne 8\nM\ne 5\nM\ne 1\nm\n' > $PROB/strongest-magician/tests/01.in
+printf '6\n2\nm\nM\n3\ni 7\nm\nM\n5\ni 4\ni 4\ne 4\nm\nM\n7\ni 999999999\ni 1\nM\nm\ne 999999999\nM\nm\n6\ni 3\ni 3\ni 3\ne 3\ne 3\nM\n8\ni 2\ni 9\ne 2\ne 9\nm\ni 6\nM\nm\n' > $PROB/strongest-magician/tests/02.in
+
+gen_tests_from3 permutation-check 6
+gen_tests_from3 strongest-magician 6
+
 echo "All tests generated."
 
 # ---------------------------------------------------------------------------

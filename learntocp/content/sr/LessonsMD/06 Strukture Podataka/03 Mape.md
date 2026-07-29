@@ -1,4 +1,4 @@
->U ovoj lekciji upoznaćemo strukturu podataka koja efikasno povezuje jednu vrednost sa drugom - mape (en. map), poznate i kao rečnici.
+>U ovoj lekciji upoznaćemo strukturu podataka koja efikasno povezuje jednu vrednost sa drugom - mape (en. map), poznate i kao rečnici (en. dictionary) ili heap-ovi (en. heap).
 
 Zamisli da nam je dato `n` brojeva i da treba da prebrojimo koliko se puta svaki od njih pojavljuje.
 
