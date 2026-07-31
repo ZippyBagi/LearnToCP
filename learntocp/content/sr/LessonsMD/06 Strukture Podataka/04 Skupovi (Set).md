@@ -6,6 +6,8 @@ Za to služi **skup** - struktura koja čuva elemente, drži ih **sortirano** i 
 
 Ako dodamo element koji već postoji, ništa se neće desiti. Zato nikada ne moramo ručno da proveravamo da li se nešto ponavlja, skup to radi umesto nas.
 
+	![[set-insert.png]]
+
 Inicijalizacija: `set<int> s`
 
 ### Funkcije

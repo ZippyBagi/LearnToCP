@@ -158,5 +158,7 @@ Output:
 
 We start with 2 and 3, which cost 5 and leave us with a rope of length 5. Now the two shortest are 4 and 5, then 6 and 9. A sorted array cannot follow this, because the rope of length 5 did not exist when we sorted. The priority queue puts it in the right place for us, in O(log n).
 
+	![[priority-queue-ropes.png]]
+
 >Note:
 >`top()` and `pop()` on an empty priority queue are undefined behaviour, exactly like `front()` on an empty queue. In a loop like `while(pq.size() > 1)` it is easy to pop one element too many - check `empty()` when in doubt.

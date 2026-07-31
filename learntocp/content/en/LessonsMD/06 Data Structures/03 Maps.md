@@ -6,6 +6,8 @@ For small numbers we already know the trick from Counting Sort: make an array `c
 
 What we need is something that stores **only the keys we actually saw**. That is exactly what a **map** does.
 
+	![[map-vs-array.png]]
+
 ### Pairs
 
 Before the map itself, we need one small tool: the **pair**. A `pair` glues two values into a single object:
@@ -89,6 +91,8 @@ Output:
 Notice that we wrote `age["Ana"]++` without ever setting `age["Ana"]` to `0` first. That works because a key which has never been used starts at the **default value** of its type - `0` for numbers, an empty string for strings.
 
 Very convenient, but it hides a trap: **simply reading `m[k]` creates the key**.
+
+	![[map-default-trap.png]]
 
 Example:
 ~!

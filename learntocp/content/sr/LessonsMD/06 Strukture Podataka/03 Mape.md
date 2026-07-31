@@ -6,6 +6,8 @@ Za male brojeve već znamo trik iz Sortiranja Prebrojavanjem: napravimo niz `cnt
 
 Treba nam nešto što pamti **samo one ključeve koje smo zaista videli**. Upravo to radi **mapa**.
 
+	![[map-vs-array.png]]
+
 ### Parovi
 
 Pre same mape, treba nam jedan mali alat: **par** (en. pair). `pair` spaja dve vrednosti u jedan objekat:
@@ -89,6 +91,8 @@ Output:
 Primeti da smo napisali `godine["Ana"]++`, a da nikada nismo postavili `godine["Ana"]` na `0`. To radi zato što ključ koji nikada nije korišćen kreće od **podrazumevane vrednosti** svog tipa - `0` za brojeve, prazan string za stringove.
 
 Vrlo zgodno, ali krije zamku: **već i samo čitanje `m[k]` pravi ključ**.
+
+	![[map-default-trap.png]]
 
 Primer:
 ~!

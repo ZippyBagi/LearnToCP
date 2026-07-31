@@ -158,5 +158,7 @@ Output:
 
 Krećemo od 2 i 3, što košta 5 i ostavlja nam konopac dužine 5. Sada su dva najkraća 4 i 5, pa zatim 6 i 9. Sortiran niz ovo ne može da isprati, jer konopac dužine 5 nije ni postojao u trenutku sortiranja. Red sa prioritetom ga sam stavlja na pravo mesto, u O(log n).
 
+	![[priority-queue-ropes.png]]
+
 >Napomena:
 >`top()` i `pop()` nad praznim redom su nedefinisano ponašanje, isto kao `front()` nad praznim običnim redom. U petlji poput `while(pq.size() > 1)` je lako izbaciti jedan element viška - kada nisi siguran, proveri `empty()`.

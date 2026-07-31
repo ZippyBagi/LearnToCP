@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "sr/LessonsMD/07 Kombinatorika/00 Pravilo Sabiranja.md",
+                "file": "sr/LessonsMD/07 Kombinatorika/03 Princip Uključenja Isključenja.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "00 Pravilo Sabiranja"
+              "title": "03 Princip Uključenja Isključenja"
             }
           }
         ],
@@ -56,7 +56,9 @@
               "type": "file-explorer",
               "state": {
                 "sortOrder": "alphabetical",
-                "autoReveal": false
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
               },
               "icon": "lucide-folder-closed",
               "title": "Files"
@@ -200,18 +202,35 @@
   },
   "active": "04a8cb334b6b0770",
   "lastOpenFiles": [
-    "en/LessonsMD/07 Combinatorics/00 Addition Principle.md",
+    "en/LessonsMD/07 Combinatorics/03 Inclusion Exclusion Principle.md",
+    "sr/LessonsMD/07 Kombinatorika/02 Kombinatorni Objekti.md",
+    "en/LessonsMD/07 Combinatorics/02 Combinatoric Objects.md",
+    "images/inclusion-exclusion-three-sets.png",
+    "images/inclusion-exclusion-two-sets.png",
+    "images/subsets-decisions.png",
+    "images/combinatoric-objects.png",
+    "images/combinations-from-variations.png",
+    "images/priority-queue-ropes.png",
+    "images/set-insert.png",
+    "images/map-default-trap.png",
+    "images/map-vs-array.png",
+    "sr/LessonsMD/07 Kombinatorika/03 Princip Uključenja Isključenja.md.tmp.20764.159c6799fde8",
+    "en/LessonsMD/07 Combinatorics/03 Inclusion Exclusion Principle.md.tmp.20764.3c01d2ca0db7",
+    "sr/LessonsMD/07 Kombinatorika/03 Princip Uključenja Isključenja.md.tmp.7496.a00b9a86d21a",
+    "sr/LessonsMD/07 Kombinatorika/02 Kombinatorni Objekti.md.tmp.24104.7bd39c1eb9ea",
+    "en/LessonsMD/07 Combinatorics/02 Combinatoric Objects.md.tmp.24104.fd0ac755f21c",
+    "en/LessonsMD/07 Combinatorics/01 Multiplication Principle.md",
+    "sr/LessonsMD/07 Kombinatorika/sedtULpND",
     "sr/LessonsMD/07 Kombinatorika/00 Pravilo Sabiranja.md",
+    "en/LessonsMD/07 Combinatorics/00 Addition Principle.md",
     "problems/suspicious-transactions/problem.json",
     "roadmap_data/L6/01 Combinatorics/sedPjQ7Ur",
     "roadmap_data/L6/01 Combinatorics/sedyOEQ1T",
     "en/LessonsMD/07 Combinatorics/00 Addition Rule.md",
     "roadmap_data/L6/01 Combinatorics/01 Multiplication Principle.md",
     "roadmap_data/L6/01 Combinatorics/00 Addition Principle.md",
-    "en/LessonsMD/07 Combinatorics/01 Multiplication Principle.md",
     "problems/permutation-check/solution-sr.md.tmp.8316.f34cf813cd2c",
     "problems/permutation-check/solution-en.md",
-    "problems/permutation-check/problem.json",
     "problems/permutation-check/description-en.md",
     "problems/median-updates/solution-en.md",
     "sr/LessonsMD/06 Strukture Podataka/03 Mape.md",
@@ -220,32 +239,15 @@
     "problems/median-updates/description-en.md",
     "en/LessonsMD/06 Data Structures/03 Maps.md",
     "problems/strongest-magician/solution-sr.md",
-    "problems/strongest-magician/solution-sr.md.tmp.3804.548beb4a7499",
     "problems/strongest-magician/solution-en.md",
-    "problems/strongest-magician/solution-en.md.tmp.3804.6237316a2ee3",
     "problems/permutation-check/solution-sr.md",
-    "problems/permutation-check/solution-sr.md.tmp.3804.12758709854b",
-    "problems/permutation-check/solution-en.md.tmp.3804.04e36e3c7d23",
     "roadmap_data/L6/00 Data Structures II/03 Problem - The Strongest Magician.md",
     "roadmap_data/L6/00 Data Structures II/01 Problem - Permutation Check.md",
     "roadmap_data/L6/00 Data Structures II/02 Sets.md",
     "roadmap_data/L6/00 Data Structures II/04 Priority Queue.md",
     "roadmap_data/L6/00 Data Structures II/05 Problem - Updating the Median.md",
-    "problems/strongest-magician/tests/06.out",
     "problems/strongest-magician/description-sr.md",
-    "problems/strongest-magician/description-en.md",
-    "problems/permutation-check/description-sr.md",
-    "roadmap_data/L6/00 Data Structures II/03 Problem - Updating the Median.md",
     "images/online-gdb.png",
-    "images/smallest-prime-factor.png",
-    "images/array.png",
-    "images/ascii-table-sr.png",
-    "images/ascii-table-en.png",
-    "images/Pasted image 20260711161238.png",
-    "images/Sum of elements.jpg",
-    "images/matrix.png",
-    "images/Couning Sort.jpg",
-    "images/big-o.jpg",
     "Untitled.canvas"
   ]
 }

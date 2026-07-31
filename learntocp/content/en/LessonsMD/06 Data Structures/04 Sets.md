@@ -6,6 +6,8 @@ For that we have the **set** - a collection that stores elements, keeps them **s
 
 Adding an element that is already inside simply does nothing. That single rule is what makes sets so pleasant: we never have to check for duplicates ourselves.
 
+	![[set-insert.png]]
+
 Initialization: `set<int> s`
 
 ### The functions
