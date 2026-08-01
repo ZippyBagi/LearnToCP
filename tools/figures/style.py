@@ -27,6 +27,8 @@ INK = "#1A1A1A"      # titles
 INK2 = "#222222"     # body text
 MUTE = "#8A9099"     # small captions, index labels
 WHITE = "#FFFFFF"
+GRIDL = "#E8ECF0"    # coordinate gridlines
+AXIS = "#AEB6BF"     # x and y axes
 
 plt.rcParams["font.family"] = "DejaVu Sans"
 
@@ -144,6 +146,78 @@ def mono(ax, x, y, text, size=9.5, color=INK2, ha="left", va="center",
          weight="normal", z=6):
     return ax.text(x, y, text, ha=ha, va=va, fontsize=size, color=color,
                    fontweight=weight, family="DejaVu Sans Mono", zorder=z)
+
+
+# ---------------------------------------------------------------- geometry
+def grid(ax, ox, oy, unit, xr, yr, ticks=True, tick_every=1, tick_size=7):
+    """Cartesian grid drawn in pixel space.
+
+    (ox, oy) is where the ORIGIN sits in pixels, `unit` is one grid step in
+    pixels, and xr / yr are inclusive ranges in grid units.
+    Returns pt(gx, gy) -> (px, py), which flips y so it grows upward.
+    """
+    x0, x1 = xr
+    y0, y1 = yr
+    left, right = ox + x0 * unit, ox + x1 * unit
+    top, bottom = oy - y1 * unit, oy - y0 * unit
+
+    for gx in range(x0, x1 + 1):
+        px = ox + gx * unit
+        ax.plot([px, px], [top, bottom], color=GRIDL, lw=1, zorder=0)
+    for gy in range(y0, y1 + 1):
+        py = oy - gy * unit
+        ax.plot([left, right], [py, py], color=GRIDL, lw=1, zorder=0)
+
+    if y0 <= 0 <= y1:
+        ax.plot([left, right], [oy, oy], color=AXIS, lw=1.6, zorder=1)
+    if x0 <= 0 <= x1:
+        ax.plot([ox, ox], [top, bottom], color=AXIS, lw=1.6, zorder=1)
+
+    if ticks:
+        for gx in range(x0, x1 + 1, tick_every):
+            if gx == 0:
+                continue
+            ax.text(ox + gx * unit, oy + 13, str(gx), ha="center", va="center",
+                    fontsize=tick_size, color=MUTE, zorder=3)
+        for gy in range(y0, y1 + 1, tick_every):
+            if gy == 0:
+                continue
+            ax.text(ox - 12, oy - gy * unit, str(gy), ha="center", va="center",
+                    fontsize=tick_size, color=MUTE, zorder=3)
+
+    def pt(gx, gy):
+        return (ox + gx * unit, oy - gy * unit)
+
+    return pt
+
+
+def dot(ax, p, color=PURPLE, r=5.5, z=9):
+    ax.add_patch(Circle(p, r, facecolor=color, edgecolor=WHITE, lw=1.5,
+                        zorder=z))
+
+
+def vec(ax, p0, p1, color=BLUE, lw=2.4, ms=15, text=None, off=(0, -15),
+        size=9.5, rad=0.0, z=6, ls="-"):
+    """An arrow with an optional label near its midpoint."""
+    arrow(ax, p0[0], p0[1], p1[0], p1[1], color=color, lw=lw, style="-|>",
+          ms=ms, rad=rad, z=z, ls=ls)
+    if text:
+        mx = (p0[0] + p1[0]) / 2 + off[0]
+        my = (p0[1] + p1[1]) / 2 + off[1]
+        ax.text(mx, my, text, ha="center", va="center", fontsize=size,
+                color=color, fontweight="bold", zorder=z + 3,
+                bbox=dict(boxstyle="round,pad=0.22", facecolor=WHITE,
+                          edgecolor="none"))
+
+
+def right_angle(ax, corner, d1, d2, size=11, color=AXIS, lw=1.4):
+    """Small square marking a right angle at `corner`, opening toward d1/d2."""
+    cx, cy = corner
+    a = (cx + d1[0] * size, cy + d1[1] * size)
+    b = (cx + d2[0] * size, cy + d2[1] * size)
+    c = (cx + (d1[0] + d2[0]) * size, cy + (d1[1] + d2[1]) * size)
+    ax.plot([a[0], c[0], b[0]], [a[1], c[1], b[1]], color=color, lw=lw,
+            zorder=4)
 
 
 def legend(ax, y, items, sw=26, sh=18, gap=10, pitch=None, size=9,

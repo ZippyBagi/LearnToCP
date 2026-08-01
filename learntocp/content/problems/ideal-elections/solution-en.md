@@ -37,7 +37,7 @@ To get each $\text{Ways}(q)$ we factorize every number and tally, for each prime
 
 **Careful:** the product runs over many primes and shoots past an `int` almost immediately, so keep the running answer in a `long long` and take it modulo $10^9 + 7$ after every multiplication.
 
--g> This problem uses techniques from [Modified Sieve](/en/Theory/Math/Modified%20Sieve) and Combinatorics 1.
+-g> This problem uses techniques from [Modified Sieve](/en/Theory/Math/Modified%20Sieve) and [Multiplication Principle](/en/Theory/Combinatorics/Multiplication%20Principle).
 
 ## Example
 

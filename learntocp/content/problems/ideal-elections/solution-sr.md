@@ -37,7 +37,7 @@ Da bismo dobili svaki $\text{Načini}(q)$, faktorišemo svaki broj i za svaki pr
 
 **Pažnja:** proizvod ide preko mnogo prostih brojeva i skoro odmah prepuni `int`, pa drži tekući odgovor u `long long` i uzimaj ga po modulu $10^9 + 7$ posle svakog množenja.
 
--g> Ovaj zadatak koristi tehnike iz lekcija [Modifikovano Sito](/sr/Theory/Matematika/Modifikovano%20Sito) i Kombinatorika 1.
+-g> Ovaj zadatak koristi tehnike iz lekcija [Modifikovano Sito](/sr/Theory/Matematika/Modifikovano%20Sito) i [Pravilo Množenja](/sr/Theory/Kombinatorika/Pravilo Množenja).
 ## Primer
 
 Uzmimo prvi test primer, $a = [2, 3, 1, 4]$. Jedinica nema proste činioce, pa su bitni samo $2$ i $3$:
