@@ -186,3 +186,14 @@ printf '5\n0 0 4 4 0 4 4 0\n0 0 4 4 0 10 10 0\n0 0 4 4 4 4 8 0\n0 0 4 4 2 2 6 6\
 gen_tests two-banks 6
 gen_tests segment-intersection 6
 echo "Geometry tests generated."
+
+# ---------------------------------------------------------------------------
+# Petlja adaptation: point-in-polygon (Zbirka3/pripadnost_tacke_prostom_poligonu,
+# Društvo matematičara Srbije + Fondacija Petlja). Only the two published
+# examples were available, so 01.in batches those and gen.cpp supplies the rest.
+# brute.cpp casts a ray in a random direction with exact 128-bit rationals.
+mkdir -p $PROB/point-in-polygon/tests
+printf '2\n8\n0 0\n5 0\n5 1\n1 1\n1 3\n5 3\n5 4\n0 4\n2 2\n4\n0 0\n5 0\n5 5\n0 5\n2 2\n' > $PROB/point-in-polygon/tests/01.in
+
+gen_tests point-in-polygon 6
+echo "Point in polygon tests generated."
