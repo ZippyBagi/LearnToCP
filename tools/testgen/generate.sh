@@ -174,3 +174,15 @@ gen_tests smallest-xor-sum 5
 gen_tests and-until-zero 5
 gen_tests strong-pairs 6
 echo "Bitwise adaptation tests generated."
+
+# ---------------------------------------------------------------------------
+# Geometry, lesson L6/02 "Lines". Both are our own; 01.in is the statement
+# example in each case. segment-intersection also has a brute.cpp (exact
+# 128-bit rational parametric solve) used only for cross-checking.
+mkdir -p $PROB/two-banks/tests $PROB/segment-intersection/tests
+printf '2\n5\n0 0 4 4\n0 4\n1 4\n4 0\n2 2\n5 1\n3\n0 0 1000000000 1000000000\n1000000000 -1000000000\n-1000000000 1000000000\n5 5\n' > $PROB/two-banks/tests/01.in
+printf '5\n0 0 4 4 0 4 4 0\n0 0 4 4 0 10 10 0\n0 0 4 4 4 4 8 0\n0 0 4 4 2 2 6 6\n0 0 4 4 1 0 5 4\n' > $PROB/segment-intersection/tests/01.in
+
+gen_tests two-banks 6
+gen_tests segment-intersection 6
+echo "Geometry tests generated."

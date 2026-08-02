@@ -8,8 +8,8 @@
   "difficulty": "Hard",
   "number": 34,
   "topic": {
-    "en": "Number Theory",
-    "sr": "Teorija brojeva"
+    "en": "Math",
+    "sr": "Matematika"
   },
   "tags": ["number-theory", "math", "combinatorics", "sieve"],
   "inputSource": "stdin",
