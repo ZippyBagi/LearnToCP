@@ -58,6 +58,29 @@ If the product is `0`, then $\vec{A}$ and $\vec{B}$ are **parallel**!
 
 	![[cross-product-circle.png]]
 
+#### The area of a triangle
+
+The sign is only half of what the cross product carries. Its **size** is useful too.
+
+Take $\vec{AB}$ and $\vec{AC}$, two vectors starting from the same point `A`, and complete them into a parallelogram. The absolute value of the cross product is exactly the area of that parallelogram.
+
+A parallelogram is just two copies of the triangle `ABC` glued together, so we halve it:
+
+$$P_{ABC} = \frac{|\vec{AB} \times \vec{AC}|}{2}$$
+
+Let's check that on a triangle we can measure by hand. Take `A = (0, 0)`, `B = (4, 0)` and `C = (0, 3)`:
+
+- $\vec{AB} = (4, 0)$ and $\vec{AC} = (0, 3)$
+- $\vec{AB} \times \vec{AC} = 4 \cdot 3 - 0 \cdot 0 = 12$
+- so the area is `12 / 2 = 6`
+
+And it is a right triangle with legs `4` and `3`, whose area we already know is $\frac{4 \cdot 3}{2} = 6$.
+
+Notice that the cross product hands us **twice** the area, and that doubled value is always a whole number. So we can compute areas exactly in `long long` and divide by 2 only at the very end - a trick the later lessons use constantly.
+
+>Note:
+>Without the absolute value the area is **signed**, exactly like before: positive when `C` is to the left of `AB`, negative when it is to the right. One number, two questions answered.
+
 #### Implementation
 
 ```c++

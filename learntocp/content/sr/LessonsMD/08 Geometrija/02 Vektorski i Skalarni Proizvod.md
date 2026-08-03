@@ -58,6 +58,29 @@ Ako je proizvod `0`, onda su $\vec{A}$ i $\vec{B}$ **paralelni**!
 
 	![[cross-product-circle.png]]
 
+#### Površina trougla
+
+Znak nije jedino što nam vektorski proizvod daje. Korisna je i sama njegova vrednost.
+
+Uzmi $\vec{AB}$ i $\vec{AC}$, dva vektora koja polaze iz iste tačke `A`, i dopuni ih do paralelograma. Apsolutna vrednost vektorskog proizvoda je tačno površina tog paralelograma.
+
+Taj paralelogram su dva ista trougla `ABC`, pa površinu prepolovimo:
+
+$$P_{ABC} = \frac{|\vec{AB} \times \vec{AC}|}{2}$$
+
+Proverimo to na trouglu čiju površinu znamo i bez ovoga. Neka je `A = (0, 0)`, `B = (4, 0)` i `C = (0, 3)`:
+
+- $\vec{AB} = (4, 0)$ i $\vec{AC} = (0, 3)$
+- $\vec{AB} \times \vec{AC} = 4 \cdot 3 - 0 \cdot 0 = 12$
+- pa je površina `12 / 2 = 6`
+
+A to je pravougli trougao sa katetama `4` i `3`, čiju površinu već znamo: $\frac{4 \cdot 3}{2} = 6$.
+
+Primeti da nam vektorski proizvod daje **dvostruku** površinu, a ta dvostruka vrednost je uvek ceo broj. Zato površine možemo da računamo tačno u tipu `long long` i da delimo sa 2 tek na samom kraju - trik koji ćemo u narednim lekcijama stalno koristiti.
+
+>Napomena:
+>Bez apsolutne vrednosti površina ima **znak**, baš kao i ranije: pozitivna je kada je `C` levo od `AB`, a negativna kada je desno. Jedan broj, dva odgovora.
+
 #### Implementacija
 
 ```c++

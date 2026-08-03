@@ -142,11 +142,3 @@ The first line is right. The second one is the trap. Both points lie on the line
 There is no correct answer we can just pick here, what happens depends on the problem.
 
 Whenever a statement says something like "strictly inside" or "without touching", the `=` case is exactly what it is talking about. Read it carefully and decide what `=` should mean **before** writing the comparison.
-
-### Summary
-
-| Question                           | Test                                           |
-| ---------------------------------- | ---------------------------------------------- |
-| Where is `C` relative to line `AB` | sign of $\vec{AB} \times \vec{AC}$             |
-| Is `P` on segment `AB`             | orientation is `=` and `P` is inside the box   |
-| Are `C` and `D` on the same side   | the two orientations match, and neither is `=` |

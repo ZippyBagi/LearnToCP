@@ -142,11 +142,3 @@ Prvi red je tačan. Drugi je zamka. Obe tačke leže na pravoj, pa oba poziva vr
 Ovde ne postoji tačan odgovor koji možemo prosto da izaberemo, šta treba da se desi zavisi od zadatka.
 
 Kad god u tekstu zadatka piše "strogo unutar" ili "bez dodirivanja", reč je upravo o slučaju `=`. Pročitaj to pažljivo i odluči šta `=` treba da znači **pre** nego što napišeš poređenje.
-
-### Rezime
-
-| Pitanje                                | Provera                                             |
-| -------------------------------------- | --------------------------------------------------- |
-| Gde je `C` u odnosu na pravu `AB`      | znak izraza $\vec{AB} \times \vec{AC}$              |
-| Da li je `P` na duži `AB`              | orijentacija je `=` i `P` je unutar pravougaonika   |
-| Da li su `C` i `D` sa iste strane      | dve orijentacije se poklapaju, i nijedna nije `=`   |
