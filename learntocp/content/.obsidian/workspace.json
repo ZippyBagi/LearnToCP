@@ -13,12 +13,32 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "problems/segment-intersection/solution-sr.md",
+                "file": "sr/LessonsMD/08 Geometrija/05 Konveksni Omotač.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "solution-sr"
+              "title": "05 Konveksni Omotač"
+            }
+          }
+        ]
+      },
+      {
+        "id": "78095b52aa293724",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "737c466964b393ad",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "en/LessonsMD/08 Geometry/05 Convex Hull.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "05 Convex Hull"
             }
           }
         ]
@@ -187,25 +207,41 @@
   },
   "active": "c15ec58d0b5475f4",
   "lastOpenFiles": [
+    "en/LessonsMD/08 Geometry/05 Convex Hull.md",
+    "en/LessonsMD/08 Geometry/06 Convex Hull.md",
+    "roadmap_data/L6/02 Geometry/09 Angles.md",
+    "roadmap_data/L6/02 Geometry/08 Convex Hull.md",
+    "roadmap_data/L6/02 Geometry/_tmp.md",
+    "sr/LessonsMD/08 Geometrija/06 Uglovi.md",
+    "sr/LessonsMD/08 Geometrija/05 Konveksni Omotač.md",
+    "sr/LessonsMD/08 Geometrija/_tmp.md",
+    "en/LessonsMD/08 Geometry/06 Angles.md",
+    "en/LessonsMD/08 Geometry/_tmp.md",
+    "sr/LessonsMD/08 Geometrija/06 Konveksni Omotač.md.tmp.24652.092850ed73b5",
+    "sr/LessonsMD/08 Geometrija/06 Konveksni Omotač.md",
+    "images/hull-rubber-band.png",
+    "images/graham-scan-steps.png",
+    "images/graham-pop.png",
+    "images/atan2-two-legs.png",
+    "problems/segment-intersection/solution-sr.md",
+    "en/LessonsMD/08 Geometry/06 Convex Hull.md.tmp.19480.5431023630ba",
+    "roadmap_data/L6/02 Geometry/08 Angles.md",
+    "roadmap_data/L6/02 Geometry/09 Convex Hull.md",
+    "sr/LessonsMD/08 Geometrija/05 Uglovi.md",
+    "sr/LessonsMD/08 Geometrija/05 Uglovi.md.tmp.19480.e1c7f23ab930",
+    "en/LessonsMD/08 Geometry/05 Angles.md",
+    "en/LessonsMD/08 Geometry/05 Angles.md.tmp.19480.5df572f6604a",
+    "sr/LessonsMD/08 Geometrija/05 Konveksni Omotač.md.tmp.28048.10836abed314",
     "images/shoelace-lacing.png",
     "images/polygon-turn-signs.png",
-    "roadmap_data/L6/02 Geometry/08 Convex Hull.md",
-    "sr/LessonsMD/08 Geometrija/05 Konveksni Omotač.md",
-    "en/LessonsMD/08 Geometry/05 Convex Hull.md",
     "roadmap_data/L6/02 Geometry/07 Problem - Inside the Reserve.md",
     "roadmap_data/L6/02 Geometry/08 Points and Polygons.md",
-    "roadmap_data/L6/02 Geometry/09 Angles.md",
     "roadmap_data/L6/02 Geometry/10 Convex Hull.md",
     "problems/point-in-polygon/tests/06.out",
     "problems/point-in-polygon/tests/05.out",
     "problems/point-in-polygon/tests/04.out",
     "problems/point-in-polygon/tests/03.out",
     "problems/point-in-polygon/tests/02.out",
-    "problems/point-in-polygon/tests/01.out",
-    "problems/point-in-polygon/tests/06.in",
-    "problems/point-in-polygon/tests/05.in",
-    "problems/point-in-polygon/tests/04.in",
-    "problems/point-in-polygon/tests/03.in",
     "problems/point-in-polygon/solution-sr.md",
     "problems/point-in-polygon/solution-en.md",
     "problems/point-in-polygon/description-sr.md",
@@ -213,26 +249,10 @@
     "problems/segment-intersection/solution-en.md",
     "problems/segment-intersection/description-en.md",
     "problems/two-banks/solution-en.md",
-    "en/LessonsMD/08 Geometry/03 Lines.md",
     "images/on-segment-two-checks.png",
     "images/orientation-sign.png",
-    "en/LessonsMD/08 Geometry/02 Cross and Dot Product.md",
-    "roadmap_data/L6/02 Geometry/05 Problem - Do the Segments Cross.md",
-    "roadmap_data/L6/02 Geometry/04 Problem - Two Banks.md",
-    "roadmap_data/L6/02 Geometry/06 Polygons.md",
-    "roadmap_data/L6/02 Geometry/07 Points and Polygons.md",
-    "roadmap_data/L6/02 Geometry/08 Angles.md",
-    "roadmap_data/L6/02 Geometry/09 Convex Hull.md",
-    "problems/segment-intersection/solution-sr.md",
-    "problems/two-banks/solution-sr.md",
-    "problems/segment-intersection/description-sr.md",
     "images/cross-product-circle.png",
     "images/dot-product-normal.png",
-    "images/vector-operations.png",
-    "images/vector-from-points.png",
-    "images/vector-no-position.png",
-    "images/distance-triangle.png",
-    "images/inclusion-exclusion-three-sets.png",
     "Untitled.canvas"
   ]
 }
