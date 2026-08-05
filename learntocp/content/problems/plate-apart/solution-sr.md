@@ -167,7 +167,7 @@ int main() {
 
 `w` i `h` se učitaju i više se nikada ne koriste. To nije previd - veličina ploče zaista ne može da promeni odgovor, a vredi primetiti da ne može.
 
-`unique` izbacuje samo **susedne** duplikate, i baš zato sortiranje mora da dođe pre njega. `same` i `byAngle` su obične funkcije napisane iznad `main`, a ne lambde - `unique` i `sort` su sasvim zadovoljni i jednim i drugim.
+`unique` izbacuje samo **susedne** duplikate, i baš zato sortiranje mora da dođe pre njega.
 
 Ni najveći zajednički delilac nije ukras. Izbaci ga i prav rez zapisan kao dva komada različitih dužina - recimo $(2, 3)$ pa $(4, 6)$ - stiže do `unique` kao dva različita vektora i preživljava kao dva smera. Prečica `m == 1` nikada ne opali, petlja između njih nađe procep od ničega, i odgovor se vrati kao `NO` za rez koji bi i dete rastavilo.
 
