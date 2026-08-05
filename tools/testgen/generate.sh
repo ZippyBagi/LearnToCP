@@ -197,3 +197,23 @@ printf '2\n8\n0 0\n5 0\n5 1\n1 1\n1 3\n5 3\n5 4\n0 4\n2 2\n4\n0 0\n5 0\n5 5\n0 5
 
 gen_tests point-in-polygon 6
 echo "Point in polygon tests generated."
+
+# ---------------------------------------------------------------------------
+# Petlja adaptations, geometry (L6/02 "Geometry I" and L8/00 "Test 2"):
+#   cable-car        <- Zbirka3/sortiranje_duz_linije
+#   triangle-quadrants  <- Zbirka3/u_kojim_kvadrantima_je_trougao
+#   plate-apart      <- Zbirka3/rastav_translacijom
+# All three by Društvo matematičara Srbije + Fondacija Petlja. Only the published
+# examples were available (the archive's own test data needs a login), so 01.in
+# batches those and gen.cpp supplies the rest. Each has a brute.cpp that answers
+# by a completely different route and is used only for cross-checking.
+mkdir -p $PROB/cable-car/tests $PROB/triangle-quadrants/tests $PROB/plate-apart/tests
+
+printf '2\n5\n9 4\n5 2\n15 7\n7 3\n13 6\n4\n0 0\n0 5\n0 -3\n0 9\n' > $PROB/cable-car/tests/01.in
+printf '4\n1 2 2 5 5 -10\n-1 -1 1 5 5 1\n-10 20 -5 15 -10 15\n0 0 -3 1 1 -3\n' > $PROB/triangle-quadrants/tests/01.in
+printf '2\n5 5 6\n3 0\n2 2\n3 1\n3 4\n2 3\n3 5\n5 5 6\n3 0\n2 1\n3 2\n2 3\n3 4\n2 5\n' > $PROB/plate-apart/tests/01.in
+
+gen_tests cable-car 6
+gen_tests triangle-quadrants 6
+gen_tests plate-apart 6
+echo "Petlja geometry adaptation tests generated."

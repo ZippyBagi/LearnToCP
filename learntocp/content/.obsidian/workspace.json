@@ -6,7 +6,6 @@
       {
         "id": "6792422c849c4304",
         "type": "tabs",
-        "dimension": 50,
         "children": [
           {
             "id": "c15ec58d0b5475f4",
@@ -14,33 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "en/LessonsMD/08 Geometry/09 Convex Hull.md",
+                "file": "problems/plate-apart/solution-en.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "09 Convex Hull"
-            }
-          }
-        ]
-      },
-      {
-        "id": "78095b52aa293724",
-        "type": "tabs",
-        "dimension": 50,
-        "children": [
-          {
-            "id": "737c466964b393ad",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "sr/LessonsMD/08 Geometrija/09 Konveksni Omotač.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "09 Konveksni Omotač"
+              "title": "solution-en"
             }
           }
         ]
@@ -207,44 +185,43 @@
       "bases:Create new base": false
     }
   },
-  "active": "737c466964b393ad",
+  "active": "c15ec58d0b5475f4",
   "lastOpenFiles": [
+    "en/LessonsMD/09 Recursion/00 Pointers.md",
+    "problems/triangle-quadrants/sedxEADQ7",
+    "problems/triangle-quadrants/solution-sr.md.tmp.19980.086796a3dde5",
+    "problems/triangle-quadrants/description-en.md.tmp.11428.40f19465f526",
+    "roadmap_data/L6/02 Geometry I/06 Problem - The Triangle and the Quadrants.md",
+    "problems/triangle-quadrants/tests/06.out",
+    "problems/triangle-quadrants/tests/05.out",
+    "problems/triangle-quadrants/tests/06.in",
+    "problems/triangle-quadrants/tests/05.in",
+    "problems/triangle-quadrants/tests/04.in",
+    "problems/triangle-quadrants/tests/04.out",
+    "problems/triangle-quadrants/tests/03.out",
+    "problems/triangle-quadrants/solution-en.md",
+    "problems/triangle-quadrants/solution-sr.md",
+    "problems/triangle-quadrants/description-sr.md",
+    "problems/triangle-quadrants/description-en.md",
+    "roadmap_data/L6/02 Geometry I/06 Problem - The Triangular Plot.md",
+    "roadmap_data/L6/02 Geometry I/03 Problem - The Cable Car.md",
+    "roadmap_data/L6/02 Geometry I/04 Lines.md",
+    "roadmap_data/L6/02 Geometry I/05 Problem - Two Banks.md",
+    "roadmap_data/L6/02 Geometry I/07 Polygons.md",
+    "roadmap_data/L6/02 Geometry I/08 Angles.md",
+    "problems/plate-apart/solution-sr.md",
+    "problems/plate-apart/solution-en.md",
+    "problems/plate-apart/description-sr.md",
+    "problems/plate-apart/description-en.md",
+    "problems/triangular-plot/solution-sr.md",
+    "problems/triangular-plot/solution-en.md",
+    "problems/triangular-plot/description-sr.md",
+    "problems/triangular-plot/description-en.md",
+    "problems/cable-car/solution-sr.md",
+    "problems/cable-car/solution-en.md",
+    "problems/cable-car/description-sr.md",
+    "problems/cable-car/description-en.md",
     "en/LessonsMD/08 Geometry/09 Convex Hull.md",
-    "en/LessonsMD/08 Geometry/08 Distances and Intersection Points.md",
-    "sr/LessonsMD/08 Geometrija/09 Konveksni Omotač.md",
-    "sr/LessonsMD/08 Geometrija/08 Rastojanja i Tačke Preseka.md",
-    "en/LessonsMD/08 Geometry/02 Cross and Dot Product.md.tmp.9680.f176373e66dc",
-    "sr/LessonsMD/08 Geometrija/04 Poligoni.md.tmp.4920.e98101ab285b",
-    "sr/LessonsMD/08 Geometrija/04 Poligoni.md.tmp.4920.a8981546e557",
-    "en/LessonsMD/08 Geometry/04 Polygons.md.tmp.4920.bdcc84b03926",
-    "en/LessonsMD/08 Geometry/04 Polygons.md.tmp.4920.d7bc65389019",
-    "en/LessonsMD/08 Geometry/04 Polygons.md",
-    "en/LessonsMD/08 Geometry/07 Point in Polygon.md",
-    "sr/LessonsMD/08 Geometrija/07 Tačka u Poligonu.md",
-    "sr/LessonsMD/08 Geometrija/08 Rastojanja i Tačke Preseka.md.tmp.18132.3a894b843aa8",
-    "sr/LessonsMD/08 Geometrija/03 Linije.md",
-    "en/LessonsMD/08 Geometry/10 Circles.md.tmp.18132.379f1f69b135",
-    "en/LessonsMD/08 Geometry/09 Convex Hull.md.tmp.18132.62e555fbb853",
-    "en/LessonsMD/08 Geometry/03 Lines.md",
-    "roadmap_data/L10/00 Geometry II/02 Problem - Inside the Reserve.md",
-    "roadmap_data/L10/00 Geometry II/01 Point in Polygon.md",
-    "roadmap_data/L10/00 Geometry II/05 Circles.md",
-    "roadmap_data/L10/00 Geometry II/04 Convex Hull.md",
-    "roadmap_data/L10/00 Geometry II/00 Problem - Do the Segments Cross.md",
-    "roadmap_data/L10/00 Geometry II/00 Segment Intersection.md",
-    "en/LessonsMD/08 Geometry/06 Segment Intersection.md",
-    "sr/LessonsMD/08 Geometrija/06 Presek Duži.md",
-    "sr/LessonsMD/08 Geometrija/05 Konveksni Omotač.md",
-    "sr/LessonsMD/08 Geometrija/10 Krugovi.md.tmp.20540.8aa6036ae8f5",
-    "sr/LessonsMD/08 Geometrija/08 Rastojanja i Tačke Preseka.md.tmp.20540.2df174296873",
-    "roadmap_data/L12/00 Graph Theory III/02 Strongly Connected Components.md",
-    "roadmap_data/L12/00 Graph Theory III/03 Bipartite Graph.md",
-    "roadmap_data/L12/00 Graph Theory III/01 Biconnectivity.md",
-    "roadmap_data/L12/00 Graph Theory III/00 Shortest Path Algorithms.md",
-    "roadmap_data/L13/00 Data Structures V/02 Implicit Segment Trees.md",
-    "roadmap_data/L13/00 Data Structures V/03 Persistent Segment Trees.md",
-    "roadmap_data/L13/00 Data Structures V/01 Lazy Propagation.md",
-    "roadmap_data/L13/00 Data Structures V/00 2D and 3D Segment Trees.md",
     "images/straddle-both-ways.png",
     "images/segment-distance-three-cases.png",
     "images/ray-crossing-test.png",
