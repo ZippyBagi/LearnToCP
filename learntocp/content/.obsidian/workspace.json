@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "problems/no-adjacent-ones/solution-sr.md",
+                "file": "en/LessonsMD/09 Recursion/02 Generating Combinatoric Objects.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "solution-sr"
+              "title": "02 Generating Combinatoric Objects"
             }
           }
         ]
@@ -187,21 +187,29 @@
   },
   "active": "c15ec58d0b5475f4",
   "lastOpenFiles": [
+    "roadmap_data/L8/00 Test 2/03 Problem - Towers of Hanoi.txt",
+    "problems/towers-of-hanoi/solution-sr.md",
+    "problems/towers-of-hanoi/solution-en.md",
+    "problems/towers-of-hanoi/solution-en.md.tmp.19424.d72d637a221f",
+    "problems/towers-of-hanoi/tests/06.out",
+    "problems/towers-of-hanoi/tests/05.out",
+    "problems/towers-of-hanoi/tests/04.out",
+    "problems/towers-of-hanoi/tests/03.out",
+    "problems/towers-of-hanoi/tests/02.out",
+    "problems/towers-of-hanoi/tests/01.out",
+    "problems/towers-of-hanoi/tests/06.in",
+    "problems/towers-of-hanoi/tests/05.in",
+    "problems/towers-of-hanoi/tests/04.in",
+    "problems/towers-of-hanoi/description-sr.md",
+    "problems/towers-of-hanoi/description-en.md",
+    "problems/no-adjacent-ones/solution-sr.md",
+    "en/Theory/Math/Modified Sieve.md",
+    "images/backtracking-undo.png",
+    "images/generating-one-skeleton.png",
     "problems/no-adjacent-ones/solution-en.md",
-    "problems/no-adjacent-ones/problem.json",
-    "problems/morse-sequence/problem.json",
     "problems/morse-sequence/description-sr.md",
     "roadmap_data/L6/03 Recursion/04 Generating Combinatoric Objects.md",
     "roadmap_data/L6/03 Recursion/03 Problem - No Adjacent Ones.md",
-    "roadmap_data/L6/03 Recursion/03 Problem - No Adjacent Ones.md.tmp.25360.299748598142",
-    "problems/no-adjacent-ones/tests/06.out",
-    "problems/no-adjacent-ones/tests/05.out",
-    "problems/no-adjacent-ones/tests/04.out",
-    "problems/no-adjacent-ones/tests/03.out",
-    "problems/no-adjacent-ones/tests/02.out",
-    "problems/no-adjacent-ones/tests/01.out",
-    "problems/no-adjacent-ones/tests/06.in",
-    "problems/no-adjacent-ones/solution-sr.md",
     "problems/no-adjacent-ones/description-sr.md",
     "problems/no-adjacent-ones/description-en.md",
     "problems/morse-sequence/description-en.md",
@@ -219,19 +227,12 @@
     "en/LessonsMD/09 Recursion/02 Generating Combinatoric Objects.md",
     "en/LessonsMD/06 Data Structures/01 Stack.md",
     "en/LessonsMD/09 Recursion/00 Pointers.md",
-    "problems/plate-apart/solution-sr.md",
-    "problems/plate-apart/solution-en.md",
-    "roadmap_data/L6/02 Geometry I/06 Problem - The Triangle and the Quadrants.md",
-    "problems/triangle-quadrants/solution-en.md",
-    "problems/triangle-quadrants/solution-sr.md",
     "images/straddle-both-ways.png",
     "images/segment-distance-three-cases.png",
     "images/ray-crossing-test.png",
     "images/ray-corner-rule.png",
     "images/ray-casting-parity.png",
     "images/projection-shadow.png",
-    "images/point-line-distance.png",
-    "images/line-circle-construction.png",
     "Untitled.canvas"
   ]
 }

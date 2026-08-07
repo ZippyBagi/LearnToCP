@@ -240,3 +240,24 @@ printf '4\n' > $PROB/no-adjacent-ones/tests/01.in
 
 gen_tests no-adjacent-ones 6
 echo "No adjacent ones tests generated."
+
+# ---------------------------------------------------------------------------
+# Petlja adaptation: towers-of-hanoi (Zbirka2/hanojske_kule, Društvo matematičara
+# Srbije + Fondacija Petlja), test L8/00 "Test 2". The input is just a list of n,
+# so there is no gen.cpp - all files are handcrafted here and only the .out files
+# are produced by the reference solution. 01 batches the two published examples
+# (n = 3 and n = 2), 02-04 sweep every n from 1 to 16 in order, 05 is the
+# heaviest legal load we ship (~1 MB of moves) and 06 is the small edge file.
+# brute.cpp (BFS over the state space) cross-checks legality and minimality.
+mkdir -p $PROB/towers-of-hanoi/tests
+printf '2\n3\n2\n'                          > $PROB/towers-of-hanoi/tests/01.in
+printf '8\n1\n2\n3\n4\n5\n6\n7\n8\n'        > $PROB/towers-of-hanoi/tests/02.in
+printf '5\n9\n10\n11\n12\n13\n'             > $PROB/towers-of-hanoi/tests/03.in
+printf '3\n14\n15\n16\n'                    > $PROB/towers-of-hanoi/tests/04.in
+printf '8\n16\n16\n16\n16\n1\n2\n3\n4\n'    > $PROB/towers-of-hanoi/tests/05.in
+printf '8\n1\n1\n2\n1\n1\n2\n1\n1\n'        > $PROB/towers-of-hanoi/tests/06.in
+g++ -O2 -o /tmp/sol_towers-of-hanoi towers-of-hanoi/solution.cpp
+for f in $PROB/towers-of-hanoi/tests/*.in; do
+  /tmp/sol_towers-of-hanoi < "$f" > "${f%.in}.out"
+done
+echo "Towers of Hanoi tests generated."
