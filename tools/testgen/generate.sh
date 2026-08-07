@@ -217,3 +217,26 @@ gen_tests cable-car 6
 gen_tests triangle-quadrants 6
 gen_tests plate-apart 6
 echo "Petlja geometry adaptation tests generated."
+
+# ---------------------------------------------------------------------------
+# Petlja adaptation: morse-sequence (Zbirka2/morzeov_niz, Društvo matematičara
+# Srbije + Fondacija Petlja), lesson L6/03 "Recursion". 01.in is our statement
+# example (the last two positions are the ones published upstream); 02-06 come
+# from gen.cpp. brute.cpp builds the signal literally and is used only for
+# cross-checking the small families.
+mkdir -p $PROB/morse-sequence/tests
+printf '6\n1\n7\n8\n15\n1234\n12345678\n' > $PROB/morse-sequence/tests/01.in
+
+gen_tests morse-sequence 6
+echo "Morse sequence tests generated."
+
+# ---------------------------------------------------------------------------
+# no-adjacent-ones, lesson L6/03 "Recursion". Ours. The input is a single n, so
+# gen.cpp just picks one value per test; 01.in is the statement example.
+# brute.cpp enumerates all 2^n bitmasks in increasing order, which cross-checks
+# the required output ordering as well as the contents.
+mkdir -p $PROB/no-adjacent-ones/tests
+printf '4\n' > $PROB/no-adjacent-ones/tests/01.in
+
+gen_tests no-adjacent-ones 6
+echo "No adjacent ones tests generated."
