@@ -557,7 +557,7 @@ code, kbd, samp, pre {
 .difficulty-easy   { color: #50fa7b; background: rgba(80, 250, 123, 0.12); border-color: rgba(80, 250, 123, 0.35); }
 .difficulty-medium { color: #f59e0b; background: rgba(245, 158, 11, 0.12); border-color: rgba(245, 158, 11, 0.35); }
 .difficulty-hard   { color: #ef4444; background: rgba(239,  68, 68, 0.12); border-color: rgba(239,  68, 68, 0.35); }
-.difficulty-olympiad { color: #f43f5e; background: rgba(244, 63, 94, 0.14); border-color: rgba(244, 63, 94, 0.45); }
+.difficulty-super-hard { color: #f43f5e; background: rgba(244, 63, 94, 0.14); border-color: rgba(244, 63, 94, 0.45); }
 
 .problem-meta-table {
   width: 100%;

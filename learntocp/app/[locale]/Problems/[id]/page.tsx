@@ -27,7 +27,9 @@ export async function generateMetadata({ params }: ProblemPageProps) {
 
   const title = getProblemTitle(problem, locale);
   const topic = getProblemTopic(problem, locale);
-  const difficulty = problem.meta.difficulty ?? null;
+  const difficulty = problem.meta.difficulty
+    ? getProblemMessages(locale).difficulty[problem.meta.difficulty]
+    : null;
   const descriptor = [difficulty, topic].filter(Boolean).join(" · ");
 
   const description =

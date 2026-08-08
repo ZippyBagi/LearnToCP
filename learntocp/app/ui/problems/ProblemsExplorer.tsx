@@ -17,7 +17,11 @@ import {
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
-import { DIFFICULTIES, type Difficulty } from "@/app/judge0/difficulties";
+import {
+  DIFFICULTIES,
+  DIFFICULTY_CLASS,
+  type Difficulty,
+} from "@/app/judge0/difficulties";
 import { getProblemMessages, getProblemListMessages } from "@/translations";
 
 export interface ProblemListItem {
@@ -39,14 +43,6 @@ interface ProblemsExplorerProps {
 
 const PAGE_SIZE = 5;
 const MAX_VISIBLE_TAGS = 2;
-
-const DIFFICULTY_CLASS: Record<Difficulty, string> = {
-  "Super Easy": "difficulty-super-easy",
-  Easy: "difficulty-easy",
-  Medium: "difficulty-medium",
-  Hard: "difficulty-hard",
-  "Olympiad Level": "difficulty-olympiad",
-};
 
 const GRID =
   "grid items-center gap-7 px-5 " +

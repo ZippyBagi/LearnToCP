@@ -1,3 +1,5 @@
+import { difficultyLabels, type Difficulty } from '@/app/judge0/difficulties'
+
 export const locales = ['en', 'sr'] as const
 
 export const languageNames = {
@@ -102,7 +104,7 @@ interface ProblemMessages {
   tabStatement: string
   tabSolution: string
   // difficulty labels (keyed by the meta value, which stays English)
-  difficulty: Record<'Super Easy' | 'Easy' | 'Medium' | 'Hard' | 'Super Hard', string>
+  difficulty: Record<Difficulty, string>
   problemNumber: (n: number) => string
   // meta table
   thTime: string
@@ -156,7 +158,7 @@ export const problemMessages: Record<'en' | 'sr', ProblemMessages> = {
     notFound: 'Problem not found',
     tabStatement: 'Problem',
     tabSolution: 'Solution',
-    difficulty: { 'Super Easy': 'Super Easy', Easy: 'Easy', Medium: 'Medium', Hard: 'Hard', 'Super Hard': 'Super Hard' },
+    difficulty: difficultyLabels(),
     problemNumber: (n) => `Problem #${n}`,
     thTime: 'Time Limit',
     thMemory: 'Memory',
@@ -217,7 +219,7 @@ export const problemMessages: Record<'en' | 'sr', ProblemMessages> = {
     notFound: 'Problem nije pronađen',
     tabStatement: 'Problem',
     tabSolution: 'Rešenje',
-    difficulty: { 'Super Easy': 'Super Easy', Easy: 'Easy', Medium: 'Medium', Hard: 'Hard', 'Super Hard': 'Super Hard' },
+    difficulty: difficultyLabels(),
     problemNumber: (n) => `Problem #${n}`,
     thTime: 'Vreme',
     thMemory: 'Memorija',

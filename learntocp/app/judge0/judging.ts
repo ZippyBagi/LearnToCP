@@ -3,14 +3,9 @@ import { STATUS, isAccepted, isFinal, type SubmissionResult } from "@/app/judge0
 
 /**
  * Shared judging logic between the submit and poll API routes.
- *
- * Per-testcase results live in the `results` JSONB column of `submissions`
- * (server-side only). Users only ever see aggregates: passed/total + verdict,
- * plus compiler output on a compilation error.
  */
 
-// ── Rate limits (tune here) ─────────────────────────────────────────────────
-// Each testcase is a billable Judge0 call, so these protect the RapidAPI bill as much as the service.
+// ==== Rate limits ======
 export const SUBMIT_COOLDOWN_S = 30; // min seconds between two submissions
 export const DAILY_SUBMISSION_LIMIT = 30; // per rolling 24 hours
 
@@ -20,7 +15,6 @@ export type Verdict = "AC" | "WA" | "TLE" | "RE" | "CE" | "IE";
 
 /** One entry of the `results` JSONB array. */
 export interface TestResult {
-  /** Testcase basename, e.g. "01" */
   name: string;
   /** Judge0 submission token */
   token: string;
@@ -103,7 +97,7 @@ export function mergeResults(
   return { results, compileOutput };
 }
 
-/** The shape sent to clients — aggregates only, never per-testcase data. */
+/** The shape sent to clients - aggregates only, never per-testcase data. */
 export interface PublicSubmission {
   submissionId: string;
   problemId: string;
@@ -113,7 +107,7 @@ export interface PublicSubmission {
   verdict: Verdict | null;
   passed: number;
   total: number;
-  /** Compiler output — only present when verdict is CE */
+  /** Compiler output - only present when verdict is CE */
   compileOutput: string | null;
   createdAt: string;
 }

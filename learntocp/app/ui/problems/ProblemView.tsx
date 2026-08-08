@@ -10,10 +10,11 @@ import {
 } from "@heroicons/react/24/outline";
 import SubmitPanel from "./SubmitPanel";
 import { getProblemMessages } from "@/translations";
+import { DIFFICULTY_CLASS, type Difficulty } from "@/app/judge0/difficulties";
 
 interface ProblemMetaView {
   title: string;
-  difficulty: "Super Easy" | "Easy" | "Medium" | "Hard" | "Olympiad Level" | null;
+  difficulty: Difficulty | null;
   number: number | null;
   note: string | null;
   timeLimitLabel: string;
@@ -33,14 +34,6 @@ interface ProblemViewProps {
 }
 
 type Tab = "statement" | "solution";
-
-const DIFFICULTY_CLASS: Record<string, string> = {
-  "Super Easy": "difficulty-super-easy",
-  Easy: "difficulty-easy",
-  Medium: "difficulty-medium",
-  Hard: "difficulty-hard",
-  "Olympiad Level": "difficulty-olympiad",
-};
 
 export default function ProblemView({
   problemId,

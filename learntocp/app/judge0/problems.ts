@@ -19,14 +19,9 @@ import path from "path";
  *
  * The folder name is the public problem id used in URLs
  * (/​[locale]/Problems/<slug>) and stored on submissions (problem_slug).
- *
- * Testcases never leave the server: they are read here, sent to Judge0,
- * and only aggregate pass counts are exposed to clients.
  */
 
-// Canonical difficulty ladder lives in its own (non-server) module so client
-// components can import the ordered list too. Imported into scope here (used by
-// ProblemMeta below) and re-exported for convenience.
+
 import { DIFFICULTIES, type Difficulty } from "./difficulties";
 export { DIFFICULTIES };
 export type { Difficulty };
@@ -59,7 +54,6 @@ export interface ProblemMeta {
 }
 
 export interface Testcase {
-  // Basename shared by the .in/.out pair, e.g. "01"
   name: string;
   input: string;
   expectedOutput: string;
@@ -107,13 +101,15 @@ export function getProblem(slug: string): Problem | null {
   try {
     const meta = JSON.parse(fs.readFileSync(metaPath, "utf-8")) as ProblemMeta;
     if (!meta.title || typeof meta.title !== "object") return null;
+    if (meta.difficulty && !DIFFICULTIES.includes(meta.difficulty)) {
+      delete meta.difficulty;
+    }
     return { slug, meta };
   } catch {
-    return null; // malformed problem.json — treat as missing
+    return null; // malformed problem.json - treat as missing
   }
 }
 
-// All problems (for the problem list page). 
 export function listProblems(): Problem[] {
   return listProblemSlugs()
     .map((slug) => getProblem(slug))
@@ -182,7 +178,7 @@ export function getProblemNote(
 }
 
 /**
- * Testcases for a problem, ordered by filename. Server-only — never send
+ * Testcases for a problem, ordered by filename. Server-only - never send
  * these to the client. A testcase is any NN.in with a matching NN.out.
  */
 export function getTestcases(slug: string): Testcase[] {

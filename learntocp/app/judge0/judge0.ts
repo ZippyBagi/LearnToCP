@@ -4,11 +4,10 @@ import "server-only";
  * Judge0 CE client (hosted on RapidAPI).
  *
  * Server-only: the RapidAPI key is billed per submission, so all calls go
- * through our API routes — the browser never talks to Judge0 directly.
+ * through our API routes - the browser never talks to Judge0 directly.
  */
 
-// Selectable C++ compilers + helpers live in a shared (non-server) module so
-// the client submit UI can render the same list this server code judges with.
+
 export {
   CPP_LANGUAGES,
   DEFAULT_LANGUAGE_ID,
@@ -19,12 +18,7 @@ export type { CppLanguage } from "./cppLanguages";
 
 import { DEFAULT_LANGUAGE_ID, compilerOptionsFor } from "./cppLanguages";
 
-export const LANGUAGE_IDS = {
-  cpp14: 105, // C++ (GCC 14.1.0)
-  cpp9:  54,  // C++ (GCC 9.2.0)
-} as const;
-
-/** Hosted plans cap submissions per batch call (commonly 20) — we chunk to stay under it. */
+/** Hosted plans cap submissions per batch call (commonly 20) - we chunk to stay under it. */
 const MAX_BATCH_SIZE = 20;
 
 export interface SubmissionRequest {
@@ -65,7 +59,7 @@ export function isAccepted(statusId: number) {
   return statusId === STATUS.ACCEPTED;
 }
 
-// Thrown when Judge0/RapidAPI rejects a call — carries the upstream HTTP status.
+// Thrown when Judge0/RapidAPI rejects a call - carries the upstream HTTP status.
 export class Judge0Error extends Error {
   constructor(
     public readonly httpStatus: number,
@@ -105,8 +99,7 @@ function toJudge0Payload(req: SubmissionRequest) {
  * Submit testcases as Judge0 batch submissions; returns one token per testcase,
  * in input order. Chunks into multiple batch calls when over the hosted cap.
  *
- * NEVER auto-retry this on failure — each submitted testcase is billable, and a
- * blind retry double-bills.
+ * NEVER auto-retry this on failure - each submitted testcase is billable, and a blind retry double-bills.
  */
 export async function submitBatch(
   submissions: SubmissionRequest[],
