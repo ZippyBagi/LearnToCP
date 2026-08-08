@@ -18,14 +18,15 @@ import {
 /**
  * POST /api/submit  { problemId: string, code: string }
  *
- * Judges `code` (C++20) against every testcase of content/problems/<problemId>.
- * Returns { submissionId } — the client then polls GET /api/submissions/[id].
+ * Judges `code` against every testcase of content/problems/<problemId>.
+ * Returns { submissionId } - the client then polls GET /api/submissions/[id].
  *
  * Rate limited per user (cooldown between submissions + rolling daily cap):
  * both protect the service AND the RapidAPI bill, since every testcase is a
  * billable Judge0 call. 429 responses carry a human-readable `error` and,
  * for the cooldown, `retryAfterSec`.
  */
+
 export async function POST(req: NextRequest) {
   // ── Auth ──────────────────────────────────────────────────────────────
   const supabase = await createClient();
@@ -150,7 +151,6 @@ export async function POST(req: NextRequest) {
   }
 
   // ── Send all testcases to Judge0 ───────────────────────────────────────
-  // Never auto-retry submitBatch: each testcase is billable.
   const limits = getProblemLimits(problem);
   let tokens: string[];
   try {
