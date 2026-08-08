@@ -1,13 +1,7 @@
 /**
  * Shared C++ compiler list (Judge0 CE language ids), newest first.
  *
- * Lives in its own module — NOT judge0.ts — because judge0.ts is `server-only`
- * and this list is also needed by the client submit UI.
- *
- * `std` is the highest -std flag each compiler reliably accepts: GCC 10+ /
- * Clang 10+ recognize `c++20`, GCC 9 uses the older `c++2a` spelling, and the
- * 7.x/8.x toolchains top out at `c++17`. Picking the right flag per compiler
- * avoids "unrecognized -std" compile errors on the older versions.
+ * Lives in its own module - both for Server and Client
  */
 export interface CppLanguage {
   id: number;
@@ -25,15 +19,12 @@ export const CPP_LANGUAGES: readonly CppLanguage[] = [
 
 export const DEFAULT_LANGUAGE_ID = 105; // C++ (GCC 14.1.0)
 
-/** True only for C++ language ids we expose in the submit dropdown. */
 export function isSupportedLanguageId(id: number): boolean {
   return CPP_LANGUAGES.some((l) => l.id === id);
 }
 
 /**
- * Compiler flags for a given language id: -O2 (standard for competitive
- * judging — without it TLE limits are misleading) plus the highest C++
- * standard that compiler supports.
+ * Compiler flags for a given language id: -O2 (standard for competitive judging - without it TLE limits are misleading) plus the highest C++ standard that compiler supports.
  */
 export function compilerOptionsFor(languageId: number): string {
   const std = CPP_LANGUAGES.find((l) => l.id === languageId)?.std ?? "c++20";
