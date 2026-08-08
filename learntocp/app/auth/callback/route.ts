@@ -4,7 +4,7 @@ import { createClient } from "@/app/supabase/server";
 const NEXT_COOKIE = "ltcp-auth-next";
 
 /**
- * OAuth callback — Supabase redirects here after the provider sign-in.
+ * OAuth callback - Supabase redirects here after the provider sign-in.
  * Exchanges the auth code for a session (sets cookies), then redirects
  * the user to the target page.
  *
@@ -45,7 +45,7 @@ export async function GET(request: NextRequest) {
     const { error } = await supabase.auth.exchangeCodeForSession(code);
 
     if (!error) {
-      // Behind Vercel's load balancer `origin` is internal — prefer the original host the browser actually used.
+      // Behind Vercel's load balancer `origin` is internal - prefer the original host the browser actually used.
       const forwardedHost = request.headers.get("x-forwarded-host");
       const isLocalEnv = process.env.NODE_ENV === "development";
 
