@@ -19,7 +19,7 @@ export async function requireAuth(locale: string, next: string) {
 }
 
 /**
- * Non-redirecting variant for public pages that adapt their UI to auth
+ * Non-redirecting variant of `requireAuth()` for public pages that adapt their UI to auth
  * state (e.g. Problems/roadmap render for everyone)
  */
 export async function isAuthenticated(): Promise<boolean> {
