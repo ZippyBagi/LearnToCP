@@ -261,3 +261,34 @@ for f in $PROB/towers-of-hanoi/tests/*.in; do
   /tmp/sol_towers-of-hanoi < "$f" > "${f%.in}.out"
 done
 echo "Towers of Hanoi tests generated."
+
+# ---------------------------------------------------------------------------
+# Graph Theory I (L7/01) and Test 2 (L8/00). Four Petlja adaptations - all by
+# Društvo matematičara Srbije + Fondacija Petlja - and one problem of our own:
+#   most-popular-site   <- Zbirka3/najpopularniji_sajt
+#   islands             <- ours
+#   bus-routes          <- Zbirka3/kruzni_autobusi
+#   caves               <- Zbirka3/pecine
+#   snakes-and-ladders  <- Zbirka3/zmije_i_lestve
+#   line-of-succession  <- Zbirka3/prestolonaslednici
+# The archive's own test data needs a login, so 01.in batches the published
+# examples, 02 is handcrafted degenerates from gen.cpp and 03-06 are generated.
+# Each problem has a brute.cpp that reaches the answer by a different route and
+# is used only for cross-checking.
+mkdir -p $PROB/most-popular-site/tests $PROB/islands/tests $PROB/bus-routes/tests \
+         $PROB/caves/tests $PROB/snakes-and-ladders/tests $PROB/line-of-succession/tests
+
+printf '1\n4 9\n1 2\n1 4\n2 1\n2 2\n2 4\n3 2\n3 4\n4 1\n4 4\n' > $PROB/most-popular-site/tests/01.in
+printf '1\n4 6\n#..##.\n##..#.\n....#.\n.##..#\n'               > $PROB/islands/tests/01.in
+printf '1\n7 2\n3 1 2 7\n3 3 6 7\n1 6\n'                        > $PROB/bus-routes/tests/01.in
+printf '1\n278 7\n1 2 -20\n1 3 -10\n2 4 -5\n2 5 10\n3 6 -33\n3 7 7\n' > $PROB/caves/tests/01.in
+printf '2\n18 2 5\n2 12\n3 13\n8 17\n11 1\n14 7\n5 2 2\n1 3\n3 1\n'   > $PROB/snakes-and-ladders/tests/01.in
+printf '1\n19\nElisabeth Charles\nElisabeth Andrew\nElisabeth Edward\nElisabeth Anne\nCharles William\nWilliam George\nCharles Harry\nWilliam Charlotte\nWilliam Louis\nAnne Peter\nAnne Zara\nEdward James\nAndrew Beatrice\nAndrew Eugenie\nEdward Louise\nPeter Savannah\nPeter Isla\nZara Mia\n7\nHarry\nCharles\nCharlotte\nLouise\nJames\nIsla\nAndrew\n' > $PROB/line-of-succession/tests/01.in
+
+gen_tests most-popular-site 6
+gen_tests islands 6
+gen_tests bus-routes 6
+gen_tests caves 6
+gen_tests snakes-and-ladders 6
+gen_tests line-of-succession 6
+echo "Graph Theory I + Test 2 tests generated."
