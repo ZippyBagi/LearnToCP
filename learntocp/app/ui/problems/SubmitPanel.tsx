@@ -94,6 +94,7 @@ export default function SubmitPanel({ problemId,locale,time_limit,memory_limit,o
   const [viewing, setViewing] = useState<PublicSubmission | null>(null);
   const [hl, setHl] = useState<import("shiki").Highlighter | null>(null);
   const pollRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const resumedRef = useRef<string | null>(null);
   const editorRef = useRef<HTMLTextAreaElement>(null);
   const highlightRef = useRef<HTMLDivElement>(null);
   const gutterRef = useRef<HTMLDivElement>(null);
@@ -165,12 +166,12 @@ export default function SubmitPanel({ problemId,locale,time_limit,memory_limit,o
     });
   };
 
-  const stopPolling = () => {
+  const stopPolling = useCallback(() => {
     if (pollRef.current) {
       clearInterval(pollRef.current);
       pollRef.current = null;
     }
-  };
+  }, []);
 
   const loadHistory = useCallback(async () => {
     try {
@@ -185,10 +186,46 @@ export default function SubmitPanel({ problemId,locale,time_limit,memory_limit,o
     }
   }, [problemId]);
 
+  const startPolling = useCallback(
+    (submissionId: string) => {
+      stopPolling();
+      const poll = async () => {
+        try {
+          const res = await fetch(`/api/submissions/${submissionId}`);
+          if (!res.ok) return; // transient — keep polling
+          const data: PublicSubmission = await res.json();
+          setResult(data);
+          if (data.done) {
+            stopPolling();
+            setSubmitting(false);
+            loadHistory();
+            if (data.verdict === "AC") onSolved?.();
+          }
+        } catch {
+          // transient network error - keep polling
+        }
+      };
+      poll();
+      pollRef.current = setInterval(poll, POLL_INTERVAL_MS);
+    },
+    [loadHistory, onSolved, stopPolling],
+  );
+
   useEffect(() => {
     loadHistory();
     return stopPolling;
-  }, [loadHistory]);
+  }, [loadHistory, stopPolling]);
+
+  // A refresh kills the poll loop, so pick any still-judging submission back up.
+  // Each id is resumed at most once, so a history refresh mid-poll can't restart it.
+  useEffect(() => {
+    if (pollRef.current) return;
+    const unfinished = history.find((s) => s.status === "judging");
+    if (!unfinished || resumedRef.current === unfinished.submissionId) return;
+    resumedRef.current = unfinished.submissionId;
+    setSubmitting(true);
+    startPolling(unfinished.submissionId);
+  }, [history, startPolling]);
 
   useEffect(() => {
     if (!viewing) return;
@@ -198,28 +235,6 @@ export default function SubmitPanel({ problemId,locale,time_limit,memory_limit,o
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [viewing]);
-
-  const startPolling = (submissionId: string) => {
-    stopPolling();
-    const poll = async () => {
-      try {
-        const res = await fetch(`/api/submissions/${submissionId}`);
-        if (!res.ok) return; // transient — keep polling
-        const data: PublicSubmission = await res.json();
-        setResult(data);
-        if (data.done) {
-          stopPolling();
-          setSubmitting(false);
-          loadHistory();
-          if (data.verdict === "AC") onSolved?.();
-        }
-      } catch {
-        // transient network error - keep polling
-      }
-    };
-    poll();
-    pollRef.current = setInterval(poll, POLL_INTERVAL_MS);
-  };
 
   const handleSubmit = async () => {
     setError(null);

@@ -1,6 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/app/supabase/server";
-import { toPublicSubmission, type SubmissionRow } from "@/app/judge0/judging";
+import {
+  reconcileSubmission,
+  toPublicSubmission,
+  type SubmissionRow,
+} from "@/app/judge0/judging";
 
 const HISTORY_PAGE_SIZE = 50;
 
@@ -10,6 +14,10 @@ const HISTORY_PAGE_SIZE = 50;
  * The current user's submission history for one problem, newest first
  * (aggregate verdicts + the submitted code). RLS scopes the query to the
  * caller's own rows.
+ *
+ * Rows still marked judging are reconciled here too, so a submission whose
+ * client stopped polling (page refresh, closed tab) is finished off the next
+ * time the problem page is opened rather than hanging on "Judging" forever.
  */
 export async function GET(req: NextRequest) {
   const supabase = await createClient();
@@ -37,8 +45,12 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: "Internal error" }, { status: 500 });
   }
 
+  const reconciled = await Promise.all(
+    (rows as SubmissionRow[]).map((row) => reconcileSubmission(row)),
+  );
+
   return NextResponse.json({
-    submissions: (rows as SubmissionRow[]).map((row) => ({
+    submissions: reconciled.map((row) => ({
       ...toPublicSubmission(row),
       code: row.code,
       runtime : row.results.some(r => r.time == null) ? null: Math.max(...row.results.map(r => r.time ?? -1)),

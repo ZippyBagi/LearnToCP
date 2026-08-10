@@ -1,12 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/app/supabase/server";
-import { createAdminClient } from "@/app/supabase/admin";
-import { pollBatch, isFinal } from "@/app/judge0/judge0";
 import {
-  allFinal,
-  countPassed,
-  deriveVerdict,
-  mergeResults,
+  reconcileSubmission,
   toPublicSubmission,
   type SubmissionRow,
 } from "@/app/judge0/judging";
@@ -52,44 +47,5 @@ export async function GET(
     return NextResponse.json({ error: "Not found" }, { status: 404 });
   }
 
-  if (row.status !== "judging") {
-    return NextResponse.json(toPublicSubmission(row));
-  }
-
-  // ── Poll Judge0 for testcases still in flight ─────────────────────────
-  const pending = row.results.filter((r) => !isFinal(r.statusId));
-  if (pending.length === 0 && row.results.length === 0) {
-    // Tokens not stored yet (submit still running) — report as judging.
-    return NextResponse.json(toPublicSubmission(row));
-  }
-
-  try {
-    const polled = await pollBatch(pending.map((r) => r.token));
-    const { results, compileOutput } = mergeResults(row.results, polled);
-
-    const done = allFinal(results);
-    const updated: Partial<SubmissionRow> = {
-      results,
-      passed_count: countPassed(results),
-      ...(compileOutput !== null && { compile_output: compileOutput }),
-      ...(done && { status: "done" as const, verdict: deriveVerdict(results) }),
-    };
-
-    const admin = createAdminClient();
-    const { error: updateErr } = await admin
-      .from("submissions")
-      .update(updated)
-      .eq("id", row.id);
-    if (updateErr) {
-      console.error("submissions/[id]: verdict update failed", updateErr);
-      // Still return what we know — next poll will retry the write.
-    }
-
-    return NextResponse.json(toPublicSubmission({ ...row, ...updated }));
-  } catch (e) {
-    // Judge0 hiccup (rate limit / transient 5xx): degrade gracefully by
-    // returning the current state — the client will simply poll again.
-    console.error("submissions/[id]: Judge0 poll failed", e);
-    return NextResponse.json(toPublicSubmission(row));
-  }
+  return NextResponse.json(toPublicSubmission(await reconcileSubmission(row)));
 }
