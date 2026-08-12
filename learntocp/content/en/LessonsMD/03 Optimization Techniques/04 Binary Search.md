@@ -65,7 +65,7 @@ We repeat this process until:
 
 It is important to note that we must also include the case when `left == right`.
 
-	![[binary-search.png]]
+	![[binary-search.png|Four steps of binary search for 12 in a sorted ten element array, each row highlighting the middle element in orange, greying out the discarded half, and ending with 12 found in green]]
 
 ### Implementation
 

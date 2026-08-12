@@ -13,7 +13,7 @@ Normalni vektori su vektori koji zaklapaju **ugao od 90°**
 
 Ako je skalarni proizvod 2 vektora `0`, onda su oni normalni jedan na drugi.
 
-	![[dot-product-normal.png]]
+	![[dot-product-normal.png|Tri mreže sa vektorima A i B pod oštrim, pravim i tupim uglom, gde je skalarni proizvod redom 9, tačno nula, i minus 8]]
 
 #### Implementacija
 Pretpostavimo da su svi vektori implementirani ovako: 
@@ -56,7 +56,7 @@ Ako je proizvod **negativan**, da bismo stigli od $\vec{A}$ do $\vec{B}$, kreće
 
 Ako je proizvod `0`, onda su $\vec{A}$ i $\vec{B}$ **paralelni**!
 
-	![[cross-product-circle.png]]
+	![[cross-product-circle.png|Tri mreže sa vektorima A i B na krugu, gde je vektorski proizvod 10 za skretanje suprotno smeru kazaljke, minus 7 za skretanje u smeru kazaljke, i nula kada su vektori paralelni]]
 
 #### Površina trougla
 

@@ -16,7 +16,7 @@ Left and right are meant from the point of view of somebody standing at `A` and 
 
 >Don't worry too much about what is "left" and what is "right", as all that matters is comparing >0 or <0
 
-	![[orientation-sign.png]]
+	![[orientation-sign.png|A grid with segment AB extended as a dashed line, the half plane above it shaded blue with a sample cross product of +16 and the half plane below shaded red with -16, mapping the three signs to the three orientation answers]]
 
 We will use this constantly, so let's wrap it in a function. Notice that it returns a character and not a number: the actual value of the cross product is never interesting here, only its sign.
 
@@ -80,7 +80,7 @@ Getting `=` back from `orientation` means `C` is on the **line** `AB` - the infi
 
 For a segment we need one more check: the point has to be between `A` and `B`. Because we already know it is on the line, we do not need anything clever - it is enough that its coordinates are inside the box spanned by `A` and `B`.
 
-	![[on-segment-two-checks.png]]
+	![[on-segment-two-checks.png|Three grids testing whether a point lies on segment AB: (2,2) is on the line and inside the bounding box so it passes, (6,6) is on the line but outside the box, and (1,3) is inside the box but off the line]]
 
 OnSegment.cpp
 ```c++

@@ -7,7 +7,7 @@ Zamisli gomilu tanjira. Sa njom možeš da uradiš samo dve stvari:
 
 Ne možeš da izvučeš tanjir iz sredine a da se sve ne sruši. To je cela ideja **steka** (en. stack): poslednji element koji je ušao - prvi izlazi (**LIFO** - Last In, First Out).
 
-	![[stack.png]]
+	![[stack.png|Stek kroz pet koraka dodavanja i jedno uklanjanje, gde se svaki element stavlja na vrh prethodnih, a top() uvek pokazuje na poslednji dodati element]]
 
 ### Funkcije
 

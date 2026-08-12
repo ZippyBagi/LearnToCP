@@ -196,7 +196,7 @@ I:
 
 `x ^ 0 = x` (Ako XOR-ujemo broj sa `0`, dobijamo isti taj broj.)
 
-	![[bitwise-ops.png]]
+	![[bitwise-ops.png|Četiri bitovske operacije primenjene na a = 1001 i b = 1110 kolonu po kolonu: AND daje 1000, OR daje 1111, XOR daje 0111, a NOT nad a daje 0110]]
 
 ### Napomena:
 

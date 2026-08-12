@@ -18,7 +18,7 @@ Every element that gets double counted is exactly an element of $A \cap B$, so w
 
 $$|A \cup B| = |A| + |B| - |A \cap B|$$
 
-	![[inclusion-exclusion-two-sets.png]]
+	![[inclusion-exclusion-two-sets.png|A two circle Venn diagram with |A| = 5 and |B| = 4 and two elements in the overlap counted by both, so the union is 5 plus 4 minus 2, which is 7]]
 
 That is the whole idea of the principle. Add too much, then take back what you overcounted.
 
@@ -40,7 +40,7 @@ $$|A_1 \cup A_2 \cup A_3| = (|A_1| + |A_2| + |A_3|) - (|A_1 \cap A_2| + |A_1 \ca
 
 Every element is now counted exactly once:
 
-	![[inclusion-exclusion-three-sets.png]]
+	![[inclusion-exclusion-three-sets.png|A three circle Venn diagram with each region chipped by how many sets it belongs to, and a table below showing that adding singles, subtracting pairs and adding the triple counts every element exactly once]]
 
 The signs alternate because each round of correction overshoots, and the next one pulls it back.
 

@@ -3,7 +3,7 @@
 The simplest solution is to use an online compiler like [OnlineGDB](https://www.onlinegdb.com/online_c++_compiler).
 
 In order to run code, simply press the run button
-	![[online-gdb.png]]
+	![[online-gdb.png|The OnlineGDB web IDE with a Hello World C++ program open, and a red arrow pointing at the green Run button in the toolbar]]
 
 Whilst online gdb is great, most people like having an installed app, and running code locally. 
 

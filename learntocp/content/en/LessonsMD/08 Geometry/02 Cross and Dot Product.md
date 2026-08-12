@@ -13,7 +13,7 @@ Normal vectors are vectors that form an **angle of 90°**
 
 If the dot product of 2 vectors is `0`, then they are normal to each other.
 
-	![[dot-product-normal.png]]
+	![[dot-product-normal.png|Three grids with vectors A and B at a sharp, right and wide angle, where the dot product is positive 9, exactly zero, and negative 8 respectively]]
 
 #### Implementation
 Assume that all vectors are implemented like this: 
@@ -56,7 +56,7 @@ If the product is **negative**, to get from $\vec{A}$ to $\vec{B}$ ,we move cloc
 
 If the product is `0`, then $\vec{A}$ and $\vec{B}$ are **parallel**!
 
-	![[cross-product-circle.png]]
+	![[cross-product-circle.png|Three grids with vectors A and B on a circle, where the cross product is positive 10 for a counter-clockwise turn, negative 7 for a clockwise turn, and zero when the vectors are parallel]]
 
 #### The area of a triangle
 

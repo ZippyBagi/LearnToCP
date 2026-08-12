@@ -12,7 +12,7 @@ Primer: za `a = 12` i `b = 18`:
 
 Najveći zajednički je `6`, dakle `NZD(12, 18) = 6`. A najmanji broj koji i 12 i 18 dele je `36`, dakle `NZS(12, 18) = 36`.
 
-	![[gcd-lcm.png]]
+	![[gcd-lcm.png|Delioci brojeva 12 i 18 u dva reda sa istaknutim zajedničkim deliocima 1, 2, 3 i 6, gde je najveći među njima 6 obojen zeleno, što daje NZD 6 i NZS 36]]
 
 Upoređivanje spiskova delilaca radi, ali njihovo pronalaženje traje **O(sqrt(n))**. Postoji mnogo elegantniji način, otkriven pre više od 2000 godina.
 ### Euklidov algoritam

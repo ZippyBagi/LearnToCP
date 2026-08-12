@@ -44,7 +44,7 @@ A computer can't actually store "characters" - it only stores numbers. So a long
 
 The important part is how the codes were assigned. For example the digits `0` to `9` got the codes `48` to `57` - they sit **next to each other, in order**:
 
-![[ascii-table-en.png]]
+![[ascii-table-en.png|A two row table pairing the characters '0' through '9' with their consecutive ASCII codes 48 through 57]]
 
 And that enables a classic trick:
 

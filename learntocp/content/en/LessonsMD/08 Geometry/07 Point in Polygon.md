@@ -19,7 +19,7 @@ So all we have to do is count:
 
 Dents, spikes and long thin corridors all work, because each one is still just a border being crossed.
 
-	![[ray-casting-parity.png]]
+	![[ray-casting-parity.png|A polygon with a notch and three horizontal rays cast from different points, counting 3, 3 and 0 crossings, so odd counts mean inside and even counts mean outside]]
 
 ### When does an edge count
 
@@ -30,7 +30,7 @@ An edge from `A` to `B` is crossed when two things are true:
 
 The first is a comparison of `y` values. The second is a question about sides, so `orientation` answers it: for an edge going up, the crossing is on the right exactly when `T` is on its left. For an edge going down, the sign flips.
 
-	![[ray-crossing-test.png]]
+	![[ray-crossing-test.png|Three grids showing when an edge counts for the ray from T: it does not when both ends are above the ray, it does not when the crossing is behind T, and it does when the edge reaches across and the crossing lies ahead]]
 
 ### The corner problem
 
@@ -49,7 +49,7 @@ A corner at `T`'s height is not above `T`, so it gives the same `false` to both 
 
 The same rule quietly disposes of horizontal edges too: both ends are at the same height, so the two sides of the `!=` always agree, and the edge is skipped.
 
-	![[ray-corner-rule.png]]
+	![[ray-corner-rule.png|Three grids where the ray grazes a polygon corner, counting 1 crossing when one edge goes up and the other down, 0 when both go down, and 2 when both go up, so a grazed corner never flips the parity]]
 
 >Note:
 >`>` on both sides, never `>=` on one. It looks like an arbitrary detail and it is the whole correctness argument - get it wrong and your solution passes every test you draw by hand, then fails on the one with a flat top.

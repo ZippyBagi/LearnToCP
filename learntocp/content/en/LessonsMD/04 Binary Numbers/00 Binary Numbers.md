@@ -41,7 +41,7 @@ We should be comfortable converting both decimal numbers into binary, and binary
 `= 128 + 16 + 8 + 4 + 1`
 `= 157`
 
-	![[binary-place-value.png]]
+	![[binary-place-value.png|The binary number 1001 1101 with each of the eight positions labelled by its power of two, the positions holding a 1 highlighted, and their values 128 + 16 + 8 + 4 + 1 summing to 157]]
 
 #### Decimal to binary: 
 

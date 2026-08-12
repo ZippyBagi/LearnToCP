@@ -18,7 +18,7 @@ Možemo mnogo bolje.
 
 Pogledajmo brojeve od 1 do 100:
 
-![[Sum of elements.jpg]]
+![[Sum of elements.jpg|Zbir 1 + 2 + 3 + ... + 98 + 99 + 100 sa ugnežđenim lukovima koji spajaju brojeve sa dva kraja, gde je svaki par označen sa 101]]
 
 Primetićemo da svi brojevi formiraju parove čiji je zbir `101`.
 

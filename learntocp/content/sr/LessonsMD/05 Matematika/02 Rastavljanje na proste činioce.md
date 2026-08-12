@@ -8,7 +8,7 @@ Na primer:
 `97 = 97` (već je prost)
 `360 = 2 * 2 * 2 * 3 * 3 * 5`
 
-	![[prime-factor-tree.png]]
+	![[prime-factor-tree.png|Stablo činilaca koje razlaže 360 korak po korak, deljenjem sa 2 tri puta pa sa 3 dva puta, i ostavlja rastavljanje 2 puta 2 puta 2 puta 3 puta 3 puta 5]]
 
 Ovo se zove **rastavljanje na proste činioce** (en. prime factorization), i toliko je fundamentalno da su matematičari ovo pravilo nazvali Osnovna teorema aritmetike.
 ### Teorija

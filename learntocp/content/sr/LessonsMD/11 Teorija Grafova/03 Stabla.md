@@ -4,7 +4,7 @@ Uzmi našu mapu od 7 gradova i zatvori jedan put, onaj između `6` i `7`. Iz sva
 
 Povezan graf bez ciklusa je **stablo**, a iznenađujuće veliki deo sveta ima taj oblik: porodična stabla, raspored foldera, lanac poziva koji za sobom ostavlja rekurzivna funkcija.
 
-	![[tree-from-graph.png]]
+	![[tree-from-graph.png|Graf sa 7 čvorova i 7 grana koji sadrži ciklus sa leve strane, i isti graf sa desne nakon uklanjanja grane 6-7, sa 6 grana, bez ciklusa i i dalje povezan]]
 
 ### Šta čini stablo
 
@@ -29,7 +29,7 @@ Kada je koren izabran, pojavljuju se porodični nazivi:
 
 Korenovanje ne menja ništa na samom stablu. To je način na koji ga gledamo, i isto stablo slobodno možemo da obesimo gde god hoćemo.
 
-	![[tree-rooted-at-1.png]]
+	![[tree-rooted-at-1.png|Isto stablo obešeno o čvor 1 i nacrtano po dubinama od 0 do 3, sa korenom u narandžastoj boji, uokvirenim čvorovima koji imaju decu, i listovima 4, 6 i 7 u zelenoj]]
 
 ### Roditelj i dubina pomoću DFS-a
 

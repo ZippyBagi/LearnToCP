@@ -6,7 +6,7 @@ Za male brojeve već znamo trik iz Sortiranja Prebrojavanjem: napravimo niz `cnt
 
 Treba nam nešto što pamti **samo one ključeve koje smo zaista videli**. Upravo to radi **mapa**.
 
-	![[map-vs-array.png]]
+	![[map-vs-array.png|Vektor sa milijardu polja od kojih se koriste samo dva, nacrtan iznad mape koja čuva samo dva ključa 5 i 1000000000 koji su se zaista pojavili]]
 
 ### Parovi
 
@@ -92,7 +92,7 @@ Primeti da smo napisali `godine["Ana"]++`, a da nikada nismo postavili `godine["
 
 Vrlo zgodno, ali krije zamku: **već i samo čitanje `m[k]` pravi ključ**.
 
-	![[map-default-trap.png]]
+	![[map-default-trap.png|Tri stanja mape koja pokazuju da čitanje m[7] ubacuje ključ 7 sa vrednošću 0 i povećava veličinu sa 1 na 2, dok m.count(7) odgovara na isto pitanje i ne menja mapu]]
 
 Primer:
 ~!

@@ -41,7 +41,7 @@ Every divisor bigger than `6` is paired up with a divisor smaller than `6`. And 
 
 In other words: **if n has any divisor, it has one that is <= sqrt(n)**
 
-	![[divisor-pairs.png]]
+	![[divisor-pairs.png|The divisors of 36 in a row from 1 to 36 with arcs pairing each small divisor with its large partner, 1 with 36, 2 with 18, 3 with 12 and 4 with 9, meeting at the square root 6 in the middle]]
 
 So instead of checking all the way up to `n`, it is enough to check up to `sqrt(n)`. 
 ### Implementation

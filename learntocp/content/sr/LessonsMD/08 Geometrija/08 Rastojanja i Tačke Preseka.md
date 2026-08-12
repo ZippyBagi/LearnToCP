@@ -16,7 +16,7 @@ Već i sam znak skalarnog proizvoda govori nam gde senka pada:
 - `dot(u, w) < 0` => pada **unazad**, iza početka vektora $\vec{u}$
 - `dot(u, w) = 0` => senke nema, slučaj sa normalnim vektorima koji smo već znali
 
-	![[projection-shadow.png]]
+	![[projection-shadow.png|Tri mreže koje prikazuju projekciju vektora w na u kao senku duž u: usmerenu unapred kada je skalarni proizvod pozitivan, unazad kada je negativan, i bez senke kada je nula]]
 ### Rastojanje do prave
 
 Već znamo dva načina da zapišemo površinu trougla `ABP`:
@@ -30,7 +30,7 @@ $$dist(P, AB) = \frac{|\vec{AB} \times \vec{AP}|}{|\vec{AB}|}$$
 
 Apsolutna vrednost je tu zato što vektorski proizvod ima znak, a rastojanje nema.
 
-	![[point-line-distance.png]]
+	![[point-line-distance.png|Trougao ABP na mreži sa visinom d spuštenom iz P na AB, i površina zapisana na dva načina, kao vektorski proizvod podeljen sa 2 i kao osnovica puta visina podeljeno sa 2, pa je d vektorski proizvod podeljen dužinom AB]]
 
 ### Rastojanje do duži
 
@@ -40,7 +40,7 @@ Duž se negde završava, pa je normala odgovor samo ponekad - najbliža tačka m
 - `dot(AB, BP) >= 0` => doseže preko `B`, pa je `B` najbliža
 - inače => normala pada na duž
 
-	![[segment-distance-three-cases.png]]
+	![[segment-distance-three-cases.png|Tri slučaja za rastojanje tačke P do duži AB: normala pada na duž, najbliža tačka je kraj B, ili je najbliža tačka kraj A]]
 
 Obe provere su celobrojni skalarni proizvodi, pa se pri biranju slučaja ne gubi preciznost. Jedini realan broj u celoj funkciji je rastojanje koje vraćamo.
 

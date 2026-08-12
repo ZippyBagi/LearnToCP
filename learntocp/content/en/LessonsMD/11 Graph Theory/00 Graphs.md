@@ -19,7 +19,7 @@ The number of edges leaving a vertex is its **degree**.
 
 For this whole chapter we will use one graph: 7 cities, joined by the roads `1-2`, `1-3`, `2-4`, `2-5`, `3-6`, `5-7` and `6-7`.
 
-	![[graph-running-example.png]]
+	![[graph-running-example.png|The chapter's running graph of 7 vertices joined by the 7 edges 1-2, 1-3, 2-4, 2-5, 3-6, 5-7 and 6-7, with vertex 2 annotated as having degree 3]]
 
 A few more words we will need:
 
@@ -144,7 +144,7 @@ Output:
 
 The price is memory. The matrix is $n^2$ cells whether the graph has a million edges or three, which caps it at roughly `n = 5000`. It also cannot list the neighbours of `v` without checking all `n` cells in the row.
 
-	![[graph-list-vs-matrix.png]]
+	![[graph-list-vs-matrix.png|The same 7 vertex graph stored two ways, as an adjacency list using 14 entries and as a 7 by 7 adjacency matrix using 49 cells, most of them zero]]
 
 | | Adjacency list | Adjacency matrix |
 | ---- | ---- | ---- |

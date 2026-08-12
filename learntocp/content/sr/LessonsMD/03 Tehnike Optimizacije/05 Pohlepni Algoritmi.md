@@ -47,7 +47,7 @@ Promeni novčiće u `{4, 3, 1}` i neka je `k = 6`.
 - Pohlepni: uzima `4` (ostaje 2), pa `1`, pa `1` => **3 novčića**
 - Optimalno: `3 + 3` => **2 novčića**
 
-	![[greedy-fails.png]]
+	![[greedy-fails.png|Kontraprimer za pohlepni algoritam sa novčićima 4, 3 i 1 i ciljem 6: pohlepni uzima 4 pa 1 pa 1, ukupno tri novčića, dok je najbolje rešenje 3 plus 3, samo dva novčića]]
 
 Da li ovaj algoritam radi ili ne zavisi u potpunosti od vrednosti novčića. Postoji zanimljiva matematika iza toga zašto se ovo dešava, ali to prevazilazi okvire ove lekcije.
 

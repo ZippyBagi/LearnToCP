@@ -6,7 +6,7 @@ For small numbers we already know the trick from Counting Sort: make an array `c
 
 What we need is something that stores **only the keys we actually saw**. That is exactly what a **map** does.
 
-	![[map-vs-array.png]]
+	![[map-vs-array.png|A vector of a billion slots with only two of them ever used, drawn above a map holding just the two keys 5 and 1000000000 that actually appeared]]
 
 ### Pairs
 
@@ -92,7 +92,7 @@ Notice that we wrote `age["Ana"]++` without ever setting `age["Ana"]` to `0` fir
 
 Very convenient, but it hides a trap: **simply reading `m[k]` creates the key**.
 
-	![[map-default-trap.png]]
+	![[map-default-trap.png|Three states of a map showing that reading m[7] inserts key 7 with value 0 and grows size from 1 to 2, while m.count(7) answers the same question and leaves the map unchanged]]
 
 Example:
 ~!

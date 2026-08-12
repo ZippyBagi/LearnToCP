@@ -7,7 +7,7 @@ Matrices are 2D arrays, we can think of them as grids, where each field stores a
 A matrix is labeled AxB, depending on its size, where A and B are numbers
 
 So a 3x3 matrix would look like: 
-	![[matrix.png]]
+	![[matrix.png|A 3 by 3 square matrix in brackets holding the rows 6 2 7, 8 1 5 and 3 4 2]]
 It is comprised of rows and columns.
 
 If we look at the example the rows they are: `[6, 2, 7]`, `[8, 1, 5]`, `[3, 4, 2]`

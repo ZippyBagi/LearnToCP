@@ -19,7 +19,7 @@ The catch is that the fan does not fit the polygon. Some triangles stick out pas
 
 That is exactly what the **sign** fixes. Walking around the polygon, the far side is walked one way and the near side the other, so anything sticking out gets added once and subtracted once. Everything outside the polygon cancels, and only the polygon survives - no matter where the origin sits.
 
-	![[shoelace-lacing.png]]
+	![[shoelace-lacing.png|The shoelace formula laid out as two rows of x and y coordinates with arrows crossing between them like laces, one diagonal summing to 24 and the other to 3, giving an area of 21 over 2, which is 10.5]]
 
 Writing those cross products out gives the **shoelace formula**:
 
@@ -107,7 +107,7 @@ Two details:
 - The triples wrap around, so the last two corners take their neighbours from the front of the vector.
 - `=` means three points on one straight line, which is not a turn at all. Skipping those keeps a polygon with a flat side convex.
 
-	![[polygon-turn-signs.png]]
+	![[polygon-turn-signs.png|Three polygons with a sign chipped at each vertex: a square where every turn is positive is convex, a shape with one negative turn is not, and a square with a collinear point marked equals is still convex]]
 
 Convex.cpp
 ```c++

@@ -3,7 +3,7 @@
 Najjednostavnije rešenje je da koristite onlajn kompajler kao što je [OnlineGDB](https://www.onlinegdb.com/online_c++_compiler).
 
 Da biste pokrenuli kod, samo pritisnite dugme za pokretanje (run)
-	![[online-gdb.png]]
+	![[online-gdb.png|OnlineGDB veb okruženje sa otvorenim Hello World programom u C++-u, i crvena strelica koja pokazuje na zeleno dugme Run u traci sa alatkama]]
 
 Iako je OnlineGDB odličan, većina ljudi ipak voli da ima instaliranu aplikaciju i da pokreće kod lokalno.
 

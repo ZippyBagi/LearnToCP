@@ -12,7 +12,7 @@ Example: for `a = 12` and `b = 18`:
 
 The biggest shared one is `6`, so `GCD(12, 18) = 6`. And the smallest number both divide into is `36`, so `LCM(12, 18) = 36`.
 
-	![[gcd-lcm.png]]
+	![[gcd-lcm.png|The divisors of 12 and of 18 listed in two rows with the shared divisors 1, 2, 3 and 6 highlighted, the greatest of them 6 marked green, giving GCD 6 and LCM 36]]
 
 Comparing lists of divisors works, but finding them takes **O(sqrt(n))**. There is a much more elegant way, discovered over 2000 years ago.
 ### The Euclidean Algorithm

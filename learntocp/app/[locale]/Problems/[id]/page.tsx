@@ -60,12 +60,12 @@ export default async function ProblemPage({ params }: ProblemPageProps) {
 
   const statementMd = getProblemDescription(slug, locale);
   const statementHtml = statementMd
-    ? await markdownToHtml(statementMd, title, { includeTitle: false })
+    ? await markdownToHtml(statementMd, title, { includeTitle: false, locale })
     : null;
 
   const solutionMd = getProblemSolution(slug, locale);
   const solutionHtml = solutionMd
-    ? await markdownToHtml(solutionMd, title, { includeTitle: false })
+    ? await markdownToHtml(solutionMd, title, { includeTitle: false, locale })
     : null;
 
   const solved = isAuthed ? await hasSolvedProblem(slug) : false;

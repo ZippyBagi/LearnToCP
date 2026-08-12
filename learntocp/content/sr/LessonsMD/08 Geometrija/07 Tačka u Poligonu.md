@@ -19,7 +19,7 @@ Znači, dovoljno je da brojimo:
 
 Udubljenja, šiljci, dugački uski hodnici - sve to radi, jer je svaka njihova ivica i dalje samo granica preko koje se prelazi.
 
-	![[ray-casting-parity.png]]
+	![[ray-casting-parity.png|Poligon sa udubljenjem i tri vodoravna zraka ispaljena iz različitih tačaka, sa 3, 3 i 0 preseka, pa neparan broj znači unutra a paran napolju]]
 
 ### Kada se stranica broji
 
@@ -30,7 +30,7 @@ Stranica od `A` do `B` je presečena kada važe dve stvari:
 
 Prvo je obično poređenje `y` koordinata. Drugo je pitanje sa koje strane, pa na njega odgovara `orientation`: za stranicu koja ide nagore presek je desno tačno kada je `T` levo od nje. Za stranicu koja ide nadole znak se okreće.
 
-	![[ray-crossing-test.png]]
+	![[ray-crossing-test.png|Tri mreže koje prikazuju kada se stranica broji za zrak iz T: ne broji se kada su oba kraja iznad zraka, ne broji se kada je presek iza T, a broji se kada stranica prelazi preko i presek je ispred]]
 
 ### Problem sa temenom
 
@@ -49,7 +49,7 @@ Teme na visini tačke `T` nije iznad nje, pa obe njegove stranice sa te strane d
 
 Isto pravilo usput rešava i vodoravne stranice: oba kraja su na istoj visini, pa se dve strane izraza `!=` uvek slažu i stranica se preskače.
 
-	![[ray-corner-rule.png]]
+	![[ray-corner-rule.png|Tri mreže u kojima zrak dodiruje teme poligona, sa 1 presekom kada jedna stranica ide gore a druga dole, 0 kada obe idu dole, i 2 kada obe idu gore, pa dodirnuto teme nikada ne menja parnost]]
 
 >Napomena:
 >`>` sa obe strane, nikako `>=` sa jedne. Deluje kao proizvoljan detalj, a u njemu je ceo dokaz ispravnosti - ako se pogreši, rešenje prolazi svaki test koji nacrtaš rukom, pa padne na onom sa ravnim vrhom.

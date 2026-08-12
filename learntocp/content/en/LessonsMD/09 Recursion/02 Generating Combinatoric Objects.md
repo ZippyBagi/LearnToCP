@@ -92,7 +92,7 @@ That `chosen.pop_back()` is not decoration. `chosen` is **one vector shared by e
 
 `{ }`, `{ 3 }`, `{ 3 2 }`, `{ 3 2 3 }`, `{ 3 2 3 1 }`, ...
 
-	![[backtracking-undo.png]]
+	![[backtracking-undo.png|Four prints from a backtracking search compared with and without pop_back: with it the shared vector holds only the current branch, without it an element left behind by a returned call contaminates every later print]]
 
 The rule is simple: whatever a call writes before recursing, it removes after recursing. This is called **backtracking** - we walk down a branch, and on the way back up we leave the state exactly as we found it.
 
@@ -267,7 +267,7 @@ The `start` parameter does the same job as the `used` array, only cheaper. Becau
 
 ### The same algorithm four times
 
-	![[generating-one-skeleton.png]]
+	![[generating-one-skeleton.png|The same nine length two branches shown three times, filtered by a different rule each time: every value keeps 9, only unused values keeps 6, and only values above the previous keeps 3]]
 
 | Object | What we try at a position | How many |
 | ---- | ---- | ---- |

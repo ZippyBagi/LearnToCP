@@ -11,7 +11,7 @@ Two things follow straight from that picture:
 
 So the hull is usually far smaller than the input, and what we want back is only its corners, in walking order.
 
-	![[hull-rubber-band.png]]
+	![[hull-rubber-band.png|Six points with a rubber band stretched around them, touching only the four corner points, while (2,2) and (1,3) sit inside and (2,0) lies on a straight side, so all three are skipped]]
 
 ### Graham scan
 
@@ -35,11 +35,11 @@ The whole algorithm is three steps.
 
 - Why is throwing that middle point away safe? Say the stack ends `... A B` and the next point is `C`. The sort put `A` before `B` before `C`, and the turn at `B` bends the wrong way. Together those leave `B` inside the triangle made by the pivot, `A` and `C` - and all three of those are points we were given. A rubber band around them passes straight over `B` without touching it. `B` is not a corner, and no point arriving later can make it one.
 
-	![[graham-pop.png]]
+	![[graham-pop.png|A stack ending in A then B with the next point C turning the wrong way, so B is popped, and the resulting hull on the right where B sits strictly inside the triangle]]
 
 So nothing that belongs on the hull is ever thrown away, and whatever survives on the stack turns left at every step - which is exactly what a convex chain is.
 
-	![[graham-scan-steps.png]]
+	![[graham-scan-steps.png|The three stages of Graham scan: choosing the lowest point as the pivot, sorting the remaining points by angle around it, and walking them to build the hull]]
 
 ### Implementation
 

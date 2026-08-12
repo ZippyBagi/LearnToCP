@@ -43,7 +43,7 @@ Dakle, kada sortiramo po cifri jedinica, `45` ide u koficu `5`, a `170` u koficu
 
 Brojevi iz manje kofice dolaze prvi, pa je niz sada sortiran po toj cifri. A pošto kofice punimo sleva nadesno, i praznimo sleva nadesno, brojevi sa istom cifrom **zadržavaju svoj redosled** - ovo čuva stabilnost sortiranja
 
-	![[radix-buckets.png]]
+	![[radix-buckets.png|Jedan prolaz radix sorta po cifri jedinica: niz 170 45 75 90 802 24 2 66 se raspoređuje u deset kofica po poslednjoj cifri i čita nazad redom, pri čemu 802 i 2 završavaju u istoj kofici 2 i zadržavaju svoj prvobitni redosled]]
 
 Da bismo izvukli cifru, koristimo pomoćnu promenljivu `place`, koja je `1` za jedinice, `10` za desetice, `100` za stotine...
 

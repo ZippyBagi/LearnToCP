@@ -7,7 +7,7 @@ Imagine a stack of plates. You can only do two things with it:
 
 You can't pull a plate from the middle without everything crashing down. That is the entire idea of a **stack**: the last element that came in is the first one to come out (**LIFO** - Last In, First Out).
 
-	![[stack.png]]
+	![[stack.png|A stack across five steps of pushes and one pop, with each element added on top of the previous ones and top() always pointing at the most recently pushed value]]
 
 ### The functions
 

@@ -11,7 +11,7 @@ Iz te slike odmah slede dve stvari:
 
 Zato je omotač obično mnogo manji od ulaza, a ono što tražimo su samo njegova temena, redom obilaska.
 
-	![[hull-rubber-band.png]]
+	![[hull-rubber-band.png|Šest tačaka sa gumicom razvučenom oko njih, koja dodiruje samo četiri ugaone tačke, dok su (2,2) i (1,3) unutra a (2,0) leži na ravnoj stranici, pa se sve tri preskaču]]
 
 ### Grahamov algoritam
 
@@ -35,11 +35,11 @@ Ceo algoritam staje u tri koraka.
 
 - Zašto je bezbedno izbaciti tu srednju tačku? Recimo da se stek završava sa `... A B`, a sledeća tačka je `C`. Sortiranje je stavilo `A` pre `B`, a `B` pre `C`, i skretanje u `B` ide na pogrešnu stranu. Zajedno, to znači da je `B` unutar trougla koji čine pivot, `A` i `C` - a sve tri te tačke su nam date. Gumica razvučena oko njih prelazi pravo preko `B` a da je ne dodirne. `B` nije teme omotača, i nijedna tačka koja stigne kasnije to ne može da promeni.
 
-	![[graham-pop.png]]
+	![[graham-pop.png|Stek koji se završava sa A pa B, gde sledeća tačka C skreće na pogrešnu stranu, pa se B izbacuje, i dobijeni omotač sa desne strane u kome B leži strogo unutar trougla]]
 
 Dakle, nikada ne izbacimo tačku koja pripada omotaču, a ono što ostane na steku skreće ulevo na svakom koraku - a to je tačno ono što konveksan lanac i jeste.
 
-	![[graham-scan-steps.png]]
+	![[graham-scan-steps.png|Tri faze Grahamovog algoritma: biranje najniže tačke za pivot, sortiranje ostalih tačaka po uglu oko njega, i obilazak kojim se gradi omotač]]
 
 ### Implementacija
 

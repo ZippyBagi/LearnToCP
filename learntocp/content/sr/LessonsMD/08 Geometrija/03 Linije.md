@@ -16,7 +16,7 @@ Levo i desno gledamo iz ugla nekoga ko stoji u `A` i gleda ka `B`. Ako zamenimo 
 
 >Ne opterećuj se previše time šta je "levo" a šta "desno", jedino što je bitno je poređenje sa nulom - da li je proizvod >0 ili <0
 
-	![[orientation-sign.png]]
+	![[orientation-sign.png|Mreža sa duži AB produženom isprekidanom linijom, gde je poluravan iznad obojena plavo sa primerom vektorskog proizvoda +16, a poluravan ispod crveno sa -16, čime se tri znaka preslikavaju u tri moguća odgovora o orijentaciji]]
 
 Ovo ćemo koristiti stalno, pa hajde da napišemo funkciju. Primeti da vraća karakter, a ne broj: sama vrednost vektorskog proizvoda nas ovde nikada ne zanima, samo njen znak.
 
@@ -80,7 +80,7 @@ Kada `orientation` vrati `=`, to znači da je `C` na **pravoj** `AB`, onoj besko
 
 Za duž nam treba još jedna provera: tačka mora da bude između `A` i `B`. Pošto već znamo da leži na pravoj, ne moramo ništa da smišljamo - dovoljno je da su njene koordinate unutar pravougaonika koji razapinju `A` i `B`.
 
-	![[on-segment-two-checks.png]]
+	![[on-segment-two-checks.png|Tri mreže koje proveravaju da li tačka leži na duži AB: (2,2) je na pravoj i unutar pravougaonika pa prolazi, (6,6) je na pravoj ali izvan pravougaonika, a (1,3) je unutar pravougaonika ali van prave]]
 
 OnSegment.cpp
 ```c++

@@ -18,7 +18,7 @@ Svaki element koji je duplo izbrojan je tačno element skupa $A \cap B$, pa tu g
 
 $$|A \cup B| = |A| + |B| - |A \cap B|$$
 
-	![[inclusion-exclusion-two-sets.png]]
+	![[inclusion-exclusion-two-sets.png|Venov dijagram sa dva kruga gde je |A| = 5 i |B| = 4, a dva elementa u preseku su izbrojana dvaput, pa je unija 5 plus 4 minus 2, odnosno 7]]
 
 To je cela ideja ovog principa. Dodaj previše, pa vrati nazad ono što si preračunao.
 
@@ -40,7 +40,7 @@ $$|A_1 \cup A_2 \cup A_3| = (|A_1| + |A_2| + |A_3|) - (|A_1 \cap A_2| + |A_1 \ca
 
 Sada je svaki element izbrojan tačno jednom:
 
-	![[inclusion-exclusion-three-sets.png]]
+	![[inclusion-exclusion-three-sets.png|Venov dijagram sa tri kruga gde je svaka oblast označena brojem skupova kojima pripada, i tabela ispod koja pokazuje da sabiranje pojedinačnih, oduzimanje parova i dodavanje trojke izbroji svaki element tačno jednom]]
 
 Znaci se smenjuju zato što svaki krug popravke premaši cilj, a sledeći ga vrati nazad.
 

@@ -87,7 +87,7 @@ Pa pronalaženje zbira od `a` do `b` postaje:
 
 `Zbir(od a do b) = sums[b] - sums[a-1]`
 
-	![[prefix-sum.png]]
+	![[prefix-sum.png|Niz a iznad svog niza prefiksnih zbirova sums, sa strelicama koje pokazuju kako se zbirovi nagomilavaju, i zbir opsega od indeksa 2 do 4 izračunat kao sums[4] minus sums[1], 23 minus 13, jednako 10]]
 
 Treba obratiti pažnju na slučaj kada je `a == 0`, jer tada samo želimo zbir od `0` do `b`.
 

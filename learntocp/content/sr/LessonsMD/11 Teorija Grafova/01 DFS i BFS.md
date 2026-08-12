@@ -2,7 +2,7 @@
 
 Sam zapis grafa nam ne vredi mnogo. Prvo pravo pitanje uvek je neka verzija ovoga: ako stojim u gradu `1`, dokle sve mogu da stignem?
 
-	![[graph-running-example.png]]
+	![[graph-running-example.png|Graf koji se koristi kroz celo poglavlje, sa 7 čvorova spojenih sa 7 grana 1-2, 1-3, 2-4, 2-5, 3-6, 5-7 i 6-7, gde je uz čvor 2 označeno da mu je stepen 3]]
 
 Probaj da odgovoriš ručno. Iz `1` idemo u `2`, iz `2` u `5`, iz `5` u `7`, iz `7` u `6`, iz `6` u `3` - a `3` nas vodi pravo nazad u `1`. Napravili smo krug, i ništa nas ne sprečava da ga napravimo ponovo.
 
@@ -27,7 +27,7 @@ Zamisli spisak čvorova koje smo videli, ali ih još nismo obišli. Svaki put ka
 
 Na našem grafu, ako krenemo iz `1`, dobijamo ovo:
 
-	![[dfs-vs-bfs-order.png]]
+	![[dfs-vs-bfs-order.png|DFS i BFS pokrenuti jedan pored drugog iz čvora 1 na istom grafu, sa obojenim granama kojima je svaka šetnja prošla i označenim redosledom obilaska, što daje 1 2 4 5 7 6 3 za DFS i 1 2 3 4 5 6 7 za BFS]]
 
 DFS pravi jedan dugačak lanac. Zaroni `1 2 4`, vrati se, zaroni `5 7 6`, i tek iz `6` konačno stiže do `3` - do direktnog suseda početnog čvora, i to poslednjeg od svih. BFS nigde ne luta: `1`, pa `2 3`, pa `4 5 6`, pa `7`.
 
@@ -200,7 +200,7 @@ Primeti i da `posecen` proveravamo **na izlasku**, a ne na ulasku. Isti čvor mo
 
 Graf ne mora da bude u jednom komadu. Dodaj gradove `8` i `9` sa jednim putem između njih, a bez puta do ostalih - oni su sada zasebna **povezana komponenta**.
 
-	![[connected-components.png]]
+	![[connected-components.png|Graf u dva nepovezana dela, komponenta od sedam čvorova i zaseban par 8 i 9, što pokazuje da šetnja iz čvora 1 stiže samo do svoje komponente]]
 
 Jedna šetnja pronalazi samo onaj deo iz koga je krenula. Da bismo videli ceo graf, pokrećemo novu iz svakog čvora do koga niko nije stigao. Funkcija `dfs` se uopšte ne menja - menja se samo `main`:
 

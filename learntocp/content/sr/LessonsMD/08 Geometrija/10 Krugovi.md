@@ -93,7 +93,7 @@ Sve odlučuje jedan broj: rastojanje po normali `d` od centra do prave.
 | `d = r` | 1, **tangenta** |
 | `d < r` | 2 |
 
-	![[line-circle-cases.png]]
+	![[line-circle-cases.png|Tri kruga sa pravom na različitim rastojanjima d od centra: d veće od r daje nula presečnih tačaka, d jednako r daje jednu, a d manje od r daje dve]]
 
 Prethodna lekcija nam daje `d`, a mi ga samo poredimo sa `r`, pa kvadriramo obe strane i brojanje ostaje u celim brojevima:
 
@@ -105,7 +105,7 @@ Za same tačke realni brojevi se ne mogu izbeći, ali je konstrukcija kratka:
 2. Podnožje, centar i jedna presečna tačka čine pravougli trougao sa hipotenuzom `r` i jednom katetom `d`, pa je treća stranica $\sqrt{r^2 - d^2}$.
 3. Zakorači toliko od podnožja na obe strane i tu su obe presečne tačke.
 
-	![[line-circle-construction.png]]
+	![[line-circle-construction.png|Krug sa pravom koja ga seče, normala dužine d spuštena iz centra C do podnožja na pravoj, i pravougli trougao sa hipotenuzom r čija je druga kateta, koren iz r na kvadrat minus d na kvadrat, korak do svake presečne tačke]]
 
 LineCircle.cpp
 ```c++
@@ -191,13 +191,13 @@ Opet sve odlučuje jedan broj: rastojanje `d` između centara, u odnosu na polup
 | $d < \|r_1 - r_2\|$ | 0, jedan je unutar drugog |
 | $d = 0$ i $r_1 = r_2$ | isti krug, beskonačno mnogo |
 
-	![[circle-circle-cases.png]]
+	![[circle-circle-cases.png|Pet rasporeda dva kruga poređanih po rastojanju d između centara, sa 0, 1, 2, 1 i 0 presečnih tačaka kako krugovi prelaze iz potpuno razdvojenih u jedan unutar drugog]]
 
 Kvadriranje vraća celu tabelu u cele brojeve - poredi $d^2$ sa $(r_1 + r_2)^2$ i $(r_1 - r_2)^2$, a apsolutna vrednost nestaje sama od sebe.
 
 Konstrukcija ide isto kao kod prave. Dve tačke su simetrične u odnosu na pravu kroz centre, koju seku na rastojanju $a = \frac{d^2 + r_1^2 - r_2^2}{2d}$ od $C_1$, a Pitagora daje korak po normali $h = \sqrt{r_1^2 - a^2}$. Da bismo koračali normalno na $(x, y)$ koristimo $(-y, x)$ - isti vektor okrenut za četvrtinu kruga.
 
-	![[circle-circle-construction.png]]
+	![[circle-circle-construction.png|Dva kruga koja se seku, sa centrima C1 i C2, rastojanjem a mereno duž linije centara do zajedničke tetive, i polovinom tetive h normalnom na nju koja stiže do obe presečne tačke]]
 
 CircleCircle.cpp
 ```c++

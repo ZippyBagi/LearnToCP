@@ -66,7 +66,7 @@ Ovaj proces ponavljamo dok:
 
 Važno je primetiti da moramo uključiti i slučaj kada je `left == right`.
 
-	![[binary-search.png]]
+	![[binary-search.png|Četiri koraka binarne pretrage za brojem 12 u sortiranom nizu od deset elemenata, gde svaki red označava srednji element narandžastom bojom, siva odbačenu polovinu, i završava se pronađenim brojem 12 u zelenoj boji]]
 
 ### Implementacija
 

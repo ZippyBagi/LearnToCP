@@ -22,7 +22,7 @@ Then for every value of `a`, we increase `b[a[i]]` by one.
 **i = 1 => a[i] = 5 => b[5] = 0 + 1 = 1**
 
 After doing this for all values `b` looks like:
-	![[Couning Sort.jpg]]
+	![[Couning Sort.jpg|A counting sort tally table: row i holds the indices 0 to 7, and row b holds the count of each value, 0 1 0 2 1 1 1 1]]
 
 To print the sorted array we just go through `b` and print `i`, `b[i]` times!
 

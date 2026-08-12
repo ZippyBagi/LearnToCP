@@ -43,7 +43,7 @@ So when sorting by the ones digit, `45` goes into bucket `5`, and `170` goes int
 
 Numbers from a smaller bucket come first, so the array is now sorted by that digit. And since the buckets are filled from left to right, and emptied from left to right, numbers with the same digit **keep their order** - this keeps the order stable
 
-	![[radix-buckets.png]]
+	![[radix-buckets.png|One pass of radix sort by the ones digit: the array 170 45 75 90 802 24 2 66 is dropped into ten buckets by last digit and read back out in bucket order, with 802 and 2 both landing in bucket 2 and keeping their original relative order]]
 
 To extract the digit, we use a helper variable `place`, which is `1` for ones, `10` for tens, `100` for hundreds...
 

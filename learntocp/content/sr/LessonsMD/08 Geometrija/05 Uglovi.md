@@ -17,7 +17,7 @@ $$\theta = \text{atan2}(\vec{a} \times \vec{b}, \; \vec{a} \cdot \vec{b})$$
 Rezultat je u intervalu $(-\pi, \pi]$ i ima **znak** - pozitivan je kada je `b` suprotno od kazaljke na satu u odnosu na `a`, po istom pravilu koje nam je dala orijentacija.
 Da bismo ga pretvorili u stepene, množimo ga sa: `180.0 / acos(-1.0);`
 
-	![[atan2-two-legs.png]]
+	![[atan2-two-legs.png|Vektori a i b sa uglom theta između njih sa leve strane, precrtani sa desne kao pravougli trougao čija je horizontalna kateta skalarni proizvod 9 a vertikalna vektorski proizvod 9, što daje ugao theta od 45 stepeni]]
 
 ### Implementacija
 

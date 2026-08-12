@@ -85,7 +85,7 @@ long long faktorijel(int n){
 
 Primeti da se ovo razlikuje od prvog primera - tamo smo ispisivali **pre** rekurzivnog poziva, pa se izlaz dešavao **od vrha ka dnu**. Ovde množimo tek nakon što se rekurzivni poziv vrati, pa se pravi posao dešava **od dna ka vrhu**, onda kada stignemo do baznog slučaja i krenemo da se vraćamo unazad.
 
-	![[recursion-unwinding.png]]
+	![[recursion-unwinding.png|Faktorijel broja 6 u dve kolone: pozivi se spuštaju od 6! do 1! sa leve strane, a vraćene vrednosti se penju nazad od 1 do 720 sa desne, uz množenje na svakom koraku nagore]]
 
 ### Stek pozivi
 
@@ -93,7 +93,7 @@ Još jedna stvar koju moramo da razumemo jeste redosled poziva funkcija kada rad
 
 Svaki poziv funkcije posmatraj kao ubacivanje na stek (**LIFO**, poslednji ušao - prvi izlazi).
 
-	![[recursion-call-stack.png]]
+	![[recursion-call-stack.png|Stek poziva za f(3) raste dok se pozivi dodaju sve do baznog slučaja f(0), pa se ponovo smanjuje kako se svaki poziv vraća]]
 
 >Isto kao što stek ne može da čuva beskonačno mnogo elemenata, tako ni naš program ne može da izdrži beskonačno mnogo poziva funkcija!
 

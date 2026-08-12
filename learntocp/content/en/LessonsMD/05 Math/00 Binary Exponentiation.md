@@ -22,7 +22,7 @@ Lets look at the whole equation now:
 
 If we count the operations, we get `5`, compare to the `10` it would have taken if we multiplied by three 10 times
 
-	![[binary-exponentiation.png]]
+	![[binary-exponentiation.png|Binary exponentiation reducing 3^10 in five steps, each row halving an even exponent by squaring the base or peeling off one factor when the exponent is odd, reaching 59049 in five multiplications instead of ten]]
 
 The larger the `b`, the more time we save by doing it this way. 
 

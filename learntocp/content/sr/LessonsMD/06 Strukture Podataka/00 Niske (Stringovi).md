@@ -44,7 +44,7 @@ Računar zapravo ne ume da čuva "karaktere" - on čuva samo brojeve. Zato su se
 
 Važan deo je kako su kodovi dodeljeni. Na primer, cifre od `0` do `9` su dobile kodove od `48` do `57` - stoje **jedna pored druge, po redu**:
 
-![[ascii-table-sr.png]]
+![[ascii-table-sr.png|Tabela sa dva reda koja spaja karaktere '0' do '9' sa njihovim uzastopnim ASCII kodovima od 48 do 57]]
 
 I to omogućava klasičan trik:
 

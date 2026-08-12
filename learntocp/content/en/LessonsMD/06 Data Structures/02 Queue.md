@@ -6,7 +6,7 @@ A **queue** is the exact opposite - just like a line in front of a store: the fi
 
 New elements enter at the **back**, and leave from the **front**.
 
-	![[queue.png]]
+	![[queue.png|A queue holding 3, 7, 5 and 9, with push entering at the back next to back() and pop leaving from the front next to front(), and two rows below showing that push order and pop order are identical]]
 
 ### The functions
 

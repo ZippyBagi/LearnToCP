@@ -85,7 +85,7 @@ long long factorial(int n){
 
 Notice this is different from our first example - there, we printed **before** recursing, so the output happened **top-down**. Here, we multiply after the recursive call returns, so the actual work happens **bottom-up**, once we hit the base case and start unwinding.
 
-	![[recursion-unwinding.png]]
+	![[recursion-unwinding.png|Factorial of 6 as two columns: the calls descending from 6! down to 1! on the left, and the returned values climbing back from 1 up to 720 on the right, each multiplied on the way up]]
 
 ### The call stack
 
@@ -93,7 +93,7 @@ One more thing we need to understand is the order of function calls when we are 
 
 Treat each call to a function as an insertion to a stack (**LIFO**, last in first out).
 
-	![[recursion-call-stack.png]]
+	![[recursion-call-stack.png|The call stack for f(3) growing as calls are pushed down to the base case f(0), then shrinking again as each call returns]]
 
 >Just like a stack can't store infinite elements, our program can't handle infinite function calls!
 

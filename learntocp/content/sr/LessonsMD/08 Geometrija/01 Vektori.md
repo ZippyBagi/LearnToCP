@@ -11,7 +11,7 @@ Znači, tačka i vektor se čuvaju na potpuno isti način - kao dva broja. Razli
 
 Dve strelice iste dužine i istog smera su **isti vektor**, bez obzira gde ih nacrtamo. To znači ono "nema fiksni položaj", i baš zato su vektori toliko zgodni: možemo ih slobodno pomerati tamo gde nam trebaju u računu.
 
-	![[vector-no-position.png]]
+	![[vector-no-position.png|Isti vektor (3,2) nacrtan kao četiri odvojene strelice koje kreću iz različitih tačaka na mreži, sve iste dužine i istog smera, pa su sve četiri isti vektor]]
 
 ### Od tačaka do vektora
 
@@ -29,7 +29,7 @@ $$\vec{AB} = (4 - 1,\; 6 - 2) = (3, 4)$$
 
 Pazi na redosled: $\vec{BA}$ nije isto što i $\vec{AB}$, to je potpuno suprotna strelica, $\vec{BA} = -\vec{AB}$. Oduzimanje u pogrešnom redosledu je jedna od najčešćih grešaka u geometrijskom kodu.
 
-	![[vector-from-points.png]]
+	![[vector-from-points.png|Tačke A (1,2) i B (4,6) spojene sa dve suprotne strelice, AB jednako (3,4) dobijeno kao B minus A, i BA jednako (-3,-4), što pokazuje da je BA suprotno od AB]]
 
 ### Operacije nad vektorima
 
@@ -47,7 +47,7 @@ $$\vec{p} - \vec{v} = (p_x - v_x,\; p_y - v_y)$$
 
 $$k \cdot \vec{v} = (k \cdot v_x,\; k \cdot v_y)$$
 
-	![[vector-operations.png]]
+	![[vector-operations.png|Tri mreže koje prikazuju sabiranje vektora nadovezivanjem, oduzimanje kao strelicu od vrha v do vrha u, i množenje skalarom gde negativan činilac okreće strelicu na suprotnu stranu]]
 
 ### Dužina vektora
 

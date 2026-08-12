@@ -84,7 +84,7 @@ Instead of comparing every element with every other element, we can traverse the
     - we find the solution
     - or the pointers meet:  `while(left < right)`
 
-	![[two-pointers.png]]
+	![[two-pointers.png|Four steps of the two pointers technique searching a sorted array for a pair summing to 16: left starts at 2 and right at 13, and each step moves whichever pointer the comparison rules out until 5 plus 11 is found]]
 
 When we translate this idea into code, we get:
 

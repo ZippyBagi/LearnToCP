@@ -45,7 +45,7 @@ Broj `1001 1101` u binarnom sistemu predstavlja:
 
 `= 157`
 
-	![[binary-place-value.png]]
+	![[binary-place-value.png|Binarni broj 1001 1101 gde je svaka od osam pozicija označena svojim stepenom dvojke, pozicije sa jedinicom su istaknute, a njihove vrednosti 128 + 16 + 8 + 4 + 1 daju zbir 157]]
 
 ### Pretvaranje iz dekadnog u binarni sistem
 

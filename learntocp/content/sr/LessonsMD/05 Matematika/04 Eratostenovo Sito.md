@@ -25,7 +25,7 @@ Hajde da izvrtimo za `n = 30`:
 
 Šta god preživi precrtavanje - prost je: `2 3 5 7 11 13 17 19 23 29`
 
-	![[sieve-of-eratosthenes.png]]
+	![[sieve-of-eratosthenes.png|Eratostenovo sito nad brojevima od 2 do 30 u tri prolaza, precrtava umnoške dvojke, pa trojke, pa petice, i ostavlja proste brojeve 2 3 5 7 11 13 17 19 23 29]]
 
 ### Dve optimizacije
 

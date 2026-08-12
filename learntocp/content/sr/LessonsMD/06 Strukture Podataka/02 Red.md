@@ -6,7 +6,7 @@ U prošloj lekciji smo naučili o steku, gde poslednji element koji uđe prvi iz
 
 Novi elementi ulaze **pozadi**, a izlaze **spreda**.
 
-	![[queue.png]]
+	![[queue.png|Red sa elementima 3, 7, 5 i 9, gde push ulazi pozadi kod back() a pop izlazi spreda kod front(), dok dva reda ispod pokazuju da je redosled ulaska isti kao redosled izlaska]]
 
 ### Funkcije
 

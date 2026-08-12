@@ -19,7 +19,7 @@ Broj grana koje izlaze iz jednog čvora zove se njegov **stepen**.
 
 Kroz celo ovo poglavlje koristimo jedan isti graf: 7 gradova, spojenih putevima `1-2`, `1-3`, `2-4`, `2-5`, `3-6`, `5-7` i `6-7`.
 
-	![[graph-running-example.png]]
+	![[graph-running-example.png|Graf koji se koristi kroz celo poglavlje, sa 7 čvorova spojenih sa 7 grana 1-2, 1-3, 2-4, 2-5, 3-6, 5-7 i 6-7, gde je uz čvor 2 označeno da mu je stepen 3]]
 
 Treba nam još nekoliko reči:
 
@@ -144,7 +144,7 @@ Output:
 
 Cena je memorija. Matrica ima $n^2$ polja bez obzira na to da li graf ima milion grana ili tri, pa nas to ograničava na otprilike `n = 5000`. Uz to, ne može da nabroji susede čvora `v` a da ne prođe kroz svih `n` polja u tom redu.
 
-	![[graph-list-vs-matrix.png]]
+	![[graph-list-vs-matrix.png|Isti graf sa 7 čvorova zapisan na dva načina, kao lista suseda sa 14 stavki i kao matrica susedstva 7 puta 7 sa 49 polja, od kojih je većina nula]]
 
 | | Lista suseda | Matrica susedstva |
 | ---- | ---- | ---- |

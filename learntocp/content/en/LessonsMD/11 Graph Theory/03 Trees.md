@@ -4,7 +4,7 @@ Take our 7 city map and close one road, the one between `6` and `7`. Every city 
 
 A connected graph with no cycles is a **tree**, and a surprising amount of the world is shaped like one: family trees, folder structures, the chain of calls a recursive function leaves behind.
 
-	![[tree-from-graph.png]]
+	![[tree-from-graph.png|The 7 vertex graph with its 7 edges and a cycle on the left, and the same graph on the right after removing edge 6-7, leaving 6 edges, no cycle, and still connected]]
 
 ### What makes a tree
 
@@ -29,7 +29,7 @@ Once a root is chosen, the family vocabulary appears:
 
 Rooting changes nothing about the tree itself. It is a way of looking at it, and we are free to root the same tree anywhere we like.
 
-	![[tree-rooted-at-1.png]]
+	![[tree-rooted-at-1.png|The same tree hung from vertex 1 and drawn in depth levels 0 to 3, with the root in orange, vertices that have children outlined, and the leaves 4, 6 and 7 in green]]
 
 ### Parent and depth with DFS
 

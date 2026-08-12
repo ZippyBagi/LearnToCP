@@ -8,6 +8,7 @@ import { stripOrderPrefix } from "@/app/utils/generateSidebarContainers";
 import { getLessonsRoot } from "@/app/utils/getLessonRoot";
 import { pageMetadata, SITE_URL, SITE_NAME, localizedPath } from "@/app/utils/seo";
 import JsonLd from "@/app/ui/JsonLd";
+import { figuresInSource } from "@/app/utils/figuresInMarkdown";
 
 type ParamsPromise = Promise<{ locale: string; folder: string; lesson: string }>;
 interface PageProps {
@@ -133,7 +134,7 @@ async function LessonContent({ paramsPromise }: { paramsPromise: ParamsPromise }
 
   const filePath = path.join(folderPath, actualFile);
   const markdown = fs.readFileSync(filePath, "utf8");
-  const htmlContent = await markdownToHtml(markdown, actualFile);
+  const htmlContent = await markdownToHtml(markdown, actualFile, { locale });
 
   const lessonUrl = `${SITE_URL}${localizedPath(
     locale,
@@ -158,6 +159,16 @@ async function LessonContent({ paramsPromise }: { paramsPromise: ParamsPromise }
     logo: `${SITE_URL}/icon.svg`,
   };
 
+  const figures = figuresInSource(markdown, locale).map((figure) => ({
+    "@type": "ImageObject",
+    url: figure.url,
+    contentUrl: figure.url,
+    ...(figure.width ? { width: figure.width } : {}),
+    ...(figure.height ? { height: figure.height } : {}),
+    ...(figure.alt ? { description: figure.alt } : {}),
+    ...(figure.caption ? { caption: figure.caption } : {}),
+  }));
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
@@ -175,6 +186,7 @@ async function LessonContent({ paramsPromise }: { paramsPromise: ParamsPromise }
         learningResourceType: "Lecture",
         about: folderDecoded,
         isAccessibleForFree: true,
+        ...(figures.length > 0 ? { image: figures } : {}),
         ...(dateModified ? { dateModified } : {}),
         author: organization,
         publisher: organization,

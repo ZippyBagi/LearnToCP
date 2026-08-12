@@ -41,7 +41,7 @@ Svaki delilac veći od `6` je uparen sa deliocem manjim od `6`. A `6` je tačno 
 
 Drugim rečima: **ako n ima bilo koji delilac, ima i jedan koji je <= sqrt(n)**
 
-	![[divisor-pairs.png]]
+	![[divisor-pairs.png|Delioci broja 36 poređani od 1 do 36, sa lukovima koji spajaju svaki mali delilac sa njegovim velikim parom, 1 sa 36, 2 sa 18, 3 sa 12 i 4 sa 9, i sastaju se kod korena 6 u sredini]]
 
 Zato umesto da proveravamo sve do `n`, dovoljno je proveriti do `sqrt(n)`. 
 ### Implementacija

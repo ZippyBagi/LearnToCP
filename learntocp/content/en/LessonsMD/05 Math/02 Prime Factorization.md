@@ -8,7 +8,7 @@ For example:
 `97 = 97` (already prime)
 `360 = 2 * 2 * 2 * 3 * 3 * 5`
 
-	![[prime-factor-tree.png]]
+	![[prime-factor-tree.png|A factor tree splitting 360 step by step, dividing by 2 three times then by 3 twice, leaving the prime factorisation 2 times 2 times 2 times 3 times 3 times 5]]
 
 This is called the **prime factorization** of a number, and it is so fundamental that mathematicians named the rule the Fundamental Theorem of Arithmetic.
 ### Theory

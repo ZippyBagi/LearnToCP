@@ -93,7 +93,7 @@ One number decides everything: the perpendicular distance `d` from the centre to
 | `d = r` | 1, a **tangent** |
 | `d < r` | 2 |
 
-	![[line-circle-cases.png]]
+	![[line-circle-cases.png|Three circles with a line at different distances d from the centre: d greater than r gives no intersection points, d equal to r gives one, and d less than r gives two]]
 
 The previous lesson gives us `d`, and we only want to compare it with `r`, so we square both sides and the count stays in integers:
 
@@ -105,7 +105,7 @@ For the points themselves there is no avoiding real numbers, but the constructio
 2. The foot, the centre and one intersection point make a right triangle with hypotenuse `r` and one leg `d`, so the third side is $\sqrt{r^2 - d^2}$.
 3. Step that far off the foot in both directions and you land on both points.
 
-	![[line-circle-construction.png]]
+	![[line-circle-construction.png|A circle with a line cutting it, the perpendicular of length d dropped from the centre C to the foot on the line, and the right triangle with hypotenuse r whose other leg, the square root of r squared minus d squared, is the step to each intersection point]]
 
 LineCircle.cpp
 ```c++
@@ -191,13 +191,13 @@ Again one number decides it: the distance `d` between the two centres, weighed a
 | $d < \|r_1 - r_2\|$ | 0, one is inside the other |
 | $d = 0$ and $r_1 = r_2$ | the same circle, infinitely many |
 
-	![[circle-circle-cases.png]]
+	![[circle-circle-cases.png|Five arrangements of two circles ordered by the distance d between their centres, giving 0, 1, 2, 1 and 0 intersection points as the circles move from fully apart to one inside the other]]
 
 Squaring gets the whole table back into integers - compare $d^2$ with $(r_1 + r_2)^2$ and $(r_1 - r_2)^2$, and the absolute value disappears on its own.
 
 The construction mirrors the line case. The two points are symmetric about the line joining the centres, which they cross at distance $a = \frac{d^2 + r_1^2 - r_2^2}{2d}$ from $C_1$, and Pythagoras gives the perpendicular step $h = \sqrt{r_1^2 - a^2}$. To step perpendicular to $(x, y)$ we use $(-y, x)$ - the same vector turned a quarter turn.
 
-	![[circle-circle-construction.png]]
+	![[circle-circle-construction.png|Two overlapping circles with centres C1 and C2, the distance a measured along the centre line to the crossing chord, and the half chord h perpendicular to it reaching both intersection points]]
 
 CircleCircle.cpp
 ```c++

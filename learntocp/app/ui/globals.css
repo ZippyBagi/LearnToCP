@@ -1196,3 +1196,54 @@ code, kbd, samp, pre {
   box-shadow: 0 0 0 1px rgba(245, 158, 11, 0.12), 0 0 8px rgba(245, 158, 11, 0.14);
 }
 
+
+/* ------------------------------------------------------------------------ */
+/* Lesson and problem figures                                               */
+/*                                                                          */
+/* Emitted by app/utils/buildFigure.ts as                                   */
+/*   <figure class="lesson-figure" data-indent="N" style="margin-left:...">  */
+/*     <img class="lesson-figure-img" width height srcset sizes ...>         */
+/*     <figcaption class="lesson-figure-caption">…</figcaption>              */
+/*   </figure>                                                              */
+/* ------------------------------------------------------------------------ */
+
+.prose .lesson-figure {
+  margin: 1.75em 0;
+  /* Indent offset comes from an inline margin-left driven by leading tabs in
+     the markdown, so the box must not stretch past the content column. */
+  max-width: 100%;
+}
+
+.prose .lesson-figure-img {
+  display: block;
+  /* Load-bearing. buildFigure emits real width/height attributes so the
+     browser can reserve the box and avoid layout shift, but those attributes
+     are also a hard pixel size — without these two rules the figure refuses to
+     shrink on narrow viewports and gets clipped or distorted. Tailwind's
+     Preflight sets the same pair on bare <img>; repeating it here means the
+     figures do not silently break if Preflight is ever scoped or disabled. */
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+  /* Diagrams are drawn on white. A light plate keeps them legible against the
+     dark page instead of leaving them to glare. */
+  background: #ffffff;
+}
+
+.prose .lesson-figure-caption {
+  margin-top: 0.6em;
+  font-size: 0.875em;
+  line-height: 1.5;
+  color: var(--color-text-muted);
+}
+
+/* Decorative figures carry alt="" and role="presentation"; nothing visual
+   changes, but they are excluded from the accessibility tree. */
+
+@media (max-width: 767px) {
+  /* Tab indentation is a desktop reading aid. On a phone it just steals width
+     from the diagram, so collapse it. */
+  .prose .lesson-figure[data-indent] {
+    margin-left: 0 !important;
+  }
+}

@@ -3,7 +3,7 @@
 
 A **path** from `u` to `v` is a sequence of vertices where each one is a neighbour of the next, starting at `u` and ending at `v`. Its **length** is the number of edges on it - not the number of vertices.
 
-	![[graph-running-example.png]]
+	![[graph-running-example.png|The chapter's running graph of 7 vertices joined by the 7 edges 1-2, 1-3, 2-4, 2-5, 3-6, 5-7 and 6-7, with vertex 2 annotated as having degree 3]]
 	
 From `1` to `6` our graph offers two of them:
 
@@ -24,7 +24,7 @@ Remember how BFS spreads: the start, then everything one edge away, then everyth
 
 That ordering is the whole proof. When BFS is about to hand out the vertices at distance `k + 1`, it has already handed out every single vertex at distance `k` or less. So a vertex that is still unvisited at that moment cannot be closer than `k + 1`.
 
-	![[bfs-rings.png]]
+	![[bfs-rings.png|The graph laid out in four horizontal bands by distance from vertex 1, shaded from dark to light for d equals 0, 1, 2 and 3, with every edge joining one band to the next]]
 
 In other words: **the first time BFS sees a vertex, it is seeing it along a shortest path.** No later route can be better, which is why the `visited` check never throws away anything useful.
 

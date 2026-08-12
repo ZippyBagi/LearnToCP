@@ -51,7 +51,7 @@ To get `dist` we use:
 $$dist = \sqrt{(A_x-B_x)^2 + (A_y-B_y)^2}$$
 Notice that we don't need the absolute value, since we are squaring both terms!
 
-	![[distance-triangle.png]]
+	![[distance-triangle.png|Points A at (1,2) and B at (4,6) on a grid forming a right triangle with horizontal leg 3 and vertical leg 4, so the distance is the square root of 25, which is 5]]
 
 ### Implementation
 

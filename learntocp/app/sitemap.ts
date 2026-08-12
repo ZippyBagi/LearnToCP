@@ -6,6 +6,7 @@ import { SITE_URL, localizedPath, DEFAULT_LOCALE } from "@/app/utils/seo";
 import { getLessonsRoot } from "@/app/utils/getLessonRoot";
 import { stripOrderPrefix } from "@/app/utils/generateSidebarContainers";
 import { listProblems } from "@/app/judge0/problems";
+import { figuresInMarkdown } from "@/app/utils/figuresInMarkdown";
 
 const abs = (p: string) => `${SITE_URL}${p}`;
 
@@ -68,20 +69,27 @@ function lessonEntries(): MetadataRoute.Sitemap {
       for (const file of files) {
         const displayLesson = stripOrderPrefix(path.basename(file.name, ".md"));
         const routePath = `Theory/${encodeURIComponent(displayFolder)}/${encodeURIComponent(displayLesson)}`;
+        const filePath = path.join(folderPath, file.name);
 
         // Real file mtime - an honest lastmod signal, unlike `new Date()`.
         let lastModified: Date | undefined;
         try {
-          lastModified = fs.statSync(path.join(folderPath, file.name)).mtime;
+          lastModified = fs.statSync(filePath).mtime;
         } catch {
           /* omit when unavailable */
         }
+
+        // Figures embedded in this lesson, as an image sitemap. Crawlers do
+        // not run the page to discover illustrations, so without this the
+        // diagrams are only findable by following the rendered HTML.
+        const images = figuresInMarkdown(filePath, locale).map((f) => f.url);
 
         entries.push({
           url: abs(localizedPath(locale, routePath)),
           ...(lastModified ? { lastModified } : {}),
           changeFrequency: "monthly",
           priority: 0.7,
+          ...(images.length > 0 ? { images } : {}),
         });
       }
     }

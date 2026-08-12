@@ -100,7 +100,7 @@ And we already know how many ways there are to arrange `k` elements - (that is j
 
 $$\frac{V(n,k)}{k!} = \frac{n!}{k! * (n-k)!}$$
 
-	![[combinations-from-variations.png]]
+	![[combinations-from-variations.png|The six orderings of A, B and C collapsing through a division by 3 factorial into the single team A B C, illustrating that V(5,3) = 60 divided by 3! gives C(5,3) = 10]]
 
 ### N choose K
 
@@ -136,7 +136,7 @@ To count them, go through the elements one by one and decide for each whether it
 
 $$2 * 2 * ... * 2 = 2^n$$
 
-	![[subsets-decisions.png]]
+	![[subsets-decisions.png|A binary decision tree over three elements A, B and C, where each level answers in or out and the eight leaves are the eight subsets, each labelled with the binary number its decisions spell]]
 
 > A set of `n` elements has $2^n$ subsets.
 
@@ -144,7 +144,7 @@ We can also think of subsets as ways to get a new set, by deleting some elements
 
 ### Summary
 
-	![[combinatoric-objects.png]]
+	![[combinatoric-objects.png|Four panels comparing permutations, variations, combinations and subsets of the items A B C D, each giving whether order matters, how many items are taken, the counting formula, and the resulting count]]
 
 When you meet a counting problem, these two questions usually point you at the right row: **does order matter**, and **is the size fixed**.
 

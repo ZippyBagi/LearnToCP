@@ -100,7 +100,7 @@ A već znamo na koliko načina može da se poređa `k` elemenata - (to je prosto
 
 $$\frac{V(n,k)}{k!} = \frac{n!}{k! * (n-k)!}$$
 
-	![[combinations-from-variations.png]]
+	![[combinations-from-variations.png|Šest rasporeda elemenata A, B i C se deljenjem sa 3 faktorijel svode na jedan isti tim A B C, čime V(5,3) = 60 podeljeno sa 3! daje C(5,3) = 10]]
 
 ### En nad ka
 
@@ -136,7 +136,7 @@ Da bismo ih prebrojali, prolazimo kroz elemente jedan po jedan i za svaki odluč
 
 $$2 * 2 * ... * 2 = 2^n$$
 
-	![[subsets-decisions.png]]
+	![[subsets-decisions.png|Binarno stablo odluka nad tri elementa A, B i C, gde svaki nivo odgovara na pitanje unutra ili napolju, a osam listova su osam podskupova, svaki označen binarnim brojem koji te odluke ispisuju]]
 
 > Skup od `n` elemenata ima $2^n$ podskupova.
 
@@ -144,7 +144,7 @@ O podskupovima možemo da razmišljamo i kao o načinima da dobijemo novi skup, 
 
 ### Rezime
 
-	![[combinatoric-objects.png]]
+	![[combinatoric-objects.png|Četiri polja koja porede permutacije, varijacije, kombinacije i podskupove elemenata A B C D, gde svako navodi da li je redosled bitan, koliko elemenata se uzima, formulu za prebrojavanje i konačan broj]]
 
 Kada naiđeš na zadatak sa prebrojavanjem, dva pitanja te obično odvedu do pravog reda: **da li je redosled bitan**, i **da li je veličina fiksirana**.
 

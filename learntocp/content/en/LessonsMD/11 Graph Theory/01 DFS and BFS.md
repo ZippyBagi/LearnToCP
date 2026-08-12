@@ -2,7 +2,7 @@
 
 Storing a graph is not much use on its own. The first real question is always some version of: standing in city `1`, where can I get to?
 
-	![[graph-running-example.png]]
+	![[graph-running-example.png|The chapter's running graph of 7 vertices joined by the 7 edges 1-2, 1-3, 2-4, 2-5, 3-6, 5-7 and 6-7, with vertex 2 annotated as having degree 3]]
 
 Try answering it by hand. From `1` we walk to `2`, from `2` to `5`, from `5` to `7`, from `7` to `6`, from `6` to `3` - and `3` leads straight back to `1`. We have gone in a circle, and nothing stops us going round again.
 
@@ -27,7 +27,7 @@ Think of it as a to-do list of vertices we have seen but not yet explored. Every
 
 On our graph, starting from `1`, the two produce this:
 
-	![[dfs-vs-bfs-order.png]]
+	![[dfs-vs-bfs-order.png|DFS and BFS run side by side from vertex 1 on the same graph, with the edges each walk used coloured and the visiting order badged, giving 1 2 4 5 7 6 3 for DFS and 1 2 3 4 5 6 7 for BFS]]
 
 DFS builds one long chain. It dives `1 2 4`, backs out, dives `5 7 6`, and only from `6` does it finally arrive at `3` - a direct neighbour of the start, reached last of all. BFS never wanders: `1`, then `2 3`, then `4 5 6`, then `7`.
 
@@ -200,7 +200,7 @@ Note also that we check `visited` on the way **out** rather than on the way in. 
 
 A graph does not have to be in one piece. Add two cities `8` and `9` with a single road between them, and no road to the rest - they are now a separate **connected component**.
 
-	![[connected-components.png]]
+	![[connected-components.png|A graph in two disconnected pieces, the seven vertex component and a separate pair 8 and 9, showing that a walk from 1 reaches only its own component]]
 
 One walk only finds the piece it starts in. To see the whole graph, start a new one from every vertex nobody has reached yet. The `dfs` function does not change at all - only `main` does:
 

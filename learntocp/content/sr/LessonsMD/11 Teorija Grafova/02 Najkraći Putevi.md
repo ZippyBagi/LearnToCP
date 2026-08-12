@@ -3,7 +3,7 @@
 
 **Put** od `u` do `v` je niz čvorova u kome je svaki sused sledećeg, koji počinje u `u` a završava se u `v`. Njegova **dužina** je broj grana na njemu - a ne broj čvorova.
 
-	![[graph-running-example.png]]
+	![[graph-running-example.png|Graf koji se koristi kroz celo poglavlje, sa 7 čvorova spojenih sa 7 grana 1-2, 1-3, 2-4, 2-5, 3-6, 5-7 i 6-7, gde je uz čvor 2 označeno da mu je stepen 3]]
 
 Od `1` do `6` naš graf nudi dva puta:
 
@@ -24,7 +24,7 @@ Seti se kako se BFS širi: prvo početni čvor, pa sve što je jednu granu dalek
 
 Taj redosled je ceo dokaz. Kada BFS krene da deli čvorove na rastojanju `k + 1`, već je podelio svaki čvor na rastojanju `k` ili manjem. Znači, čvor koji je u tom trenutku još neposećen ne može da bude bliži od `k + 1`.
 
-	![[bfs-rings.png]]
+	![[bfs-rings.png|Graf raspoređen u četiri vodoravna pojasa po rastojanju od čvora 1, obojena od tamnije ka svetlijoj za d jednako 0, 1, 2 i 3, gde svaka grana spaja jedan pojas sa sledećim]]
 
 Drugim rečima: **kada BFS prvi put vidi neki čvor, vidi ga preko najkraćeg puta.** Nijedan kasniji put ne može da bude bolji, i zato provera `posecen` nikada ne baca ništa korisno.
 

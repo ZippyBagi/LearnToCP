@@ -36,7 +36,7 @@ Evo primera kako rade za vrednost `3` u nizu ispod, `lower_bound` pokazuje na **
 | vrednost | 1   | **3**       | **3** | 5           | 8   | 10  |
 |          |     | lower_bound |       | upper_bound |     |     |
 
-	![[lower-upper-bound.png]]
+	![[lower-upper-bound.png|Sortiran niz 1 3 3 5 8 10 sa lower_bound na indeksu 1 gde blok trojki počinje i upper_bound na indeksu 3 odmah iza njegovog kraja, pa je njihova razlika 2 broj pojavljivanja trojke]]
 
 To nam otkriva koristan trik - broj pojavljivanja vrednosti `k` je prosto `upper_bound - lower_bound` (veličina tog bloka)!
 

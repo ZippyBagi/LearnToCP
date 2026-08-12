@@ -47,7 +47,7 @@ Change the coins to `{4, 3, 1}` and let `k = 6`.
 - Greedy: takes `4` (2 left), then `1`, then `1` => **3 coins**
 - Optimal: `3 + 3` => **2 coins**
 
-	![[greedy-fails.png]]
+	![[greedy-fails.png|A counterexample for the greedy coin algorithm with coins 4, 3 and 1 and target 6: greedy takes 4 then 1 then 1 for three coins, while the best answer is 3 plus 3 for two coins]]
 
 Whether this algorithm works or not depends entirely on the values of the coins. There is some interesting math as to why this happens, but that is beyond the scope of this lecture.
 

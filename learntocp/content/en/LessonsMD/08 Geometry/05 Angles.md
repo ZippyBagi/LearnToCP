@@ -17,7 +17,7 @@ $$\theta = \text{atan2}(\vec{a} \times \vec{b}, \; \vec{a} \cdot \vec{b})$$
 The answer comes back in $(-\pi, \pi]$ and it is **signed** - positive when `b` is counter-clockwise from `a`, the same rule the orientation gave us.
 To convert it to degrees we multiply it by: `180.0 / acos(-1.0);`
 
-	![[atan2-two-legs.png]]
+	![[atan2-two-legs.png|Vectors a and b with the angle theta between them on the left, redrawn on the right as a right triangle whose horizontal leg is the dot product 9 and vertical leg the cross product 9, giving theta of 45 degrees]]
 
 ### Implementation
 

@@ -15,7 +15,7 @@ The intuitive approach is to add each number individually, so essentially:
 But this is rather slow, it takes us **n** operations to do it this way, so **O(n)**
 
 We can do better, let's look at numbers 1 to 100
-	![[Sum of elements.jpg]]
+	![[Sum of elements.jpg|The sum 1 + 2 + 3 + ... + 98 + 99 + 100 with nested arcs joining the numbers from the two ends, each pair labelled 101]]
 Notice how all of them form pairs that sum to 101
 
 In other words, there are `50` pairs of `101`, so our sum is: 

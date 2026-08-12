@@ -6,7 +6,7 @@ So far, one variable held one value. But what if a problem gives us 100 numbers 
 
 The solution is an **array** - a row of boxes under a single name. Every box holds one value of the same data type, and the boxes are numbered so we can point at any one of them:
 
-	![[array.png]]
+	![[array.png|An array named a drawn as five adjacent boxes holding 6, 2, 7, 8 and 1, labelled a[0] through a[4] underneath]]
 
 The number of a box is called its **index**, and there are two things to remember about it:
 - Indexing **starts from 0** - the first element of `a` is `a[0]`, the second is `a[1]`, and so on

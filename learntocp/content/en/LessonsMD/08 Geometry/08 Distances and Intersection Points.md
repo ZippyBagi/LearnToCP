@@ -16,7 +16,7 @@ The sign of the dot product alone already tells us where that shadow lands:
 - `dot(u, w) < 0` => it falls **backwards**, behind the start of $\vec{u}$
 - `dot(u, w) = 0` => no shadow, the perpendicular case we already knew
 
-	![[projection-shadow.png]]
+	![[projection-shadow.png|Three grids showing the projection of w onto u as a shadow along u: pointing forwards when the dot product is positive, backwards when it is negative, and vanishing when it is zero]]
 
 ### Distance to a line
 
@@ -31,7 +31,7 @@ $$dist(P, AB) = \frac{|\vec{AB} \times \vec{AP}|}{|\vec{AB}|}$$
 
 The absolute value is there because the cross product is signed and a distance is not.
 
-	![[point-line-distance.png]]
+	![[point-line-distance.png|Triangle ABP on a grid with the height d drawn from P down to AB, and the area written two ways, as the cross product over 2 and as base times height over 2, so d equals the cross product divided by the length of AB]]
 
 ### Distance to a segment
 
@@ -41,7 +41,7 @@ A segment stops, so the perpendicular is only sometimes the answer - the closest
 - `dot(AB, BP) >= 0` => it reaches past `B`, so `B` is closest
 - otherwise => the perpendicular lands on the segment
 
-	![[segment-distance-three-cases.png]]
+	![[segment-distance-three-cases.png|Three cases for the distance from a point P to a segment AB: the perpendicular lands on the segment, or the closest point is the endpoint B, or the closest point is the endpoint A]]
 
 Both tests are integer dot products, so picking the case costs us no precision. The only real number in the whole function is the distance we return.
 

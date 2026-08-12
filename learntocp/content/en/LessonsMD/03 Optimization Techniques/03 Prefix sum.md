@@ -83,7 +83,7 @@ And getting `Sum(a to b)` becomes:
 
 `Sum(a to b) = sums[b] - sums[a-1]`
 
-	![[prefix-sum.png]]
+	![[prefix-sum.png|An array a above its prefix sum array sums, with arrows showing each prefix accumulating, and the range sum from index 2 to 4 computed as sums[4] minus sums[1], 23 minus 13, equals 10]]
 
 Keep in mind the case when `a == 0`, then we just want to know the sum from 0 to n
 

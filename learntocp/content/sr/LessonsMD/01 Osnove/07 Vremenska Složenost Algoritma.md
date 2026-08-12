@@ -104,7 +104,7 @@ Većina našeg koda upada u jednu od ovih kategorija, od najbrže ka najsporijoj
 - `O(n^2)` - kvadratni rast, preživljava samo male ulaze ili velikodušne vremenske limite
 - `O(n!), O(n^n), O(2^n)` - eksponencijalne (ili gore) - samo za sićušne ulaze
 
-![[big-o.jpg]]
+![[big-o.jpg|Grafik složenosti sa brojem operacija u odnosu na veličinu ulaza, obojen od zelene za O(1) i O(log n), preko žute za O(n) i narandžaste za O(n log n), do crvene za O(n^2), O(2^n) i O(n!)]]
 
 Za većinu problema `O(n log n)` je cilj.
 

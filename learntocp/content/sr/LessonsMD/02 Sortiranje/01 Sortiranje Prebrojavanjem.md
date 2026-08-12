@@ -24,7 +24,7 @@ Zatim za svaki element iz niza `a` povećavamo `b[a[i]]` za jedan.
 
 Kada ovo uradimo za sve elemente, niz `b` izgleda ovako:
 
-![[Couning Sort.jpg]]
+![[Couning Sort.jpg|Tabela prebrojavanja kod counting sorta: red i sadrži indekse od 0 do 7, a red b broj pojavljivanja svake vrednosti, 0 1 0 2 1 1 1 1]]
 
 Da bismo ispisali sortiran niz, samo prolazimo kroz `b` i ispisujemo `i`, tačno `b[i]` puta!
 

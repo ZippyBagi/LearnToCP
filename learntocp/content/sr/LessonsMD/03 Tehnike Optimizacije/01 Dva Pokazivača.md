@@ -84,7 +84,7 @@ Umesto da poredimo svaki element sa svakim drugim elementom, možemo prolaziti k
    - ne pronađemo rešenje
    - ili dok se pokazivači ne sretnu `while(left < right)`
 
-	![[two-pointers.png]]
+	![[two-pointers.png|Četiri koraka tehnike dva pokazivača u potrazi za parom sa zbirom 16 u sortiranom nizu: left kreće od 2 a right od 13, i svaki korak pomera onaj pokazivač koji poređenje isključuje, sve dok se ne nađe 5 plus 11]]
 
 Kada ovu ideju pretvorimo u kod dobijamo: 
 

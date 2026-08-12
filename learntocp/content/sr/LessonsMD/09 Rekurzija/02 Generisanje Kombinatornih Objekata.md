@@ -92,7 +92,7 @@ Ono `izabrani.pop_back()` nije ukras. `izabrani` je **jedan jedini vektor koji d
 
 `{ }`, `{ 3 }`, `{ 3 2 }`, `{ 3 2 3 }`, `{ 3 2 3 1 }`, ...
 
-	![[backtracking-undo.png]]
+	![[backtracking-undo.png|Četiri ispisa iz pretrage sa vraćanjem, upoređena sa pop_back i bez njega: sa njim zajednički vektor sadrži samo trenutnu granu, a bez njega element koji je ostavio poziv koji se vratio kvari svaki naredni ispis]]
 
 Pravilo je jednostavno: šta god poziv upiše pre rekurzije, to i obriše posle rekurzije. To se zove **pretraga sa vraćanjem** (en. backtracking) - spustimo se niz granu, a na povratku ostavljamo sve tačno onako kako smo i zatekli.
 
@@ -267,7 +267,7 @@ Parametar `start` radi isti posao kao niz `zauzet`, samo jeftinije. Pošto uvek 
 
 ### Isti algoritam četiri puta
 
-	![[generating-one-skeleton.png]]
+	![[generating-one-skeleton.png|Istih devet grana dužine dva prikazano tri puta, svaki put filtrirano drugim pravilom: sve vrednosti zadržavaju 9, samo neiskorišćene zadržavaju 6, a samo vrednosti veće od prethodne zadržavaju 3]]
 
 | Objekat | Šta probamo na jednom mestu | Koliko ih ima |
 | ---- | ---- | ---- |

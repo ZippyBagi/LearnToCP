@@ -187,7 +187,7 @@ And:
 
 `x ^ 0 = x` (If we XOR a number with `0`, we get that number)
 
-	![[bitwise-ops.png]]
+	![[bitwise-ops.png|The four bitwise operations applied to a = 1001 and b = 1110 column by column: AND gives 1000, OR gives 1111, XOR gives 0111, and NOT of a gives 0110]]
 
 ### Note:
 

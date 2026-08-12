@@ -19,7 +19,7 @@ We can call these recursively, but in order to avoid calling $n-2$ twice(or more
 
 This process is called **memoization!**
 
-	![[dp-memoization.png]]
+	![[dp-memoization.png|The recursion tree for f(5) with each subproblem computed once and the repeated branches f(3) and f(2) marked as memo hits instead of being expanded again]]
 
 We also need to define the **termination case,** in our problem, that case will be $n=0$, and $n=1$, as they are already defined in the problem description
 

@@ -104,7 +104,7 @@ Most of the time our code lands in one of these categories, from fastest to slow
 - `O(n^2)` - quadratic scaling, only survives small inputs or generous time limits
 - `O(n!), O(n^n), O(2^n)` - exponential (or worse) - only for tiny inputs
 
-![[big-o.jpg]]
+![[big-o.jpg|A Big-O complexity chart plotting operations against input size, with bands shaded from green for O(1) and O(log n) through yellow for O(n), orange for O(n log n), and red for O(n^2), O(2^n) and O(n!)]]
 
 For most problems `O(n log n)` is the target.
 

@@ -36,7 +36,7 @@ The names are easy to mix up, so remember it this way: for the value `3` in the 
 | value | 1   | **3**       | **3** | 5           | 8   | 10  |
 |       |     | lower_bound |       | upper_bound |     |     |
 
-	![[lower-upper-bound.png]]
+	![[lower-upper-bound.png|A sorted array 1 3 3 5 8 10 with lower_bound marked at index 1 where the block of 3s begins and upper_bound at index 3 just past its end, so their difference of 2 is the count of 3s]]
 
 That gives us a handy bonus trick - the number of times `k` appears is simply `upper_bound - lower_bound` (the size of that block)!
 

@@ -51,7 +51,7 @@ Da bismo dobili `dist`, koristimo:
 $$dist = \sqrt{(A_x-B_x)^2 + (A_y-B_y)^2}$$
 Primeti da nam apsolutna vrednost nije potrebna, jer oba izraza kvadriramo!
 
-	![[distance-triangle.png]]
+	![[distance-triangle.png|Tačke A (1,2) i B (4,6) na mreži obrazuju pravougli trougao sa horizontalnom katetom 3 i vertikalnom 4, pa je rastojanje koren iz 25, odnosno 5]]
 
 ### Implementacija
 

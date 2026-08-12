@@ -25,7 +25,7 @@ Let's run it for `n = 30`:
 
 Whatever survives the crossing out is a prime: `2 3 5 7 11 13 17 19 23 29`
 
-	![[sieve-of-eratosthenes.png]]
+	![[sieve-of-eratosthenes.png|The sieve of Eratosthenes running over the numbers 2 to 30 in three passes, crossing out the multiples of 2, then of 3, then of 5, and leaving the primes 2 3 5 7 11 13 17 19 23 29 standing]]
 
 ### Two optimizations
 

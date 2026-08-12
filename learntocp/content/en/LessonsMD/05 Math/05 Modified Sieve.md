@@ -18,7 +18,7 @@ Wherever `sieve[i] == i` that number is prime.
 
 Here is the finished sieve for the first `50` numbers. Each cell shows the number and the **smallest prime factor** stored for it. Primes are the outlined cells, where `sieve[i] == i`:
 
-	![[smallest-prime-factor.png]]
+	![[smallest-prime-factor.png|A grid of the numbers 1 to 50, each cell labelled with its smallest prime factor and colour coded by whether that factor is 2, 3, 5 or 7, with primes drawn as outlined cells where the factor is the number itself]]
 
 ### The Factorization
 

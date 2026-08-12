@@ -18,7 +18,7 @@ Gde god je `sieve[i] == i`, taj broj je prost.
 
 Evo gotovog sita za prvih `50` brojeva. Svaka ćelija prikazuje broj i **najmanji prost činilac** koji je za njega sačuvan. Prosti brojevi su uokvirene ćelije, gde je `sieve[i] == i`:
 
-	![[smallest-prime-factor.png]]
+	![[smallest-prime-factor.png|Mreža brojeva od 1 do 50, gde je svaka ćelija označena svojim najmanjim prostim činiocem i obojena prema tome da li je taj činilac 2, 3, 5 ili 7, dok su prosti brojevi uokvirene ćelije kod kojih je činilac sam broj]]
 
 ### Rastavljanje na činioce
 

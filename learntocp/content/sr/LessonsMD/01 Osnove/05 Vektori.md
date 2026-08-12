@@ -6,7 +6,7 @@ Do sada je jedna promenljiva držala jednu vrednost. Ali šta ako nam problem da
 
 Rešenje je **niz** (na engleskom **array**) - red kutija pod jednim imenom. Svaka kutija drži jednu vrednost istog tipa podataka, a kutije su numerisane tako da možemo pokazati na bilo koju od njih:
 
-	![[array.png]]
+	![[array.png|Niz a nacrtan kao pet spojenih kutija sa vrednostima 6, 2, 7, 8 i 1, označenih ispod sa a[0] do a[4]]]
 
 Broj kutije se zove **indeks**, i o njemu treba zapamtiti dve stvari:
 - Indeksiranje **počinje od 0** - prvi element niza `a` je `a[0]`, drugi je `a[1]`, i tako dalje

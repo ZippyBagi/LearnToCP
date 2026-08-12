@@ -22,7 +22,7 @@ Pogledajmo sada celu jednačinu:
 
 Ako izbrojimo operacije, dobijamo `5`, u poređenju sa `10` koliko bi trebalo da smo množili trojkom 10 puta
 
-	![[binary-exponentiation.png]]
+	![[binary-exponentiation.png|Binarno stepenovanje svodi 3^10 u pet koraka, gde svaki red prepolovi paran izložilac kvadriranjem osnove ili izdvoji jedan činilac kada je izložilac neparan, i stiže do 59049 sa pet množenja umesto deset]]
 
 Što je `b` veće, više vremena štedimo na ovaj način.
 

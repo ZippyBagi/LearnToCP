@@ -11,7 +11,7 @@ So a point and a vector are stored in exactly the same way - as two numbers. The
 
 Two arrows that are equally long and point in the same direction are the **same vector**, no matter where we draw them. That is what "no fixed position" means, and it is the reason vectors are so convenient: we can move them around freely to wherever the calculation needs them.
 
-	![[vector-no-position.png]]
+	![[vector-no-position.png|The same vector (3,2) drawn as four separate arrows starting at different points on a grid, all with equal length and direction, so all four are the same vector]]
 
 ### From points to vectors
 
@@ -29,7 +29,7 @@ Which says exactly what we expect: to get from `A` to `B` we move 3 right and 4 
 
 Careful with the order: $\vec{BA}$ is not the same as $\vec{AB}$, it is the exact opposite arrow, $\vec{BA} = -\vec{AB}$. Subtracting in the wrong order is one of the most common bugs in geometry code.
 
-	![[vector-from-points.png]]
+	![[vector-from-points.png|Points A (1,2) and B (4,6) joined by two opposite arrows, AB equal to (3,4) computed as B minus A, and BA equal to (-3,-4), showing that BA is the negative of AB]]
 
 ### Operations on vectors
 
@@ -47,7 +47,7 @@ $$\vec{p} - \vec{v} = (p_x - v_x,\; p_y - v_y)$$
 
 $$k \cdot \vec{v} = (k \cdot v_x,\; k \cdot v_y)$$
 
-	![[vector-operations.png]]
+	![[vector-operations.png|Three grids showing vector addition tip to tail, vector subtraction as the arrow from the tip of v to the tip of u, and scaling where a negative factor flips the arrow around]]
 
 ### Length of a vector
 

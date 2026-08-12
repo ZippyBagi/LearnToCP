@@ -20,7 +20,7 @@ Mogli bismo jednostavno rekurzivno da pozivamo ove funkcije, ali kako bismo izbe
 
 Ovaj postupak naziva se **memoizacija!**
 
-	![[dp-memoization.png]]
+	![[dp-memoization.png|Stablo rekurzije za f(5) gde se svaki podproblem računa jednom, a ponovljene grane f(3) i f(2) su označene kao pogoci u memo tabeli umesto da se ponovo razvijaju]]
 
 Takođe moramo definisati **bazne slučajeve**. U ovom zadatku to su $n=0$ i $n=1$, pošto su njihove vrednosti već zadate u opisu problema.
 

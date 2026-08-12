@@ -19,7 +19,7 @@ Kvaka je u tome što se lepeza ne poklapa sa poligonom. Neki trouglovi štrče p
 
 Upravo to rešava **znak**. Dok obilazimo poligon, dalja strana se obilazi u jednom smeru a bliža u drugom, pa se sve što štrči jednom doda i jednom oduzme. Sve van poligona se poništi i ostaje samo poligon - bez obzira na to gde se koordinatni početak nalazi.
 
-	![[shoelace-lacing.png]]
+	![[shoelace-lacing.png|Formula pertle prikazana kao dva reda x i y koordinata sa strelicama koje se ukrštaju između njih poput pertli, gde jedna dijagonala daje zbir 24 a druga 3, pa je površina 21 podeljeno sa 2, odnosno 10.5]]
 
 Kada te vektorske proizvode ispišemo, dobijamo **formulu pertle** (en. shoelace formula):
 
@@ -107,7 +107,7 @@ Dva detalja:
 - Trojke se zatvaraju u krug, pa poslednja dva temena svoje susede uzimaju sa početka vektora.
 - `=` znači tri tačke na istoj pravoj, što uopšte nije skretanje. Preskakanje takvih čuva konveksnost poligona koji ima ravnu stranicu.
 
-	![[polygon-turn-signs.png]]
+	![[polygon-turn-signs.png|Tri poligona sa oznakom znaka u svakom temenu: kvadrat kod koga su sva skretanja pozitivna je konveksan, oblik sa jednim negativnim skretanjem nije, a kvadrat sa kolinearnom tačkom označenom sa jednako je i dalje konveksan]]
 
 Convex.cpp
 ```c++

@@ -8,7 +8,7 @@ Matrica se označava kao `A x B`, gde `A` i `B` predstavljaju njene dimenzije.
 
 Na primer, matrica dimenzije `3x3` izgleda ovako:
 
-	![[matrix.png]]
+	![[matrix.png|Kvadratna matrica 3x3 u zagradama, sa redovima 6 2 7, 8 1 5 i 3 4 2]]
 
 Matrica se sastoji od redova i kolona.
 
