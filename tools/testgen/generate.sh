@@ -292,3 +292,19 @@ gen_tests caves 6
 gen_tests snakes-and-ladders 6
 gen_tests line-of-succession 6
 echo "Graph Theory I + Test 2 tests generated."
+
+# ---------------------------------------------------------------------------
+# Petlja adaptation: trees + trees-2 (Zbirka2/drva, Društvo matematičara Srbije
+# + Fondacija Petlja), lesson L7/02 "Binary Search by Answer". The upstream
+# problem is single-case with one required amount; 01.in batches the published
+# example with a one-tree case of our own. trees-2 is our harder variant - the
+# same forest is asked q times, which is what kills the O(n) check.
+# brute.cpp for trees scans every height from the top down; brute.cpp for
+# trees-2 reaches the answer with the O(n) check instead of prefix sums.
+mkdir -p $PROB/trees/tests $PROB/trees-2/tests
+printf '2\n5 14\n24 21 19 14 22\n1 7\n7\n'                          > $PROB/trees/tests/01.in
+printf '2\n5 3\n24 21 19 14 22\n14 40 1\n1 2\n7\n7 3\n'             > $PROB/trees-2/tests/01.in
+
+gen_tests trees 6
+gen_tests trees-2 6
+echo "Woodcutter I + II tests generated."
