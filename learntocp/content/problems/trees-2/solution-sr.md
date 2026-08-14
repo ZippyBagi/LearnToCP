@@ -1,44 +1,44 @@
 
 ## Pristup
 
-Binarna pretraga iz zadatka [Drvoseča](/sr/Problems/trees) i dalje nalazi rešenje: ako neka visina testere daje dovoljno drveta, daje ga i svaka niža, pa tražimo poslednju visinu koja radi.
+Binarna pretraga iz zadatka [Drvoseča](/sr/Problems/trees) i dalje dolazi do rešenja: ako na nekoj visini ima dovoljno drveta, ima ga i na svakoj nižoj, pa tražimo poslednju visinu koja prolazi.
 
-Ono što puca je cena jedne provere. Prolazak kroz svih $n$ stabala košta $O(n)$, a sada ga plaćamo $\log H \approx 30$ puta **po porudžbini** - do $10^5 \cdot 10^5 \cdot 30$ koraka. Pretraga ostaje, provera mora da postane brža.
+Ono što više ne prolazi jeste cena jedne provere. Prolazak kroz svih $n$ stabala košta $O(n)$, a sada ga plaćamo $\log H \approx 30$ puta **po svakoj porudžbini** - do $10^5 \cdot 10^5 \cdot 30$ koraka. Pretraga ostaje kakva jeste, provera mora da se ubrza.
 
 ### Do kojih stabala testera dopire?
 
-Samo do onih viših od sečiva. Ako **sortiramo** visine, ta stabla su uvek **sufiks** sortiranog niza - sve od prvog stabla visine $\ge h$ do kraja. Tu prvu poziciju vraća baš `lower_bound`, u $O(\log n)$:
+Samo do onih viših od sečiva. Ako **sortiramo** visine, ta stabla se uvek nađu na **kraju** niza, u jednom komadu - sve od prvog stabla visine $\ge h$ pa nadalje. Baš tu prvu poziciju vraća `lower_bound`, u $O(\log n)$:
 
 ~!
 ```cpp
 int idx = lower_bound(a.begin(), a.end(), h) - a.begin();
 ```
 
-Stabla visine tačno $h$ mogu i da uđu i da ne uđu u sufiks - u oba slučaja daju $h - h = 0$ metara.
+Da li će stabla visine tačno $h$ upasti u taj komad nije ni važno - ovako ili onako daju $h - h = 0$ metara.
 
 ### Koliko je to drveta?
 
-Svako od $n - idx$ stabala iz sufiksa daje svoju visinu umanjenu za $h$, pa je
+Svako od tih $n - idx$ stabala daje svoju visinu umanjenu za $h$, pa je
 
 $$drvo(h) = (a_{idx} + a_{idx+1} + \dots + a_{n-1}) - h \cdot (n - idx)$$
 
-Zbir u zagradi je zbir sufiksa, a zbirove sufiksa dobijamo iz **prefiksnih suma**: ako $psum[i]$ čuva zbir prvih $i$ sortiranih visina, to je $psum[n] - psum[idx]$. Time cela provera postaje $O(\log n)$.
+Zbir u zagradi je zbir jednog kraja niza, a do njega stižemo **prefiksnim sumama**: ako $psum[i]$ čuva zbir prvih $i$ sortiranih visina, tražena vrednost je $psum[n] - psum[idx]$. Time cela provera pada na $O(\log n)$.
 
-Sortiranje i prefiksne sume pravimo jednom po šumi, a svih $q$ porudžbina ih koristi.
+Sortiranje i prefiksne sume pravimo po jednom za svaku šumu, a onda ih svih $q$ porudžbina koristi.
 
-**Pažnja:** $10^5$ stabala od $10^9$ metara daje $10^{14}$, a i $h \cdot (n - idx)$ dostiže istu veličinu - daleko preko onoga što `int` može da primi. Visine, prefiksne sume, naručene količine i sve unutar provere moraju biti `long long`.
+**Pažnja:** $10^5$ stabala od po $10^9$ metara daje $10^{14}$, a i proizvod $h \cdot (n - idx)$ ide do te iste veličine - daleko van opsega tipa `int`. Visine, prefiksne sume, naručene količine i sve unutar provere moraju biti `long long`.
 
 ## Primer
 
-Sortirana, prva šuma je $[14, 19, 21, 22, 24]$ sa $psum = [0, 14, 33, 54, 76, 100]$. Evo poslednje provere za svaku od tri porudžbine - one na samom rešenju:
+Sortirana, prva šuma izgleda ovako: $[14, 19, 21, 22, 24]$, uz $psum = [0, 14, 33, 54, 76, 100]$. Evo kako ispada provera na samom rešenju, za svaku od tri porudžbine:
 
-| porudžbina $x$ | rešenje $h$ | `idx` | zbir sufiksa | posečenih stabala | drvo |
+| porudžbina $x$ | rešenje $h$ | `idx` | zbir njihovih visina | posečenih stabala | drveta |
 |---|---|---|---|---|---|
 | $14$ | $18$ | $1$ | $86$ | $4$ | $86 - 18 \cdot 4 = 14$ |
 | $40$ | $12$ | $0$ | $100$ | $5$ | $100 - 12 \cdot 5 = 40$ |
 | $1$ | $23$ | $4$ | $24$ | $1$ | $24 - 23 \cdot 1 = 1$ |
 
-Uzmi prvi red: `lower_bound` za $18$ staje na $19$ koje je na poziciji $1$, znači seku se četiri stabla, zajedno visoka $100 - 14 = 86$ metara, a testera od svakog ostavlja $18$ metara da stoji - $86 - 72 = 14$ metara drveta. Metar više ista ta četiri stabla daju samo $10$, i zato je $18$ rešenje.
+Pogledaj prvi red: `lower_bound` za $18$ staje na $19$, koje se nalazi na poziciji $1$, pa se seku četiri stabla, zajedno visoka $100 - 14 = 86$ metara. Od svakog ostaje po $18$ metara na panju, tako da pada $86 - 72 = 14$ metara drveta. Metar više i ta ista četiri stabla daju samo $10$ - zato je $18$ rešenje.
 
 ## Kod
 

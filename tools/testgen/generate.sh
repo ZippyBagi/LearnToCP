@@ -308,3 +308,31 @@ printf '2\n5 3\n24 21 19 14 22\n14 40 1\n1 2\n7\n7 3\n'             > $PROB/tree
 gen_tests trees 6
 gen_tests trees-2 6
 echo "Woodcutter I + II tests generated."
+
+# ---------------------------------------------------------------------------
+# Petlja adaptation: merge-two-sorted-arrays (Zbirka2/objedinjavanje, Društvo
+# matematičara Srbije + Fondacija Petlja), test L5/00 "Test 1". 01.in batches
+# the published example with a case of our own where one list empties first.
+# brute.cpp is the lazy concatenate-and-sort solution, used only for
+# cross-checking.
+mkdir -p $PROB/merge-two-sorted-arrays/tests
+printf '2\n4 3\n1 3 5 7\n2 4 5\n1 5\n10\n1 2 3 4 5\n' > $PROB/merge-two-sorted-arrays/tests/01.in
+
+gen_tests merge-two-sorted-arrays 6
+echo "Merge two sorted arrays tests generated."
+
+# ---------------------------------------------------------------------------
+# Petlja adaptations for Divide and Conquer (L7/02) and Test 2 (L8/00), both by
+# Društvo matematičara Srbije + Fondacija Petlja:
+#   inversions      <- Zbirka2/broj_inverzija
+#   third-traversal <- Zbirka2/treci_obilazak
+# Upstream both are single-case; 01.in batches the published example (plus a
+# second case of ours for inversions). brute.cpp for inversions is the O(n^2)
+# definition; brute.cpp for third-traversal really builds the tree and walks it.
+mkdir -p $PROB/inversions/tests $PROB/third-traversal/tests
+printf '2\n5\n3 1 4 2 5\n4\n4 3 2 1\n' > $PROB/inversions/tests/01.in
+printf '1\nabecfg\nbeafcg\n'           > $PROB/third-traversal/tests/01.in
+
+gen_tests inversions 6
+gen_tests third-traversal 6
+echo "Inversions + third traversal tests generated."

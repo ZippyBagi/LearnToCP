@@ -256,6 +256,34 @@ code, kbd, samp, pre {
   overflow-x: auto;
 }
 
+/* Code inside a <pre> is a block of text, not an inline chip.
+   Tailwind Typography ships its own `pre code` reset, but the plugin's rules
+   live in the `utilities` cascade layer while `.prose code` above is unlayered
+   — unlayered always beats layered, so the chip background/border/color leaked
+   onto fenced code blocks. Because <code> is inline, the browser then painted
+   one background box per visual line, which turned ASCII diagrams into a
+   staircase of blue boxes. Re-state the reset unlayered so it actually wins.
+   Shiki blocks are excluded; they have their own styling below. */
+.prose pre:not([data-shiki]) code {
+  background: none;
+  border: 0;
+  padding: 0;
+  border-radius: 0;
+  color: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  display: block;
+  white-space: pre;
+}
+
+/* Plain fences (ASCII art, trees, tables) read better tight and keep tabs
+   aligned. Example I/O boxes keep their own rhythm. */
+.prose pre:not([data-shiki]):not(.example-box) {
+  line-height: 1.45;
+  tab-size: 4;
+  -moz-tab-size: 4;
+}
+
 /* Code block wrapper */
 .code-block-wrapper {
   border-radius: 8px;

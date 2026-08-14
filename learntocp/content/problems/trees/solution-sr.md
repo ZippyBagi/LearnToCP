@@ -1,33 +1,33 @@
 
 ## Pristup
 
-Za fiksiranu visinu testere $h$ lako je prebrojati drvo: svako stablo više od $h$ daje $h_i - h$ metara, ostala ne daju ništa. Mogli bismo da probamo $h = 0, 1, 2, \dots$ i stanemo na poslednjoj visini koja radi - ali najviše drvo može biti $10^4$ metara, a drveća može biti $10^5$, što je $10^9$ koraka.
+Kada je visina testere $h$ poznata, lako je izračunati koliko ćemo drveta dobiti: svako stablo više od $h$ daje $h_i - h$ metara, a niža ne daju ništa. Mogli bismo da redom probamo $h = 0, 1, 2, \dots$ i zaustavimo se na poslednjoj visini koja nam još daje dovoljno - ali najviše stablo ide do $10^4$ metara, a stabala ima do $10^5$, što je $10^9$ koraka.
 
-Ne moramo da probamo sve. Primeti da spuštanje testere nikada ne oduzima drvo: stablo koje se već seklo prosto daje još jedan metar, a stabla koja su bila prekratka mogu početi da daju nešto. Znači, ako visina $h$ daje dovoljno drveta, daje ga i svaka visina ispod nje:
+Ne moramo da probamo svaku. Primeti da spuštanjem testere nikad ne dobijamo manje drveta: stablo koje se ionako seklo dodaje još jedan metar, a ona koja su bila preniska počinju da daju nešto. Znači, ako na visini $h$ ima dovoljno drveta, ima ga i na svakoj nižoj:
 
 `DA DA DA ... DA NE NE NE`
 
-a mi tražimo **poslednje DA**. To je tačno binarna pretraga po rešenju.
+a nama treba **poslednje DA**. To je upravo binarna pretraga po rešenju.
 
-Funkcija `check` je gornja petlja za brojanje, u $O(n)$:
+Za proveru nam služi ona ista petlja sabiranja odozgo, u $O(n)$:
 
-- `low = 0` - testera na zemlji uvek radi, jer postavka garantuje da u šumi ima dovoljno drveta;
-- `high` - najviše drvo, koje nalazimo pomoću `max_element` (zgodna C++ funkcija koja vraća iterator na najveći element; obična for petlja radi isti posao).
+- `low = 0` - testera na zemlji uvek daje dovoljno, jer postavka garantuje da u šumi ima dovoljno drveta;
+- `high` - najviše stablo, do kog dolazimo pomoću `max_element` (zgodna C++ funkcija koja vraća iterator na najveći element; obična for petlja radi isti posao).
 
-**Pažnja:** ovde visina koja radi znači da treba da tražimo **više**, a ne niže - pa je uspešna grana ona koja pomera `low`. Zapamti `mid` u `ans` pre nego što nastaviš, inače ćeš izgubiti najbolju visinu koja radi.
+**Pažnja:** kod nas visina koja prođe znači da dalje treba tražiti **naviše**, a ne naniže - pa je `low` taj koji se pomera kad provera uspe. Upiši `mid` u `ans` pre nego što kreneš dalje, inače će ti najbolja visina koja prolazi izmaći.
 
 ## Primer
 
 Prva šuma je $[24, 21, 19, 14, 22]$, a Milanu treba $14$ metara:
 
-| `low` | `high` | `mid` | drvo na `mid` | |
+| `low` | `high` | `mid` | drveta na `mid` | |
 |---|---|---|---|---|
 | $0$ | $24$ | $12$ | $40$ | dovoljno |
 | $13$ | $24$ | $18$ | $14$ | dovoljno |
 | $19$ | $24$ | $21$ | $4$ | premalo |
 | $19$ | $20$ | $19$ | $10$ | premalo |
 
-Proveri drugi red: na $18$ metara stabla daju $6 + 3 + 1 + 0 + 4 = 14$ - tačno dovoljno, pa pamtimo $18$ i probamo više. Sve od $19$ naviše pada, i $18$ ostaje kao rešenje.
+Proveri drugi red: na $18$ metara stabla daju $6 + 3 + 1 + 0 + 4 = 14$ - taman koliko treba, pa pamtimo $18$ i dižemo testeru još malo. Od $19$ naviše više ništa ne prolazi, i $18$ ostaje kao rešenje.
 
 ## Kod
 
@@ -85,7 +85,7 @@ int main(){
 }
 ```
 
-Cela šuma staje u $10^5 \cdot 10^4 = 10^9$ metara, što i dalje staje u `int`, pa nam ovde `long long` ne treba. Sa većim drvećem bi trebao - vidi [Drvoseča II](/sr/Problems/trees-2).
+Cela šuma ima najviše $10^5 \cdot 10^4 = 10^9$ metara, a toliko `int` još uvek prima, pa nam ovde `long long` nije potreban. Kod krupnijeg drveća bi bio - vidi [Drvoseča II](/sr/Problems/trees-2).
 
 ## Složenost
 
