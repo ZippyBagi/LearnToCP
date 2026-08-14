@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "en/LessonsMD/03 Optimization Techniques/08 Divide and Conquer.md",
+                "file": "en/LessonsMD/03 Optimization Techniques/07 Binary Search by Answer.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "08 Divide and Conquer"
+              "title": "07 Binary Search by Answer"
             }
           }
         ]
@@ -187,8 +187,8 @@
   },
   "active": "c15ec58d0b5475f4",
   "lastOpenFiles": [
-    "en/LessonsMD/03 Optimization Techniques/05 Greedy.md",
     "en/LessonsMD/03 Optimization Techniques/08 Divide and Conquer.md",
+    "en/LessonsMD/03 Optimization Techniques/05 Greedy.md",
     "en/LessonsMD/03 Optimization Techniques/07 Binary Search by Answer.md",
     "en/LessonsMD/03 Optimization Techniques/06 Binary Search Functions.md",
     "problems/inversions/solution-sr.md",

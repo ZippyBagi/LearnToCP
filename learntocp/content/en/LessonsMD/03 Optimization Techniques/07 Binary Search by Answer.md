@@ -59,5 +59,5 @@ In other words, if one value works, all values smaller(or larger, depending on t
 
 We want to find the point of the last(or first) `YES`
 
-![[monotone-predicate.png|Two rows of check results over the values 1 to 12: the first flips from false to true exactly once at 8, which is the answer, while the second flips back and forth many times so no single boundary exists]]
+	![[monotone-predicate.png|Two rows of check results over the values 1 to 12: the first flips from false to true exactly once at 8, which is the answer, while the second flips back and forth many times so no single boundary exists]]
 
