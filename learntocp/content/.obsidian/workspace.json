@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "en/LessonsMD/03 Optimization Techniques/07 Binary Search by Answer.md",
+                "file": "sr/LessonsMD/03 Tehnike Optimizacije/07 Binarna Pretraga po Rešenju.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "07 Binary Search by Answer"
+              "title": "07 Binarna Pretraga po Rešenju"
             }
           }
         ]
@@ -187,9 +187,10 @@
   },
   "active": "c15ec58d0b5475f4",
   "lastOpenFiles": [
+    "sr/LessonsMD/11 Teorija Grafova/07 Algoritmi Najkraćih Puteva.md",
+    "en/LessonsMD/03 Optimization Techniques/07 Binary Search by Answer.md",
     "en/LessonsMD/03 Optimization Techniques/08 Divide and Conquer.md",
     "en/LessonsMD/03 Optimization Techniques/05 Greedy.md",
-    "en/LessonsMD/03 Optimization Techniques/07 Binary Search by Answer.md",
     "en/LessonsMD/03 Optimization Techniques/06 Binary Search Functions.md",
     "problems/inversions/solution-sr.md",
     "sr/LessonsMD/03 Tehnike Optimizacije/07 Binarna Pretraga po Rešenju.md.tmp.21196.26317262ade0",
@@ -222,7 +223,6 @@
     "roadmap_data/L7/02 Optimization Techniques III/04 Divide and Conquer.md",
     "problems/trees-2/description-sr.md",
     "problems/trees/solution-sr.md",
-    "problems/trees/solution-en.md",
     "images/connected-components.png",
     "images/tree-rooted-at-1.png",
     "images/tree-from-graph.png",

@@ -44,8 +44,6 @@ int main(){
 }
 ```
 
-	![[binary-search-by-answer-steps.png|Četiri koraka binarne pretrage nad opsegom vrednosti od 1 do 12, gde svaki red obeležava low, mid i high i sivi odbačene vrednosti, prvo pamti ans = 9 pa ga popravlja na ans = 8]]
-
 Vremenska složenost: **O(log `high` * T)**, gde je T složenost funkcije `check()`.
 
 ### Kada ovo radi?
