@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "problems/inversions/solution-sr.md",
+                "file": "en/LessonsMD/03 Optimization Techniques/08 Divide and Conquer.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "solution-sr"
+              "title": "08 Divide and Conquer"
             }
           }
         ]
@@ -187,12 +187,16 @@
   },
   "active": "c15ec58d0b5475f4",
   "lastOpenFiles": [
-    "problems/inversions/solution-en.md",
+    "en/LessonsMD/03 Optimization Techniques/05 Greedy.md",
+    "en/LessonsMD/03 Optimization Techniques/08 Divide and Conquer.md",
+    "en/LessonsMD/03 Optimization Techniques/07 Binary Search by Answer.md",
+    "en/LessonsMD/03 Optimization Techniques/06 Binary Search Functions.md",
     "problems/inversions/solution-sr.md",
+    "sr/LessonsMD/03 Tehnike Optimizacije/07 Binarna Pretraga po Rešenju.md.tmp.21196.26317262ade0",
+    "problems/inversions/solution-en.md",
     "problems/inversions/problem.json",
     "problems/third-traversal/solution-en.md",
     "problems/third-traversal/description-en.md",
-    "en/LessonsMD/03 Optimization Techniques/08 Divide and Conquer.md",
     "roadmap_data/L8/00 Test 2/06 Problem - The Third Traversal.txt",
     "roadmap_data/L7/02 Optimization Techniques III/05 Problem - Number of Inversions.md",
     "problems/third-traversal/tests/06.out",
@@ -202,7 +206,6 @@
     "problems/third-traversal/tests/02.out",
     "problems/third-traversal/tests/01.out",
     "problems/third-traversal/tests/06.in",
-    "problems/third-traversal/tests/05.in",
     "problems/third-traversal/solution-sr.md",
     "problems/third-traversal/description-sr.md",
     "problems/inversions/description-sr.md",
@@ -214,14 +217,12 @@
     "problems/trees-2/solution-sr.md",
     "problems/trees-2/solution-en.md",
     "problems/trees-2/description-en.md",
-    "en/LessonsMD/03 Optimization Techniques/07 Binary Search by Answer.md",
     "roadmap_data/L7/02 Optimization Techniques III/03 Problem - Woodcutter II.md",
     "roadmap_data/L7/02 Optimization Techniques III/02 Problem - Woodcutter.md",
     "roadmap_data/L7/02 Optimization Techniques III/04 Divide and Conquer.md",
     "problems/trees-2/description-sr.md",
     "problems/trees/solution-sr.md",
     "problems/trees/solution-en.md",
-    "problems/trees/description-sr.md",
     "images/connected-components.png",
     "images/tree-rooted-at-1.png",
     "images/tree-from-graph.png",

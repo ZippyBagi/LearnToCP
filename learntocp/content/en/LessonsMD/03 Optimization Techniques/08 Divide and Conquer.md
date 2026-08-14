@@ -26,6 +26,8 @@ Then: `{1, 2, 3, 4}, {4, 10}`
 
 And finally: `{1, 2, 3, 4, 4, 10}`
 
+	![[merge-sort-tree.png|The array 4 2 1 3 4 10 split in half repeatedly down to single elements, then merged back up level by level until it is sorted as 1 2 3 4 4 10]]
+
 ### Implementation
 
 The simplest way to implement any divide and conquer solution is with recursion (although as with any recursive algorithm, it can be implemented iteratively):
@@ -113,5 +115,7 @@ Output:
 `1 2 3 4 4 10`
 
 We half the array O(log n) times, and merging the halves costs us O(n)
+
+	![[divide-conquer-cost.png|A bar of length n split into 2, then 4, then 8 pieces on successive levels, where every level still adds up to n, over log n levels in total]]
 
 Time Complexity: $O(n * log(n))$

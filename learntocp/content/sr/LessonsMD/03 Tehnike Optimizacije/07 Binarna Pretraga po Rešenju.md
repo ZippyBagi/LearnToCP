@@ -44,6 +44,8 @@ int main(){
 }
 ```
 
+	![[binary-search-by-answer-steps.png|Četiri koraka binarne pretrage nad opsegom vrednosti od 1 do 12, gde svaki red obeležava low, mid i high i sivi odbačene vrednosti, prvo pamti ans = 9 pa ga popravlja na ans = 8]]
+
 Vremenska složenost: **O(log `high` * T)**, gde je T složenost funkcije `check()`.
 
 ### Kada ovo radi?
@@ -57,3 +59,6 @@ Radi samo kada rešenja izgledaju ovako:
 Drugim rečima, ako jedna vrednost zadovoljava uslov, moraju ga zadovoljavati i sve manje (ili sve veće, u zavisnosti od zadatka).
 
 Nama je onda potrebna granica - poslednje `NE` i prvo `DA`.
+
+	![[monotone-predicate.png|Dva reda rezultata funkcije check nad vrednostima od 1 do 12: prvi se sa false na true prelama tačno jednom, kod 8, što je rešenje, dok se drugi prelama više puta pa granica ne postoji]]
+

@@ -26,6 +26,8 @@ Zatim: `{1, 2, 3, 4}, {4, 10}`
 
 I na kraju: `{1, 2, 3, 4, 4, 10}`
 
+	![[merge-sort-tree.png|Niz 4 2 1 3 4 10 se uzastopno deli na pola sve do pojedinačnih elemenata, pa se nivo po nivo spaja nazad dok ne bude sortiran kao 1 2 3 4 4 10]]
+
 Ključno je to što u svakom spajanju oba dela **već jesu sortirana**, pa nam je dovoljan jedan prolaz kroz njih.
 
 ### Implementacija
@@ -115,5 +117,7 @@ Output:
 `1 2 3 4 4 10`
 
 Niz delimo na pola O(log n) puta, a svaki nivo deljenja nas košta O(n) da spojimo nazad.
+
+	![[divide-conquer-cost.png|Traka dužine n se deli na 2, pa na 4, pa na 8 delova po nivoima, gde svaki nivo i dalje ukupno iznosi n, kroz log n nivoa]]
 
 Vremenska složenost: **O(n log n)**
