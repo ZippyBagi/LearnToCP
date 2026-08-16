@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "6792422c849c4304",
+        "id": "322446e7d97b73d3",
         "type": "tabs",
         "children": [
           {
-            "id": "c15ec58d0b5475f4",
+            "id": "815e8cd89816a2d7",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "sr/LessonsMD/03 Tehnike Optimizacije/07 Binarna Pretraga po Rešenju.md",
+                "file": "en/LessonsMD/06 Data Structures/07 Segment Trees.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "07 Binarna Pretraga po Rešenju"
+              "title": "07 Segment Trees"
             }
           }
         ]
@@ -185,8 +185,14 @@
       "bases:Create new base": false
     }
   },
-  "active": "c15ec58d0b5475f4",
+  "active": "815e8cd89816a2d7",
   "lastOpenFiles": [
+    "image_here.md",
+    "en/LessonsMD/06 Data Structures/07 Segment Trees.md",
+    "en/LessonsMD/06 Data Structures/08 Fenwick Trees.md",
+    "en/LessonsMD/06 Data Structures/09 Sparse Tables.md",
+    "en/LessonsMD/06 Data Structures/10 Union Find.md",
+    "sr/LessonsMD/03 Tehnike Optimizacije/07 Binarna Pretraga po Rešenju.md",
     "sr/LessonsMD/11 Teorija Grafova/07 Algoritmi Najkraćih Puteva.md",
     "en/LessonsMD/03 Optimization Techniques/07 Binary Search by Answer.md",
     "en/LessonsMD/03 Optimization Techniques/08 Divide and Conquer.md",
@@ -217,12 +223,6 @@
     "problems/merge-two-sorted-arrays/description-en.md",
     "problems/trees-2/solution-sr.md",
     "problems/trees-2/solution-en.md",
-    "problems/trees-2/description-en.md",
-    "roadmap_data/L7/02 Optimization Techniques III/03 Problem - Woodcutter II.md",
-    "roadmap_data/L7/02 Optimization Techniques III/02 Problem - Woodcutter.md",
-    "roadmap_data/L7/02 Optimization Techniques III/04 Divide and Conquer.md",
-    "problems/trees-2/description-sr.md",
-    "problems/trees/solution-sr.md",
     "images/connected-components.png",
     "images/tree-rooted-at-1.png",
     "images/tree-from-graph.png",
