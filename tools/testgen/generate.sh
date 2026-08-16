@@ -336,3 +336,16 @@ printf '1\nabecfg\nbeafcg\n'           > $PROB/third-traversal/tests/01.in
 gen_tests inversions 6
 gen_tests third-traversal 6
 echo "Inversions + third traversal tests generated."
+
+# ---------------------------------------------------------------------------
+# max-changing-segment, lesson L9/02 "Segment Trees". Ours, not a petlja
+# adaptation. The solution is the lesson's own iterative segment tree with the
+# operation swapped to max (and the neutral value with it), so the tests care
+# about two things: sizes around powers of two, where the padding leaves live,
+# and all-negative testcases, which is what a starting value of 0 gets wrong.
+# brute.cpp keeps the plain array and rescans the range on every question.
+mkdir -p $PROB/max-changing-segment/tests
+printf '2\n6 6\n3 1 4 1 5 9\na 0 5\na 1 3\nb 2 7\na 1 3\nb 5 -2\na 0 5\n1 3\n-5\na 0 0\nb 0 10\na 0 0\n' > $PROB/max-changing-segment/tests/01.in
+
+gen_tests max-changing-segment 6
+echo "Maximum of a changing segment tests generated."
