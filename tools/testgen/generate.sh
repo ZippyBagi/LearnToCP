@@ -377,3 +377,25 @@ printf '2\n5\n3 1 4 2 5\n4\n4 3 2 1\n' > $PROB/inversions-2/tests/01.in
 
 gen_tests inversions-2 6
 echo "Inversions II tests generated."
+
+# ---------------------------------------------------------------------------
+# Petlja adaptations for Topological Sorting (L9/01), both by Društvo
+# matematičara Srbije + Fondacija Petlja:
+#   job-order   <- Zbirka3/redosled_poslova
+#   cycle-check <- Zbirka3/provera_ciklusa
+# Upstream job-order accepts ANY valid ordering; ours pins it to the
+# lexicographically smallest one so the judge can compare exactly - petlja's own
+# published example output already is that one. Note the reversed pair order:
+# the line "x y" means y comes before x, so the arrow runs y -> x.
+# cycle-check prints yes/no rather than da/ne, since the tests are shared
+# between locales. Its multi-world wrapper is already our testcase count.
+# brute.cpp for job-order rescans the ready jobs each step instead of using a
+# heap; brute.cpp for cycle-check uses iterative DFS three-colouring, which
+# shares nothing with Kahn's counting.
+mkdir -p $PROB/job-order/tests $PROB/cycle-check/tests
+printf '1\n6 6\n3 1\n3 2\n4 2\n4 5\n1 0\n0 5\n' > $PROB/job-order/tests/01.in
+printf '2\n5 5\n0 1\n2 1\n2 3\n3 4\n4 2\n5 5\n0 1\n2 1\n2 3\n3 4\n4 0\n' > $PROB/cycle-check/tests/01.in
+
+gen_tests job-order 6
+gen_tests cycle-check 6
+echo "Topological sorting problems tests generated."
