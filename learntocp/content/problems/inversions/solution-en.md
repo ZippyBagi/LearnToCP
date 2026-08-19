@@ -114,4 +114,4 @@ Memory $O(n)$
 
 ## Bonus: the other well-known solution
 
-There is a second standard way to count inversions, with a **Fenwick tree** (also called a binary indexed tree). We will learn more about it in future lessons.
+There is a second standard way to count inversions, with a **Fenwick tree** (also called a binary indexed tree). We will learn more about it in future lessons, and this exact problem comes back there as [Number of Inversions II](/en/Problems/inversions-2).

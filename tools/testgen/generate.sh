@@ -349,3 +349,31 @@ printf '2\n6 6\n3 1 4 1 5 9\na 0 5\na 1 3\nb 2 7\na 1 3\nb 5 -2\na 0 5\n1 3\n-5\
 
 gen_tests max-changing-segment 6
 echo "Maximum of a changing segment tests generated."
+
+# ---------------------------------------------------------------------------
+# Petlja adaptations for Fenwick Trees (L9/02), both by Društvo matematičara
+# Srbije + Fondacija Petlja:
+#   segment-sums-changing  <- Zbirka3/sume_segmenata_promenljivog_niza1
+#   inversions-after-removal <- Zbirka3/inverzije_nakon_izbacivanja_segmenata
+# The petlja query letters p/z were renamed to s/q. 01.in for the second problem
+# batches all four published examples. Both brute.cpp files ignore the tree
+# entirely: one rescans the range, the other rebuilds b for every pair.
+mkdir -p $PROB/segment-sums-changing/tests $PROB/inversions-after-removal/tests
+printf '1\n5 5\n1 2 3 4 5\nq 0 4\nq 2 3\ns 2 5\ns 3 6\nq 0 4\n' > $PROB/segment-sums-changing/tests/01.in
+printf '4\n3 1\n1 3 2\n3 0\n1 3 2\n5 2\n1 5 4 1 100\n5 4\n1 5 4 1 100\n' > $PROB/inversions-after-removal/tests/01.in
+
+gen_tests segment-sums-changing 6
+gen_tests inversions-after-removal 6
+echo "Fenwick tree problems tests generated."
+
+# ---------------------------------------------------------------------------
+# inversions-2: the same problem as inversions (Zbirka2/broj_inverzija, Društvo
+# matematičara Srbije + Fondacija Petlja), repeated after the Fenwick Trees
+# lesson so it can be solved a second way. gen.cpp and brute.cpp are copies of
+# the ones in inversions/ - same problem, same data on purpose - and the .out
+# files must come out byte for byte identical to inversions/.
+mkdir -p $PROB/inversions-2/tests
+printf '2\n5\n3 1 4 2 5\n4\n4 3 2 1\n' > $PROB/inversions-2/tests/01.in
+
+gen_tests inversions-2 6
+echo "Inversions II tests generated."

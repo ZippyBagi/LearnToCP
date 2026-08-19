@@ -114,4 +114,4 @@ Memorijska složenost je $O(n)$.
 
 ## Bonus: ono drugo poznato rešenje
 
-Postoji i drugi uobičajen način da se izbroje inverzije, preko **Fenvikovog stabla** (poznatog i kao binarno indeksirano stablo). Upoznaćemo se sa njim u budućoj lekciji.
+Postoji i drugi uobičajen način da se izbroje inverzije, preko **Fenvikovog stabla** (poznatog i kao binarno indeksirano stablo). Upoznaćemo se sa njim u budućoj lekciji, gde se baš ovaj zadatak i vraća, kao [Broj inverzija II](/sr/Problems/inversions-2).
