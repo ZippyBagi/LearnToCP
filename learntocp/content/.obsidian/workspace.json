@@ -185,8 +185,9 @@
       "bases:Create new base": false
     }
   },
-  "active": "5e6bc7bb88160c4c",
+  "active": "253a54509f3591be",
   "lastOpenFiles": [
+    "roadmap_data/L12/01 Graph Theory IV/03 Minimum Spanning Trees.md",
     "problems/cycle-check/solution-en.md",
     "problems/cycle-check/solution-sr.md",
     "problems/job-order/solution-sr.md",
@@ -222,7 +223,6 @@
     "roadmap_data/L9/02 Data Structures III/04 Problem - Segment Sums of a Changing Array.md",
     "problems/inversions-after-removal/solution-sr.md",
     "problems/inversions-after-removal/solution-en.md",
-    "problems/inversions-after-removal/description-sr.md",
     "images/connected-components.png",
     "images/tree-rooted-at-1.png",
     "images/tree-from-graph.png",
