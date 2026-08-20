@@ -399,3 +399,19 @@ printf '2\n5 5\n0 1\n2 1\n2 3\n3 4\n4 2\n5 5\n0 1\n2 1\n2 3\n3 4\n4 0\n' > $PROB
 gen_tests job-order 6
 gen_tests cycle-check 6
 echo "Topological sorting problems tests generated."
+
+# ---------------------------------------------------------------------------
+# Petlja adaptation: signal-delay (Zbirka3/kasnjenje_signala, Društvo
+# matematičara Srbije + Fondacija Petlja), lesson L9/01 "Dijkstra's Algorithm".
+# Upstream allows m <= n^2 = 10^6 edges, which is a ~12 MB file - capped at 10^5
+# per testcase and 2 * 10^5 overall. 01.in batches the published example with an
+# unreachable case and an n = 1 case of ours.
+# The channels are DIRECTED while the lesson's addEdge is not, so gen.cpp mixes
+# graphs that are reachable-by-construction with fully random ones, which is what
+# makes the -1 branch show up. brute.cpp is Bellman-Ford - no priority queue and
+# none of Dijkstra's greedy argument.
+mkdir -p $PROB/signal-delay/tests
+printf '3\n5 7\n1 2 7\n1 3 3\n1 5 6\n2 1 2\n3 5 2\n4 2 3\n5 4 1\n1\n3 1\n1 2 5\n1\n1 1\n1 1 4\n1\n' > $PROB/signal-delay/tests/01.in
+
+gen_tests signal-delay 6
+echo "Signal delay tests generated."
