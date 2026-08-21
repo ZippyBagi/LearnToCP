@@ -415,3 +415,32 @@ printf '3\n5 7\n1 2 7\n1 3 3\n1 5 6\n2 1 2\n3 5 2\n4 2 3\n5 4 1\n1\n3 1\n1 2 5\n
 
 gen_tests signal-delay 6
 echo "Signal delay tests generated."
+
+# ---------------------------------------------------------------------------
+# Two tree problems placed straight after the Tree DP lesson (L9/00). Ours, not
+# adaptations.
+#   counting-districts - count the connected subsets of at most K nodes, mod
+#     1e9+7. The reference is the lesson's dfs(v, p) with the dp array replaced
+#     by a row of counts per size, merged child by child and cut off at K.
+#     brute.cpp enumerates every subset and flood fills it (n <= 20 only), and
+#     check.cpp counts each district at its SMALLEST numbered city instead of its
+#     topmost one - a different root per district, so it agrees with the
+#     reference for a different reason.
+#   tree-diameter - the editorial derives the rooted "two deepest children" dp
+#     and then replaces it with two searches, which is what gets published.
+#     brute.cpp runs a BFS from every outpost; it takes 4.1 s on 04 and 15.6 s on
+#     06 against a 1 s limit, so the kill is real and measured, not estimated.
+#     gen.cpp's emitSpiderTail puts outpost 1 next to the centre of a spider,
+#     which is what punishes stopping after the first search - the shortfall
+#     reaches 2665 trails in 04 and 9998 in 06.
+# Both keep max n and max values apart: these inputs are only node numbers, so
+# the counting-districts folder is 135 KB in total. tree-diameter's 05 is a
+# single path of 100000 outposts and is 1.18 MB, a little over the usual 1 MB
+# target, with the whole folder at 2.14 MB.
+mkdir -p $PROB/counting-districts/tests $PROB/tree-diameter/tests
+printf '3\n5 3\n1 2\n1 3\n2 4\n2 5\n4 4\n1 2\n1 3\n1 4\n1 1\n' > $PROB/counting-districts/tests/01.in
+printf '3\n7\n1 2\n1 3\n2 4\n3 5\n4 6\n5 7\n4\n1 2\n1 3\n1 4\n1\n' > $PROB/tree-diameter/tests/01.in
+
+gen_tests counting-districts 6
+gen_tests tree-diameter 6
+echo "Tree DP problems tests generated."
