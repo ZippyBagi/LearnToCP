@@ -195,5 +195,5 @@ The complexity is always the same shape: **number of states times 10**. Since `p
 
 >Note:
 >Some problems do not ask how many numbers have a property, but for the sum of all of them. The structure does not change - the function just returns a pair, the count and the sum, and merging two children means adding both fields. Getting the count right first is still the way to start.
-
+	
 The hard part of digit dp is never the code. Every solution in this lesson is the same twenty lines with a different third dimension. The hard part is deciding what the smallest piece of history is that the next digit actually needs - exactly like choosing states in Tree DP and Bitmask DP.

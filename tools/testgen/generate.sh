@@ -444,3 +444,30 @@ printf '3\n7\n1 2\n1 3\n2 4\n3 5\n4 6\n5 7\n4\n1 2\n1 3\n1 4\n1\n' > $PROB/tree-
 gen_tests counting-districts 6
 gen_tests tree-diameter 6
 echo "Tree DP problems tests generated."
+
+# ---------------------------------------------------------------------------
+# tasting-menu: based on Codeforces 580D "Kefa and Dishes" (Mike Mirzayanov /
+# Codeforces), lesson L9/00 "Bitmask DP". NOT a petlja adaptation - the credit
+# line says "based on", with no claim of permission. Statement is ours.
+# 01.in batches the two published Codeforces examples. brute.cpp enumerates
+# every ordered sequence of m dishes, so it shares nothing with the dp.
+mkdir -p $PROB/tasting-menu/tests
+printf '2\n2 2 1\n1 1\n2 1 1\n4 3 2\n1 2 3 4\n2 1 5\n3 4 2\n' > $PROB/tasting-menu/tests/01.in
+
+gen_tests tasting-menu 6
+echo "Tasting menu tests generated."
+
+# ---------------------------------------------------------------------------
+# classy-numbers: based on Codeforces 1036C "Classy Numbers" (Mike Mirzayanov /
+# Codeforces), lesson L9/00 "Digit DP". NOT petlja - the credit line says
+# "based on", with no claim of permission. Statement is ours. The upstream T is
+# already our testcase count, so no wrapper was added.
+# 01.in is the published Codeforces example. brute.cpp walks every integer in
+# the segment; the stronger check is that only ~720k classy numbers exist below
+# 10^18, so all of them can be enumerated and every query answered by binary
+# search - see the docs entry.
+mkdir -p $PROB/classy-numbers/tests
+printf '4\n1 1000\n1024 1024\n65536 65536\n999999 1000001\n' > $PROB/classy-numbers/tests/01.in
+
+gen_tests classy-numbers 6
+echo "Classy numbers tests generated."
