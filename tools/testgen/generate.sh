@@ -500,3 +500,18 @@ printf '3\n7\n3 4 2 3 4 2 2\n5\n20 1 14 10 2\n13\n5 5 4 4 3 5 7 6 5 4 4 6 5\n' >
 
 gen_tests marbles 6
 echo "Marbles tests generated."
+
+# ---------------------------------------------------------------------------
+# Petlja adaptation: first-crossing (Zbirka3/prvi_put_kroz_matricu, Društvo
+# matematičara Srbije + Fondacija Petlja), lesson L9/03 "Union Find". The
+# upstream Output section is a placeholder, so the "never becomes crossable"
+# case is undefined there - ours prints -1. 01.in batches the published example
+# with an n = 1 case and a never-connects case of our own.
+# brute.cpp re-runs a BFS from the top row after every write; test 05 is the
+# shape that makes that cost ~3 s (a blocked row, so the answer arrives last or
+# not at all) rather than the ~0.06 s a random order costs.
+mkdir -p $PROB/first-crossing/tests
+printf '3\n4 9\n0 0\n0 1\n1 1\n3 3\n1 3\n2 0\n3 0\n2 1\n2 2\n1 1\n0 0\n3 2\n0 0\n2 2\n' > $PROB/first-crossing/tests/01.in
+
+gen_tests first-crossing 6
+echo "First crossing tests generated."
