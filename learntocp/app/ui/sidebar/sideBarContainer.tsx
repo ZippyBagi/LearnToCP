@@ -47,14 +47,18 @@ export default function SidebarContainer({ name, hrefs, names, standalone }: Sid
       </div>
 
       <div
-        className={`transition-all duration-150 ease-in-out overflow-hidden ${
-          open && hrefs.length > 0 ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+        className={`grid transition-all duration-150 ease-in-out ${
+          open && hrefs.length > 0
+            ? "grid-rows-[1fr] opacity-100"
+            : "grid-rows-[0fr] opacity-0"
         }`}
       >
-        <div style={{ borderTop: "1px solid rgba(124,158,248,0.1)" }}>
-          {hrefs.map((href, i) => (
-            <SideBarContainerItem key={href} name={names[i]} href={href} />
-          ))}
+        <div className="overflow-hidden">
+          <div style={{ borderTop: "1px solid rgba(124,158,248,0.1)" }}>
+            {hrefs.map((href, i) => (
+              <SideBarContainerItem key={href} name={names[i]} href={href} />
+            ))}
+          </div>
         </div>
       </div>
     </div>

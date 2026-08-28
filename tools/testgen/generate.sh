@@ -294,19 +294,19 @@ gen_tests line-of-succession 6
 echo "Graph Theory I + Test 2 tests generated."
 
 # ---------------------------------------------------------------------------
-# Petlja adaptation: trees + trees-2 (Zbirka2/drva, Društvo matematičara Srbije
+# Petlja adaptation: woodcutter + woodcutter-2 (Zbirka2/drva, Društvo matematičara Srbije
 # + Fondacija Petlja), lesson L7/02 "Binary Search by Answer". The upstream
 # problem is single-case with one required amount; 01.in batches the published
-# example with a one-tree case of our own. trees-2 is our harder variant - the
+# example with a one-tree case of our own. woodcutter-2 is our harder variant - the
 # same forest is asked q times, which is what kills the O(n) check.
-# brute.cpp for trees scans every height from the top down; brute.cpp for
-# trees-2 reaches the answer with the O(n) check instead of prefix sums.
-mkdir -p $PROB/trees/tests $PROB/trees-2/tests
-printf '2\n5 14\n24 21 19 14 22\n1 7\n7\n'                          > $PROB/trees/tests/01.in
-printf '2\n5 3\n24 21 19 14 22\n14 40 1\n1 2\n7\n7 3\n'             > $PROB/trees-2/tests/01.in
+# brute.cpp for woodcutter scans every height from the top down; brute.cpp for
+# woodcutter-2 reaches the answer with the O(n) check instead of prefix sums.
+mkdir -p $PROB/woodcutter/tests $PROB/woodcutter-2/tests
+printf '2\n5 14\n24 21 19 14 22\n1 7\n7\n'                          > $PROB/woodcutter/tests/01.in
+printf '2\n5 3\n24 21 19 14 22\n14 40 1\n1 2\n7\n7 3\n'             > $PROB/woodcutter-2/tests/01.in
 
-gen_tests trees 6
-gen_tests trees-2 6
+gen_tests woodcutter 6
+gen_tests woodcutter-2 6
 echo "Woodcutter I + II tests generated."
 
 # ---------------------------------------------------------------------------
@@ -486,3 +486,17 @@ printf '3\n104 2\n223 4\n7067678 8\n' > $PROB/divisible-rearrangements/tests/01.
 
 gen_tests divisible-rearrangements 6
 echo "Divisible rearrangements tests generated."
+
+# ---------------------------------------------------------------------------
+# marbles: based on Codeforces 1215E "Marbles" (Mike Mirzayanov / Codeforces),
+# test L14/00 "Test 4". NOT petlja - "based on", no permission claim, statement
+# is ours. A t wrapper was added; note the dp cost depends on the number of
+# DISTINCT colours, not on n, so the heavy file is five cases that each use all
+# 20 colours rather than one long row.
+# 01.in batches the three published Codeforces examples. brute.cpp tries every
+# permutation of the colours and counts inversions directly - no dp, no cnt table.
+mkdir -p $PROB/marbles/tests
+printf '3\n7\n3 4 2 3 4 2 2\n5\n20 1 14 10 2\n13\n5 5 4 4 3 5 7 6 5 4 4 6 5\n' > $PROB/marbles/tests/01.in
+
+gen_tests marbles 6
+echo "Marbles tests generated."

@@ -1,7 +1,7 @@
 
 ## Pristup
 
-Binarna pretraga iz zadatka [Drvoseča](/sr/Problems/trees) i dalje dolazi do rešenja: ako na nekoj visini ima dovoljno drveta, ima ga i na svakoj nižoj, pa tražimo poslednju visinu koja prolazi.
+Binarna pretraga iz zadatka [Drvoseča](/sr/Problems/woodcutter) i dalje dolazi do rešenja: ako na nekoj visini ima dovoljno drveta, ima ga i na svakoj nižoj, pa tražimo poslednju visinu koja prolazi.
 
 Ono što više ne prolazi jeste cena jedne provere. Prolazak kroz svih $n$ stabala košta $O(n)$, a sada ga plaćamo $\log H \approx 30$ puta **po svakoj porudžbini** - do $10^5 \cdot 10^5 \cdot 30$ koraka. Pretraga ostaje kakva jeste, provera mora da se ubrza.
 

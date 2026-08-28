@@ -85,7 +85,7 @@ int main(){
 }
 ```
 
-The whole forest fits in $10^5 \cdot 10^4 = 10^9$ meters, which still fits in an `int`, so no `long long` is needed here. With bigger trees it would be - see [Woodcutter II](/en/Problems/trees-2).
+The whole forest fits in $10^5 \cdot 10^4 = 10^9$ meters, which still fits in an `int`, so no `long long` is needed here. With bigger trees it would be - see [Woodcutter II](/en/Problems/woodcutter-2).
 
 ## Complexity
 

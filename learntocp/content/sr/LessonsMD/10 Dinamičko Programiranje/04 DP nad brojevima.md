@@ -110,6 +110,7 @@ To je opet trik sa zbirom prefiksa. Ako sa `f(x)` označimo koliko brojeva iz `[
 `resenje(L, R) = f(R) - f(L-1)`
 
 	![[digit-dp-ranges.png|Tri trake iznad brojevne prave od 0 do 250: f od 250 pokriva celu pravu i drži 208, f od 99 pokriva levi deo i drži 81, a preostali deo od 100 do 250 drži 127, sa 208 minus 81 jednako 127 ispisanim ispod]]
+
 ### Dodavanje pravog stanja
 
 Pravilo `bez sedmice` bilo je lako zato što je cifra dozvoljena ili nije, sasvim nezavisno od ostalih. Većina zadataka nije takva:

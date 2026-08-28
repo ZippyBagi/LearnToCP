@@ -1,4 +1,4 @@
 sr-name: Problem - Drvoseča II
-id: trees-2
-href: /Problems/trees-2
+id: woodcutter-2
+href: /Problems/woodcutter-2
 type: problem

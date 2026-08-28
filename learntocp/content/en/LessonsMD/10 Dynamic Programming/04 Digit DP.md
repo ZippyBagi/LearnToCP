@@ -110,6 +110,7 @@ That is the prefix sum trick again:
 `answer(L, R) = solve(R) - solve(L-1)`
 
 	![[digit-dp-ranges.png|Three bars over a number line from 0 to 250: solve of 250 covering the whole line and holding 208, solve of 99 covering the left part and holding 81, and the leftover stretch from 100 to 250 holding 127, with 208 minus 81 equals 127 underneath]]
+
 ### Adding a real state
 
 The `no 7` rule was easy because a digit is allowed or not all on its own. Most problems are not like that:

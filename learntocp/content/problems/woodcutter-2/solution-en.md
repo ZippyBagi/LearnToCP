@@ -1,7 +1,7 @@
 
 ## Approach
 
-The binary search from [Woodcutter](/en/Problems/trees) still finds the answer: if a saw height gives enough wood, every lower height does too, so we look for the last height that works.
+The binary search from [Woodcutter](/en/Problems/woodcutter) still finds the answer: if a saw height gives enough wood, every lower height does too, so we look for the last height that works.
 
 What breaks is the price of one `check`. Walking over all $n$ trees costs $O(n)$, and now we pay it $\log H \approx 30$ times **per order** - up to $10^5 \cdot 10^5 \cdot 30$ steps. The search stays, the check has to get faster.
 

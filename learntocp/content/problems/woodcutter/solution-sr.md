@@ -85,7 +85,7 @@ int main(){
 }
 ```
 
-Cela šuma ima najviše $10^5 \cdot 10^4 = 10^9$ metara, a toliko `int` još uvek prima, pa nam ovde `long long` nije potreban. Kod krupnijeg drveća bi bio - vidi [Drvoseča II](/sr/Problems/trees-2).
+Cela šuma ima najviše $10^5 \cdot 10^4 = 10^9$ metara, a toliko `int` još uvek prima, pa nam ovde `long long` nije potreban. Kod krupnijeg drveća bi bio - vidi [Drvoseča II](/sr/Problems/woodcutter-2).
 
 ## Složenost
 
