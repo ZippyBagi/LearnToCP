@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "problems/classy-numbers/solution-en.md",
+                "file": "problems/divisible-rearrangements/solution-en.md",
                 "mode": "source",
                 "source": false
               },
@@ -187,9 +187,14 @@
   },
   "active": "e60b34b3aacb4cef",
   "lastOpenFiles": [
+    "roadmap_data/L9/00 Dynamic Programming II/07 Problem - Classy Numbers.md",
+    "roadmap_data/L9/00 Dynamic Programming II/06 Digit DP.md",
+    "roadmap_data/L11/00 Test 3/02 Problem - Divisible Rearrangements.txt",
+    "problems/divisible-rearrangements/solution-sr.md",
+    "problems/divisible-rearrangements/solution-en.md",
+    "problems/classy-numbers/solution-en.md",
     "problems/classy-numbers/problem.json",
     "problems/tasting-menu/solution-en.md",
-    "roadmap_data/L9/00 Dynamic Programming II/07 Problem - Classy Numbers.md",
     "en/LessonsMD/10 Dynamic Programming/04 Digit DP.md",
     "problems/classy-numbers/tests/06.out",
     "problems/classy-numbers/tests/05.out",
@@ -199,8 +204,6 @@
     "problems/classy-numbers/tests/01.out",
     "problems/classy-numbers/tests/06.in",
     "problems/classy-numbers/tests/05.in",
-    "problems/classy-numbers/tests/04.in",
-    "problems/classy-numbers/tests/03.in",
     "sr/LessonsMD/10 Dinamičko Programiranje/04 DP nad brojevima.md",
     "en/LessonsMD/10 Dynamic Programming/03 Bitmask DP.md",
     "en/LessonsMD/04 Binary Numbers/03 Bitmasks.md",
@@ -220,9 +223,6 @@
     "problems/counting-districts/description-en.md",
     "problems/counting-districts/solution-en.md",
     "problems/counting-districts/solution-sr.md",
-    "roadmap_data/L9/00 Dynamic Programming II/02 Problem - Tree Diameter.md",
-    "roadmap_data/L9/00 Dynamic Programming II/01 Problem - Counting Districts.md",
-    "roadmap_data/L9/01 Graph Theory II/04 Problem - Signal Delay.md",
     "images/connected-components.png",
     "images/tree-rooted-at-1.png",
     "images/tree-from-graph.png",

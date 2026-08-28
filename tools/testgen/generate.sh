@@ -471,3 +471,18 @@ printf '4\n1 1000\n1024 1024\n65536 65536\n999999 1000001\n' > $PROB/classy-numb
 
 gen_tests classy-numbers 6
 echo "Classy numbers tests generated."
+
+# ---------------------------------------------------------------------------
+# divisible-rearrangements: based on Codeforces 401D "Roman and Numbers" (Mike
+# Mirzayanov / Codeforces), lesson L9/00 "Bitmask DP". NOT petlja - "based on",
+# no permission claim, statement is ours. A t wrapper was added; the dp table is
+# sized to the actual digit count and modulus, so the small files cost 3 MB
+# rather than the 210 MB the worst case needs.
+# 01.in batches the three published Codeforces examples. brute.cpp walks every
+# distinct permutation with next_permutation, so it never uses the dp's
+# duplicate-digit rule - which is exactly the rule worth checking.
+mkdir -p $PROB/divisible-rearrangements/tests
+printf '3\n104 2\n223 4\n7067678 8\n' > $PROB/divisible-rearrangements/tests/01.in
+
+gen_tests divisible-rearrangements 6
+echo "Divisible rearrangements tests generated."
