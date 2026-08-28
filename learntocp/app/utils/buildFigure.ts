@@ -9,6 +9,11 @@ import { getFigure, IMAGES_URL_PREFIX } from "@/app/utils/imageManifest";
  * though, so building its URL by hand gets AVIF/WebP conversion and responsive
  * resizing without restructuring the markdown pipeline into React.
  *
+ * Those optimizer URLs go in `srcset` only. The `src` stays the plain file
+ * under /lesson-images, because that is the URL the sitemap and the lesson's
+ * ImageObject advertise, and image search needs all three to name the same
+ * thing before it will index a figure.
+ *
  * The optimizer returns 400 unless next.config.ts agrees: DEVICE_SIZES must be
  * a subset of `images.deviceSizes`, and QUALITY must appear in
  * `images.qualities`. Keep both in sync.
@@ -120,20 +125,12 @@ export function buildFigure(
 
   const attrs: string[] = [];
 
-  if (!optimizable) {
-    attrs.push(`src="${escapeAttr(src)}"`);
-  } else {
-    const widths = candidateWidths(optimizable.width);
-    attrs.push(
-      `src="${escapeAttr(optimizedUrl(src, widths[widths.length - 1]))}"`,
-    );
-    // One candidate is just the src restated, so skip srcset/sizes entirely.
-    if (widths.length > 1) {
-      const srcset = widths
-        .map((w) => `${escapeAttr(optimizedUrl(src, w))} ${w}w`)
-        .join(", ");
-      attrs.push(`srcset="${srcset}"`, `sizes="${FIGURE_SIZES}"`);
-    }
+  attrs.push(`src="${escapeAttr(src)}"`);
+  if (optimizable) {
+    const srcset = candidateWidths(optimizable.width)
+      .map((w) => `${escapeAttr(optimizedUrl(src, w))} ${w}w`)
+      .join(", ");
+    attrs.push(`srcset="${srcset}"`, `sizes="${FIGURE_SIZES}"`);
   }
 
   // Author-supplied display size wins over intrinsic, but intrinsic still
