@@ -31,6 +31,7 @@ export const generateSidebarContainers = cache((locale: string): SidebarContaine
     .readdirSync(lessonsRoot, { withFileTypes: true })
     .filter((entry) => entry.isDirectory())
     .filter((entry) => !entry.name.startsWith("."))
+    .filter((entry) => !(entry.name == "Hidden"))
     .map((entry) => entry.name)
     .sort((a, b) => getOrderValue(a) - getOrderValue(b));
 

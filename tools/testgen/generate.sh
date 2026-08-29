@@ -515,3 +515,17 @@ printf '3\n4 9\n0 0\n0 1\n1 1\n3 3\n1 3\n2 0\n3 0\n2 1\n2 2\n1 1\n0 0\n3 2\n0 0\
 
 gen_tests first-crossing 6
 echo "First crossing tests generated."
+
+# ---------------------------------------------------------------------------
+# and-reach: based on Codeforces 1878E "Iva & Pav" (Mike Mirzayanov /
+# Codeforces), lesson L9/03 "Sparse Tables". NOT petlja - "based on", no
+# permission claim, statement is ours. The upstream t wrapper is already ours.
+# 01.in is the published Codeforces example verbatim.
+# brute.cpp walks r rightwards folding the AND; note that on RANDOM data it is
+# fast, because the AND collapses to 0 within a few steps. Test 05 gives every
+# value the same high bit so the AND never drops and the walk never exits early.
+mkdir -p $PROB/and-reach/tests
+printf '3\n5\n15 14 17 42 34\n3\n1 7\n2 15\n4 5\n5\n7 5 3 1 7\n4\n1 7\n5 7\n2 3\n2 2\n7\n19 20 15 12 21 7 11\n4\n1 15\n4 4\n7 12\n5 7\n' > $PROB/and-reach/tests/01.in
+
+gen_tests and-reach 6
+echo "AND reach tests generated."
