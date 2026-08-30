@@ -185,8 +185,11 @@
       "bases:Create new base": false
     }
   },
-  "active": "e60b34b3aacb4cef",
+  "active": "253a54509f3591be",
   "lastOpenFiles": [
+    "en/LessonsMD/00 Contest Knowledge/01 Interactive Tasks.md",
+    "sr/LessonsMD/11 Teorija Grafova/07 Algoritmi Najkraćih Puteva.md",
+    "sr/LessonsMD/00 Takmičarsko Znanje/01 Interaktivni Zadaci.md",
     "en/LessonsMD/11 Graph Theory/07 Shortest Path Algorithms.md",
     "image_here, a graph with negative weights.md",
     "sr/LessonsMD/10 Dinamičko Programiranje/01 DP problemi.md",
@@ -220,9 +223,6 @@
     "en/LessonsMD/06 Data Structures/09 Sparse Tables.md",
     "roadmap_data/L9/03 Data Structures IV/02 Sqrt Decomposition.md",
     "problems/woodcutter/solution-en.md",
-    "problems/woodcutter/solution-sr.md",
-    "problems/woodcutter/description-sr.md",
-    "problems/woodcutter/description-en.md",
     "images/connected-components.png",
     "images/tree-rooted-at-1.png",
     "images/tree-from-graph.png",
