@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "roadmap_data/L10/00 Geometry II/01 Point in Polygon.md",
+                "file": "sr/LessonsMD/11 Teorija Grafova/07 Algoritmi Najkraćih Puteva.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "01 Point in Polygon"
+              "title": "07 Algoritmi Najkraćih Puteva"
             }
           }
         ]
@@ -187,6 +187,12 @@
   },
   "active": "e60b34b3aacb4cef",
   "lastOpenFiles": [
+    "en/LessonsMD/11 Graph Theory/07 Shortest Path Algorithms.md",
+    "image_here, a graph with negative weights.md",
+    "sr/LessonsMD/10 Dinamičko Programiranje/01 DP problemi.md",
+    "en/LessonsMD/10 Dynamic Programming/01 DP problems.md",
+    "en/LessonsMD/12 Advanced Graph Theory/00 Biconnectivity.md",
+    "roadmap_data/L10/00 Geometry II/01 Point in Polygon.md",
     "roadmap_data/L11/00 Test 3/sedGXwJ7a",
     "roadmap_data/L9/03 Data Structures IV/sedtahSeY",
     "roadmap_data/L11/00 Test 3/03 Problem - Marbles.txt",
@@ -203,7 +209,6 @@
     "problems/and-reach/tests/04.out",
     "problems/and-reach/tests/03.out",
     "problems/and-reach/tests/02.out",
-    "problems/and-reach/tests/01.out",
     "problems/first-crossing/solution-sr.md",
     "problems/and-reach/solution-sr.md",
     "problems/and-reach/solution-en.md",
@@ -218,11 +223,6 @@
     "problems/woodcutter/solution-sr.md",
     "problems/woodcutter/description-sr.md",
     "problems/woodcutter/description-en.md",
-    "problems/woodcutter-2/solution-sr.md",
-    "problems/woodcutter-2/solution-en.md",
-    "problems/woodcutter-2/description-sr.md",
-    "problems/woodcutter-2/description-en.md",
-    "sr/LessonsMD/06 Strukture Podataka/10 Disjunktni Skupovi.md",
     "images/connected-components.png",
     "images/tree-rooted-at-1.png",
     "images/tree-from-graph.png",
